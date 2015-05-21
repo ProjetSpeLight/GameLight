@@ -1,4 +1,4 @@
-﻿// Preloader will load all of the assets like graphics and audio
+// Preloader will load all of the assets like graphics and audio
 GameStates.Preloader = function (game) {
     this.preloadBar = null;
 }
@@ -11,6 +11,9 @@ GameStates.Preloader.prototype = {
         // load all game assets
         // images, spritesheets, atlases, audio etc..
         this.load.image('logo', 'assets/phaser2.png');
+        this.load.image('play', 'assets/button_play.png');
+        this.load.image('help', 'assets/button_help.png');
+        this.load.image('tutorial', 'assets/button_tutorial.png');
     },
 
     create: function () {
