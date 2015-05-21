@@ -80,13 +80,13 @@ GameStates.Game.prototype = {
         }
 
         
-        // We restart the game when "R" is pushed
         
+            // We restart the game when "R" is pushed
             if (this.input.keyboard.isDown(Phaser.Keyboard.R)){
                 this.create();
             }
             
-         
+            // we stop the game when "ESC" is pushed 
             if (this.input.keyboard.isDown(Phaser.Keyboard.ESC)){
             update_pause(this);
                
