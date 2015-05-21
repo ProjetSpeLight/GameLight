@@ -4,14 +4,20 @@ function createLevel(game) {
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
     //  A simple background for our game
-    game.add.sprite(0, 0, 'sky');
+    bg = game.add.sprite(0, 0, 'sky');
+    bg.fixedToCamera = true;
+
 
 
     var plateformData = [
         { "x": 400, "y": 400, "xScale": 1, "yScale": 1 },
         { "x": 50, "y": 250, "xScale": 1, "yScale": 1 },
-        { "x": 0, "y": game.world.height - 64, "xScale": 2, "yScale": 2 }
+        { "x": 800, "y": 300, "xScale": 1, "yScale": 1},
+        { "x": 0, "y": game.world.height - 64, "xScale": game.world.width/200, "yScale": 2}
     ]
+
+    game.world.setBounds(0, 0, 1600, 600);
+ 
 
     //  The platforms group contains the ground and the 2 ledges we can jump on
     platforms = game.add.group();
@@ -36,6 +42,7 @@ function createLevel(game) {
     //  Player physics properties. Give the little guy a slight bounce.
     player.body.bounce.y = 0.0;
     player.body.gravity.y = 1000;
+    game.camera.follow(player);
     player.body.collideWorldBounds = true;
 
     //  Our two animations, walking left and right.
@@ -56,5 +63,5 @@ function createLevel(game) {
 
         //  This just gives each star a slightly random bounce value
         star.body.bounce.y = 0.7 + Math.random() * 0.2;
-    }
+    }  
 }
