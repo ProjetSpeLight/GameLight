@@ -11,15 +11,28 @@ GameStates.Game.prototype = {
         pushed = false;
         createLevel(game);
        scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+        
+       button_pause = this.add.button(700, 20, 'pause', actionClick, this);
+        button_play.name = 'pause';
+        button_play.anchor.setTo(0.5, 0.5);
+        
+        function actionClick() {
+            
+            update_pause(this);
+        }
+        
+        
+        
     },
 
     update: function () {
+        if(!this.paused){
         this.physics.arcade.collide(player, platforms);
         this.physics.arcade.collide(stars, platforms);
         this.physics.arcade.overlap(player, stars, collectStar, null, this);
 
         var cursors = this.input.keyboard.createCursorKeys();
-
+        
         //  Reset the players velocity (movement)
         if (player.body.velocity.x > 10 && !player.body.touching.down) {
             player.body.velocity.x -= 5;
@@ -74,6 +87,7 @@ GameStates.Game.prototype = {
             scoreText.text = 'Score: ' + score;
 
         }
+    }
     },
 
     render: function () { },

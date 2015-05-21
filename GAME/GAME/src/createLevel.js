@@ -1,4 +1,4 @@
-﻿
+
 function createLevel(game) {
     //  We're going to be using physics, so enable the Arcade Physics system
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -57,4 +57,6 @@ function createLevel(game) {
         //  This just gives each star a slightly random bounce value
         star.body.bounce.y = 0.7 + Math.random() * 0.2;
     }
+    
+    
 }
