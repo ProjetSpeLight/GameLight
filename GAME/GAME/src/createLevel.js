@@ -75,7 +75,9 @@ function createLevel(game) {
     //Plateformes mouvantes
     movingPlatforms = game.add.physicsGroup();
 
-    var movingPlatformsData = [{ "x": 900, "y": 400, "xScale": 1, "yScale": 1, "speed": 100, "limit": 200 }]
+    var movingPlatformsData = [{ "x": 900, "y": 400, "xScale": 1, "yScale": 1, "speed": 100, "limit": 200 },
+    {"x": 100, "y": 150, "xScale": 1, "yScale": 1, "speed": 150, "limit": 600}
+    ]
     movingPlatformsData.forEach(function (element) {
         var plat = movingPlatforms.create(element.x, element.y, 'ground');
         plat.scale.setTo(element.xScale, element.yScale);
