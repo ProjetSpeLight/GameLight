@@ -12,7 +12,10 @@ GameStates.Game.prototype = {
         createLevel(game);
        scoreText = game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
         scoreText.fixedToCamera = true;
-          button_pause = this.add.button(700, 20, 'pause', actionClick, this);
+        button_pause = this.add.button(700, 20, 'pause', actionClick, this);
+
+        initBullets(this);
+
         button_pause.name = 'pause';
         button_pause.anchor.setTo(0.5, 0.5);
         button_pause.fixedToCamera=true;
@@ -20,6 +23,7 @@ GameStates.Game.prototype = {
         function actionClick() {
             update_pause(this);
         }
+
     },
 
     update: function () {
@@ -65,7 +69,7 @@ GameStates.Game.prototype = {
 
         // TEMP : Change of colour (by space key)
         var keyboard = this.input.keyboard;
-        updateColorPlayer(player, keyboard);
+        updateColorPlayer(player, keyboard, this);
 
         //  Allow the player to jump if they are touching the ground.
         if (cursors.up.isDown && player.body.touching.down && !pushed) {

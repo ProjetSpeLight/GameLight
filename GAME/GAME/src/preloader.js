@@ -21,6 +21,9 @@ GameStates.Preloader.prototype = {
         this.load.image('tutorial', 'assets/button_tutorial.png');
 
         this.load.spritesheet('dude', 'assets/colordude.png', 32, 48);
+
+        this.load.image('bullet', 'assets/photon.png');
+
     },
 
     create: function () {
