@@ -12,22 +12,17 @@ GameStates.Game.prototype = {
         createLevel(game);
        scoreText = game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
         scoreText.fixedToCamera = true;
-        
-       button_pause = this.add.button(700, 20, 'pause', actionClick, this);
+          button_pause = this.add.button(700, 20, 'pause', actionClick, this);
         button_pause.name = 'pause';
         button_pause.anchor.setTo(0.5, 0.5);
         button_pause.fixedToCamera=true;
         
         function actionClick() {
-            
             update_pause(this);
         }
-
     },
 
     update: function () {
-       //
-        
 
         
         if(!this.paused){
@@ -83,9 +78,16 @@ GameStates.Game.prototype = {
         }
         
         // We restart the game when "R" is pushed
-        if (this.input.keyboard.isDown(Phaser.Keyboard.R)){
-            this.create();
-        }
+        
+            if (this.input.keyboard.isDown(Phaser.Keyboard.R)){
+                this.create();
+            }
+            
+         
+            if (this.input.keyboard.isDown(Phaser.Keyboard.ESC)){
+            update_pause(this);
+               
+            }
 
         function collectStar(player, star) {
 
