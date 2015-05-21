@@ -14,8 +14,9 @@ GameStates.Game.prototype = {
         scoreText.fixedToCamera = true;
         
        button_pause = this.add.button(700, 20, 'pause', actionClick, this);
-        button_play.name = 'pause';
-        button_play.anchor.setTo(0.5, 0.5);
+        button_pause.name = 'pause';
+        button_pause.anchor.setTo(0.5, 0.5);
+        button_pause.fixedToCamera=true;
         
         function actionClick() {
             
@@ -25,6 +26,10 @@ GameStates.Game.prototype = {
     },
 
     update: function () {
+       //
+        
+
+        
         if(!this.paused){
         this.physics.arcade.collide(player, platforms);
         this.physics.arcade.collide(stars, platforms);

@@ -18,14 +18,18 @@ function update_pause (game) {
      button_menu = game.add.button(400, 200, 'RetMenu', returnMenu, game);
         button_menu.name = 'Returnmenu';
         button_menu.anchor.setTo(0.5, 0.5);
+        button_menu.fixedToCamera=true;
         
         button_restart = game.add.button(400, 300, 'restart', restartclick, game);
         button_restart.name = 'restart';
         button_restart.anchor.setTo(0.5, 0.5);
-        
+        button_restart.fixedToCamera=true;    
+    
         button_resume = game.add.button(400, 400, 'resume', resumeclick, game);
         button_resume.name = 'resume';
         button_resume.anchor.setTo(0.5, 0.5);
+        button_resume.fixedToCamera=true;    
+    
         game.physics.arcade.isPaused =true;
         game.paused=true;
         
