@@ -26,6 +26,9 @@ function initializePlayerAnimations(player) {
         player.animations.add('left' + vcolor.name, [0 + 9 * vcolor.value, 1 + 9 * vcolor.value, 2 + 9 * vcolor.value, 3 + 9 * vcolor.value], 10, true);
         player.animations.add('right' + vcolor.name, [5 + 9 * vcolor.value, 6 + 9 * vcolor.value, 7 + 9 * vcolor.value, 8 + 9 * vcolor.value], 10, true);
     }
+
+    // Initialization of an attribute to indicate where the player look at
+    player.lookRight = true;
 }
 
 /// @function updatePositionPlayer
@@ -47,11 +50,13 @@ function updatePositionPlayer(player, cursors) {
         //  Move to the left
         player.body.velocity.x = -300;
         player.animations.play('left' + player.color.name);
+        player.lookRight = false;
     }
     else if (cursors.right.isDown) {
         //  Move to the right
         player.body.velocity.x = 300;
         player.animations.play('right' + player.color.name);
+        player.lookRight = true;
     }
     else {
         //  Stand still

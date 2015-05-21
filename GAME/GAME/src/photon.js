@@ -37,8 +37,13 @@ function firePhoton(game) {
 
         if (photon) {
             //  And fire it
-            photon.reset(player.x + player.width, player.y + player.height / 2 + photon.height / 2);
-            photon.body.velocity.x = 400;
+            if (player.lookRight) {
+                photon.reset(player.x + player.width, player.y + player.height / 2 + photon.height / 2);
+                photon.body.velocity.x = 400;
+            } else {
+                photon.reset(player.x, player.y + player.height / 2 + photon.height / 2);
+                photon.body.velocity.x = -400;
+            }
             // Delay the next fire of photon
             photonTime = game.time.now + 200;
         }
