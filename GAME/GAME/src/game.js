@@ -15,7 +15,7 @@ GameStates.Game.prototype = {
         scoreText.fixedToCamera = true;
         button_pause = this.add.button(700, 20, 'pause', actionClick, this);
 
-        initBullets(this);
+        initPhotons(this);
 
         button_pause.name = 'pause';
         button_pause.anchor.setTo(0.5, 0.5);
