@@ -14,7 +14,6 @@ window.onload = function () {
     var player;
     var stars;
     var score = 0;
-    var scoreText;
     var pushed;
 
     //  Now start the Boot state.

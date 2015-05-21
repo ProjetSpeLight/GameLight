@@ -1,6 +1,6 @@
 /// <reference path="~/node_modules/phaser/build/Phaser.js" />
 GameStates.Game = function (game) {
-
+    var scoreText;
 };
 
 GameStates.Game.prototype = {
@@ -10,7 +10,8 @@ GameStates.Game.prototype = {
         var game = this;
         pushed = false;
         createLevel(game);
-       scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+       scoreText = game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
+        scoreText.fixedToCamera = true;
         
        button_pause = this.add.button(700, 20, 'pause', actionClick, this);
         button_play.name = 'pause';
@@ -20,9 +21,7 @@ GameStates.Game.prototype = {
             
             update_pause(this);
         }
-        
-        
-        
+
     },
 
     update: function () {
@@ -34,7 +33,7 @@ GameStates.Game.prototype = {
         var cursors = this.input.keyboard.createCursorKeys();
         
         //  Reset the players velocity (movement)
-        if (player.body.velocity.x > 10 && !player.body.touching.down) {
+        /*if (player.body.velocity.x > 10 && !player.body.touching.down) {
             player.body.velocity.x -= 5;
         } else if (player.body.velocity.x < -10 && !player.body.touching.down) {
             player.body.velocity.x += 5;
@@ -60,7 +59,13 @@ GameStates.Game.prototype = {
                 player.animations.stop();
                 player.frame = 4;
             }
-        }
+        }*/
+
+        updatePositionPlayer(player, cursors);
+
+        // TEMP : Change of colour (by space key)
+        var keyboard = this.input.keyboard;
+        updateColorPlayer(player, keyboard);
 
         //  Allow the player to jump if they are touching the ground.
         if (cursors.up.isDown && player.body.touching.down && !pushed) {

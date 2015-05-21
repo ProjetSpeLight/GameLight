@@ -20,7 +20,7 @@ GameStates.Preloader.prototype = {
         this.load.image('help', 'assets/button_help.png');
         this.load.image('tutorial', 'assets/button_tutorial.png');
 
-        this.load.spritesheet('dude', 'assets/dude.png', 32, 48);
+        this.load.spritesheet('dude', 'assets/colordude.png', 32, 48);
     },
 
     create: function () {
