@@ -45,14 +45,15 @@ function update_pause (game) {
     function restartclick() {
             restart(game);
         }
-    
+   
     
 }
 
 
 function returnMenu (game) {
     
-     
+    game.paused=false;
+    game.physics.arcade.isPaused =false;
     game.state.start('MainMenu');
 }
 
