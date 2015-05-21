@@ -69,7 +69,7 @@ function resume (game) {
 function restart (game) {
     game.paused=false;
     game.physics.arcade.isPaused =false;
-    game.create();
+    game.state.start('Game');
 }
     
     

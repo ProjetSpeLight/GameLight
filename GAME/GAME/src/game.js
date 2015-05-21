@@ -1,4 +1,4 @@
-﻿/// <reference path="~/node_modules/phaser/build/Phaser.js" />
+/// <reference path="~/node_modules/phaser/build/Phaser.js" />
 GameStates.Game = function (game) {
     var scoreText;
 };
@@ -85,7 +85,7 @@ GameStates.Game.prototype = {
         
             // We restart the game when "R" is pushed
             if (this.input.keyboard.isDown(Phaser.Keyboard.R)){
-                this.create();
+                this.state.start('Game');
             }
             
             // we stop the game when "ESC" is pushed 
