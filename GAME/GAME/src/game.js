@@ -144,15 +144,15 @@ GameStates.Game.prototype = {
             player.frame = player.color.value * 9 + 4;
             
             switch (colorplatform.body.skin) {
-            case 'groundGreen':
-                 player.color = ColorEnum.GREEN;
+            case 'GREEN':
+                 player.color = ColorEnum.RED;
             player.frame = player.color.value * 9 + 4;
                 break;
-            case 'groundRed':
+            case 'RED':
                 player.color = ColorEnum.RED;
             player.frame = player.color.value * 9 + 4;
                 break;
-            case 'groundBlue':
+            case 'BLUE':
                 player.color = ColorEnum.BLUE;
             player.frame = player.color.value * 9 + 4;
                 break;
