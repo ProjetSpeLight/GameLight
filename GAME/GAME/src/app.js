@@ -9,6 +9,14 @@ window.onload = function () {
     game.state.add('MainMenu', GameStates.MainMenu);
     game.state.add('Game', GameStates.Game);
 
+    //Variables globales
+    var platforms;
+    var player;
+    var stars;
+    var score = 0;
+    var scoreText;
+    var pushed;
+
     //  Now start the Boot state.
     game.state.start('Boot');
  
