@@ -28,9 +28,22 @@ function createLevel(game) {
         var ground = platforms.create(element.x, element.y, 'ground');
         ground.scale.setTo(element.xScale, element.yScale);
         ground.body.immovable = true;
-    });
+    }
+    );
 
+    //Plateformes mouvantes
+    movingPlatforms = game.add.physicsGroup();
 
+    var movingPlatformsData = [{ "x": 900, "y": 400, "xScale": 1, "yScale": 1, "speed": 100, "limit": 200 }]
+    movingPlatformsData.forEach(function (element) {
+        var plat = movingPlatforms.create(element.x, element.y, 'ground');
+        plat.scale.setTo(element.xScale, element.yScale);
+        plat.body.sprite.leftBounds = element.x;
+        plat.body.sprite.rightBounds = element.x + element.limit;
+        plat.body.velocity.x = element.speed;
+    })
+    movingPlatforms.setAll('body.allowGravity', false);
+    movingPlatforms.setAll('body.immovable', true);
 
 
     // The player and its settings
@@ -56,12 +69,12 @@ function createLevel(game) {
     //  Here we'll create 12 of them evenly spaced apart
     for (var i = 0; i < 12; i++) {
         //  Create a star inside of the 'stars' group
-        var star = stars.create(i * 70, 0, 'star');
+        var star = stars.create((game.world.width-100)*Math.random(), 0, 'star');
 
         //  Let gravity do its thing
         star.body.gravity.y = 300;
 
         //  This just gives each star a slightly random bounce value
-        star.body.bounce.y = 0.7 + Math.random() * 0.2;
+        star.body.bounce.y = 0.2 + Math.random() * 0.2;
     }  
 }
