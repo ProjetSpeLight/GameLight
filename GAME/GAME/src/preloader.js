@@ -29,6 +29,8 @@ GameStates.Preloader.prototype = {
 
 
         this.load.spritesheet('dude', 'assets/colordude.png', 32, 48);
+        this.load.image('photon', 'assets/photon.png');
+
 
     },
 

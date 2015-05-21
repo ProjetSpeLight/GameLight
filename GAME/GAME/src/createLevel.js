@@ -12,6 +12,13 @@ function createLevel(game) {
 
 
 
+    /*var plateformData = [
+        { "x": 400, "y": 400, "xScale": 1, "yScale": 1 },
+        { "x": 50, "y": 250, "xScale": 1, "yScale": 1 },
+        { "x": 800, "y": 300, "xScale": 1, "yScale": 1},
+        { "x": 0, "y": game.world.height - 64, "xScale": game.world.width / 200 - 3, "yScale": 2 },
+        { "x": game.world.width - 2, "y": game.world.height - 64, "xScale": 2, "yScale": 2 }*/
+
     levelData = [
         { "type": 'plateform', "x": 400, "y": 400, "xScale": 1, "yScale": 1, "skin": 'ground'},
         { "type": 'plateform', "x": 50, "y": 250, "xScale": 1, "yScale": 1, "skin": 'ground' },
@@ -93,7 +100,9 @@ function createLevel(game) {
     //Plateformes mouvantes
     movingPlatforms = game.add.physicsGroup();
 
-    var movingPlatformsData = [{ "x": 900, "y": 400, "xScale": 1, "yScale": 1, "speed": 100, "limit": 200 }]
+    var movingPlatformsData = [{ "x": 900, "y": 400, "xScale": 1, "yScale": 1, "speed": 100, "limit": 200 },
+    {"x": 100, "y": 150, "xScale": 1, "yScale": 1, "speed": 150, "limit": 600}
+    ]
     movingPlatformsData.forEach(function (element) {
         var plat = movingPlatforms.create(element.x, element.y, 'ground');
         plat.scale.setTo(element.xScale, element.yScale);

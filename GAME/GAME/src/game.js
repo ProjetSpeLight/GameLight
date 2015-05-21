@@ -13,7 +13,10 @@ GameStates.Game.prototype = {
 
        scoreText = game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
         scoreText.fixedToCamera = true;
-          button_pause = this.add.button(700, 20, 'pause', actionClick, this);
+        button_pause = this.add.button(700, 20, 'pause', actionClick, this);
+
+        initPhotons(this);
+
         button_pause.name = 'pause';
         button_pause.anchor.setTo(0.5, 0.5);
         button_pause.fixedToCamera=true;
@@ -93,7 +96,7 @@ GameStates.Game.prototype = {
 
         // TEMP : Change of colour (by space key)
         var keyboard = this.input.keyboard;
-        updateColorPlayer(player, keyboard);
+        updateColorPlayer(player, keyboard, this);
 
         //  Allow the player to jump if they are touching the ground.
         if (cursors.up.isDown && player.body.touching.down && !pushed) {
@@ -112,11 +115,10 @@ GameStates.Game.prototype = {
             
 
         
-        
-            // We restart the game when "R" is pushed
-            if (this.input.keyboard.isDown(Phaser.Keyboard.R)){
-                this.state.start('Game');
-            }
+        // We restart the game when "R" is pushed
+        if (this.input.keyboard.isDown(Phaser.Keyboard.R) || player.body.y > this.world.height - 64) {
+            this.state.start('Game');
+        }
             
             // we stop the game when "ESC" is pushed 
             if (this.input.keyboard.isDown(Phaser.Keyboard.ESC)){
