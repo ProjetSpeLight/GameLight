@@ -61,8 +61,8 @@ GameStates.Game.prototype = {
         }
         
         // We restart the game when "R" is pushed
-        if (this.input.keyboard.isDown(Phaser.Keyboard.R)){
-            this.create();
+        if (this.input.keyboard.isDown(Phaser.Keyboard.R) || player.body.y > this.world.height - 64) {
+            this.state.start('Game');
         }
 
         function collectStar(player, star) {

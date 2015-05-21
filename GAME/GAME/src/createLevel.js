@@ -13,7 +13,8 @@ function createLevel(game) {
         { "x": 400, "y": 400, "xScale": 1, "yScale": 1 },
         { "x": 50, "y": 250, "xScale": 1, "yScale": 1 },
         { "x": 800, "y": 300, "xScale": 1, "yScale": 1},
-        { "x": 0, "y": game.world.height - 64, "xScale": game.world.width/200, "yScale": 2}
+        { "x": 0, "y": game.world.height - 64, "xScale": game.world.width / 200 - 3, "yScale": 2 },
+        { "x": game.world.width - 2, "y": game.world.height - 64, "xScale": 2, "yScale": 2 }
     ]
 
     game.world.setBounds(0, 0, 1600, 600);
