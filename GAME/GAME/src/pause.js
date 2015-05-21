@@ -45,7 +45,7 @@ function update_pause (game) {
     function restartclick() {
             restart(game);
         }
-    
+   
     
 }
 
