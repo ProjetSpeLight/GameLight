@@ -7,7 +7,7 @@ GameStates.MainMenu.prototype = {
         // create main menu text and images -
         // create a "Start Game" mechanism - variety of ways to do this...
 
-        
+       
         button_play = this.add.button(400, 200, 'play', this.playGame, this);
         button_play.name = 'play';
         button_play.anchor.setTo(0.5, 0.5);
@@ -37,4 +37,5 @@ GameStates.MainMenu.prototype = {
     help: function () {
         
     }
+
 };
