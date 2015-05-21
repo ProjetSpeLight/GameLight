@@ -14,8 +14,8 @@ function create_pause (game) {
 
 function update_pause (game) {
     
-    
-     button_menu = game.add.button(400, 200, 'RetMenu', returnMenu, game);
+        var returnmenu = false;
+     button_menu = game.add.button(400, 200, 'RetMenu', menuclick, game);
         button_menu.name = 'Returnmenu';
         button_menu.anchor.setTo(0.5, 0.5);
         button_menu.fixedToCamera=true;
@@ -45,15 +45,16 @@ function update_pause (game) {
     function restartclick() {
             restart(game);
         }
-    
+   
     
 }
 
 
 function returnMenu (game) {
     
-   //game.state.start('MainMenu');
-    // game.MainMenu.load();
+    game.paused=false;
+    game.physics.arcade.isPaused =false;
+    game.state.start('MainMenu');
 }
 
 function resume (game) {
@@ -68,7 +69,7 @@ function resume (game) {
 function restart (game) {
     game.paused=false;
     game.physics.arcade.isPaused =false;
-    game.create();
+    game.state.start('Game');
 }
     
     

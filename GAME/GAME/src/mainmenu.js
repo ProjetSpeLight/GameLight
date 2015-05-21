@@ -1,5 +1,5 @@
 GameStates.MainMenu = function (game) {
-
+    var movingPlatform
 };
 
 GameStates.MainMenu.prototype = {
@@ -19,7 +19,6 @@ GameStates.MainMenu.prototype = {
         button_help = this.add.button(400, 400, 'help', this.help, this);
         button_help.name = 'tutorial';
         button_help.anchor.setTo(0.5, 0.5);
-        
         
     },
     

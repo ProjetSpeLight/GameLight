@@ -28,6 +28,8 @@
     <Content Include="src\game.js" />
     <Content Include="index.html" />
     <Content Include="src\mainmenu.js" />
+    <Content Include="src\pause.js" />
+    <Content Include="src\player.js" />
     <Content Include="src\preloader.js" />
     <Content Include="web.config">
       <SubType>Designer</SubType>
@@ -35,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="package.json" />
+    <Content Include="assets\levels\level.json" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

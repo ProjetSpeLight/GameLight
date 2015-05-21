@@ -10,6 +10,7 @@ GameStates.Game.prototype = {
         var game = this;
         pushed = false;
         createLevel(game);
+
        scoreText = game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
         scoreText.fixedToCamera = true;
         button_pause = this.add.button(700, 20, 'pause', actionClick, this);
@@ -30,9 +31,11 @@ GameStates.Game.prototype = {
 
         
         if(!this.paused){
-        this.physics.arcade.collide(player, platforms);
-        this.physics.arcade.collide(stars, platforms);
-        this.physics.arcade.overlap(player, stars, collectStar, null, this);
+            this.physics.arcade.collide(player, platforms);
+            this.physics.arcade.collide(player, movingPlatforms);
+            this.physics.arcade.collide(coins, platforms);
+            this.physics.arcade.collide(coins, movingPlatforms);
+            this.physics.arcade.overlap(player, coins, collectCoin, null, this);
 
         var cursors = this.input.keyboard.createCursorKeys();
         
@@ -80,23 +83,32 @@ GameStates.Game.prototype = {
         if (cursors.up.isUp) {
             pushed = false;
         }
+
         
         // We restart the game when "R" is pushed
-        
-            if (this.input.keyboard.isDown(Phaser.Keyboard.R)){
-                this.create();
-            }
+        if (this.input.keyboard.isDown(Phaser.Keyboard.R) || player.body.y > this.world.height - 64) {
+            this.state.start('Game');
+        }
             
-         
+            // we stop the game when "ESC" is pushed 
             if (this.input.keyboard.isDown(Phaser.Keyboard.ESC)){
             update_pause(this);
                
             }
 
-        function collectStar(player, star) {
+        //Déplacement des plateformes
+        movingPlatforms.forEach(function (element) {
+            if (element.body.x >= element.body.sprite.rightBounds) {
+                element.body.velocity.x *= -1;
+            } else if (element.body.x <= element.body.sprite.leftBounds) {
+                element.body.velocity.x *= -1;
+            }
+        })
+
+        function collectCoin(player, coin) {
 
             // Removes the star from the screen
-            star.kill();
+            coin.kill();
 
             //  Add and update the score
             score += 10;
