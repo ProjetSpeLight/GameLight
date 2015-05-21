@@ -10,7 +10,11 @@ GameStates.Preloader.prototype = {
         this.load.setPreloadSprite(this.preloadBar);
         // load all game assets
         // images, spritesheets, atlases, audio etc..
+        this.load.image('sky', 'assets/sky.png');
+        this.load.image('ground', 'assets/platform.png');
+        this.load.image('star', 'assets/star.png');
         this.load.image('logo', 'assets/phaser2.png');
+        this.load.spritesheet('dude', 'assets/dude.png', 32, 48);
     },
 
     create: function () {
