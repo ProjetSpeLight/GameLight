@@ -23,15 +23,15 @@ var ColorEnum = {
 function initializePlayerAnimations(player) {
     for (var color in ColorEnum) {
         var vcolor = ColorEnum[color];
-        player.animations.add('left' + vcolor.name, [0 + 9*vcolor.value, 1 + 9*vcolor.value, 2 + 9*vcolor.value, 3 + 9*vcolor.value], 10, true);
-        player.animations.add('right' + vcolor.name, [5 + 9*vcolor.value, 6 + 9*vcolor.value, 7 + 9*vcolor.value, 8 + 9*vcolor.value], 10, true);
+        player.animations.add('left' + vcolor.name, [0 + 9 * vcolor.value, 1 + 9 * vcolor.value, 2 + 9 * vcolor.value, 3 + 9 * vcolor.value], 10, true);
+        player.animations.add('right' + vcolor.name, [5 + 9 * vcolor.value, 6 + 9 * vcolor.value, 7 + 9 * vcolor.value, 8 + 9 * vcolor.value], 10, true);
     }
 }
 
 /// @function updatePositionPlayer
 /// Move the player when the game is updated
 /// @param {Phaser.Sprite} the object player itself
-/// @param {} the cursors to know the item at the origin of the signal
+/// @param {Object} object containing a Phaser.Key object for each directional arrows keys
 function updatePositionPlayer(player, cursors) {
 
     //  Reset the players velocity (movement)
@@ -79,7 +79,7 @@ function updateColorPlayer(player, keyboard, game) {
     if (key.onDown) {
         key.onDown.removeAll();
         var sig = key.onUp.add(changeColor);
-       // sig.execute([player, key]);
+        // sig.execute([player, key]);
 
     }
 
