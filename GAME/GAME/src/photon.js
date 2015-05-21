@@ -31,8 +31,8 @@ function firePhoton(game) {
 
         if (photon) {
             //  And fire it
-            photon.reset(player.x, player.y + 8);
-            photon.body.velocity.y = -400;
+            photon.reset(player.x + player.width, player.y + player.height / 2 + photon.height / 2);
+            photon.body.velocity.x = 400;
             photonTime = game.time.now + 200;
         }
     }
