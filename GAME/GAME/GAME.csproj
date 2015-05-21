@@ -19,10 +19,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="app.css" />
+    <Content Include="src\actions.js" />
     <Content Include="src\app.js" />
     <Content Include="assets\phaser2.png" />
     <Content Include="assets\preloader-bar.png" />
     <Content Include="src\boot.js" />
+    <Content Include="src\createLevel.js" />
     <Content Include="src\game.js" />
     <Content Include="index.html" />
     <Content Include="src\mainmenu.js" />
