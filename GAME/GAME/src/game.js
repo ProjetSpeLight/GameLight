@@ -22,7 +22,7 @@ GameStates.Game.prototype = {
         var cursors = this.input.keyboard.createCursorKeys();
 
         //  Reset the players velocity (movement)
-        if (player.body.velocity.x > 10 && !player.body.touching.down) {
+        /*if (player.body.velocity.x > 10 && !player.body.touching.down) {
             player.body.velocity.x -= 5;
         } else if (player.body.velocity.x < -10 && !player.body.touching.down) {
             player.body.velocity.x += 5;
@@ -48,7 +48,13 @@ GameStates.Game.prototype = {
                 player.animations.stop();
                 player.frame = 4;
             }
-        }
+        }*/
+
+        updatePositionPlayer(player, cursors);
+
+        // TEMP : Change of colour (by space key)
+        var keyboard = this.input.keyboard;
+        updateColorPlayer(player, keyboard);
 
         //  Allow the player to jump if they are touching the ground.
         if (cursors.up.isDown && player.body.touching.down && !pushed) {
