@@ -77,12 +77,13 @@ function createLevel(game) {
     ColourPlatforms.enableBody = true;
 
     var ColourPlatformsData = [
-        { "type": 'plateform', "x": 600, "y": 250, "xScale": 1, "yScale": 1, "skin": 'GREEN'}]
+        { "type": 'plateform', "x": 600, "y": 250, "xScale": 1, "yScale": 1, "platformcolor": 'GREEN'},
+    { "type": 'plateform', "x": 600, "y": 50, "xScale": 1, "yScale": 1, "platformcolor": 'RED'}]
         
     
     
     ColourPlatformsData.forEach(function (element) {
-        switch (element.skin) {
+        switch (element.platformcolor) {
             case 'GREEN':
                 createPlatformGreen(element);
                 break;
@@ -129,13 +130,13 @@ function createPlatformGreen(element) {
 }
 
 function createPlatformBlue(element) {
-    var ground = platforms.create(element.x, element.y, 'groundBlue');
+    var ground = ColourPlatforms.create(element.x, element.y, 'groundBlue');
     ground.scale.setTo(element.xScale, element.yScale);
     ground.body.immovable = true;
 }
 
 function createPlatformRed(element) {
-    var ground = platforms.create(element.x, element.y, 'groundRed');
+    var ground = ColourPlatforms.create(element.x, element.y, 'groundRed');
     ground.scale.setTo(element.xScale, element.yScale);
     ground.body.immovable = true;
 }

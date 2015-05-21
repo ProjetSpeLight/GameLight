@@ -136,23 +136,21 @@ GameStates.Game.prototype = {
         })
 
         function makeColor(player, colorplatform) {
-            
-            if(player.body.touching.down){
+            if(player.body.touching.down ){
             //gerer les bonnes couleur et pas que le vert
             
-            player.color = ColorEnum.GREEN;
-            player.frame = player.color.value * 9 + 4;
             
-            switch (colorplatform.body.skin) {
-            case 'GREEN':
-                 player.color = ColorEnum.RED;
+            
+            switch (colorplatform.key) {
+            case 'groundGreen':
+                 player.color = ColorEnum.GREEN;
             player.frame = player.color.value * 9 + 4;
                 break;
-            case 'RED':
+            case 'groundRed':
                 player.color = ColorEnum.RED;
             player.frame = player.color.value * 9 + 4;
                 break;
-            case 'BLUE':
+            case 'groundBlue':
                 player.color = ColorEnum.BLUE;
             player.frame = player.color.value * 9 + 4;
                 break;
