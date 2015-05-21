@@ -12,10 +12,11 @@ window.onload = function () {
     //Variables globales
     var platforms;
     var player;
-    var stars;
+    var coins;
     var score = 0;
     var pushed;
     var movingPlatforms;
+    var levelData;
 
     //  Now start the Boot state.
     game.state.start('Boot');
