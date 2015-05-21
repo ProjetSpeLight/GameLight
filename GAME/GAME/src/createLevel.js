@@ -1,10 +1,15 @@
-﻿
-function createLevel(game, levelData) {
+
+
+function createLevel(game) {
+
     //  We're going to be using physics, so enable the Arcade Physics system
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
     //  A simple background for our game
-    game.add.sprite(0, 0, 'sky');
+    bg = game.add.sprite(0, 0, 'sky');
+    bg.fixedToCamera = true;
+
+
 
 
     levelData = [
@@ -16,6 +21,9 @@ function createLevel(game, levelData) {
         { "type": 'coin', "x": 0, "y": game.world.height - 64, "xScale": 2, "yScale": 2, "skin": 'coin' },
         { "type": 'player', "x": 32, "y": game.world.height - 150, "xScale": 2, "yScale": 2, "skin": '' }
     ]
+
+    game.world.setBounds(0, 0, 1600, 600);
+ 
 
     //  The platforms group contains the ground and the 2 ledges we can jump on
     platforms = game.add.group();
@@ -88,9 +96,29 @@ function createStart(element,game) {
     //  Player physics properties. Give the little guy a slight bounce.
     player.body.bounce.y = 0.0;
     player.body.gravity.y = 1000;
+    game.camera.follow(player);
     player.body.collideWorldBounds = true;
 
-    //  Our two animations, walking left and right.
-    player.animations.add('left', [0, 1, 2, 3], 10, true);
-    player.animations.add('right', [5, 6, 7, 8], 10, true);
+
+    // Initialization of the player animations
+    initializePlayerAnimations(player);
+    player.color = ColorEnum.BLUE;
+
+    stars = game.add.group();
+
+    stars.enableBody = true;
+
+    //  Here we'll create 12 of them evenly spaced apart
+    for (var i = 0; i < 12; i++) {
+        //  Create a star inside of the 'stars' group
+        var star = stars.create(i * 70, 0, 'star');
+
+        //  Let gravity do its thing
+        star.body.gravity.y = 300;
+
+        //  This just gives each star a slightly random bounce value
+        star.body.bounce.y = 0.7 + Math.random() * 0.2;
+
+    }  
+
 }

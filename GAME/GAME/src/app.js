@@ -14,7 +14,6 @@ window.onload = function () {
     var player;
     var coins;
     var score = 0;
-    var scoreText;
     var pushed;
     var levelData;
 
