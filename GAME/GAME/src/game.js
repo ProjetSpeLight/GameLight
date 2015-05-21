@@ -10,6 +10,7 @@ GameStates.Game.prototype = {
         var game = this;
         pushed = false;
         createLevel(game);
+
        scoreText = game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
         scoreText.fixedToCamera = true;
           button_pause = this.add.button(700, 20, 'pause', actionClick, this);
@@ -20,6 +21,7 @@ GameStates.Game.prototype = {
         function actionClick() {
             update_pause(this);
         }
+
     },
 
     update: function () {
@@ -27,8 +29,8 @@ GameStates.Game.prototype = {
         
         if(!this.paused){
         this.physics.arcade.collide(player, platforms);
-        this.physics.arcade.collide(stars, platforms);
-        this.physics.arcade.overlap(player, stars, collectStar, null, this);
+        this.physics.arcade.collide(coins, platforms);
+        this.physics.arcade.overlap(player, coins, collectCoin, null, this);
 
         var cursors = this.input.keyboard.createCursorKeys();
         
@@ -76,6 +78,7 @@ GameStates.Game.prototype = {
         if (cursors.up.isUp) {
             pushed = false;
         }
+
         
         
             // We restart the game when "R" is pushed
@@ -89,10 +92,11 @@ GameStates.Game.prototype = {
                
             }
 
-        function collectStar(player, star) {
+
+        function collectCoin(player, coin) {
 
             // Removes the star from the screen
-            star.kill();
+            coin.kill();
 
             //  Add and update the score
             score += 10;

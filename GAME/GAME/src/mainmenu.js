@@ -20,7 +20,6 @@ GameStates.MainMenu.prototype = {
         button_help.name = 'tutorial';
         button_help.anchor.setTo(0.5, 0.5);
         
-        
     },
     
     
