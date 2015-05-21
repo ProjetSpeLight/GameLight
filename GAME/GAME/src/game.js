@@ -10,13 +10,13 @@ GameStates.Game.prototype = {
         var game = this;
         pushed = false;
         createLevel(game);
-       scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+        scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
     },
 
     update: function () {
         this.physics.arcade.collide(player, platforms);
-        this.physics.arcade.collide(stars, platforms);
-        this.physics.arcade.overlap(player, stars, collectStar, null, this);
+        this.physics.arcade.collide(coins, platforms);
+        this.physics.arcade.overlap(player, coins, collectCoin, null, this);
 
         var cursors = this.input.keyboard.createCursorKeys();
 
@@ -58,12 +58,12 @@ GameStates.Game.prototype = {
         if (cursors.up.isUp) {
             pushed = false;
         }
-    
 
-        function collectStar(player, star) {
+
+        function collectCoin(player, coin) {
 
             // Removes the star from the screen
-            star.kill();
+            coin.kill();
 
             //  Add and update the score
             score += 10;
