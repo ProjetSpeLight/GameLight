@@ -1,4 +1,4 @@
-﻿/// <reference path="~/node_modules/phaser/build/Phaser.js" />
+/// <reference path="~/node_modules/phaser/build/Phaser.js" />
 GameStates.Game = function (game) {
 
 };
@@ -58,7 +58,11 @@ GameStates.Game.prototype = {
         if (cursors.up.isUp) {
             pushed = false;
         }
-    
+        
+        // We restart the game when "R" is pushed
+        if (this.input.keyboard.isDown(Phaser.Keyboard.R)){
+            this.create();
+        }
 
         function collectStar(player, star) {
 
