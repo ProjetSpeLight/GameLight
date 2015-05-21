@@ -21,6 +21,28 @@ GameStates.Game.prototype = {
         function actionClick() {
             update_pause(this);
         }
+         //player.body.onBeginContact.add(groundHit,this);
+        function groundHit(body, shapeA, shapeB, equation) {
+           
+            switch (body.sprite.key) {
+                case 'groundYellow':
+                   
+                    break;
+                case 'groundGreen':
+                    player.color = ColorEnum.GREEN;
+                    player.frame = player.color.value * 9 + 4;
+                    break;
+                case 'groundRed':
+                    player.color = ColorEnum.RED;
+                    player.frame = player.color.value * 9 + 4;  
+                    break;
+                case 'groundBlue':
+                    player.color = ColorEnum.BLUE;
+                    player.frame = player.color.value * 9 + 4;
+                    break;
+                default:
+            }
+        }
 
     },
 
@@ -33,6 +55,8 @@ GameStates.Game.prototype = {
             this.physics.arcade.collide(coins, platforms);
             this.physics.arcade.collide(coins, movingPlatforms);
             this.physics.arcade.overlap(player, coins, collectCoin, null, this);
+                
+            this.physics.arcade.collide(player,ColourPlatforms,makeColor,null,this);
 
         var cursors = this.input.keyboard.createCursorKeys();
         
@@ -80,6 +104,12 @@ GameStates.Game.prototype = {
         if (cursors.up.isUp) {
             pushed = false;
         }
+            
+            
+            //check collision platform and player
+            
+                
+            
 
         
         
@@ -103,6 +133,33 @@ GameStates.Game.prototype = {
             }
         })
 
+        function makeColor(player, colorplatform) {
+            
+            if(player.body.touching.down){
+            //gerer les bonnes couleur et pas que le vert
+            
+            player.color = ColorEnum.GREEN;
+            player.frame = player.color.value * 9 + 4;
+            
+            switch (colorplatform.body.skin) {
+            case 'groundGreen':
+                 player.color = ColorEnum.GREEN;
+            player.frame = player.color.value * 9 + 4;
+                break;
+            case 'groundRed':
+                player.color = ColorEnum.RED;
+            player.frame = player.color.value * 9 + 4;
+                break;
+            case 'groundBlue':
+                player.color = ColorEnum.BLUE;
+            player.frame = player.color.value * 9 + 4;
+                break;
+            default:
+        }
+            }
+
+        }
+        
         function collectCoin(player, coin) {
 
             // Removes the star from the screen

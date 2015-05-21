@@ -1,4 +1,4 @@
-﻿
+
 
 function createLevel(game) {
 
@@ -49,7 +49,7 @@ function createLevel(game) {
     });
     */
 
-
+    
     levelData.forEach(function (element) {
         switch (element.type) {
             case 'plateform':
@@ -64,7 +64,32 @@ function createLevel(game) {
             default:
         }
     });
+    
+    //Plateformes colorees
+    ColourPlatforms = game.add.group();
+    ColourPlatforms.enableBody = true;
 
+    var ColourPlatformsData = [
+        { "type": 'plateform', "x": 600, "y": 250, "xScale": 1, "yScale": 1, "skin": 'groundGreen'}]
+        
+    
+    
+    ColourPlatformsData.forEach(function (element) {
+        switch (element.skin) {
+            case 'groundGreen':
+                createPlatformGreen(element);
+                break;
+            case 'groundBlue':
+                createPlatformBlue(element);
+                break;
+            case 'groundRed':
+                createPlatformRed(element);
+                break;
+            default:
+        }
+    });
+
+    
     //Plateformes mouvantes
     movingPlatforms = game.add.physicsGroup();
 
@@ -84,6 +109,24 @@ function createLevel(game) {
 
 function createPlatform(element) {
     var ground = platforms.create(element.x, element.y, 'ground');
+    ground.scale.setTo(element.xScale, element.yScale);
+    ground.body.immovable = true;
+}
+function createPlatformGreen(element) {
+    var groundGreen = ColourPlatforms.create(element.x, element.y, 'groundGreen');
+    groundGreen.scale.setTo(element.xScale, element.yScale);
+    groundGreen.body.immovable = true;
+  
+}
+
+function createPlatformBlue(element) {
+    var ground = platforms.create(element.x, element.y, 'groundBlue');
+    ground.scale.setTo(element.xScale, element.yScale);
+    ground.body.immovable = true;
+}
+
+function createPlatformRed(element) {
+    var ground = platforms.create(element.x, element.y, 'groundRed');
     ground.scale.setTo(element.xScale, element.yScale);
     ground.body.immovable = true;
 }
