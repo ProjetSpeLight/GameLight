@@ -1,5 +1,5 @@
 GameStates.MainMenu = function (game) {
-
+    var movingPlatform
 };
 
 GameStates.MainMenu.prototype = {

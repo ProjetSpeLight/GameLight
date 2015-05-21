@@ -1,4 +1,4 @@
-/// <reference path="~/node_modules/phaser/build/Phaser.js" />
+﻿/// <reference path="~/node_modules/phaser/build/Phaser.js" />
 GameStates.Game = function (game) {
     var scoreText;
 };
@@ -16,7 +16,9 @@ GameStates.Game.prototype = {
 
     update: function () {
         this.physics.arcade.collide(player, platforms);
+        this.physics.arcade.collide(player, movingPlatforms);
         this.physics.arcade.collide(stars, platforms);
+        this.physics.arcade.collide(stars, movingPlatforms);
         this.physics.arcade.overlap(player, stars, collectStar, null, this);
 
         var cursors = this.input.keyboard.createCursorKeys();
@@ -64,6 +66,15 @@ GameStates.Game.prototype = {
         if (this.input.keyboard.isDown(Phaser.Keyboard.R)){
             this.create();
         }
+
+        //Déplacement des plateformes
+        movingPlatforms.forEach(function (element) {
+            if (element.body.x >= element.body.sprite.rightBounds) {
+                element.body.velocity.x *= -1;
+            } else if (element.body.x <= element.body.sprite.leftBounds) {
+                element.body.velocity.x *= -1;
+            }
+        })
 
         function collectStar(player, star) {
 

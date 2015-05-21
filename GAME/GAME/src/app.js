@@ -15,6 +15,7 @@ window.onload = function () {
     var stars;
     var score = 0;
     var pushed;
+    var movingPlatforms;
 
     //  Now start the Boot state.
     game.state.start('Boot');
