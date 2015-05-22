@@ -57,9 +57,11 @@ GameStates.Game.prototype = {
             this.physics.arcade.collide(player, movingPlatforms);
             this.physics.arcade.collide(coins, platforms);
             this.physics.arcade.collide(coins, movingPlatforms);
-            this.physics.arcade.overlap(player, coins, collectCoin, null, this);
+            this.physics.arcade.overlap(player, coins,
+                                        collectCoin, null, this);
                 
-            this.physics.arcade.collide(player,ColourPlatforms,makeColor,null,this);
+            this.physics.arcade.collide(player,ColourPlatforms,
+                                        makeColor,null,this);
 
         var cursors = this.input.keyboard.createCursorKeys();
         
@@ -139,23 +141,28 @@ GameStates.Game.prototype = {
             if(player.body.touching.down ){
             //gerer les bonnes couleur et pas que le vert
             
-            
-            
-            switch (colorplatform.key) {
-            case 'groundGreen':
-                 player.color = ColorEnum.GREEN;
-            player.frame = player.color.value * 9 + 4;
-                break;
-            case 'groundRed':
-                player.color = ColorEnum.RED;
-            player.frame = player.color.value * 9 + 4;
-                break;
-            case 'groundBlue':
-                player.color = ColorEnum.BLUE;
-            player.frame = player.color.value * 9 + 4;
-                break;
-            default:
-        }
+                switch (colorplatform.key) {
+                    case 'groundGreen':
+                        if (player.color!=ColorEnum.GREEN){
+                            player.color = ColorEnum.GREEN;
+                            player.frame = player.color.value * 9 + 4;
+                        }
+                        break;
+                    case 'groundRed':
+                        if (player.color!=ColorEnum.RED){
+                        player.color = ColorEnum.RED;
+                    player.frame = player.color.value * 9 + 4;
+                        }
+                        break;
+                    case 'groundBlue':
+                        if (player.color!=ColorEnum.BLUE){
+                        player.color = ColorEnum.BLUE;
+                    player.frame = player.color.value * 9 + 4;
+                        }
+                        break;
+                    default:
+                }
+                
             }
 
         }
