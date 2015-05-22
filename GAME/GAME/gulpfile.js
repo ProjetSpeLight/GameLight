@@ -7,6 +7,7 @@ var jshint = require('gulp-jshint');
 var changed = require('gulp-changed');
 var imagemin = require('gulp-imagemin');
 var webserver = require('gulp-webserver');
+var connect = require('gulp-connect');
 
 // JS hint task
 gulp.task('jshint', function () {
@@ -47,3 +48,22 @@ gulp.task('webserver', function () {
       }));
 });
 
+gulp.task('connect', function () {
+    connect.server({
+        root: './',
+        port: 25225
+        //open: {browser: 'Internet Explorer'}
+        //livereload: true
+    });
+});
+
+gulp.task('html', function () {
+    gulp.src('./*.html')
+      .pipe(connect.reload());
+});
+
+gulp.task('watch', function () {
+    gulp.watch(['./*.html'], ['html']);
+});
+
+gulp.task('default', ['connect', 'watch']);
