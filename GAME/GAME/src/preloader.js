@@ -22,7 +22,13 @@ GameStates.Preloader.prototype = {
 
         this.load.image('logo', 'assets/phaser2.png');
         preload_pause(this);
-
+        
+        this.load.image('button_jump', 'assets/button_jump.png', 64, 64);
+        
+        if(this.game.device.iOS){
+            //preload_touch(this);
+        }
+        
         this.load.image('play', 'assets/button_play.png');
         this.load.image('help', 'assets/button_help.png');
         this.load.image('tutorial', 'assets/button_tutorial.png');

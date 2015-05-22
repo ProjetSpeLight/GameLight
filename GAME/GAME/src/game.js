@@ -9,7 +9,12 @@ GameStates.Game.prototype = {
         score = 0;
         var game = this;
         pushed = false;
+        
         createLevel(game);
+        
+        if(this.game.device.iOS){                    
+            addJoypad(game);
+        }
 
        scoreText = game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
         scoreText.fixedToCamera = true;
@@ -24,6 +29,7 @@ GameStates.Game.prototype = {
         function actionClick() {
             update_pause(this);
         }
+        
          //player.body.onBeginContact.add(groundHit,this);
         function groundHit(body, shapeA, shapeB, equation) {
            
@@ -162,6 +168,7 @@ GameStates.Game.prototype = {
             scoreText.text = 'Score: ' + score;
 
         }
+        
     }
     },
 
