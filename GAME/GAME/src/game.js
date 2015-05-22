@@ -63,9 +63,11 @@ GameStates.Game.prototype = {
             this.physics.arcade.collide(player, movingPlatforms);
             this.physics.arcade.collide(coins, platforms);
             this.physics.arcade.collide(coins, movingPlatforms);
-            this.physics.arcade.overlap(player, coins, collectCoin, null, this);
+            this.physics.arcade.overlap(player, coins,
+                                        collectCoin, null, this);
                 
-            this.physics.arcade.collide(player,ColourPlatforms,makeColor,null,this);
+            this.physics.arcade.collide(player,ColourPlatforms,
+                                        makeColor,null,this);
 
         var cursors = this.input.keyboard.createCursorKeys();
         
@@ -134,28 +136,48 @@ GameStates.Game.prototype = {
         })
 
         function makeColor(player, colorplatform) {
-            if(player.body.touching.down ){
-            //gerer les bonnes couleur et pas que le vert
+        
+            // Oblige le joueur à etre au dessus 
+            //de la plateforme coloree pour changer de couleur
+                if(player.body.touching.down ){
             
-            
-            
-            switch (colorplatform.key) {
-            case 'groundGreen':
-                 player.color = ColorEnum.GREEN;
-            player.frame = player.color.value * 9 + 4;
-                break;
-            case 'groundRed':
-                player.color = ColorEnum.RED;
-            player.frame = player.color.value * 9 + 4;
-                break;
-            case 'groundBlue':
-                player.color = ColorEnum.BLUE;
-            player.frame = player.color.value * 9 + 4;
-                break;
-            default:
-        }
-            }
+                    // Oblige le joueur à appuyer 
+                    //sur la touche du bas pour changer de couleur
+                    if (this.input.keyboard.
+                        isDown(Phaser.Keyboard.DOWN)){
+                        
+                
+                        switch (colorplatform.key) {
+                            case 'groundGreen':
+                                //ne met à jour que si c'est necessaire
+                                if (player.color!=ColorEnum.GREEN){
+                                    player.color = ColorEnum.GREEN;
+                                    player.frame = player.color.value * 9 + 4;
+                                }
+                                break;
+                            case 'groundRed':
+                                if (player.color!=ColorEnum.RED){
+                                player.color = ColorEnum.RED;
+                                player.frame = player.color.value * 9 + 4;
+                               }
+                                break;
+                            case 'groundBlue':
+                                if (player.color!=ColorEnum.BLUE){
+                                player.color = ColorEnum.BLUE;
+                            player.frame = player.color.value * 9 + 4;
+                                }
+                                break;
+                            default:
+                        }
+                             
+                        photons.destroy();
+                        initPhotons(this);    
 
+                                
+
+                }
+
+            }
         }
         
         function collectCoin(player, coin) {
