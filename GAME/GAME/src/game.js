@@ -139,6 +139,7 @@ GameStates.Game.prototype = {
                     //sur la touche du bas pour changer de couleur
                     if (this.input.keyboard.
                         isDown(Phaser.Keyboard.DOWN)){
+                        
                 
                         switch (colorplatform.key) {
                             case 'groundGreen':
@@ -152,7 +153,7 @@ GameStates.Game.prototype = {
                                 if (player.color!=ColorEnum.RED){
                                 player.color = ColorEnum.RED;
                                 player.frame = player.color.value * 9 + 4;
-                                }
+                               }
                                 break;
                             case 'groundBlue':
                                 if (player.color!=ColorEnum.BLUE){
@@ -162,6 +163,11 @@ GameStates.Game.prototype = {
                                 break;
                             default:
                         }
+                             
+                        photons.destroy();
+                        initPhotons(this);    
+
+                                
 
                 }
 

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * This file implements the functions related to the photon
  */
 
@@ -17,7 +17,8 @@ function initPhotons(game) {
     photons = game.add.group();
     photons.enableBody = true;
     photons.physicsBodyType = Phaser.Physics.ARCADE;
-    photons.createMultiple(30, 'photon');
+    photons.createMultiple(30, 'photon',player.color.value);
+
     photons.setAll('anchor.x', 0.5);
     photons.setAll('anchor.y', 1);
     photons.setAll('outOfBoundsKill', true);
