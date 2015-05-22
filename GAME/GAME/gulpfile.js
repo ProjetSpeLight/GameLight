@@ -39,7 +39,7 @@ gulp.task('cp', ['clean'], function () {
 
 // Créé un serveur
 gulp.task('webserver', function () {
-    gulp.src('app')
+    gulp.src('src')
       .pipe(webserver({
           livereload: true,
           directoryListing: true,
