@@ -8,6 +8,7 @@ window.onload = function () {
     game.state.add('Preloader', GameStates.Preloader);
     game.state.add('MainMenu', GameStates.MainMenu);
     game.state.add('Game', GameStates.Game);
+    game.state.add('FinishLevel', GameStates.FinishLevel);
 
     //Variables globales
     var platforms;

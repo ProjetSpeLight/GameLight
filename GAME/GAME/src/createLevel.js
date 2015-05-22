@@ -113,6 +113,12 @@ function createLevel(game) {
     })
     movingPlatforms.setAll('body.allowGravity', false);
     movingPlatforms.setAll('body.immovable', true);
+    
+    
+    diamond = game.add.sprite(300, 30, 'diamond');
+    game.physics.arcade.enable(diamond);
+    diamond.body.bounce.y = 0.0;
+    diamond.body.gravity.y = 1000;
 
 
 }
@@ -163,6 +169,8 @@ function createStart(element,game) {
     // Initialization of the player animations
     initializePlayerAnimations(player);
     player.color = ColorEnum.BLUE;
+    
+    
 
     /*
     stars = game.add.group();

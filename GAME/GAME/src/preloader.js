@@ -12,6 +12,7 @@ GameStates.Preloader.prototype = {
         // images, spritesheets, atlases, audio etc..
         this.load.image('sky', 'assets/sky.png');
         this.load.image('ground', 'assets/platform.png');
+        this.load.image('diamond', 'assets/diamond.png');
 
         this.load.image('groundYellow', 'assets/platform_Jaune.png');
         this.load.image('groundRed', 'assets/platform_Rouge.png');

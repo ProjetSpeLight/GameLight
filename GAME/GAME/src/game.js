@@ -57,11 +57,17 @@ GameStates.Game.prototype = {
             this.physics.arcade.collide(player, movingPlatforms);
             this.physics.arcade.collide(coins, platforms);
             this.physics.arcade.collide(coins, movingPlatforms);
+            this.physics.arcade.collide(coins, ColourPlatforms);
             this.physics.arcade.overlap(player, coins,
                                         collectCoin, null, this);
                 
             this.physics.arcade.collide(player,ColourPlatforms,
                                         makeColor,null,this);
+            this.physics.arcade.collide(diamond, platforms);
+            this.physics.arcade.collide(diamond, ColourPlatforms);
+            this.physics.arcade.collide(diamond, movingPlatforms);
+            this.physics.arcade.overlap(player, diamond,
+                                        finish, null, this);
 
         var cursors = this.input.keyboard.createCursorKeys();
         
@@ -153,6 +159,7 @@ GameStates.Game.prototype = {
                                 if (player.color!=ColorEnum.RED){
                                 player.color = ColorEnum.RED;
                                 player.frame = player.color.value * 9 + 4;
+                                  
                                }
                                 break;
                             case 'groundBlue':
@@ -182,6 +189,12 @@ GameStates.Game.prototype = {
             //  Add and update the score
             score += 10;
             scoreText.text = 'Score: ' + score;
+
+        }
+            
+            function finish(player, diamond) {
+
+            this.state.start('FinishLevel');
 
         }
     }
