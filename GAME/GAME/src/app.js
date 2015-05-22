@@ -2,6 +2,10 @@
 window.onload = function () {
 
     var game = new Phaser.Game(800, 600, Phaser.AUTO, '');
+    
+    //if(game.device.iOS){
+        //game.scale.startFullScreen();
+    //}
 
     //  Add the States your game has.
     game.state.add('Boot', GameStates.Boot);

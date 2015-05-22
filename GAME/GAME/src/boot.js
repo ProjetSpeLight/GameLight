@@ -17,9 +17,19 @@ GameStates.Boot.prototype = {
     create: function () {
         // setup game environment
         // scale, input etc..
+        
+        if(this.game.device.iOS){
+            this.game.scale.forceOrientation(true, false);
+            this.game.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
+            this.game.scale.refresh();
+            
+           
+        }
 
         // call next state
         this.state.start('Preloader');
+        
+        
     }
 };
 
