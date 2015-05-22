@@ -66,7 +66,6 @@ GameStates.Game.prototype = {
             this.physics.arcade.collide(coins, ColourPlatforms);
             this.physics.arcade.overlap(player, coins,
                                         collectCoin, null, this);
-                
             this.physics.arcade.collide(player,ColourPlatforms,
                                         makeColor,null,this);
             this.physics.arcade.collide(diamond, platforms);
