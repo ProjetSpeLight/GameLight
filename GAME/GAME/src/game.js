@@ -130,33 +130,40 @@ GameStates.Game.prototype = {
         })
 
         function makeColor(player, colorplatform) {
-            if(player.body.touching.down ){
-            //gerer les bonnes couleur et pas que le vert
             
-                switch (colorplatform.key) {
-                    case 'groundGreen':
-                        if (player.color!=ColorEnum.GREEN){
-                            player.color = ColorEnum.GREEN;
-                            player.frame = player.color.value * 9 + 4;
-                        }
-                        break;
-                    case 'groundRed':
-                        if (player.color!=ColorEnum.RED){
-                        player.color = ColorEnum.RED;
-                    player.frame = player.color.value * 9 + 4;
-                        }
-                        break;
-                    case 'groundBlue':
-                        if (player.color!=ColorEnum.BLUE){
-                        player.color = ColorEnum.BLUE;
-                    player.frame = player.color.value * 9 + 4;
-                        }
-                        break;
-                    default:
-                }
-                
-            }
+            
+            
+                if(player.body.touching.down ){
+                  // Oblige le joueur à appuyer sur la touche du bas pour changer de couleur
+                    if (this.input.keyboard.
+                        isDown(Phaser.Keyboard.DOWN)){
+                //gerer les bonnes couleur et pas que le vert
 
+                    switch (colorplatform.key) {
+                        case 'groundGreen':
+                            if (player.color!=ColorEnum.GREEN){
+                                player.color = ColorEnum.GREEN;
+                                player.frame = player.color.value * 9 + 4;
+                            }
+                            break;
+                        case 'groundRed':
+                            if (player.color!=ColorEnum.RED){
+                            player.color = ColorEnum.RED;
+                        player.frame = player.color.value * 9 + 4;
+                            }
+                            break;
+                        case 'groundBlue':
+                            if (player.color!=ColorEnum.BLUE){
+                            player.color = ColorEnum.BLUE;
+                        player.frame = player.color.value * 9 + 4;
+                            }
+                            break;
+                        default:
+                    }
+
+                }
+
+            }
         }
         
         function collectCoin(player, coin) {
