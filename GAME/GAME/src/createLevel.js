@@ -5,32 +5,37 @@ function createLevel(game) {
     //  We're going to be using physics, so enable the Arcade Physics system
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
-    //  A simple background for our game
-    bg = game.add.sprite(0, 0, 'sky');
-    bg.fixedToCamera = true;
+    // We parse the JSON file
+    var levelData = game.cache.getJSON('level');
 
-    game.world.setBounds(0, 0, 1600, 600);
+    createWorld(levelData, game);
 
 
-    //  The platforms group contains the ground and the 2 ledges we can jump on
-    platforms = game.add.group();
-    coins = game.add.group();
+    // Create the differents groups of objects
+    platforms = game.add.physicsGroup();
+    movingPlatforms = game.add.physicsGroup();
+    colourPlatforms = game.add.physicsGroup();
     ends = game.add.group();
-    colourPlatforms = game.add.group();
+    coins = game.add.group();
 
-    //  We will enable physics for any object that is created in this group
+
+    //  We will enable physics for any object that is created in those group
     platforms.enableBody = true;
     coins.enableBody = true;
     ends.enableBody = true;
     colourPlatforms.enableBody = true;
 
+    // Creation of the level's objects
+    createObjects(levelData);
 
-    // We parse the JSON file
-    var levelData = game.cache.getJSON('level');
+
+    // Creation of the player
+    createStart(levelData.playerStart, game);
 
 
-    var dataPlayer = levelData.playerStart; // Data related to the player
+}
 
+function createObjects(levelData) {
 
     // Creation of the fixed platforms
     createPlatform(levelData);
@@ -41,16 +46,10 @@ function createLevel(game) {
     // Creation of the ends
     createEnds(levelData);
 
-    // Creation of the player
-    createStart(dataPlayer, game);
-
-
     //Plateformes mouvantes
-    movingPlatforms = game.add.physicsGroup();
 
-    var movingPlatformsData = [{ "x": 900, "y": 400, "xScale": 1, "yScale": 1, "speed": 100, "limit": 200 },
-    { "x": 100, "y": 150, "xScale": 1, "yScale": 1, "speed": 150, "limit": 600 }
-    ]
+ /*  
+    var movingPlatformsData = [{ "x": 100, "y": 150, "xScale": 1, "yScale": 1, "speed": 150, "limit": 600 }]
     movingPlatformsData.forEach(function (element) {
         var plat = movingPlatforms.create(element.x, element.y, 'ground');
         plat.scale.setTo(element.xScale, element.yScale);
@@ -60,7 +59,16 @@ function createLevel(game) {
     })
     movingPlatforms.setAll('body.allowGravity', false);
     movingPlatforms.setAll('body.immovable', true);
+   */ 
+}
 
+function createWorld(levelData, game) {
+    //  A simple background for our game
+    var background = game.add.sprite(levelData.background.position.x, levelData.background.position.y, levelData.background.skin);
+    background.fixedToCamera = true;
+
+    var worldBounds = levelData.worldBounds;
+    game.world.setBounds(worldBounds.leftBound, worldBounds.upperBound, worldBounds.rightBound, worldBounds.lowerBound);
 
 }
 
@@ -69,13 +77,26 @@ function createPlatform(levelData) {
     for (var i = 0 ; i < dataPlatforms.length ; i++) {
         var platformData = dataPlatforms[i];
         var platform;
+        // Create a normal or coloured platform
         if (platformData.coulour != "") {
-            platform = colourPlatforms.create(platformData.x, platformData.y, platformData.skin + platformData.color);
+            platform = colourPlatforms.create(platformData.position.x, platformData.position.y, platformData.skin + platformData.color);
         } else {
-            platform = platforms.create(platformData.x, platformData.y, platformData.skin + platformData.color);
+            platform = platforms.create(platformData.position.x, platformData.position.y, platformData.skin);
         }
-        platform.scale.setTo(platformData.xScale, platformData.yScale);
-        platform.body.immovable = true;
+        platform.scale.setTo(platformData.size.x, platformData.size.y);
+
+        if (platformData.speed.x != 0) {
+            platform.body.sprite.leftBounds = platformData.bounds.left;
+            platform.body.sprite.rightBounds = platformData.bounds.right;
+            platform.body.velocity.x = platformData.speed.x;
+        }
+        if (platformData.speed.y != 0) {
+            platform.body.sprite.topBounds = platformData.bounds.upper;
+            platform.body.sprite.bottomBounds = platformData.bounds.lower;
+            platform.body.velocity.y = platformData.speed.y;
+        }
+        platform.body.allowGravity = false;
+        platform.body.immovable = platformData.immovable;
     }
 }
 
@@ -115,24 +136,4 @@ function createStart(element, game) {
     // Initialization of the player animations
     initializePlayerAnimations(player);
     player.color = ColorEnum.BLUE;
-
-
-
-    /*
-    stars = game.add.group();
-
-    stars.enableBody = true;
-
-    //  Here we'll create 12 of them evenly spaced apart
-    for (var i = 0; i < 12; i++) {
-        //  Create a star inside of the 'stars' group
-        var star = stars.create((game.world.width-100)*Math.random(), 0, 'coin');
-
-        //  Let gravity do its thing
-        star.body.gravity.y = 300;
-
-        //  This just gives each star a slightly random bounce value
-        star.body.bounce.y = 0.2 + Math.random() * 0.2;
-    }  */
-
 }

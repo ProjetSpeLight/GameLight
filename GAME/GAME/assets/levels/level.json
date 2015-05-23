@@ -1,48 +1,159 @@
 ﻿{
+    "worldBounds": {
+        "leftBound": 0,
+        "rightBound": 1600,
+        "upperBound": 0,
+        "lowerBound": 600
+    },
+    "background": {
+        "skin": "sky",
+        "position": {
+            "x": 0,
+            "y": 0
+        }
+    },
     "playerStart": {
         "x": 32,
         "y": 15
     },
     "platforms": [
         {
-            "x": 600,
-            "y": 250,
-            "xScale": 1,
-            "yScale": 1,
+            "position": {
+                "x": 600,
+                "y": 250
+            },
+            "bounds": {
+                "left": 0,
+                "right": 0,
+                "lower": 0,
+                "upper": 0
+            },
+            "speed": {
+                "x": 0,
+                "y": 0
+            },
+            "size": {
+                "x": 1,
+                "y": 1
+            },
             "skin": "ground",
-            "color": "Green"
+            "color": "Green",
+            "immovable": true
         },
         {
-            "x": 600,
-            "y": 50,
-            "xScale": 1,
-            "yScale": 1,
+            "position": {
+                "x": 600,
+                "y": 50
+            },
+            "bounds": {
+                "left": 0,
+                "right": 0,
+                "lower": 0,
+                "upper": 0
+            },
+            "speed": {
+                "x": 0,
+                "y": 0
+            },
+            "size": {
+                "x": 1,
+                "y": 1
+            },
             "skin": "ground",
-            "color": "Red"
+            "color": "Red",
+            "immovable": true
         },
         {
-            "x": 400,
-            "y": 400,
-            "xScale": 1,
-            "yScale": 1,
+            "position": {
+                "x": 400,
+                "y": 400
+            },
+            "bounds": {
+                "left": 0,
+                "right": 0,
+                "lower": 0,
+                "upper": 0
+            },
+            "speed": {
+                "x": 0,
+                "y": 0
+            },
+            "size": {
+                "x": 1,
+                "y": 1
+            },
             "skin": "ground",
-            "color": ""
+            "color": "",
+            "immovable": true
         },
         {
-            "x": 50,
-            "y": 250,
-            "xScale": 1,
-            "yScale": 1,
+            "position": {
+                "x": 50,
+                "y": 250
+            },
+            "bounds": {
+                "left": 0,
+                "right": 0,
+                "lower": 0,
+                "upper": 0
+            },
+            "speed": {
+                "x": 0,
+                "y": 0
+            },
+            "size": {
+                "x": 1,
+                "y": 1
+            },
             "skin": "ground",
-            "color": ""
+            "color": "",
+            "immovable": true
         },
         {
-            "x": 0,
-            "y": 540,
-            "xScale": 2,
-            "yScale": 2,
+            "position": {
+                "x": 0,
+                "y": 450
+            },
+            "bounds": {
+                "left": 0,
+                "right": 0,
+                "lower": 0,
+                "upper": 0
+            },
+            "speed": {
+                "x": 0,
+                "y": 0
+            },
+            "size": {
+                "x": 2,
+                "y": 2
+            },
             "skin": "ground",
-            "color": ""
+            "color": "",
+            "immovable": false
+        },
+        {
+            "position": {
+                "x": 100,
+                "y": 150
+            },
+            "bounds": {
+                "left": 100,
+                "right": 700,
+                "lower": 0,
+                "upper": 0
+            },
+            "speed": {
+                "x": 150,
+                "y": 0
+            },
+            "size": {
+                "x": 1,
+                "y": 1
+            },
+            "color": "Blue",
+            "skin": "ground",
+            "immovable": true
         }
     ],
     "coins": [
