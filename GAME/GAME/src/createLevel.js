@@ -15,99 +15,34 @@ function createLevel(game) {
     //  The platforms group contains the ground and the 2 ledges we can jump on
     platforms = game.add.group();
     coins = game.add.group();
+    ends = game.add.group();
+    colourPlatforms = game.add.group();
+
     //  We will enable physics for any object that is created in this group
     platforms.enableBody = true;
     coins.enableBody = true;
+    ends.enableBody = true;
+    colourPlatforms.enableBody = true;
 
-
-
-    /********** OLD VERSION *******************/
-
-    /*var plateformData = [
-        { "x": 400, "y": 400, "xScale": 1, "yScale": 1 },
-        { "x": 50, "y": 250, "xScale": 1, "yScale": 1 },
-        { "x": 800, "y": 300, "xScale": 1, "yScale": 1},
-        { "x": 0, "y": game.world.height - 64, "xScale": game.world.width / 200 - 3, "yScale": 2 },
-        { "x": game.world.width - 2, "y": game.world.height - 64, "xScale": 2, "yScale": 2 }];*/
-
-    /*levelData = [
-        { "type": 'plateform', "x": 400, "y": 400, "xScale": 1, "yScale": 1, "skin": 'ground'},
-        { "type": 'plateform', "x": 50, "y": 250, "xScale": 1, "yScale": 1, "skin": 'ground' },
-        { "type": 'plateform', "x": 0, "y": game.world.height - 64, "xScale": 2, "yScale": 2, "skin": 'ground' },
-        { "type": 'coin', "x": 400, "y": 400, "xScale": 1, "yScale": 1, "skin": 'coin' },
-        { "type": 'coin', "x": 50, "y": 250, "xScale": 1, "yScale": 1, "skin": 'coin' },
-        { "type": 'coin', "x": 0, "y": game.world.height - 64, "xScale": 2, "yScale": 2, "skin": 'coin' },
-        { "type": 'player', "x": 32, "y": game.world.height - 150, "xScale": 2, "yScale": 2, "skin": '' }
-    ]*/
-
-    /*levelData.forEach(function (element) {
-        switch (element.type) {
-            case 'plateform':
-                createPlatform(element);
-                break;
-            case 'coin':
-                createCoin(element);
-                break;
-            case 'player':
-                createStart(element,game);
-                break;
-            default:
-        }
-    });*/
-
-
-    /********** NEW VERSION WITH JSON ********************/
 
     // We parse the JSON file
     var levelData = game.cache.getJSON('level');
 
-    // We store each array in a variable to process them individually
-    var dataPlatforms = levelData.plateforms; // Fixed platforms
+
     var dataPlayer = levelData.playerStart; // Data related to the player
-    var dataCoins = levelData.coins;
+
 
     // Creation of the fixed platforms
-    for (var i = 0 ; i < dataPlatforms.length ; i++) {
-        createPlatform(dataPlatforms[i]);
-    }
+    createPlatform(levelData);
 
     // Creation of the coins
-    for (var i = 0 ; i < dataCoins.length ; i++) {
-        createCoin(dataCoins[i]);
-    }
+    createCoin(levelData);
+
+    // Creation of the ends
+    createEnds(levelData);
 
     // Creation of the player
     createStart(dataPlayer, game);
-
-
-
-
-    /*************** TO BE INCLUDED TO NEW VERSION ***********************/
-
-    //Plateformes colorees
-    ColourPlatforms = game.add.group();
-    ColourPlatforms.enableBody = true;
-
-    var ColourPlatformsData = [
-        { "type": 'plateform', "x": 600, "y": 250, "xScale": 1, "yScale": 1, "platformcolor": 'GREEN' },
-    { "type": 'plateform', "x": 600, "y": 50, "xScale": 1, "yScale": 1, "platformcolor": 'RED' }]
-
-
-
-    ColourPlatformsData.forEach(function (element) {
-        switch (element.platformcolor) {
-            case 'GREEN':
-                createPlatformGreen(element);
-                break;
-            case 'BLUE':
-                createPlatformBlue(element);
-                break;
-            case 'RED':
-                createPlatformRed(element);
-                break;
-            default:
-        }
-    });
 
 
     //Plateformes mouvantes
@@ -127,41 +62,40 @@ function createLevel(game) {
     movingPlatforms.setAll('body.immovable', true);
 
 
-    diamond = game.add.sprite(300, 30, 'diamond');
-    game.physics.arcade.enable(diamond);
-    diamond.body.bounce.y = 0.0;
-    diamond.body.gravity.y = 1000;
-
-
 }
 
-function createPlatform(element) {
-    var ground = platforms.create(element.x, element.y, 'ground');
-    ground.scale.setTo(element.xScale, element.yScale);
-    ground.body.immovable = true;
-}
-function createPlatformGreen(element) {
-    var ground = ColourPlatforms.create(element.x, element.y, 'groundGreen');
-    ground.scale.setTo(element.xScale, element.yScale);
-    ground.body.immovable = true;
-
-}
-
-function createPlatformBlue(element) {
-    var ground = ColourPlatforms.create(element.x, element.y, 'groundBlue');
-    ground.scale.setTo(element.xScale, element.yScale);
-    ground.body.immovable = true;
+function createPlatform(levelData) {
+    var dataPlatforms = levelData.platforms;
+    for (var i = 0 ; i < dataPlatforms.length ; i++) {
+        var platformData = dataPlatforms[i];
+        var platform;
+        if (platformData.coulour != "") {
+            platform = colourPlatforms.create(platformData.x, platformData.y, platformData.skin + platformData.color);
+        } else {
+            platform = platforms.create(platformData.x, platformData.y, platformData.skin + platformData.color);
+        }
+        platform.scale.setTo(platformData.xScale, platformData.yScale);
+        platform.body.immovable = true;
+    }
 }
 
-function createPlatformRed(element) {
-    var ground = ColourPlatforms.create(element.x, element.y, 'groundRed');
-    ground.scale.setTo(element.xScale, element.yScale);
-    ground.body.immovable = true;
+function createEnds(levelData) {
+    var dataEnds = levelData.ends;
+    for (var i = 0 ; i < dataEnds.length ; i++) {
+        var endData = dataEnds[i];
+        var end = ends.create(endData.x, endData.y, 'diamond');
+        end.body.bounce.y = 0;
+        end.body.gravity.y = 1000;
+    }
 }
 
-function createCoin(element) {
-    var coin = coins.create(element.x, element.y, 'coin');
-    coin.body.gravity.y = 0;
+function createCoin(levelData) {
+    var dataCoins = levelData.coins;
+    for (var i = 0 ; i < dataCoins.length ; i++) {
+        var coinData = dataCoins[i];
+        var coin = coins.create(coinData.x, coinData.y, 'coin');
+        coin.body.gravity.y = 0;
+    }
 }
 
 function createStart(element, game) {

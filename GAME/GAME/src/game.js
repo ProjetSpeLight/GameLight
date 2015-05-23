@@ -63,16 +63,15 @@ GameStates.Game.prototype = {
             this.physics.arcade.collide(player, movingPlatforms);
             this.physics.arcade.collide(coins, platforms);
             this.physics.arcade.collide(coins, movingPlatforms);
-            this.physics.arcade.collide(coins, ColourPlatforms);
+            this.physics.arcade.collide(coins, colourPlatforms);
             this.physics.arcade.overlap(player, coins,
                                         collectCoin, null, this);
-            this.physics.arcade.collide(player,ColourPlatforms,
+            this.physics.arcade.collide(player,colourPlatforms,
                                         makeColor,null,this);
-            this.physics.arcade.collide(diamond, platforms);
-            this.physics.arcade.collide(diamond, ColourPlatforms);
-            this.physics.arcade.collide(diamond, movingPlatforms);
-            this.physics.arcade.overlap(player, diamond,
-                                        finish, null, this);
+            this.physics.arcade.collide(ends, platforms);
+            this.physics.arcade.collide(ends, colourPlatforms);
+            this.physics.arcade.collide(ends, movingPlatforms);
+            this.physics.arcade.overlap(player, ends, finish, null, this);
 
         var cursors = this.input.keyboard.createCursorKeys();
         
