@@ -30,11 +30,11 @@ GameStates.MainMenu.prototype = {
     },
     
     playTutorial: function () {
-        
+        this.state.start('Game');
     },
     
     help: function () {
-        
+        this.state.start('Game');
     }
 
 };
