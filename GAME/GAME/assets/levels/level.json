@@ -140,18 +140,18 @@
             "bounds": {
                 "left": 100,
                 "right": 700,
-                "lower": 0,
+                "lower": 900,
                 "upper": 0
             },
             "speed": {
                 "x": 150,
-                "y": 0
+                "y": 200
             },
             "size": {
                 "x": 1,
                 "y": 1
             },
-            "color": "Blue",
+            "color": "",
             "skin": "ground",
             "immovable": true
         }

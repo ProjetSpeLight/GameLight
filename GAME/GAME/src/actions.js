@@ -1,4 +1,4 @@
-﻿ function updateActions(game){ 
+﻿function updateActions(game) {
     var cursors = game.input.keyboard.createCursorKeys();
 
     //  Reset the players velocity (movement)

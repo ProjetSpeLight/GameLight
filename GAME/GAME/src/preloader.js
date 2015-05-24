@@ -37,7 +37,7 @@ GameStates.Preloader.prototype = {
 
         this.load.spritesheet('dude', 'assets/colordude.png', 32, 48);
         this.load.spritesheet('photon', 'assets/photons.png',20,22);
-        //this.load.image('photon', 'assets/photon_vert.png');
+
         this.load.image('photonvert', 'assets/photon_vert.png');
         this.load.image('photonrouge', 'assets/photon_rouge.png');
         this.load.image('photonjaune', 'assets/photon_jaune.png');
