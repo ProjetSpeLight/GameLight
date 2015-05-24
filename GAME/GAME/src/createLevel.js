@@ -25,6 +25,7 @@ function createLevel(game) {
     ends.enableBody = true;
     colourPlatforms.enableBody = true;
 
+
     // Creation of the level's objects
     createObjects(levelData);
 
@@ -44,29 +45,15 @@ function createObjects(levelData) {
     createCoin(levelData);
 
     // Creation of the ends
-    createEnds(levelData);
-
-    //Plateformes mouvantes
-
- /*  
-    var movingPlatformsData = [{ "x": 100, "y": 150, "xScale": 1, "yScale": 1, "speed": 150, "limit": 600 }]
-    movingPlatformsData.forEach(function (element) {
-        var plat = movingPlatforms.create(element.x, element.y, 'ground');
-        plat.scale.setTo(element.xScale, element.yScale);
-        plat.body.sprite.leftBounds = element.x;
-        plat.body.sprite.rightBounds = element.x + element.limit;
-        plat.body.velocity.x = element.speed;
-    })
-    movingPlatforms.setAll('body.allowGravity', false);
-    movingPlatforms.setAll('body.immovable', true);
-   */ 
+    createEnds(levelData);   
 }
 
 function createWorld(levelData, game) {
-    //  A simple background for our game
+    //  Creation of the background
     var background = game.add.sprite(levelData.background.position.x, levelData.background.position.y, levelData.background.skin);
     background.fixedToCamera = true;
 
+    // Creation of the "frame" of the level
     var worldBounds = levelData.worldBounds;
     game.world.setBounds(worldBounds.leftBound, worldBounds.upperBound, worldBounds.rightBound, worldBounds.lowerBound);
 
@@ -84,18 +71,19 @@ function createPlatform(levelData) {
             platform = platforms.create(platformData.position.x, platformData.position.y, platformData.skin);
         }
         platform.scale.setTo(platformData.size.x, platformData.size.y);
-
+        // If the platform moves along the x axis set the bounds of the movement
         if (platformData.speed.x != 0) {
             platform.body.sprite.leftBounds = platformData.bounds.left;
             platform.body.sprite.rightBounds = platformData.bounds.right;
             platform.body.velocity.x = platformData.speed.x;
         }
+        // If the platform moves along the y axis set the bounds of the movement
         if (platformData.speed.y != 0) {
             platform.body.sprite.topBounds = platformData.bounds.upper;
             platform.body.sprite.bottomBounds = platformData.bounds.lower;
             platform.body.velocity.y = platformData.speed.y;
         }
-        platform.body.allowGravity = false;
+        platform.body.allowGravity = false;       
         platform.body.immovable = platformData.immovable;
     }
 }
@@ -126,7 +114,6 @@ function createStart(element, game) {
     //  We need to enable physics on the player
     game.physics.arcade.enable(player);
 
-    //  Player physics properties. Give the little guy a slight bounce.
     player.body.bounce.y = 0.0;
     player.body.gravity.y = 1000;
     game.camera.follow(player);
