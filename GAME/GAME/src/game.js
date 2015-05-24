@@ -30,29 +30,6 @@ GameStates.Game.prototype = {
             update_pause(this);
         }
 
-        //player.body.onBeginContact.add(groundHit,this);
-        function groundHit(body, shapeA, shapeB, equation) {
-
-            switch (body.sprite.key) {
-                case 'groundYellow':
-
-                    break;
-                case 'groundGreen':
-                    player.color = ColorEnum.GREEN;
-                    player.frame = player.color.value * 9 + 4;
-                    break;
-                case 'groundRed':
-                    player.color = ColorEnum.RED;
-                    player.frame = player.color.value * 9 + 4;
-                    break;
-                case 'groundBlue':
-                    player.color = ColorEnum.BLUE;
-                    player.frame = player.color.value * 9 + 4;
-                    break;
-                default:
-            }
-        }
-
     },
 
     update: function () {
@@ -70,50 +47,18 @@ GameStates.Game.prototype = {
             this.physics.arcade.collide(ends, movingPlatforms);
             this.physics.arcade.overlap(player, ends, finish, null, this);
 
+
+            function photonRedirection(photons, ends) {
+                photons.body.velocity.y = 200;;
+            }
+            this.physics.arcade.overlap(photons, ends, photonRedirection, null, this);
+
             var cursors = this.input.keyboard.createCursorKeys();
-
-            //  Reset the players velocity (movement)
-            /*if (player.body.velocity.x > 10 && !player.body.touching.down) {
-                player.body.velocity.x -= 5;
-            } else if (player.body.velocity.x < -10 && !player.body.touching.down) {
-                player.body.velocity.x += 5;
-            } else {
-                player.body.velocity.x = 0;
-            }
-    
-            if (cursors.left.isDown) {
-                //  Move to the left
-                player.body.velocity.x = -300;
-    
-                player.animations.play('left');
-            }
-            else if (cursors.right.isDown) {
-                //  Move to the right
-                player.body.velocity.x = 300;
-    
-                player.animations.play('right');
-            }
-            else {
-                //  Stand still
-                if (player.body.velocity.x == 0) {
-                    player.animations.stop();
-                    player.frame = 4;
-                }
-            }*/
-
             updatePositionPlayer(player, cursors);
 
             // TEMP : Change of colour (by space key)
             var keyboard = this.input.keyboard;
             updateColorPlayer(player, keyboard, this);
-
-
-
-
-            //check collision platform and player
-
-
-
 
 
             // We restart the game when "R" is pushed
@@ -165,39 +110,8 @@ GameStates.Game.prototype = {
 
                     // Oblige le joueur à appuyer 
                     //sur la touche du bas pour changer de couleur
-                    if (this.input.keyboard.
-                        isDown(Phaser.Keyboard.DOWN)) {
-
-
-                        switch (colorplatform.key) {
-                            case 'groundGreen':
-                                //ne met à jour que si c'est necessaire
-                                if (player.color != ColorEnum.GREEN) {
-                                    player.color = ColorEnum.GREEN;
-                                    player.frame = player.color.value * 9 + 4;
-                                }
-                                break;
-                            case 'groundRed':
-                                if (player.color != ColorEnum.RED) {
-                                    player.color = ColorEnum.RED;
-                                    player.frame = player.color.value * 9 + 4;
-
-                                }
-                                break;
-                            case 'groundBlue':
-                                if (player.color != ColorEnum.BLUE) {
-                                    player.color = ColorEnum.BLUE;
-                                    player.frame = player.color.value * 9 + 4;
-                                }
-                                break;
-                            default:
-                        }
-
-                        photons.destroy();
-                        initPhotons(this);
-
-
-
+                    if (this.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
+                        changePlayerColor(colorplatform.color, player);
                     }
 
                 }

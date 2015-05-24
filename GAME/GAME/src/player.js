@@ -87,7 +87,7 @@ function updateColorPlayer(player, keyboard, game) {
 
     if (key.onDown) {
         key.onDown.removeAll();
-        var sig = key.onUp.add(changeColor);
+        var sig = key.onUp.add(testChangeColor);
         // sig.execute([player, key]);
 
     }
@@ -99,7 +99,7 @@ function updateColorPlayer(player, keyboard, game) {
 }
 
 
-function changeColor() {
+function testChangeColor() {
     var pcolor = player.color.value;
     if (pcolor == 0) {
         player.color = ColorEnum.BLUE;
@@ -115,8 +115,32 @@ function changeColor() {
     }
 }
 
-function jump(){
-    if(player.body.touching.down && !pushed){
+/// @function getColor
+/// Return the object of the enumeration corresponding to the string in argument, null if the string does not represent a color name
+/// @param {String} the color name
+function getColor(colorName) {
+
+    for (var id in ColorEnum) {
+        if (ColorEnum[id].name == colorName) {
+            return ColorEnum[id];
+        }
+    }
+    return null;
+}
+
+/// @function changePlayerColor
+/// Change the current color of the player (and thus of the photons he throws) to the new one given in argument
+function changePlayerColor(newColor, player) {
+    var color = getColor(newColor);
+    if (player.color != color) {
+        player.color = color;
+        player.frame = player.color.value * 9 + 4;
+        photons.setAll('frame', player.color.value);
+    }
+}
+
+function jump() {
+    if (player.body.touching.down && !pushed) {
         player.body.velocity.y = -600;
         pushed = true;
     }

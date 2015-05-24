@@ -17,7 +17,7 @@ function initPhotons(game) {
     photons = game.add.group();
     photons.enableBody = true;
     photons.physicsBodyType = Phaser.Physics.ARCADE;
-    photons.createMultiple(30, 'photon',player.color.value);
+    photons.createMultiple(30, 'photon', player.color.value);
 
     photons.setAll('anchor.x', 0.5);
     photons.setAll('anchor.y', 1);
@@ -50,6 +50,9 @@ function firePhoton(game) {
         }
     }
 }
+
+
+
 
 
 
