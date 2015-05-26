@@ -21,6 +21,7 @@
     <Content Include="app.css" />
     <Content Include="index.html" />
     <Content Include="requirejs\app\createLevel.js" />
+    <Content Include="requirejs\app\touch.js" />
     <Content Include="requirejs\app\main.js" />
     <Content Include="requirejs\app\pause.js" />
     <Content Include="requirejs\app\phasergame.js" />
@@ -39,6 +40,11 @@
   <ItemGroup>
     <Content Include="package.json" />
     <Content Include="assets\levels\level.json" />
+    <Content Include="requirejs\assets\levels\level.json" />
+    <Content Include="requirejs\assets\levels\level2.json" />
+    <Content Include="requirejs\assets\photons.zip" />
+    <Content Include="requirejs\assets\Thumbs.db" />
+    <Content Include="requirejs\lib\phaser\phaser.map" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
