@@ -20,6 +20,7 @@
   <ItemGroup>
     <Content Include="app.css" />
     <Content Include="requirejs\app\createLevel.js" />
+    <Content Include="requirejs\app\touch.js" />
     <Content Include="requirejs\app\main.js" />
     <Content Include="requirejs\app\pause.js" />
     <Content Include="requirejs\app\phasergame.js" />
@@ -31,7 +32,53 @@
     <Content Include="requirejs\app\states\gameState.js" />
     <Content Include="requirejs\app\states\mainMenuState.js" />
     <Content Include="requirejs\app\states\preloadState.js" />
-    
+    <Content Include="requirejs\assets\background2.png" />
+    <Content Include="requirejs\assets\baddie.png" />
+    <Content Include="requirejs\assets\button_help.png" />
+    <Content Include="requirejs\assets\button_jump.png" />
+    <Content Include="requirejs\assets\button_menu.png" />
+    <Content Include="requirejs\assets\button_play.png" />
+    <Content Include="requirejs\assets\button_play_level1.png" />
+    <Content Include="requirejs\assets\button_play_level2.png" />
+    <Content Include="requirejs\assets\button_restart.png" />
+    <Content Include="requirejs\assets\button_resume.png" />
+    <Content Include="requirejs\assets\button_RetMenu.png" />
+    <Content Include="requirejs\assets\button_tutorial.png" />
+    <Content Include="requirejs\assets\colordude.png" />
+    <Content Include="requirejs\assets\diamond.png" />
+    <Content Include="requirejs\assets\dude.png" />
+    <Content Include="requirejs\assets\firstaid.png" />
+    <Content Include="requirejs\assets\pause.png" />
+    <Content Include="requirejs\assets\phaser2.png" />
+    <Content Include="requirejs\assets\photon.png" />
+    <Content Include="requirejs\assets\photons.png" />
+    <Content Include="requirejs\assets\photon_blanc.png" />
+    <Content Include="requirejs\assets\photon_jaune.png" />
+    <Content Include="requirejs\assets\photon_rouge.png" />
+    <Content Include="requirejs\assets\photon_vert.png" />
+    <Content Include="requirejs\assets\platform.png" />
+    <Content Include="requirejs\assets\platform_Bleu.png" />
+    <Content Include="requirejs\assets\platform_Jaune.png" />
+    <Content Include="requirejs\assets\platform_Rouge.png" />
+    <Content Include="requirejs\assets\platform_Vert.png" />
+    <Content Include="requirejs\assets\preloader-bar.png" />
+    <Content Include="requirejs\assets\sky.png" />
+    <Content Include="requirejs\assets\star.png" />
+    <Content Include="requirejs\lib\phaser\phaser.js" />
+    <Content Include="requirejs\lib\requirejs\require.js" />
+    <Content Include="src\actions.js" />
+    <Content Include="src\app.js" />
+    <Content Include="assets\phaser2.png" />
+    <Content Include="assets\preloader-bar.png" />
+    <Content Include="src\boot.js" />
+    <Content Include="src\createLevel.js" />
+    <Content Include="src\game.js" />
+    <Content Include="index.html" />
+    <Content Include="src\mainmenu.js" />
+    <Content Include="src\pause.js" />
+    <Content Include="src\player.js" />
+    <Content Include="src\preloader.js" />
+
     <Content Include="web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -39,6 +86,11 @@
   <ItemGroup>
     <Content Include="package.json" />
     <Content Include="assets\levels\level.json" />
+    <Content Include="requirejs\assets\levels\level.json" />
+    <Content Include="requirejs\assets\levels\level2.json" />
+    <Content Include="requirejs\assets\photons.zip" />
+    <Content Include="requirejs\assets\Thumbs.db" />
+    <Content Include="requirejs\lib\phaser\phaser.map" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
