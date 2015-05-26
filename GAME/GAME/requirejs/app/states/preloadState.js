@@ -1,4 +1,4 @@
-define(['phaser', 'app/pause'], function (Phaser, pause) { 
+define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, PhaserGame) { 
    // 'use strict';
 
     function PreloadState(game) {}
@@ -6,28 +6,30 @@ define(['phaser', 'app/pause'], function (Phaser, pause) {
     PreloadState.prototype = {
         preload: function () {
 
+            alert('preload deb');
+
             // common to add a loading bar sprite here...
-            this.preloadBar = this.add.sprite(game.width / 2 - 100, game.height / 2, 'preloaderBar');
-            this.load.setPreloadSprite(this.preloadBar);
+            this.preloadBar = PhaserGame.game.add.sprite(PhaserGame.game.width / 2 - 100, PhaserGame.game.height / 2, 'preloaderBar');
+            PhaserGame.game.load.setPreloadSprite(this.preloadBar);
 
             // load all game assets
             // images, spritesheets, atlases, audio etc..
-            this.load.image('sky', 'assets/sky.png');
-            this.load.image('ground', 'assets/platform.png');
-            this.load.image('diamond', 'assets/diamond.png');
+            PhaserGame.game.load.image('sky', 'assets/sky.png');
+            PhaserGame.game.load.image('ground', 'assets/platform.png');
+            PhaserGame.game.load.image('diamond', 'assets/diamond.png');
 
 
-            this.load.image('groundYellow', 'assets/platform_Jaune.png');
-            this.load.image('groundRed', 'assets/platform_Rouge.png');
-            this.load.image('groundBlue', 'assets/platform_Bleu.png');
-            this.load.image('groundGreen', 'assets/platform_Vert.png');
+            PhaserGame.game.load.image('groundYellow', 'assets/platform_Jaune.png');
+            PhaserGame.game.load.image('groundRed', 'assets/platform_Rouge.png');
+            PhaserGame.game.load.image('groundBlue', 'assets/platform_Bleu.png');
+            PhaserGame.game.load.image('groundGreen', 'assets/platform_Vert.png');
 
-            this.load.image('coin', 'assets/star.png');
+            PhaserGame.game.load.image('coin', 'assets/star.png');
 
-            this.load.image('logo', 'assets/phaser2.png');
+            PhaserGame.game.load.image('logo', 'assets/phaser2.png');
 
             // For the pause state
-            pause.preload_pause(this);
+            pause.preload_pause();
 
 
 
@@ -51,6 +53,7 @@ define(['phaser', 'app/pause'], function (Phaser, pause) {
             this.load.image('photonblanc', 'assets/photon_blanc.png');
 
             this.load.json('level', 'http://localhost:4200/assets/levels/level.json');
+            alert('preload end');
 
 
         },

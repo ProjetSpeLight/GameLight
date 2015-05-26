@@ -15,11 +15,14 @@ define([
         create: function () {
             // setup game environment
             // scale, input etc..
+            alert('boot deb');
             if (this.game.device.iOS) {
                 this.game.scale.forceOrientation(true, false);
                 this.game.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
                 this.game.scale.refresh();
             }
+
+            alert('boot end');
 
             // call next state
             this.state.start('Preload');

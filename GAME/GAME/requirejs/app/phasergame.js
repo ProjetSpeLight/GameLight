@@ -1,21 +1,26 @@
 define([
-    'phaser',
-    'app/states/bootState',
-    'app/states/preloadState',
-    'app/states/gameState',
-    'app/states/mainMenuState',
-    'app/states/finishLevelState'
+    'phaser'
 ], function (
-    Phaser,
-    BootState,
-    PreloadState,
-    GameState,
-    MainMenuState,
-    FinishLevelState
+    Phaser
 ) {
     //'use strict';
 
-    function Game() { }
+    return {
+        game: null,
+        start: function () {            
+                this.game = new Phaser.Game(800, 600, Phaser.AUTO, '');
+
+                //if(game.device.iOS){
+                //game.scale.startFullScreen();
+                //}
+
+
+                
+
+        }
+    }
+
+    /*function Game() { }
 
     Game.prototype = {
         start: function () {
@@ -39,10 +44,10 @@ define([
         var score = 0;
         var pushed;
         var movingPlatforms;
-        var levelData;*/
+        var levelData;
             game.state.start('Boot');
         }
     };
 
-    return Game;
+    return Game;*/
 });

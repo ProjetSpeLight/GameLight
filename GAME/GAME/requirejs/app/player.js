@@ -3,7 +3,7 @@
  */
 
 
-define(['phaser', 'app/photon'], function (Phaser, photon) {
+define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, PhaserGame) {
 
 
     /// @function initializePlayerAnimations
@@ -41,14 +41,14 @@ define(['phaser', 'app/photon'], function (Phaser, photon) {
 
         initializePlayer: function (game, x, y) {
             // The player and its settings            
-            this.sprite = game.add.sprite(x, y, 'dude');
+            this.sprite = PhaserGame.game.add.sprite(x, y, 'dude');
 
             //  We need to enable physics on the player
-            game.physics.arcade.enable(this.sprite);
+            PhaserGame.game.physics.arcade.enable(this.sprite);
 
             this.sprite.body.bounce.y = 0.0;
             this.sprite.body.gravity.y = 1000;
-            game.camera.follow(this.sprite);
+            PhaserGame.game.camera.follow(this.sprite);
             this.sprite.body.collideWorldBounds = true;
 
 
@@ -60,7 +60,7 @@ define(['phaser', 'app/photon'], function (Phaser, photon) {
             this.sprite.color = this.ColorEnum.BLUE;
 
             // Initialization of the photons
-            photon.initPhotons(game, this);
+            photon.initPhotons(PhaserGame.game, this);
         },
 
 
@@ -113,7 +113,7 @@ define(['phaser', 'app/photon'], function (Phaser, photon) {
 
             //  Firing?
             if (photon.fireButton.isDown) {
-                photon.firePhoton(game, this);
+                photon.firePhoton(PhaserGame.game, this);
             }
 
         },

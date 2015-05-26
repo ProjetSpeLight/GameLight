@@ -2,7 +2,7 @@
  * This file implements the functions related to the photon
  */
 
-define(['phaser'], function (Phaser) {
+define(['phaser', 'app/phasergame'], function (Phaser, game) {
 
     return {
         // Contains the group (container of display objects) of photons
