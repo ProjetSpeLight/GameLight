@@ -1,4 +1,4 @@
-define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'], function (Phaser, createLevel, player, pause, PhaserGame) {
+define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame', 'app/touch'], function (Phaser, createLevel, player, pause, PhaserGame, Touch) {
 
     function GameState(game) {
         score = 0;
@@ -17,9 +17,9 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
             }
 
 
-            /*if (this.game.device.iOS) {
-                addJoypad(game);
-            }*/
+            if (!this.game.device.desktop) {
+                Touch.initJoypad();
+            }
 
             scoreText = PhaserGame.game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
             scoreText.fixedToCamera = true;
@@ -237,7 +237,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
 
                         // Oblige le joueur à appuyer 
                         //sur la touche du bas pour changer de couleur
-                        if (this.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
+                        if (this.input.keyboard.isDown(Phaser.Keyboard.DOWN) || player.changeColor) {
                             player.changePlayerColor(colorplatform.color);
                         }
 
