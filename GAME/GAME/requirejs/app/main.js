@@ -20,7 +20,8 @@
     'app/states/preloadState',
     'app/states/gameState',
     'app/states/mainMenuState',
-    'app/states/finishLevelState'
+    'app/states/finishLevelState',
+    'app/states/chooseLevelState'
     ],
     function (
         Phaser,
@@ -29,7 +30,8 @@
     PreloadState,
     GameState,
     MainMenuState,
-    FinishLevelState
+    FinishLevelState,
+    ChooseLevelState
     ) {
         PhaserGame.start();
         PhaserGame.game.state.add('Boot', BootState);
@@ -37,6 +39,7 @@
         PhaserGame.game.state.add('MainMenu', MainMenuState);
         PhaserGame.game.state.add('Game', GameState);
         PhaserGame.game.state.add('FinishLevel', FinishLevelState);
+        PhaserGame.game.state.add('ChooseLevel', ChooseLevelState);
         PhaserGame.game.state.start('Boot');
     });
 }());
