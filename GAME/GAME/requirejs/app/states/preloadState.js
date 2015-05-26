@@ -40,6 +40,7 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
             }
 
             this.load.image('play', 'assets/button_play.png');
+            this.load.image('play1', 'assets/button_play_level1.png');
             this.load.image('help', 'assets/button_help.png');
             this.load.image('tutorial', 'assets/button_tutorial.png');
 

@@ -28,7 +28,7 @@ define([
         },
 
         playGame: function () {
-            this.state.start('Game');
+            this.state.start('ChooseLevel');
         },
 
         playTutorial: function () {
