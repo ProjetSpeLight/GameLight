@@ -24,57 +24,69 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
 
             scoreText = PhaserGame.game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
             scoreText.fixedToCamera = true;
-            var button_pause = PhaserGame.game.add.button(700, 20, 'pause', actionClick, this);
-
-
-            button_pause.name = 'pause';
+            //var button_pause = PhaserGame.game.add.button (700, 20, 'pause', actionClick, this);
+            var button_pause = PhaserGame.game.add.sprite(700, 20, 'pause');
+            button_pause.inputEnabled = true;
+             button_pause.name = 'pause';
             button_pause.anchor.setTo(0.5, 0.5);
             button_pause.fixedToCamera = true;
+            button_pause.events.onInputUp.add(function () {
+                
+                
+            pause.update_pause();
+                
+                
+            
+                //button_menu.fixedToCamera = true;
+                
+                PhaserGame.game.physics.arcade.isPaused = true;
+                pause.is_paused = true;
+                //PhaserGame.game.paused = true;
+                
+                setTimeout(gamepaused,15);
+                
+                
+                
+            },this);
+           
+            PhaserGame.game.input.onDown.add(unpause,self);
+            function unpause(event){
+                if(PhaserGame.game.paused) {
+                        //if(event.x > 300 && event.x <500 ){
+                            if(event.y > 180 && event.y <240 ){
+
+                                PhaserGame.game.physics.arcade.isPaused = false;
+                                pause.is_paused = false;
+                                PhaserGame.game.paused = false;
+                                PhaserGame.game.state.start('MainMenu');
+                                
+                            } else if (event.y > 270 && event.y <340) {
+                                PhaserGame.game.physics.arcade.isPaused = false;
+                                pause.is_paused = false;
+                                PhaserGame.game.paused = false;
+                                pause.destruction();
+                                //create();
+                                PhaserGame.game.state.start('Game');
+                            } else if (event.y > 370 && event.y <440) {
+                                PhaserGame.game.physics.arcade.isPaused = false;
+                                pause.is_paused = false;
+                                PhaserGame.game.paused = false;
+                                
+                                pause.destruction();
+                            }
+                      
+            }
+            }
+        
+            function gamepaused() {
+                
+                PhaserGame.game.paused = true;
+            }
+           
 
             function actionClick() {
                 pause.update_pause();
-                //this.update_pause();
-                /*button_menu = game.add.button(400, 200, 'RetMenu', returnMenu);
-                button_menu.name = 'Returnmenu';
-                button_menu.anchor.setTo(0.5, 0.5);
-                button_menu.fixedToCamera = true;
-
-                button_restart = game.add.button(400, 300, 'restart', restart);
-                button_restart.name = 'restart';
-                button_restart.anchor.setTo(0.5, 0.5);
-                button_restart.fixedToCamera = true;
-
-                button_resume = game.add.button(400, 400, 'resume', resume);
-                button_resume.name = 'resume';
-                button_resume.anchor.setTo(0.5, 0.5);
-                button_resume.fixedToCamera = true;
-
-                game.physics.arcade.isPaused = true;
-                paused = true;         
-
-
-
-                function returnMenu() {
-                    alert('hangler main');
-                    game.paused = false;
-                    game.physics.arcade.isPaused = false;
-                    game.state.start('MainMenu');
-                }
-
-                function resume() {
-                    button_menu.destroy();
-                    button_restart.destroy();
-                    button_resume.destroy();
-
-                    paused = false;
-                    game.physics.arcade.isPaused = false;
-                }
-
-                function restart() {
-                    paused = false;
-                    game.physics.arcade.isPaused = false;
-                    game.state.start('Game');
-                }*/
+                
             }
 
 
