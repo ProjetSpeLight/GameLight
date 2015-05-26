@@ -71,6 +71,16 @@ define(['phaser', 'app/phasergame'], function (Phaser, PhaserGame) {
         button_restart.destroy();
         button_resume.destroy();
     }
+    
+    function gamepaused() {
+        this.update_pause();
+        setTimeout(null,15);
+        PhaserGame.game.physics.arcade.isPaused = true;
+        this.is_paused = true;
+                //PhaserGame.game.paused = true;
+                
+        PhaserGame.game.paused = true;
+    }
 
 
     
@@ -78,6 +88,7 @@ define(['phaser', 'app/phasergame'], function (Phaser, PhaserGame) {
 
     return {
         is_paused : false,
+        gamepaused: gamepaused,
         update_pause: update_pause,
         preload_pause: preload_pause,
         destruction: destruction

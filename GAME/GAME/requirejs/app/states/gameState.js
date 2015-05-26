@@ -30,25 +30,13 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
              button_pause.name = 'pause';
             button_pause.anchor.setTo(0.5, 0.5);
             button_pause.fixedToCamera = true;
-            button_pause.events.onInputUp.add(function () {
+            /*button_pause.events.onInputUp.add(function () {
                 
-                
-            pause.update_pause();
-                
-                
-            
-                //button_menu.fixedToCamera = true;
-                
-                PhaserGame.game.physics.arcade.isPaused = true;
-                pause.is_paused = true;
-                //PhaserGame.game.paused = true;
-                
-                setTimeout(gamepaused,15);
-                
-                
-                
+                pause.gamepaused();
             },this);
-           
+           */
+            
+            
             PhaserGame.game.input.onDown.add(unpause,self);
             function unpause(event){
                 if(PhaserGame.game.paused) {
@@ -75,13 +63,10 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
                                 pause.destruction();
                             }
                       
-            }
+                }
             }
         
-            function gamepaused() {
-                
-                PhaserGame.game.paused = true;
-            }
+           
            
 
             function actionClick() {
@@ -209,7 +194,8 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
 
                 // we stop the game when "ESC" is pushed 
                 if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.ESC)) {
-                    pause.update_pause();
+                    pause.gamepaused();
+                    
                 }
 
 
@@ -240,6 +226,11 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
                         element.body.velocity.y *= -1;
                     }
                 })
+                
+                if (PhaserGame.game.input.activePointer.isDown && PhaserGame.game.input.y>0 && PhaserGame.game.input.y<50 )
+                {
+                    pause.gamepaused();
+                }
 
 
                 function makeColor(sprite, colorplatform) {
@@ -273,7 +264,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
                     PhaserGame.game.state.start('FinishLevel');
                 }
 
-            }
+            } 
         },
 
         render: function () { },
