@@ -83,15 +83,11 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
 
             if (cursors.left.isDown) {
                 //  Move to the left
-                this.sprite.body.velocity.x = -300;
-                this.sprite.animations.play('left' + this.sprite.color.name);
-                this.sprite.lookRight = false;
+                this.handlerLeft();
             }
             else if (cursors.right.isDown) {
-                //  Move to the right
-                this.sprite.body.velocity.x = 300;
-                this.sprite.animations.play('right' + this.sprite.color.name);
-                this.sprite.lookRight = true;
+                //  Move to the right                
+                this.handlerRight();
             }
             else {
                 //  Stand still
@@ -187,6 +183,18 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
                 this.sprite.body.velocity.y = -600;
                this.pushed = true;
             }
+        },
+
+        handlerLeft : function() {
+            this.sprite.body.velocity.x = -300;
+            this.sprite.animations.play('left' + this.sprite.color.name);
+            this.sprite.lookRight = false;
+        },
+
+        handlerRight: function () {
+            this.sprite.body.velocity.x = 300;
+            this.sprite.animations.play('right' + this.sprite.color.name);
+            this.sprite.lookRight = true;
         }
 
     }
