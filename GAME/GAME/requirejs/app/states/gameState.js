@@ -1,4 +1,4 @@
-﻿define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'], function (Phaser, createLevel, player, pause, PhaserGame) {
+define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'], function (Phaser, createLevel, player, pause, PhaserGame) {
 
     function GameState(game) {
         score = 0;
@@ -11,7 +11,7 @@
         create: function () {
             PhaserGame.game.physics.startSystem(Phaser.Physics.ARCADE);
 
-            createLevel();
+            createLevel(this.currentLevel);
 
 
             /*if (this.game.device.iOS) {
