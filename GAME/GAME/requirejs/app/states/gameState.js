@@ -5,13 +5,16 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
         paused = false;
     }
 
-
+    var stopped = false;
 
     GameState.prototype = {
         create: function () {
             PhaserGame.game.physics.startSystem(Phaser.Physics.ARCADE);
-
-            createLevel(this.currentLevel);
+            if (!createLevel('level' + this.currentLevel)) {
+                alert('niveau indisponible');
+                stopped = true;
+                return;
+            }
 
 
             /*if (this.game.device.iOS) {
@@ -137,6 +140,11 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
          },*/
 
         update: function () {
+
+            if (stopped) {
+                PhaserGame.game.state.start('MainMenu');
+                return;
+            }
 
 
             if (!pause.is_paused) {
