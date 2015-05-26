@@ -1,4 +1,4 @@
-define(['phaser', 'app/createLevel', 'app/player', 'app/pause'], function (Phaser, createLevel, player, pause) {
+ï»¿define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'], function (Phaser, createLevel, player, pause, PhaserGame) {
 
     function GameState(game) {
         score = 0;
@@ -9,8 +9,9 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause'], function (Phase
 
     GameState.prototype = {
         create: function () {
-
-            game.physics.startSystem(Phaser.Physics.ARCADE);
+            alert('debut');
+            PhaserGame.game.physics.startSystem(Phaser.Physics.ARCADE);
+            alert('fin');
 
             createLevel();
 
@@ -19,9 +20,9 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause'], function (Phase
                 addJoypad(game);
             }*/
 
-            scoreText = game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
+            scoreText = PhaserGame.game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
             scoreText.fixedToCamera = true;
-            var button_pause = game.add.button(700, 20, 'pause', actionClick, this);
+            var button_pause = PhaserGame.game.add.button(700, 20, 'pause', actionClick, this);
 
 
             button_pause.name = 'pause';
@@ -29,7 +30,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause'], function (Phase
             button_pause.fixedToCamera = true;
 
             function actionClick() {
-                pause.update_pause(game);
+                pause.update_pause();
                 //this.update_pause();
                 /*button_menu = game.add.button(400, 200, 'RetMenu', returnMenu);
                 button_menu.name = 'Returnmenu';
@@ -74,90 +75,90 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause'], function (Phase
                 }*/
             }
 
-            
+
 
 
         },
 
-       /* returnMenu: function () {
-            alert('hangler main');
-            game.paused = false;
-            game.physics.arcade.isPaused = false;
-            game.state.start('MainMenu');
-        },
-
-
-        update_pause: function () {
-
-            var returnmenu = false;
-            button_menu = game.add.button(400, 200, 'RetMenu', this.returnMenu);
-            button_menu.name = 'Returnmenu';
-            button_menu.anchor.setTo(0.5, 0.5);
-            button_menu.fixedToCamera = true;
-
-            button_restart = game.add.button(400, 300, 'restart', restartclick, this);
-            button_restart.name = 'restart';
-            button_restart.anchor.setTo(0.5, 0.5);
-            button_restart.fixedToCamera = true;
-
-            button_resume = game.add.button(400, 400, 'resume', resumeclick, this);
-            button_resume.name = 'resume';
-            button_resume.anchor.setTo(0.5, 0.5);
-            button_resume.fixedToCamera = true;
-
-            game.physics.arcade.isPaused = true;
-            game.paused = true;
-
-            function resumeclick() {
-                resume(game);
-            }
-
-
-            function restartclick() {
-                restart(game);
-            }
-
-
-
-            function resume(game) {
-                button_menu.destroy();
-                button_restart.destroy();
-                button_resume.destroy();
-
-                game.paused = false;
-                game.physics.arcade.isPaused = false;
-            }
-
-            function restart(game) {
-                game.paused = false;
-                game.physics.arcade.isPaused = false;
-                game.state.start('Game');
-            }
-
-
-        },*/
+        /* returnMenu: function () {
+             alert('hangler main');
+             game.paused = false;
+             game.physics.arcade.isPaused = false;
+             game.state.start('MainMenu');
+         },
+ 
+ 
+         update_pause: function () {
+ 
+             var returnmenu = false;
+             button_menu = game.add.button(400, 200, 'RetMenu', this.returnMenu);
+             button_menu.name = 'Returnmenu';
+             button_menu.anchor.setTo(0.5, 0.5);
+             button_menu.fixedToCamera = true;
+ 
+             button_restart = game.add.button(400, 300, 'restart', restartclick, this);
+             button_restart.name = 'restart';
+             button_restart.anchor.setTo(0.5, 0.5);
+             button_restart.fixedToCamera = true;
+ 
+             button_resume = game.add.button(400, 400, 'resume', resumeclick, this);
+             button_resume.name = 'resume';
+             button_resume.anchor.setTo(0.5, 0.5);
+             button_resume.fixedToCamera = true;
+ 
+             game.physics.arcade.isPaused = true;
+             game.paused = true;
+ 
+             function resumeclick() {
+                 resume(game);
+             }
+ 
+ 
+             function restartclick() {
+                 restart(game);
+             }
+ 
+ 
+ 
+             function resume(game) {
+                 button_menu.destroy();
+                 button_restart.destroy();
+                 button_resume.destroy();
+ 
+                 game.paused = false;
+                 game.physics.arcade.isPaused = false;
+             }
+ 
+             function restart(game) {
+                 game.paused = false;
+                 game.physics.arcade.isPaused = false;
+                 game.state.start('Game');
+             }
+ 
+ 
+         },*/
 
         update: function () {
 
 
             if (!pause.is_paused) {
 
-                game.physics.arcade.collide(player.sprite, platforms);
-                game.physics.arcade.collide(player.sprite, movingPlatforms);
-                game.physics.arcade.overlap(player.sprite, coins, collectCoin, null, this);
-                game.physics.arcade.collide(player.sprite, colourPlatforms, makeColor, null, this);
-                game.physics.arcade.collide(ends, platforms);
-                game.physics.arcade.collide(ends, colourPlatforms);
-                game.physics.arcade.collide(ends, movingPlatforms);
-                game.physics.arcade.overlap(player.sprite, ends, finish, null, this);
+                PhaserGame.game.physics.arcade.collide(player.sprite, platforms);
+                PhaserGame.game.physics.arcade.collide(player.sprite, movingPlatforms);
+                PhaserGame.game.physics.arcade.overlap(player.sprite, coins, collectCoin, null, this);
+                PhaserGame.game.physics.arcade.collide(player.sprite, colourPlatforms, makeColor, null, this);
+                PhaserGame.game.physics.arcade.collide(ends, platforms);
+                PhaserGame.game.physics.arcade.collide(ends, colourPlatforms);
+                PhaserGame.game.physics.arcade.collide(ends, movingPlatforms);
+                PhaserGame.game.physics.arcade.overlap(player.sprite, ends, finish, null, this);
 
                 function photonRedirection(photon, ends) {
                     photon.body.velocity.y = 200;;
                 }
-                game.physics.arcade.overlap(player.refPhotons.photons, ends, photonRedirection);
+                PhaserGame.game.physics.arcade.overlap(player.refPhotons.photons, ends, photonRedirection);
 
 
-                var cursors = game.input.keyboard.createCursorKeys();
+                var cursors = PhaserGame.game.input.keyboard.createCursorKeys();
                 player.updatePositionPlayer(cursors);
 
                 // TEMP : Change of colour (by space key)
@@ -166,17 +167,17 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause'], function (Phase
 
 
                 // We restart the game when "R" is pushed
-                if (game.input.keyboard.isDown(Phaser.Keyboard.R) || player.sprite.body.y > game.world.height - 64) {
-                    this.state.start('Game');
+                if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.R) || player.sprite.body.y > PhaserGame.game.world.height - 64) {
+                    PhaserGame.game.state.start('Game');
                 }
 
                 // we stop the game when "ESC" is pushed 
-                if (game.input.keyboard.isDown(Phaser.Keyboard.ESC)) {
+                if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.ESC)) {
                     update_pause();
                 }
 
 
-                //Déplacement des plateformes
+                //DÃ©placement des plateformes
                 platforms.forEach(function (element) {
                     if (element.body.x >= element.body.sprite.rightBounds) {
                         element.body.velocity.x *= -1;
@@ -190,7 +191,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause'], function (Phase
                     }
                 })
 
-                //Déplacement des plateformes
+                //DÃ©placement des plateformes
                 colourPlatforms.forEach(function (element) {
                     if (element.body.x >= element.body.sprite.rightBounds) {
                         element.body.velocity.x *= -1;
@@ -207,11 +208,11 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause'], function (Phase
 
                 function makeColor(sprite, colorplatform) {
 
-                    // Oblige le joueur à etre au dessus 
+                    // Oblige le joueur Ã  etre au dessus 
                     //de la plateforme coloree pour changer de couleur
                     if (sprite.body.touching.down) {
 
-                        // Oblige le joueur à appuyer 
+                        // Oblige le joueur Ã  appuyer 
                         //sur la touche du bas pour changer de couleur
                         if (this.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
                             player.changePlayerColor(colorplatform.color);
@@ -233,7 +234,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause'], function (Phase
 
 
                 function finish(player, diamond) {
-                    this.state.start('FinishLevel');
+                    PhaserGame.game.state.start('FinishLevel');
                 }
 
             }
