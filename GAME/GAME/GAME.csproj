@@ -19,18 +19,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="app.css" />
-    <Content Include="src\actions.js" />
-    <Content Include="src\app.js" />
-    <Content Include="assets\phaser2.png" />
-    <Content Include="assets\preloader-bar.png" />
-    <Content Include="src\boot.js" />
-    <Content Include="src\createLevel.js" />
-    <Content Include="src\game.js" />
-    <Content Include="index.html" />
-    <Content Include="src\mainmenu.js" />
-    <Content Include="src\pause.js" />
-    <Content Include="src\player.js" />
-    <Content Include="src\preloader.js" />
+    <Content Include="requirejs\app\createLevel.js" />
+    <Content Include="requirejs\app\main.js" />
+    <Content Include="requirejs\app\pause.js" />
+    <Content Include="requirejs\app\phasergame.js" />
+    <Content Include="requirejs\app\photon.js" />
+    <Content Include="requirejs\app\player.js" />
+    <Content Include="requirejs\app\states\bootState.js" />
+    <Content Include="requirejs\app\states\chooseLevelState.js" />
+    <Content Include="requirejs\app\states\finishLevelState.js" />
+    <Content Include="requirejs\app\states\gameState.js" />
+    <Content Include="requirejs\app\states\mainMenuState.js" />
+    <Content Include="requirejs\app\states\preloadState.js" />
+    
     <Content Include="web.config">
       <SubType>Designer</SubType>
     </Content>
