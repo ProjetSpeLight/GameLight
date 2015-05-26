@@ -32,8 +32,11 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
 
             this.load.image('button_jump', 'assets/button_jump.png', 64, 64);
 
-            if (this.game.device.iOS) {
-                //pause.preload_touch(this);
+            if (!this.game.device.desktop) {
+                this.load.spritesheet('buttonvertical', 'assets/buttons/button-vertical.png', 64, 64);
+                this.load.spritesheet('buttonhorizontal', 'assets/buttons/button-horizontal.png', 96, 64);
+                this.load.spritesheet('buttonfire', 'assets/buttons/button-round-a.png', 96, 96);
+                this.load.spritesheet('buttonjump', 'assets/buttons/button-round-b.png', 96, 96);
             }
 
             this.load.image('play', 'assets/button_play.png');
