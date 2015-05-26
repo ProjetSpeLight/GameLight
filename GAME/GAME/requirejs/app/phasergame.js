@@ -4,14 +4,16 @@ define([
     'app/states/preloadState',
     'app/states/gameState',
     'app/states/mainMenuState',
-    'app/states/finishLevelState'
+    'app/states/finishLevelState',
+    'app/states/chooseLevelState'
 ], function (
     Phaser,
     BootState,
     PreloadState,
     GameState,
     MainMenuState,
-    FinishLevelState
+    FinishLevelState,
+    ChooseLevelState
 ) {
     //'use strict';
 
@@ -31,6 +33,7 @@ define([
             game.state.add('MainMenu', MainMenuState);
             game.state.add('Game', GameState);
             game.state.add('FinishLevel', FinishLevelState);
+            game.state.add('ChooseLevel', ChooseLevelState);
 
             /*
              var platforms;
