@@ -9,9 +9,7 @@
 
     GameState.prototype = {
         create: function () {
-            alert('debut');
             PhaserGame.game.physics.startSystem(Phaser.Physics.ARCADE);
-            alert('fin');
 
             createLevel();
 

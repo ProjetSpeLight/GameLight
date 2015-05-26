@@ -5,9 +5,6 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
     
     PreloadState.prototype = {
         preload: function () {
-
-            alert('preload deb');
-
             // common to add a loading bar sprite here...
             this.preloadBar = PhaserGame.game.add.sprite(PhaserGame.game.width / 2 - 100, PhaserGame.game.height / 2, 'preloaderBar');
             PhaserGame.game.load.setPreloadSprite(this.preloadBar);
@@ -54,7 +51,6 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
             this.load.image('photonblanc', 'assets/photon_blanc.png');
 
             this.load.json('level', 'http://localhost:4200/assets/levels/level.json');
-            alert('preload end');
 
 
         },
