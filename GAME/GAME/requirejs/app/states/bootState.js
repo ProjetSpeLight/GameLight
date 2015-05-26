@@ -21,6 +21,7 @@ define([
                 this.game.scale.refresh();
             }
 
+
             // call next state
             this.state.start('Preload');
         }

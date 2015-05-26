@@ -1,28 +1,28 @@
-define(['phaser'], function (Phaser) {
+define(['phaser', 'app/phasergame'], function (Phaser, PhaserGame) {
 
 
 
-    function preload_pause(game) {
-        game.load.image('pause', 'assets/pause.png', 180, 210);
-        game.load.image('menu', 'assets/button_menu.png', 180, 210);
-        game.load.image('RetMenu', 'assets/button_RetMenu.png', 180, 210);
-        game.load.image('restart', 'assets/button_restart.png', 180, 210);
-        game.load.image('resume', 'assets/button_resume.png', 180, 210);
+    function preload_pause() {
+        PhaserGame.game.load.image('pause', 'assets/pause.png', 180, 210);
+        PhaserGame.game.load.image('menu', 'assets/button_menu.png', 180, 210);
+        PhaserGame.game.load.image('RetMenu', 'assets/button_RetMenu.png', 180, 210);
+        PhaserGame.game.load.image('restart', 'assets/button_restart.png', 180, 210);
+        PhaserGame.game.load.image('resume', 'assets/button_resume.png', 180, 210);
     }
 
 
-    function create_pause(game) {
-        game.escKey = game.input.keyboard.addKey(Phaser.Keyboard.ESC);
+    function create_pause() {
+        PhaserGame.game.escKey = PhaserGame.game.input.keyboard.addKey(Phaser.Keyboard.ESC);
     }
 
     function update_pause() {
         
-        game.physics.arcade.isPaused = true;
+        PhaserGame.game.physics.arcade.isPaused = true;
         this.is_paused = true;
-        game.paused = true;
+        PhaserGame.game.paused = true;
 
         //var returnmenu = false;
-        button_menu = game.add.button(400, 200, 'RetMenu', returnMenu, self);
+        button_menu = PhaserGame.game.add.button(400, 200, 'RetMenu', returnMenu, this);
         button_menu.name = 'Returnmenu';
         button_menu.anchor.setTo(0.5, 0.5);
         button_menu.fixedToCamera = true;
@@ -30,12 +30,12 @@ define(['phaser'], function (Phaser) {
         //game.add(temp);
         //button_menu.onInputUp.addOnce(returnMenu, this);
 
-        button_restart = game.add.button(400, 300, 'restart', restart, self);
+        button_restart = PhaserGame.game.add.button(400, 300, 'restart', restart, this);
         button_restart.name = 'restart';
         button_restart.anchor.setTo(0.5, 0.5);
         button_restart.fixedToCamera = true;
 
-        button_resume = game.add.button(400, 400, 'resume', resume, self);
+        button_resume = PhaserGame.game.add.button(400, 400, 'resume', resume, this);
         button_resume.name = 'resume';
         button_resume.anchor.setTo(0.5, 0.5);
         button_resume.fixedToCamera = true;
@@ -53,7 +53,7 @@ define(['phaser'], function (Phaser) {
 
         
 
-        function menuclick() {
+       /* function menuclick() {
             returnMenu(game);
         }
 
@@ -64,36 +64,36 @@ define(['phaser'], function (Phaser) {
 
         function restartclick() {
             restart(game);
-        }
+        }*/
 
         function returnMenu() {
-            game.paused = false;
+            PhaserGame.game.paused = false;
 
             this.is_paused = false;
-            game.physics.arcade.isPaused = false;
+            PhaserGame.game.physics.arcade.isPaused = false;
 
-            game.state.start('MainMenu');
+            PhaserGame.game.state.start('MainMenu');
         }
 
-        function resume(game) {
-            game.paused = false;
+        function resume() {
+            PhaserGame.game.paused = false;
 
             button_menu.destroy();
             button_restart.destroy();
             button_resume.destroy();
 
             this.is_paused = false;
-            game.physics.arcade.isPaused = false;
+            PhaserGame.game.physics.arcade.isPaused = false;
         }
 
-        function restart(game) {
-            game.paused = false;
+        function restart() {
+            PhaserGame.game.paused = false;
 
             this.is_paused = false;
-            game.paused = false;
+            PhaserGame.game.paused = false;
 
-            game.physics.arcade.isPaused = false;
-            game.state.start('Game');
+            PhaserGame.game.physics.arcade.isPaused = false;
+            PhaserGame.game.state.start('Game');
         }
 
 

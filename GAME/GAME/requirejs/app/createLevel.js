@@ -1,4 +1,4 @@
-define(['phaser', 'app/player'], function (Phaser, player) {
+define(['phaser', 'app/player', 'app/phasergame'], function (Phaser, player, PhaserGame) {
 
     function createObjects(levelData) {
 
@@ -12,14 +12,14 @@ define(['phaser', 'app/player'], function (Phaser, player) {
         createEnds(levelData);
     }
 
-    function createWorld(levelData, game) {
+    function createWorld(levelData) {
         //  Creation of the background
-        var background = game.add.sprite(levelData.background.position.x, levelData.background.position.y, levelData.background.skin);
+        var background = PhaserGame.game.add.sprite(levelData.background.position.x, levelData.background.position.y, levelData.background.skin);
         background.fixedToCamera = true;
 
         // Creation of the "frame" of the level
         var worldBounds = levelData.worldBounds;
-        game.world.setBounds(worldBounds.leftBound, worldBounds.upperBound, worldBounds.rightBound, worldBounds.lowerBound);
+        PhaserGame.game.world.setBounds(worldBounds.leftBound, worldBounds.upperBound, worldBounds.rightBound, worldBounds.lowerBound);
 
     }
 
@@ -50,7 +50,7 @@ define(['phaser', 'app/player'], function (Phaser, player) {
             }
             platform.body.allowGravity = false;
             platform.body.immovable = platformData.immovable;
-            game.physics.enable(platform, Phaser.Physics.ARCADE);
+            PhaserGame.game.physics.enable(platform, Phaser.Physics.ARCADE);
 
         }
     }
@@ -74,28 +74,28 @@ define(['phaser', 'app/player'], function (Phaser, player) {
         }
     }
 
-    function createStart(element, game) {
-        player.initializePlayer(game, element.x, element.y);
+    function createStart(element) {
+        player.initializePlayer(PhaserGame.game, element.x, element.y);
     }
 
-    function createLevel() {
+    function createLevel(str) {
 
         //var game = this;
         //  We're going to be using physics, so enable the Arcade Physics system
-        game.physics.startSystem(Phaser.Physics.ARCADE);
+        PhaserGame.game.physics.startSystem(Phaser.Physics.ARCADE);
 
         // We parse the JSON file
-        var levelData = game.cache.getJSON('level');
+        var levelData = PhaserGame.game.cache.getJSON(str);
 
 
-        createWorld(levelData, game);
+        createWorld(levelData);
 
         // Create the differents groups of objects
-        platforms = game.add.physicsGroup();
-        movingPlatforms = game.add.physicsGroup();
-        colourPlatforms = game.add.physicsGroup();
-        ends = game.add.group();
-        coins = game.add.group();
+        platforms = PhaserGame.game.add.physicsGroup();
+        movingPlatforms = PhaserGame.game.add.physicsGroup();
+        colourPlatforms = PhaserGame.game.add.physicsGroup();
+        ends = PhaserGame.game.add.group();
+        coins = PhaserGame.game.add.group();
 
 
         //  We will enable physics for any object that is created in those group
@@ -110,7 +110,7 @@ define(['phaser', 'app/player'], function (Phaser, player) {
 
 
         // Creation of the player
-        createStart(levelData.playerStart, game);
+        createStart(levelData.playerStart, PhaserGame.game);
     }
 
 
