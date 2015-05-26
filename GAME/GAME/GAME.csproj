@@ -19,6 +19,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="app.css" />
+    <Content Include="index.html" />
     <Content Include="requirejs\app\createLevel.js" />
     <Content Include="requirejs\app\main.js" />
     <Content Include="requirejs\app\pause.js" />
@@ -31,7 +32,6 @@
     <Content Include="requirejs\app\states\gameState.js" />
     <Content Include="requirejs\app\states\mainMenuState.js" />
     <Content Include="requirejs\app\states\preloadState.js" />
-    
     <Content Include="web.config">
       <SubType>Designer</SubType>
     </Content>
