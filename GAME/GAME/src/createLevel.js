@@ -65,7 +65,7 @@ function createPlatform(levelData) {
         var platformData = dataPlatforms[i];
         var platform;
         // Create a normal or coloured platform
-        if (platformData.coulour != "") {
+        if (platformData.colour != "") {
             platform = colourPlatforms.create(platformData.position.x, platformData.position.y, platformData.skin + platformData.color);
             platform.color = platformData.color;
         } else {
