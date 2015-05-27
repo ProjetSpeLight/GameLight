@@ -190,3 +190,5 @@ _Pvt_Extensions/
 ModelManifest.xml
 
 intelxdk.config.*
+*.csproj
+GAME/GAME/GameLight.xdk

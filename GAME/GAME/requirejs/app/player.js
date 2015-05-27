@@ -30,13 +30,14 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
         moveLeft: false,
         fireActive: false,
         changeColor: false,
+        activeJump: false,
 
         // Declaration of the enumeration representing the color of the player
         ColorEnum: {
-            BLACK: { value: 3, name: 'Black', code: 'B' },
-            RED: { value: 2, name: 'Red', code: 'R' },
-            BLUE: { value: 1, name: 'Blue', code: 'Bl' },
-            GREEN: { value: 0, name: 'Green', code: 'G' },
+            BLACK: { value: 0, name: 'Black', code: 'B' },
+            RED: { value: 1, name: 'Red', code: 'R' },
+            BLUE: { value: 3, name: 'Blue', code: 'Bl' },
+            GREEN: { value: 2, name: 'Green', code: 'G' },
             YELLOW: { value: 4, name: 'Yellow', code: 'Y' },
             CYAN: { value: 5, name: 'Cyan', code: 'C' },
             MAGENTA: { value: 6, name: 'Magenta', code: 'M' },
@@ -102,7 +103,7 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
             }
 
             //  Allow the player to jump if they are touching the ground.
-            if (cursors.up.isDown) {
+            if (cursors.up.isDown || this.activeJump) {
                 this.jump();
             }
 
