@@ -217,7 +217,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                 
                 function killPlayer(player, ennemi) {
                 
-                this.state.start('FinishLevel');
+                this.state.start('RestartGame');
                 
                 }
             
