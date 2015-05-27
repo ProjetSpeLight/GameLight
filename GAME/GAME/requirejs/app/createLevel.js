@@ -7,10 +7,10 @@ define(['phaser', 'app/player', 'app/phasergame'], function (Phaser, player, Pha
 
         // Creation of the coins
         createCoin(levelData);
-        
+        alert("avant create ennemis");
         // Creation of the ennemies
         createEnnemis(levelData);
-
+        alert("apres create ennemis");
         // Creation of the ends
         createEnds(levelData);
     }
@@ -80,8 +80,10 @@ define(['phaser', 'app/player', 'app/phasergame'], function (Phaser, player, Pha
     
     function createEnnemis(levelData) {
         var dataEnnemis = levelData.ennemis;
-       
+        alert(levelData.ennemis);
+        alert("1 "+ dataEnnemis.length);
         for (var i = 0 ; i < dataEnnemis.length ; i++) {
+            alert("2");
             var ennemiData = dataEnnemis[i];
             var ennemi = ennemis.create(ennemiData.x, ennemiData.y, 'baddie');
             ennemi.frame = 1;
@@ -90,6 +92,7 @@ define(['phaser', 'app/player', 'app/phasergame'], function (Phaser, player, Pha
                 ennemi.body.sprite.rightBounds = ennemiData.bounds.right;
                 ennemi.body.velocity.x = ennemiData.speed.x;
             }
+            alert("3");
             //pas sur non plus de ces 3 la
             //platform.body.immovable = platformData.immovable;
             //ennemi.body.immovable = ennemiData.immovable;
@@ -115,7 +118,9 @@ define(['phaser', 'app/player', 'app/phasergame'], function (Phaser, player, Pha
         if (levelData == null) {
             return false;
         }
-
+        alert("coins "+levelData.coins);
+        alert("ennemis "+levelData.ennemis);
+        
 
         createWorld(levelData);
 
@@ -136,10 +141,10 @@ define(['phaser', 'app/player', 'app/phasergame'], function (Phaser, player, Pha
         colourPlatforms.enableBody = true;
         ennemis.enableBody = true;
 
-
+        alert("avant create");
         // Creation of the level's objects
         createObjects(levelData);
-
+        alert("apres create");
 
         // Creation of the player
         createStart(levelData.playerStart, PhaserGame.game);
