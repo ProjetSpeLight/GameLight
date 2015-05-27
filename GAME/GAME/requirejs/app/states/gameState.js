@@ -81,7 +81,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                 PhaserGame.game.physics.arcade.collide(ennemis, platforms);
                 PhaserGame.game.physics.arcade.collide(ennemis, movingPlatforms);
                 PhaserGame.game.physics.arcade.overlap(player.sprite, coins, collectCoin, null, this);
-                PhaserGame.game.physics.arcade.collide(player.sprite, colourPlatforms, makeColor, null, this);
+                PhaserGame.game.physics.arcade.collide(player.sprite, colourPlatforms, makeColor, collisionCallBack, this);
                 PhaserGame.game.physics.arcade.collide(ends, platforms);
                 PhaserGame.game.physics.arcade.collide(ends, colourPlatforms);
                 PhaserGame.game.physics.arcade.collide(ends, movingPlatforms);
@@ -197,6 +197,24 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                         }
 
                     }
+                }
+
+                function collisionCallBack(sprite, colorplatform) {
+                    // si collision par le bas, le perso traverse
+                    /*if (!sprite.body.touching.down) {
+                        return false;
+                    }**/
+                    /*if (sprite.body.x > colorplatform.body.x + colorplatform.height) {
+                        return false;
+                    }*/
+                    /*if (sprite.body.x > colorplatform.body.x) {
+                        return true;
+                    }*/
+                    //alert(sprite.body.touching.down);
+                    //alert(colorplatform.color)
+                    //return sprite.body.touching.down;
+
+                    return true;
                 }
 
                 function collectCoin(player, coin) {
