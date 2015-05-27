@@ -1,4 +1,4 @@
-define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame', 'app/touch', 'app/objects/mirror'], function (Phaser, createLevel, player, pause, PhaserGame, Touch, mirror) {
+define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , 'app/phasergame', 'app/touch', 'app/objects/mirror'], function (Phaser, createLevel, player, pause, photon, PhaserGame, Touch,mirror) {
 
     function GameState(game) {
         score = 0;
@@ -78,11 +78,16 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
 
                 PhaserGame.game.physics.arcade.collide(player.sprite, platforms);
                 PhaserGame.game.physics.arcade.collide(player.sprite, movingPlatforms);
+                PhaserGame.game.physics.arcade.collide(ennemis, platforms);
+                PhaserGame.game.physics.arcade.collide(ennemis, movingPlatforms);
                 PhaserGame.game.physics.arcade.overlap(player.sprite, coins, collectCoin, null, this);
                 PhaserGame.game.physics.arcade.collide(player.sprite, colourPlatforms, makeColor, null, this);
                 PhaserGame.game.physics.arcade.collide(ends, platforms);
                 PhaserGame.game.physics.arcade.collide(ends, colourPlatforms);
                 PhaserGame.game.physics.arcade.collide(ends, movingPlatforms);
+                
+                PhaserGame.game.physics.arcade.collide(player.sprite, ennemis,killPlayer,null,this);
+                PhaserGame.game.physics.arcade.collide(photon.photons,ennemis,killEnnemi,null,this);
                 PhaserGame.game.physics.arcade.overlap(player.sprite, ends, finish, null, this);
 
                 /*function photonRedirection(photon, ends) {
@@ -151,6 +156,23 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
                     }
                 })
                 
+                
+                //Déplacement des ennemis
+                 ennemis.forEach(function (element) {
+                if (element.body.x >= element.body.sprite.rightBounds) {
+                    element.body.velocity.x *= -1;
+                } else if (element.body.x <= element.body.sprite.leftBounds) {
+                    element.body.velocity.x *= -1;
+                }
+                if (element.body.y <= element.body.sprite.topBounds) {
+                    element.body.velocity.y *= -1;
+                } else if (element.body.y >= element.body.sprite.bottomBounds) {
+                    element.body.velocity.y *= -1;
+                }
+                })
+                
+                
+                
                 if (PhaserGame.game.input.activePointer.isDown && 
                     PhaserGame.game.input.y<34 &&
                     PhaserGame.game.input.y>5  &&
@@ -191,6 +213,17 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
 
                 function finish(player, diamond) {
                     PhaserGame.game.state.start('FinishLevel');
+                }
+                
+                function killPlayer(player, ennemi) {
+                
+                this.state.start('FinishLevel');
+                
+                }
+            
+                function killEnnemi(photon, ennemi){
+                                ennemi.kill();
+                                photon.kill();
                 }
 
             } 

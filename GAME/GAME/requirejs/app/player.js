@@ -9,7 +9,7 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
     /// @function initializePlayerAnimations
     /// Initialize the different movements animations
     /// {Phaser.Sprite} the object player itself
-    function initializePlayerAnimations (sprite, ColorEnum) {
+    function initializePlayerAnimations(sprite, ColorEnum) {
         for (var color in ColorEnum) {
             var vcolor = ColorEnum[color];
             sprite.animations.add('left' + vcolor.name, [0 + 9 * vcolor.value, 1 + 9 * vcolor.value, 2 + 9 * vcolor.value, 3 + 9 * vcolor.value], 10, true);
@@ -96,7 +96,7 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
 
 
             // Initialization of the player animations
-            initializePlayerAnimations(this.sprite, this.ColorEnum);           
+            initializePlayerAnimations(this.sprite, this.ColorEnum);
 
             // Initialization of an attribute to indicate where the player look at
             this.sprite.lookRight = true;
@@ -107,7 +107,7 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
         },
 
 
-       
+
 
         /// @function updatePositionPlayer
         /// Move the player when the game is updated
@@ -152,13 +152,15 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
 
             //  Firing?
             if (photon.fireButton.isDown || this.fireActive) {
-                photon.firePhoton(PhaserGame.game, this);
+                if (this.sprite.color.name != 'Black') {
+                    photon.firePhoton(PhaserGame.game, this);
+                }
             }
 
         },
 
 
-       
+
 
         /// @function getColor
         /// Return the object of the enumeration corresponding to the string in argument, null if the string does not represent a color name
@@ -183,18 +185,20 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
             if (this.sprite.color != color) {
                 this.sprite.color = color;
                 this.sprite.frame = this.sprite.color.value * 9 + 4;
-                photon.photons.setAll('frame', this.sprite.color.value);
+                if (this.sprite.color.value >= 1) {
+                    photon.photons.setAll('frame', this.sprite.color.value - 1);
+                }
             }
         },
 
         jump: function () {
             if (this.sprite.body.touching.down && !this.pushed) {
                 this.sprite.body.velocity.y = -600;
-               this.pushed = true;
+                this.pushed = true;
             }
         },
 
-        handlerLeft : function() {
+        handlerLeft: function () {
             this.sprite.body.velocity.x = -300;
             this.sprite.animations.play('left' + this.sprite.color.name);
             this.sprite.lookRight = false;
