@@ -21,21 +21,38 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
     }
 
 
+    function subAdditiveColorMagenta(color1, color2) {
+        return color1.name == 'Red' && color2.name == 'Blue';
+    }
+
+    function subAdditiveColorCyan(color1, color2) {
+        return color1.name == 'Red' && color2.name == 'Green';
+    }
+
+    function subAdditiveColorYellow(color1, color2) {
+        return color1.name == 'Blue' && color2.name == 'Green';
+    }
+
+
     function additiveColor(oldColor, newColor, ColorEnum) {
-        if (oldColor.name == 'Red' && newColor.name == 'Blue') {
+        if (subAdditiveColorMagenta(oldColor, newColor) || subAdditiveColorMagenta(newColor, oldColor)) {
             return ColorEnum.MAGENTA;
         }
 
-        if (oldColor.name == 'Red' && newColor.name == 'Green') {
+        if (subAdditiveColorCyan(oldColor, newColor) || subAdditiveColorCyan(newColor, oldColor)) {
             return ColorEnum.YELLOW;
         }
 
-        if (oldColor.name == 'Blue' && newColor.name == 'Green') {
+        if (subAdditiveColorYellow(oldColor, newColor) || subAdditiveColorYellow(newColor, oldColor)) {
             return ColorEnum.CYAN;
         }
 
         if ((oldColor.name == 'Magenta' && newColor.name == 'Green') || (oldColor.name == 'Yellow' && newColor.name == 'Blue') || (oldColor.name == 'Cyan' && newColor.name == 'Red')) {
             return ColorEnum.WHITE;
+        }
+
+        if (oldColor.name == 'Magenta' || oldColor.name == 'Cyan' || oldColor.name == 'Yellow' || oldColor.name == 'White') {
+            return oldColor;
         }
 
         return newColor;
@@ -83,7 +100,7 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
 
             // Initialization of an attribute to indicate where the player look at
             this.sprite.lookRight = true;
-            this.sprite.color = this.ColorEnum.BLUE;
+            this.sprite.color = this.ColorEnum.BLACK;
 
             // Initialization of the photons
             photon.initPhotons(PhaserGame.game, this);
