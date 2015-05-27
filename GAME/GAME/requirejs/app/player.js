@@ -18,7 +18,28 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
 
         // Initialization of an attribute to indicate where the player look at
         sprite.lookRight = true;
-    }    
+    }
+
+
+    function additiveColor(oldColor, newColor, ColorEnum) {
+        if (oldColor.name == 'Red' && newColor.name == 'Blue') {
+            return ColorEnum.MAGENTA;
+        }
+
+        if (oldColor.name == 'Red' && newColor.name == 'Green') {
+            return ColorEnum.YELLOW;
+        }
+
+        if (oldColor.name == 'Blue' && newColor.name == 'Green') {
+            return ColorEnum.CYAN;
+        }
+
+        if ((oldColor.name == 'Magenta' && newColor.name == 'Green') || (oldColor.name == 'Yellow' && newColor.name == 'Blue') || (oldColor.name == 'Cyan' && newColor.name == 'Red')) {
+            return ColorEnum.WHITE;
+        }
+
+        return newColor;
+    }
 
     return {
 
@@ -120,42 +141,7 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
         },
 
 
-        /// @function updateColorPlayer
-        /// Change the color of the player according to the value in argument
-        /// @param {Phaser.Sprite} the object player itself
-        /// @param {Phaser.Keyboard} an object representing the keyboard
-        updateColorPlayer: function (keyboard, game) {
-            var key = keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-
-           /* if (key.onDown) {
-                key.onDown.removeAll();
-                var sig = key.onUp.add(testChangeColor);
-                // sig.execute([player, key]);
-
-            }*/
-
-            //  Firing?
-            if (photon.fireButton.isDown || this.fireActive) {
-                photon.firePhoton(game, player);
-            }
-        },
-
-
-        testChangeColor: function () {
-            var pcolor = sprite.color.value;
-            if (pcolor == 0) {
-                sprite.color = ColorEnum.BLUE;
-                sprite.frame = sprite.color.value * 9 + 4;
-            } else if (pcolor == 1) {
-                sprite.color = ColorEnum.RED;
-                sprite.frame = sprite.color.value * 9 + 4;
-            }
-
-            else {
-                sprite.color = ColorEnum.GREEN;
-                sprite.frame = sprite.color.value * 9 + 4;
-            }
-        },
+       
 
         /// @function getColor
         /// Return the object of the enumeration corresponding to the string in argument, null if the string does not represent a color name
@@ -176,6 +162,7 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
             if (color == null) {
                 return;
             }
+            color = additiveColor(this.sprite.color, color, this.ColorEnum);
             if (this.sprite.color != color) {
                 this.sprite.color = color;
                 this.sprite.frame = this.sprite.color.value * 9 + 4;
