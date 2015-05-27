@@ -74,11 +74,8 @@ define(['phaser', 'app/phasergame'], function (Phaser, PhaserGame) {
     
     function gamepaused() {
         this.update_pause();
-        setTimeout(null,15);
         PhaserGame.game.physics.arcade.isPaused = true;
         this.is_paused = true;
-                //PhaserGame.game.paused = true;
-                
         PhaserGame.game.paused = true;
     }
 

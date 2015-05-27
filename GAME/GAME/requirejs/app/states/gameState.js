@@ -122,11 +122,25 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                 }
 
 
+                
+                
                 // we stop the game when "ESC" is pushed 
-                if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.ESC)) {
+                if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.ESC) ) {
+                    if (!pause.is_paused){
                     pause.gamepaused();
+                    } else {
+                        PhaserGame.game.physics.arcade.isPaused = false;
+                                pause.is_paused = false;
+                                PhaserGame.game.paused = false;
+                                
+                                pause.destruction();
+                    }
                     
                 }
+                
+                 
+                
+                
 
 
                 //Déplacement des plateformes
