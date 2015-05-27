@@ -48,12 +48,7 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
 
 
             this.load.spritesheet('dude', 'assets/colordude.png', 32, 48);
-            this.load.spritesheet('photon', 'assets/photons.png', 20, 22);
-
-            this.load.image('photonvert', 'assets/photon_vert.png');
-            this.load.image('photonrouge', 'assets/photon_rouge.png');
-            this.load.image('photonjaune', 'assets/photon_jaune.png');
-            this.load.image('photonblanc', 'assets/photon_blanc.png');
+            this.load.spritesheet('photon', 'assets/photons.png', 20, 20);            
 
             this.load.json('level1', 'http://localhost:4200/assets/levels/level.json');
             //this.load.json('level2', 'http://localhost:4200/assets/levels/level2.json');
