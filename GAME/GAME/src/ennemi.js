@@ -30,8 +30,6 @@ function createEnnemies(levelData) {
 
 
 
-
-
 // Dans game.js 
 
 
@@ -64,3 +62,6 @@ this.physics.arcade.collide(photons,ennemis);
 function killEnnemi(photon, ennemi){
                 ennemi.kill();
 }
+
+
+//il reste a ajouter dans le json

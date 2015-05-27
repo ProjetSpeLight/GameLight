@@ -49,6 +49,7 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
 
             this.load.spritesheet('dude', 'assets/colordude.png', 32, 48);
             this.load.spritesheet('photon', 'assets/photons.png', 20, 22);
+            this.load.spritesheet('baddie', 'assets/baddie.png', 32, 32);
 
             this.load.image('photonvert', 'assets/photon_vert.png');
             this.load.image('photonrouge', 'assets/photon_rouge.png');
