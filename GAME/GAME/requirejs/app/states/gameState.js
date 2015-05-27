@@ -53,7 +53,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
                                 pause.is_paused = false;
                                 PhaserGame.game.paused = false;
                                 pause.destruction();
-                                PhaserGame.game.state.start('Game');
+                                PhaserGame.game.state.start('RestartGame');
                             } else if (event.y > 370 && event.y <440) {
                                 PhaserGame.game.physics.arcade.isPaused = false;
                                 pause.is_paused = false;
@@ -172,22 +172,20 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
                 // We restart the game when "R" is pushed
                 if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.R)) {
                     score = 0;
-                    this.create();
-                    PhaserGame.game.state.start('Game');
+                    PhaserGame.game.state.start('RestartGame');
                 }
 
                 // We restart the game when the character falls of the map
                 if (player.sprite.body.y > PhaserGame.game.world.height - 64) {
                     score = 0;
-                    this.create();
-                    PhaserGame.game.state.start('Game');
+                    PhaserGame.game.state.start('RestartGame');
                 }
 
                 // Mort du personnage quand coincé entre deux plateformes
                 if ((player.sprite.body.touching.down && player.sprite.body.touching.up) || (player.sprite.body.touching.right && player.sprite.body.touching.left)) {
                     score = 0;
-                    this.create();
-                    PhaserGame.game.state.start('Game');
+                   
+                    PhaserGame.game.state.start('RestartGame');
                 }
 
 
