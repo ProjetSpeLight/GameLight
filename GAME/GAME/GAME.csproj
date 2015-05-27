@@ -45,6 +45,7 @@
     <Content Include="requirejs\assets\photons.zip" />
     <Content Include="requirejs\assets\Thumbs.db" />
     <Content Include="requirejs\lib\phaser\phaser.map" />
+    <Content Include="assets\levels\levelTest.json" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
