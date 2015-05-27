@@ -19,6 +19,7 @@ define([
                this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
                this.game.scale.pageAlignHorizontally = true;
                this.game.scale.pageAlignVertically = true;
+               
         }
             else {
                 this.game.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
@@ -28,10 +29,8 @@ define([
                 this.game.scale.forceOrientation(true, false);
                 this.game.scale.setResizeCallback(this.gameResized, this);
             }
-
-
-            // call next state
             this.state.start('Preload');
+
         }
     };
     

@@ -10,7 +10,7 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         buttonjump.fixedToCamera = true;
         buttonjump.events.onInputOver.add(function () { Player.activeJump = true; });
         buttonjump.events.onInputOut.add(function () { Player.activeJump = false; });
-        buttonjump.events.onInputDown.add(function () { Player.activeJump = true; });
+        buttonjump.events.onInputDown.add(function () { Player.activeJump = true;});
         buttonjump.events.onInputUp.add(function () { Player.activeJump = false; });
 
         buttonfire = PhaserGame.game.add.button(700, 500, 'buttonfire', null, this, 0, 1, 0, 1);
