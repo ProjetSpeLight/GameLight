@@ -33,6 +33,7 @@
     <Content Include="requirejs\app\states\gameState.js" />
     <Content Include="requirejs\app\states\mainMenuState.js" />
     <Content Include="requirejs\app\states\preloadState.js" />
+    <Content Include="requirejs\app\objects\mirror.js" />
     <Content Include="web.config">
       <SubType>Designer</SubType>
     </Content>
