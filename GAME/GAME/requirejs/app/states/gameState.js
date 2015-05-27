@@ -1,4 +1,4 @@
-define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , 'app/phasergame', 'app/touch'], function (Phaser, createLevel, player, pause, photon, PhaserGame, Touch) {
+define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , 'app/phasergame', 'app/touch', 'app/objects/mirror'], function (Phaser, createLevel, player, pause, photon, PhaserGame, Touch,mirror) {
 
     function GameState(game) {
         score = 0;
@@ -24,17 +24,12 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
 
             scoreText = PhaserGame.game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
             scoreText.fixedToCamera = true;
-            //var button_pause = PhaserGame.game.add.button (700, 20, 'pause', actionClick, this);
             var button_pause = PhaserGame.game.add.sprite(750, 20, 'pause');
             button_pause.inputEnabled = true;
              button_pause.name = 'pause';
             button_pause.anchor.setTo(0.5, 0.5);
             button_pause.fixedToCamera = true;
-            /*button_pause.events.onInputUp.add(function () {
-                
-                pause.gamepaused();
-            },this);
-           */
+          
             
             
             PhaserGame.game.input.onDown.add(unpause,self);
@@ -64,77 +59,12 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                       
                 }
             }
-        
-           
-           
 
             function actionClick() {
                 pause.update_pause();
                 
             }
-
-
-
-
-        },
-
-        /* returnMenu: function () {
-             alert('hangler main');
-             game.paused = false;
-             game.physics.arcade.isPaused = false;
-             game.state.start('MainMenu');
-         },
- 
- 
-         update_pause: function () {
- 
-             var returnmenu = false;
-             button_menu = game.add.button(400, 200, 'RetMenu', this.returnMenu);
-             button_menu.name = 'Returnmenu';
-             button_menu.anchor.setTo(0.5, 0.5);
-             button_menu.fixedToCamera = true;
- 
-             button_restart = game.add.button(400, 300, 'restart', restartclick, this);
-             button_restart.name = 'restart';
-             button_restart.anchor.setTo(0.5, 0.5);
-             button_restart.fixedToCamera = true;
- 
-             button_resume = game.add.button(400, 400, 'resume', resumeclick, this);
-             button_resume.name = 'resume';
-             button_resume.anchor.setTo(0.5, 0.5);
-             button_resume.fixedToCamera = true;
- 
-             game.physics.arcade.isPaused = true;
-             game.paused = true;
- 
-             function resumeclick() {
-                 resume(game);
-             }
- 
- 
-             function restartclick() {
-                 restart(game);
-             }
- 
- 
- 
-             function resume(game) {
-                 button_menu.destroy();
-                 button_restart.destroy();
-                 button_resume.destroy();
- 
-                 game.paused = false;
-                 game.physics.arcade.isPaused = false;
-             }
- 
-             function restart(game) {
-                 game.paused = false;
-                 game.physics.arcade.isPaused = false;
-                 game.state.start('Game');
-             }
- 
- 
-         },*/
+        },   
 
         update: function () {
 
@@ -160,18 +90,15 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                 PhaserGame.game.physics.arcade.collide(photon.photons,ennemis,killEnnemi,null,this);
                 PhaserGame.game.physics.arcade.overlap(player.sprite, ends, finish, null, this);
 
-                function photonRedirection(photon, ends) {
-                    photon.body.velocity.y = 200;;
-                }
-                PhaserGame.game.physics.arcade.overlap(player.refPhotons.photons, ends, photonRedirection);
+                /*function photonRedirection(photon, ends) {
+                    photon.body.velocity.y = 200;
+                }*/
+
+                mirror.updateObject();               
 
 
                 var cursors = PhaserGame.game.input.keyboard.createCursorKeys();
-                player.updatePositionPlayer(cursors);
-
-                // TEMP : Change of colour (by space key)
-                //var keyboard = this.input.keyboard;
-                //updateColorPlayer(player, keyboard, this);
+                player.updatePositionPlayer(cursors);              
 
 
                 // We restart the game when "R" is pushed
