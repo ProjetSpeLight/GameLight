@@ -27,6 +27,7 @@
     'app/states/finishLevelState',
     'app/states/chooseLevelState',
     'app/states/restartGameState',
+    'app/states/deadState',
     'app/cordovaStart'
     ],
     function (
@@ -39,6 +40,7 @@
     FinishLevelState,
     ChooseLevelState,
     RestartGameState,
+    DeadState,
     CordovaStart
     ) {
         PhaserGame.start();
@@ -50,6 +52,7 @@
         PhaserGame.game.state.add('FinishLevel', FinishLevelState);
         PhaserGame.game.state.add('ChooseLevel', ChooseLevelState);
         PhaserGame.game.state.add('RestartGame', RestartGameState);
+        PhaserGame.game.state.add('Dead', DeadState);
         PhaserGame.game.state.start('Boot');
     });
 }());
