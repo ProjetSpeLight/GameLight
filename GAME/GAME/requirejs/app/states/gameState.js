@@ -1,4 +1,4 @@
-define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , 'app/phasergame', 'app/touch', 'app/objects/mirror'], function (Phaser, createLevel, player, pause, photon, PhaserGame, Touch,mirror) {
+define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , 'app/phasergame', 'app/touch', 'app/objects/mirror', 'app/objects/filter'], function (Phaser, createLevel, player, pause, photon, PhaserGame, Touch,mirror,filter) {
 
     function GameState(game) {
         score = 0;
@@ -88,13 +88,14 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                 
                 PhaserGame.game.physics.arcade.collide(player.sprite, ennemis,killPlayer,null,this);
                 PhaserGame.game.physics.arcade.collide(photon.photons,ennemis,killEnnemi,null,this);
-                PhaserGame.game.physics.arcade.overlap(player.sprite, ends, finish, null, this);
+                //PhaserGame.game.physics.arcade.overlap(player.sprite, ends, finish, null, this);
 
                 /*function photonRedirection(photon, ends) {
                     photon.body.velocity.y = 200;
                 }*/
 
-                mirror.updateObject();               
+                mirror.updateObject();
+                filter.updateObject();
 
 
                 var cursors = PhaserGame.game.input.keyboard.createCursorKeys();

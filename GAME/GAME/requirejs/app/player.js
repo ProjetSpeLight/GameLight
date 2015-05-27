@@ -25,11 +25,11 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
         return color1.name == 'Red' && color2.name == 'Blue';
     }
 
-    function subAdditiveColorCyan(color1, color2) {
+    function subAdditiveColorYellow(color1, color2) {
         return color1.name == 'Red' && color2.name == 'Green';
     }
 
-    function subAdditiveColorYellow(color1, color2) {
+    function subAdditiveColorCyan(color1, color2) {
         return color1.name == 'Blue' && color2.name == 'Green';
     }
 
@@ -40,11 +40,11 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
         }
 
         if (subAdditiveColorCyan(oldColor, newColor) || subAdditiveColorCyan(newColor, oldColor)) {
-            return ColorEnum.YELLOW;
+            return ColorEnum.CYAN;
         }
 
         if (subAdditiveColorYellow(oldColor, newColor) || subAdditiveColorYellow(newColor, oldColor)) {
-            return ColorEnum.CYAN;
+            return ColorEnum.YELLOW;
         }
 
         if ((oldColor.name == 'Magenta' && newColor.name == 'Green') || (oldColor.name == 'Yellow' && newColor.name == 'Blue') || (oldColor.name == 'Cyan' && newColor.name == 'Red')) {
@@ -56,6 +56,55 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
         }
 
         return newColor;
+    }
+
+    function subFilterColor(playerColor, color, ColorEnum) {
+        if (color == null) {
+            return null;
+        }
+
+        switch (playerColor) {
+            case ColorEnum.RED:
+            case ColorEnum.BLUE:
+            case ColorEnum.GREEN:
+                if (playerColor == color) {
+                    return color;
+                }
+                break;
+
+            case ColorEnum.MAGENTA:
+                if (color == ColorEnum.RED || color == ColorEnum.BLUE) {
+                    return color;
+                }
+                if (color == ColorEnum.MAGENTA) {
+                    return color;
+                }
+                break;
+
+            case ColorEnum.YELLOW:
+                if (color == ColorEnum.GREEN || color == ColorEnum.RED) {
+                    return color;
+                }
+                if (color == ColorEnum.YELLOW) {
+                    return color;
+                }
+                break;
+
+            case ColorEnum.CYAN:
+                if (color == ColorEnum.GREEN || color == ColorEnum.BLUE) {
+                    return color;
+                }
+                if (color == ColorEnum.CYAN) {
+                    return color;
+                }
+                break;
+
+            case ColorEnum.WHITE:
+                return color;
+                break;
+        }
+        return ColorEnum.BLACK;
+
     }
 
     return {
@@ -208,6 +257,10 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
             this.sprite.body.velocity.x = 300;
             this.sprite.animations.play('right' + this.sprite.color.name);
             this.sprite.lookRight = true;
+        },
+
+        filterColor: function (color) {
+            this.sprite.color =  subFilterColor(this.sprite.color, this.getColor(color), this.ColorEnum);
         }
 
     }
