@@ -191,4 +191,8 @@ ModelManifest.xml
 
 intelxdk.config.*
 *.csproj
-GAME/GAME/GameLight.xdk
+GAME/GAME/GameLight.xdk*
+GAME/GAME/plugins/*
+GAME/GAME/intel*
+GAME/GAME/intelxdk.config.android.xml
+*.xml
