@@ -21,6 +21,7 @@
     <Content Include="app.css" />
     <Content Include="index.html" />
     <Content Include="requirejs\app\createLevel.js" />
+    <Content Include="requirejs\app\cordovaStart.js" />
     <Content Include="requirejs\app\touch.js" />
     <Content Include="requirejs\app\main.js" />
     <Content Include="requirejs\app\pause.js" />
@@ -34,6 +35,7 @@
     <Content Include="requirejs\app\states\mainMenuState.js" />
     <Content Include="requirejs\app\states\preloadState.js" />
     <Content Include="requirejs\app\objects\mirror.js" />
+    <Content Include="requirejs\lib\cordova\cordova.js" />
     <Content Include="web.config">
       <SubType>Designer</SubType>
     </Content>
