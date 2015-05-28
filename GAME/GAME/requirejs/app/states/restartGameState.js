@@ -12,6 +12,8 @@ define([
         create: function () {
 
             this.state.start('Game');
+            
+            
 
         }
 

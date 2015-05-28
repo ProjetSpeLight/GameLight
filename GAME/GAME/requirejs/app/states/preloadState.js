@@ -1,8 +1,8 @@
-define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, PhaserGame) { 
-   // 'use strict';
+define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, PhaserGame) {
+    // 'use strict';
 
-    function PreloadState(game) {}
-    
+    function PreloadState(game) { }
+
     PreloadState.prototype = {
         preload: function () {
             // common to add a loading bar sprite here...
@@ -59,12 +59,18 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
 
 
 
-            
+
+
 
 
             this.load.json('level1', 'http://localhost:4200/assets/levels/level.json');
             this.load.json('level2', 'http://localhost:4200/assets/levels/levelTest.json');
             this.load.json('level3', 'http://localhost:4200/assets/levels/Exemple.json');
+
+
+            //this.load.json('level1', 'http://projetspelight.github.io/assets/levels/level.json');
+            //this.load.json('level2', 'http://localhost:4200/assets/levels/Exemple.json');
+
 
 
         },
@@ -74,6 +80,6 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
             this.state.start('MainMenu');
         }
     };
-    
+
     return PreloadState;
 });

@@ -1,5 +1,5 @@
 ﻿
-define(function (require) {
+define( function () {
     var cordovaStart = {
 
         initialize: function () {
@@ -11,7 +11,7 @@ define(function (require) {
         },
 
         onDeviceReady: function () {
-            app.receivedEvent('deviceready');
+            this.receivedEvent('deviceready');
         },
 
         receivedEvent: function (id) {
@@ -22,7 +22,6 @@ define(function (require) {
             listeningElement.setAttribute('style', 'display:none;');
             receivedElement.setAttribute('style', 'display:block;');
 
-            console.log('Received Event: ' + id);
         }
     };
     return cordovaStart;
