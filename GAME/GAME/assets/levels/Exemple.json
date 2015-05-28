@@ -32,7 +32,11 @@
         }
     ],
     "loopingPlatforms": [
-        {
+
+
+    ],
+    "backAndForthPlatforms": [
+                {
             "positions": [
                 {
                     "x": 150,
@@ -67,10 +71,6 @@
             "color": "",
             "immovable": true
         }
-
-    ],
-    "backAndForthPlatforms": [
-
     ],
     "coins": [
         {
