@@ -11,7 +11,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
         create: function () {
             stopped = false;
             PhaserGame.game.physics.startSystem(Phaser.Physics.ARCADE);
-            if (!createLevel('level' + this.currentLevel)) {
+            if (!createLevel.createLevel('level' + this.currentLevel)) {
                 alert('niveau indisponible');
                 stopped = true;
                 return;
@@ -138,38 +138,8 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                     
                 }
                 
-                 
-                
-                
-
-
-                //Déplacement des plateformes
-                platforms.forEach(function (element) {
-                    if (element.body.x >= element.body.sprite.rightBounds) {
-                        element.body.velocity.x *= -1;
-                    } else if (element.body.x <= element.body.sprite.leftBounds) {
-                        element.body.velocity.x *= -1;
-                    }
-                    if (element.body.y <= element.body.sprite.topBounds) {
-                        element.body.velocity.y *= -1;
-                    } else if (element.body.y >= element.body.sprite.bottomBounds) {
-                        element.body.velocity.y *= -1;
-                    }
-                })
-
-                //Déplacement des plateformes
-                colourPlatforms.forEach(function (element) {
-                    if (element.body.x >= element.body.sprite.rightBounds) {
-                        element.body.velocity.x *= -1;
-                    } else if (element.body.x <= element.body.sprite.leftBounds) {
-                        element.body.velocity.x *= -1;
-                    }
-                    if (element.body.y <= element.body.sprite.topBounds) {
-                        element.body.velocity.y *= -1;
-                    } else if (element.body.y >= element.body.sprite.bottomBounds) {
-                        element.body.velocity.y *= -1;
-                    }
-                })
+                                                
+                createLevel.updatePlatforms();                
                 
                 
                 //Déplacement des ennemis
