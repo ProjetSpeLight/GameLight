@@ -5,15 +5,11 @@
         baseUrl: "requirejs/",
         paths: {
             phaser: 'lib/phaser/phaser',
-            cordovalib: 'lib/cordova/cordova'
         },
         shim: {
             'phaser': {
                 exports: 'Phaser',
             },
-            'cordovalib': {
-                exports: 'Cordova',
-            }
         }
     });
 
@@ -27,7 +23,7 @@
     'app/states/finishLevelState',
     'app/states/chooseLevelState',
     'app/states/restartGameState',
-    'app/cordovaStart'
+    'app/touch',
     ],
     function (
         Phaser,
@@ -39,10 +35,10 @@
     FinishLevelState,
     ChooseLevelState,
     RestartGameState,
-    CordovaStart
+    Touch
     ) {
+        document.addEventListener("deviceready", Touch.onDeviceReady, false);
         PhaserGame.start();
-        CordovaStart.initialize();
         PhaserGame.game.state.add('Boot', BootState);
         PhaserGame.game.state.add('Preload', PreloadState);
         PhaserGame.game.state.add('MainMenu', MainMenuState);

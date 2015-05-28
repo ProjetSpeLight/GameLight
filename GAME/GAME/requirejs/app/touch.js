@@ -4,6 +4,12 @@
 
 
 define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame, Player) {
+    
+    var options = { frequency: 100 };
+    var watchID = null;
+    var inGame = false;
+    var orientationDroite = true;
+    var zoneMorte = 3;
 
     function initJoypad() {
         buttonjump = PhaserGame.game.add.button(600, 500, 'buttonjump', null, this, 0, 1, 0, 1);
@@ -40,10 +46,58 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         buttondown.events.onInputOut.add(function () { Player.changeColor = false; });
         buttondown.events.onInputDown.add(function () { Player.changeColor = true; });
         buttondown.events.onInputUp.add(function () { Player.changeColor = false; });
-
+    }
+    
+    function startWatching() {
+        inGame = true;    
     }
 
+    function onDeviceReady() {
+        this.watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
+    }
+
+    function stopWatching() {
+        inGame = false;
+    }
+
+    function onSuccess(acceleration) {
+        if (inGame) {
+            orientationDroite = (acceleration.z >= 0);
+            if(orientationDroite){
+                if (acceleration.y > zoneMorte) {
+                    Player.moveLeft = true;
+                    Player.moveRight = false;
+                } else if (acceleration.y < -zoneMorte) {
+                    Player.moveRight = true;
+                    Player.moveLeft = false;
+                } else {
+                    Player.moveLeft = false;
+                    Player.moveRight = false;
+                }
+            } else {
+                if (acceleration.y < -zoneMorte) {
+                    Player.moveLeft = true;
+                    Player.moveRight = false;
+                } else if (acceleration.y > zoneMorte) {
+                    Player.moveRight = true;
+                    Player.moveLeft = false;
+                } else {
+                    Player.moveLeft = false;
+                    Player.moveRight = false;
+                }
+            }
+        }
+    } 
+
+    function onError(){
+        alert("Acceleromètre ne marche pas");
+    }
+
+
     return {
-        initJoypad: initJoypad
+        initJoypad: initJoypad,
+        startMobile: startWatching,
+        stopMobile: stopWatching,
+        onDeviceReady: onDeviceReady
     };
 });

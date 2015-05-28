@@ -20,6 +20,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
 
             if (!this.game.device.desktop) {
                 Touch.initJoypad();
+                Touch.startMobile();
             }
 
             scoreText = PhaserGame.game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
@@ -69,6 +70,9 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
         update: function () {
 
             if (stopped) {
+                if (!this.game.device.desktop) {
+                    Touch.stopMobile();
+                }
                 PhaserGame.game.state.start('MainMenu');
                 return;
             }
@@ -104,19 +108,27 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                 // We restart the game when "R" is pushed
                 if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.R)) {
                     score = 0;
+                    if (!this.game.device.desktop) {
+                    Touch.stopMobile();
+                    }   
                     PhaserGame.game.state.start('RestartGame');
                 }
 
                 // We restart the game when the character falls of the map
                 if (player.sprite.body.y > PhaserGame.game.world.height - 64) {
                     score = 0;
+                    if (!this.game.device.desktop) {
+                    Touch.stopMobile();
+                    }
                     PhaserGame.game.state.start('RestartGame');
                 }
 
                 // Mort du personnage quand coincé entre deux plateformes
                 if ((player.sprite.body.touching.down && player.sprite.body.touching.up) || (player.sprite.body.touching.right && player.sprite.body.touching.left)) {
                     score = 0;
-                   
+                    if (!this.game.device.desktop) {
+                        Touch.stopMobile();
+                    }
                     PhaserGame.game.state.start('RestartGame');
                 }
 
@@ -212,11 +224,17 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
 
 
                 function finish(player, diamond) {
+                    if (!this.game.device.desktop) {
+                        Touch.stopMobile();
+                    }
                     PhaserGame.game.state.start('FinishLevel');
                 }
                 
                 function killPlayer(player, ennemi) {
-                
+                    
+                if (!this.game.device.desktop) {
+                        Touch.stopMobile();
+                    }
                 this.state.start('FinishLevel');
                 
                 }
