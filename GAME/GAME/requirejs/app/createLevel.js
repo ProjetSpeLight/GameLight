@@ -99,7 +99,6 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch'], functio
         }
 
     }
-<<<<<<< HEAD
     
     function createPiques(levelData) {
         var dataPiques = levelData.piques;
@@ -110,9 +109,6 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch'], functio
         }
     }
     
-=======
-
->>>>>>> origin/master
 
     function createStart(element) {
         player.initializePlayer(PhaserGame.game, element.x, element.y);
