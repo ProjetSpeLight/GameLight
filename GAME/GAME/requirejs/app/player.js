@@ -143,6 +143,8 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
             PhaserGame.game.camera.follow(this.sprite);
             this.sprite.body.collideWorldBounds = true;
             this.sprite.body.checkCollision.up = false;
+            this.sprite.body.checkCollision.left = false;
+            this.sprite.body.checkCollision.right = false;
 
 
             // Initialization of the player animations
