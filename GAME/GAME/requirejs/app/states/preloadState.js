@@ -32,6 +32,7 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
 
 
             this.load.image('button_jump', 'assets/button_jump.png', 64, 64);
+            this.load.image('pique', 'assets/pique.png');
 
             if (!this.game.device.desktop) {
                 this.load.spritesheet('buttonvertical', 'assets/buttons/button-vertical.png', 64, 64);

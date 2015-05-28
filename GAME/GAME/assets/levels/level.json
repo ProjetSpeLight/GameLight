@@ -185,6 +185,13 @@
             "skin": "ennemis"
         }
     ],
+    "piques": [
+        {
+            "x": 450,
+            "y": 0,
+            "skin": "pique"
+        }
+    ],
     "ends": [
         {
             "x": 300,

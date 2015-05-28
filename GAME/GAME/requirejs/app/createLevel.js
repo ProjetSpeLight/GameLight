@@ -9,6 +9,8 @@ define(['phaser', 'app/player', 'app/phasergame'], function (Phaser, player, Pha
         createCoin(levelData);
         // Creation of the ennemies
         createEnnemis(levelData);
+        //Creation of the pique
+        createPiques(levelData);
         // Creation of the ends
         createEnds(levelData);
     }
@@ -96,6 +98,15 @@ define(['phaser', 'app/player', 'app/phasergame'], function (Phaser, player, Pha
     
     }
     
+    function createPiques(levelData) {
+        var dataPiques = levelData.piques;
+        for (var i = 0 ; i < dataPiques.length ; i++) {
+            var piqueData = dataPiques[i];
+            var pique = piques.create(piqueData.x, piqueData.y, 'pique');
+            pique.body.gravity.y = 1000;
+        }
+    }
+    
 
     function createStart(element) {
         player.initializePlayer(PhaserGame.game, element.x, element.y);
@@ -122,6 +133,7 @@ define(['phaser', 'app/player', 'app/phasergame'], function (Phaser, player, Pha
         ends = PhaserGame.game.add.group();
         coins = PhaserGame.game.add.group();
         ennemis = PhaserGame.game.add.physicsGroup();
+        piques = PhaserGame.game.add.group();
         //test = true;
         
 
@@ -131,6 +143,7 @@ define(['phaser', 'app/player', 'app/phasergame'], function (Phaser, player, Pha
         ends.enableBody = true;
         colourPlatforms.enableBody = true;
         ennemis.enableBody = true;
+        piques.enableBody = true;
 
         // Creation of the level's objects
         createObjects(levelData);

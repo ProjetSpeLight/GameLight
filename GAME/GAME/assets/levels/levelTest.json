@@ -1,4 +1,4 @@
-﻿{
+{
     "worldBounds": {
         "leftBound": 0,
         "rightBound": 2000,
@@ -232,6 +232,13 @@
                 "y": 200
             },
             "skin": "ennemis"
+        }
+    ],
+    "piques": [
+        {
+            "x": 600,
+            "y": 250,
+            "skin": "pique"
         }
     ],
     "ends": [
