@@ -13,7 +13,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
         create: function () {
             stopped = false;
             PhaserGame.game.physics.startSystem(Phaser.Physics.ARCADE);
-            if (!createLevel('level' + this.currentLevel)) {
+            if (!createLevel.createLevel('level' + this.currentLevel)) {
                 alert('niveau indisponible');
                 stopped = true;
                 return;
@@ -94,12 +94,11 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
 
             if (!pause.is_paused) {
 
-                PhaserGame.game.physics.arcade.collide(player.sprite, platforms);
                 PhaserGame.game.physics.arcade.collide(player.sprite, movingPlatforms);
                 PhaserGame.game.physics.arcade.collide(ennemis, platforms);
                 PhaserGame.game.physics.arcade.collide(ennemis, movingPlatforms);
                 PhaserGame.game.physics.arcade.overlap(player.sprite, coins, collectCoin, null, this);
-                PhaserGame.game.physics.arcade.collide(player.sprite, colourPlatforms, makeColor, null, this);
+                PhaserGame.game.physics.arcade.collide(player.sprite, platforms, makeColor, null, this);
                 PhaserGame.game.physics.arcade.collide(ends, platforms);
                 PhaserGame.game.physics.arcade.collide(ends, colourPlatforms);
                 PhaserGame.game.physics.arcade.collide(ends, movingPlatforms);
@@ -163,38 +162,8 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                     
                 }
                 
-                 
-                
-                
-
-
-                //Déplacement des plateformes
-                platforms.forEach(function (element) {
-                    if (element.body.x >= element.body.sprite.rightBounds) {
-                        element.body.velocity.x *= -1;
-                    } else if (element.body.x <= element.body.sprite.leftBounds) {
-                        element.body.velocity.x *= -1;
-                    }
-                    if (element.body.y <= element.body.sprite.topBounds) {
-                        element.body.velocity.y *= -1;
-                    } else if (element.body.y >= element.body.sprite.bottomBounds) {
-                        element.body.velocity.y *= -1;
-                    }
-                })
-
-                //Déplacement des plateformes
-                colourPlatforms.forEach(function (element) {
-                    if (element.body.x >= element.body.sprite.rightBounds) {
-                        element.body.velocity.x *= -1;
-                    } else if (element.body.x <= element.body.sprite.leftBounds) {
-                        element.body.velocity.x *= -1;
-                    }
-                    if (element.body.y <= element.body.sprite.topBounds) {
-                        element.body.velocity.y *= -1;
-                    } else if (element.body.y >= element.body.sprite.bottomBounds) {
-                        element.body.velocity.y *= -1;
-                    }
-                })
+                                                
+                createLevel.updatePlatforms();                
                 
                 
                 //Déplacement des ennemis
@@ -225,6 +194,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
 
 
                 function makeColor(sprite, colorplatform) {
+
 
                     // Oblige le joueur à etre au dessus 
                     //de la plateforme coloree pour changer de couleur
@@ -261,6 +231,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                     score = 0;
                     time = 0;
                     PhaserGame.game.state.start('RestartGame');
+                    //PhaserGame.game.state.restart();
                 
                 }
                 
