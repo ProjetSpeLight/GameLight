@@ -1,5 +1,6 @@
 
-define(['phaser', 'app/player', 'app/phasergame'], function (Phaser, player, PhaserGame) {
+define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch'], function (Phaser, player, PhaserGame, switchObject) {
+
 
 
 
@@ -14,8 +15,15 @@ define(['phaser', 'app/player', 'app/phasergame'], function (Phaser, player, Pha
         // Creation of the coins
         createCoin(levelData);
 
+        // Creation of the ennemies
+        createEnnemis(levelData);
+        //Creation of the pique
+        createPiques(levelData);
+
         // Creation of the ends
         createEnds(levelData);
+
+        switchObject.createObjectsGroup(levelData.switch);
     }
 
     function createWorld(levelData) {
@@ -27,7 +35,6 @@ define(['phaser', 'app/player', 'app/phasergame'], function (Phaser, player, Pha
         // Creation of the "frame" of the level
         var worldBounds = levelData.worldBounds;
         PhaserGame.game.world.setBounds(worldBounds.leftBound, worldBounds.upperBound, worldBounds.rightBound, worldBounds.lowerBound);
-        alert(PhaserGame.game.world.width);
     }
 
     function createPlatform(levelData) {
@@ -115,6 +122,7 @@ define(['phaser', 'app/player', 'app/phasergame'], function (Phaser, player, Pha
         }
     }
 
+
     function createStart(element) {
         player.initializePlayer(PhaserGame.game, element.x, element.y);
     }
@@ -123,6 +131,7 @@ define(['phaser', 'app/player', 'app/phasergame'], function (Phaser, player, Pha
         var d = (x - w) * (x - w) + (y - z) * (y - z);
         return (d <= epsillon);
     }
+
 
     function createEnnemis(levelData) {
         var dataEnnemis = levelData.ennemis;
@@ -142,7 +151,23 @@ define(['phaser', 'app/player', 'app/phasergame'], function (Phaser, player, Pha
             ennemi.body.gravity.y = 1000;
         }
 
+
     }
+
+    function createPiques(levelData) {
+        var dataPiques = levelData.piques;
+        if (dataPiques != null) {
+            for (var i = 0 ; i < dataPiques.length ; i++) {
+                var piqueData = dataPiques[i];
+                var pique = piques.create(piqueData.x, piqueData.y, 'pique');
+                pique.body.gravity.y = 1000;
+            }
+        }
+    }
+
+
+
+
 
 
 
@@ -172,6 +197,7 @@ define(['phaser', 'app/player', 'app/phasergame'], function (Phaser, player, Pha
             ends = PhaserGame.game.add.group();
             coins = PhaserGame.game.add.group();
             ennemis = PhaserGame.game.add.physicsGroup();
+            piques = PhaserGame.game.add.physicsGroup();
 
 
             //  We will enable physics for any object that is created in those group
@@ -189,8 +215,7 @@ define(['phaser', 'app/player', 'app/phasergame'], function (Phaser, player, Pha
             createStart(levelData.playerStart, PhaserGame.game);
 
             return true;
-        }
-        ,
+        },
 
         updatePlatforms: function () {
             //Déplacement des plateformes
@@ -231,10 +256,11 @@ define(['phaser', 'app/player', 'app/phasergame'], function (Phaser, player, Pha
             this.loopingPlatforms.forEach(function (element) {
                 //alert(element.body.x + " == " + element.positions[(element.current + 1) % (element.positions.length)].x + " = " + (element.body.x == element.positions[(element.current + 1) % (element.positions.length)].x));
                 var next = element.positions[(element.current + 1) % (element.positions.length)];
-                if(isNear(element.body.x,element.body.y,next.x,next.y,2)){
+                if (isNear(element.body.x, element.body.y, next.x, next.y, 2)) {
                     element.current = (element.current + 1) % (element.positions.length);
                     element.body.velocity.x = element.positions[element.current].speed.x;
                     element.body.velocity.y = element.positions[element.current].speed.y;
+
 
                 }
             })

@@ -85,21 +85,7 @@
         }
     ],
     "ennemis": [
-        {
-            "x": 100,
-            "y": 0,
-            "bounds": {
-                "left": 100,
-                "right": 200,
-                "lower": 900,
-                "upper": 0
-            },
-            "speed": {
-                "x": 150,
-                "y": 200
-            },
-            "skin": "ennemis"
-        }
+        
     ],
     "ends": [
         {
