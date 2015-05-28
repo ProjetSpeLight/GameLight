@@ -1,5 +1,5 @@
 
-define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch'], function (Phaser, player, PhaserGame, switchObject) {
+define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch','app/objects/coin'], function (Phaser, player, PhaserGame, switchObject,coinObject) {
 
 
 
@@ -13,8 +13,8 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch'], functio
         createBackAndForthPlatform(levelData, createLevel.backAndForthPlatforms)
 
         // Creation of the coins
-        createCoin(levelData);
-
+        //createCoin(levelData);
+        coinObject.createObjectGroup(levelData.coins);
         // Creation of the ennemies
         createEnnemis(levelData);
         //Creation of the pique
@@ -222,7 +222,7 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch'], functio
         },
 
         updatePlatforms: function () {
-            //Déplacement des plateformes
+            //DÃšplacement des plateformes
             platforms.forEach(function (element) {
                 if (element.body.x >= element.body.sprite.rightBounds) {
                     element.body.velocity.x *= -1;
@@ -236,7 +236,7 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch'], functio
                 }
             })
 
-            //Déplacement des plateformes
+            //DÃšplacement des plateformes
             colourPlatforms.forEach(function (element) {
                 if (element.body.x >= element.body.sprite.rightBounds) {
                     element.body.velocity.x *= -1;
@@ -256,7 +256,7 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch'], functio
         },
 
         updateLoopingPlatforms: function () {
-            //Déplacement des plateformes
+            //DÃšplacement des plateformes
             this.loopingPlatforms.forEach(function (element) {
                 //alert(element.body.x + " == " + element.positions[(element.current + 1) % (element.positions.length)].x + " = " + (element.body.x == element.positions[(element.current + 1) % (element.positions.length)].x));
                 var next = element.positions[(element.current + 1) % (element.positions.length)];
@@ -272,7 +272,7 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch'], functio
         },
 
         updateBackAndForthPlatforms: function () {
-            //Déplacement des plateformes
+            //DÃšplacement des plateformes
             this.backAndForthPlatforms.forEach(function (element) {
                 var next = element.positions[(element.current + element.increment)];
                 if (isNear(element.body.x, element.body.y, next.x, next.y, 2)) {
