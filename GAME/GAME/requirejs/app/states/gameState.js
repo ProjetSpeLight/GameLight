@@ -1,4 +1,8 @@
-define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , 'app/phasergame', 'app/touch', 'app/objects/mirror', 'app/objects/filter', 'app/objects/switch','app/objects/coin','app/objects/pique'], function (Phaser, createLevel, player, pause, photon, PhaserGame, Touch,mirror,filter,switchObject,coinObject,piqueObject) {
+
+define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , 'app/phasergame', 'app/touch', 'app/objects/mirror', 'app/objects/filter', 'app/objects/switch','app/objects/platforms','app/objects/coin','app/objects/pique'], function (Phaser, createLevel, player, pause, photon, PhaserGame, Touch,mirror,filter,switchObject,platformsObject,coinObject,piqueObject) {
+
+
+
 
     function GameState(game) {
         score = 0;
@@ -98,15 +102,19 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
 
             if (!pause.is_paused) {
 
-                PhaserGame.game.physics.arcade.collide(player.sprite, movingPlatforms);
+
                 PhaserGame.game.physics.arcade.collide(ennemis, platforms);
-                PhaserGame.game.physics.arcade.collide(ennemis, movingPlatforms);
-                 PhaserGame.game.physics.arcade.collide(player.sprite, platforms, makeColor, null, this);
+                PhaserGame.game.physics.arcade.collide(player.sprite, platforms, makeColor, null, this);
                 PhaserGame.game.physics.arcade.collide(ends, platforms);
+<<<<<<< HEAD
                 PhaserGame.game.physics.arcade.collide(ends, colourPlatforms);
                 PhaserGame.game.physics.arcade.collide(ends, movingPlatforms);
                
             
+=======
+                PhaserGame.game.physics.arcade.collide(piques, platforms);
+                PhaserGame.game.physics.arcade.collide(player.sprite, piques, killPlayerPique, null, this);
+>>>>>>> origin/master
                 PhaserGame.game.physics.arcade.collide(player.sprite, ennemis, killPlayer, null, this);
                 PhaserGame.game.physics.arcade.collide(photon.photons,ennemis,killEnnemi,null,this);
                 PhaserGame.game.physics.arcade.overlap(player.sprite, ends, finish, null, this);
@@ -115,20 +123,21 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                     photon.body.velocity.y = 200;
                 }*/
 
+                
                 mirror.updateObject();
                 filter.updateObject();
                 switchObject.updateObject();
-                
+                platformsObject.updateObject();
                 coinObject.updateObject();
                 piqueObject.updateObject();
                 
                
 
-
+                
                 var cursors = PhaserGame.game.input.keyboard.createCursorKeys();
                 player.updatePositionPlayer(cursors);              
 
-
+                
                 // We restart the game when "R" is pushed
                 if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.R)) {
                     coinObject.score = 0;
@@ -148,7 +157,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                     }
                     PhaserGame.game.state.start('RestartGame');
                 }
-
+                
                 // Mort du personnage quand coincé entre deux plateformes
                 if ((player.sprite.body.touching.down && player.sprite.body.touching.up) || (player.sprite.body.touching.right && player.sprite.body.touching.left)) {
                     coinObject.score = 0;
@@ -176,8 +185,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                     
                 }
                 
-                                                
-                createLevel.updatePlatforms();                
+              
                 
                 
                 //Déplacement des ennemis
@@ -251,8 +259,15 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                                 ennemi.kill();
                                 photon.kill();
                 }
+<<<<<<< HEAD
                 
 
+=======
+                function killEnnemiPique(photon, ennemi){
+                                ennemi.kill();
+                }
+                
+>>>>>>> origin/master
             } 
         },
 

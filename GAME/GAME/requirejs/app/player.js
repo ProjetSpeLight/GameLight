@@ -165,11 +165,15 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
         /// @param {Object} object containing a Phaser.Key object for each directional arrows keys
         updatePositionPlayer: function (cursors) {
 
-            /*if (this.pushed) {
+            if (this.pushed) {
                 this.sprite.body.checkCollision.up = false;
                 this.sprite.body.checkCollision.left = false;
                 this.sprite.body.checkCollision.right = false;
-            }*/
+            } else if (this.sprite.body.touching.down) {
+                this.sprite.body.checkCollision.up = true;
+                this.sprite.body.checkCollision.left = true;
+                this.sprite.body.checkCollision.right = true;
+            }
 
             //  Reset the players velocity (movement)
             if (this.sprite.body.velocity.x > 10 && !this.sprite.body.touching.down) {
