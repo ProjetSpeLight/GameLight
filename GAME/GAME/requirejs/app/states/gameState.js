@@ -259,15 +259,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                                 ennemi.kill();
                                 photon.kill();
                 }
-<<<<<<< HEAD
-                
 
-=======
-                function killEnnemiPique(photon, ennemi){
-                                ennemi.kill();
-                }
-                
->>>>>>> origin/master
             } 
         },
 

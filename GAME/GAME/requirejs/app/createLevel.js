@@ -138,12 +138,12 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
             platforms.enableBody = true;
             //coins.enableBody = true;
             ends.enableBody = true;
-<<<<<<< HEAD
+
             colourPlatforms.enableBody = true;
             //ennemis.enableBody = true;
-=======
+
             ennemis.enableBody = true;
->>>>>>> origin/master
+
 
             // Creation of the level's objects
             createObjects(levelData, this);
