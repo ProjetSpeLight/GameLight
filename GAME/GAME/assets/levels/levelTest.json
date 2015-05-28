@@ -1,4 +1,4 @@
-﻿{
+{
     "worldBounds": {
         "leftBound": 0,
         "rightBound": 2000,
@@ -217,9 +217,33 @@
             "skin": "coin"
         }
     ],
+    "ennemis": [
+        {
+            "x": 300,
+            "y": 0,
+            "bounds": {
+                "left": 300,
+                "right": 400,
+                "lower": 900,
+                "upper": 0
+            },
+            "speed": {
+                "x": 150,
+                "y": 200
+            },
+            "skin": "ennemis"
+        }
+    ],
+    "piques": [
+        {
+            "x": 600,
+            "y": 250,
+            "skin": "pique"
+        }
+    ],
     "ends": [
         {
-            "x": 1800,
+            "x": 200,
             "y": 30
         }
     ]

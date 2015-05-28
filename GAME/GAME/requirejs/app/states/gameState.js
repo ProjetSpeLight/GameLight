@@ -1,4 +1,4 @@
-define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , 'app/phasergame', 'app/touch', 'app/objects/mirror'], function (Phaser, createLevel, player, pause, photon, PhaserGame, Touch,mirror) {
+define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , 'app/phasergame', 'app/touch', 'app/objects/mirror', 'app/objects/filter', 'app/objects/switch'], function (Phaser, createLevel, player, pause, photon, PhaserGame, Touch,mirror,filter,switchObject) {
 
     function GameState(game) {
         score = 0;
@@ -11,7 +11,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
         create: function () {
             stopped = false;
             PhaserGame.game.physics.startSystem(Phaser.Physics.ARCADE);
-            if (!createLevel('level' + this.currentLevel)) {
+            if (!createLevel.createLevel('level' + this.currentLevel)) {
                 alert('niveau indisponible');
                 stopped = true;
                 return;
@@ -30,6 +30,8 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
              button_pause.name = 'pause';
             button_pause.anchor.setTo(0.5, 0.5);
             button_pause.fixedToCamera = true;
+
+            
           
             
             
@@ -80,25 +82,30 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
 
             if (!pause.is_paused) {
 
-                PhaserGame.game.physics.arcade.collide(player.sprite, platforms);
                 PhaserGame.game.physics.arcade.collide(player.sprite, movingPlatforms);
                 PhaserGame.game.physics.arcade.collide(ennemis, platforms);
                 PhaserGame.game.physics.arcade.collide(ennemis, movingPlatforms);
                 PhaserGame.game.physics.arcade.overlap(player.sprite, coins, collectCoin, null, this);
-                PhaserGame.game.physics.arcade.collide(player.sprite, colourPlatforms, makeColor, null, this);
+                PhaserGame.game.physics.arcade.collide(player.sprite, platforms, makeColor, null, this);
                 PhaserGame.game.physics.arcade.collide(ends, platforms);
                 PhaserGame.game.physics.arcade.collide(ends, colourPlatforms);
                 PhaserGame.game.physics.arcade.collide(ends, movingPlatforms);
-                
-                PhaserGame.game.physics.arcade.collide(player.sprite, ennemis,killPlayer,null,this);
+                PhaserGame.game.physics.arcade.collide(piques, platforms);
+                PhaserGame.game.physics.arcade.collide(piques, colourPlatforms);
+                PhaserGame.game.physics.arcade.collide(piques, movingPlatforms);
+                PhaserGame.game.physics.arcade.collide(player.sprite, piques, killPlayerPique, null, this);
+                PhaserGame.game.physics.arcade.collide(player.sprite, ennemis, killPlayer, null, this);
                 PhaserGame.game.physics.arcade.collide(photon.photons,ennemis,killEnnemi,null,this);
-                PhaserGame.game.physics.arcade.overlap(player.sprite, ends, finish, null, this);
+                PhaserGame.game.physics.arcade.collide(piques,ennemis,killEnnemiPique,null,this);
+                //PhaserGame.game.physics.arcade.overlap(player.sprite, ends, finish, null, this);
 
                 /*function photonRedirection(photon, ends) {
                     photon.body.velocity.y = 200;
                 }*/
 
-                mirror.updateObject();               
+                mirror.updateObject();
+                filter.updateObject();
+                switchObject.updateObject();
 
 
                 var cursors = PhaserGame.game.input.keyboard.createCursorKeys();
@@ -133,40 +140,24 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                 }
 
 
+                
+                
                 // we stop the game when "ESC" is pushed 
-                if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.ESC)) {
+                if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.ESC) ) {
+                    if (!pause.is_paused){
                     pause.gamepaused();
+                    } else {
+                        PhaserGame.game.physics.arcade.isPaused = false;
+                                pause.is_paused = false;
+                                PhaserGame.game.paused = false;
+                                
+                                pause.destruction();
+                    }
                     
                 }
-
-
-                //Déplacement des plateformes
-                platforms.forEach(function (element) {
-                    if (element.body.x >= element.body.sprite.rightBounds) {
-                        element.body.velocity.x *= -1;
-                    } else if (element.body.x <= element.body.sprite.leftBounds) {
-                        element.body.velocity.x *= -1;
-                    }
-                    if (element.body.y <= element.body.sprite.topBounds) {
-                        element.body.velocity.y *= -1;
-                    } else if (element.body.y >= element.body.sprite.bottomBounds) {
-                        element.body.velocity.y *= -1;
-                    }
-                })
-
-                //Déplacement des plateformes
-                colourPlatforms.forEach(function (element) {
-                    if (element.body.x >= element.body.sprite.rightBounds) {
-                        element.body.velocity.x *= -1;
-                    } else if (element.body.x <= element.body.sprite.leftBounds) {
-                        element.body.velocity.x *= -1;
-                    }
-                    if (element.body.y <= element.body.sprite.topBounds) {
-                        element.body.velocity.y *= -1;
-                    } else if (element.body.y >= element.body.sprite.bottomBounds) {
-                        element.body.velocity.y *= -1;
-                    }
-                })
+                
+                                                
+                createLevel.updatePlatforms();                
                 
                 
                 //Déplacement des ennemis
@@ -198,6 +189,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
 
                 function makeColor(sprite, colorplatform) {
 
+
                     // Oblige le joueur à etre au dessus 
                     //de la plateforme coloree pour changer de couleur
                     if (sprite.body.touching.down) {
@@ -210,6 +202,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
 
                     }
                 }
+
 
                 function collectCoin(player, coin) {
 
@@ -230,18 +223,30 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                     PhaserGame.game.state.start('FinishLevel');
                 }
                 
-                function killPlayer(player, ennemi) {
-                    
-                if (!this.game.device.desktop) {
+                
+                function killPlayer(player, ennemi) {    
+                    if (!this.game.device.desktop) {
                         Touch.stopMobile();
                     }
-                this.state.start('FinishLevel');
                 
+                    PhaserGame.game.state.start('RestartGame');
+                    //PhaserGame.game.state.restart();
+                
+                }
+                
+                function killPlayerPique(player, pique) {
+                    if (!this.game.device.desktop) {
+                        Touch.stopMobile();
+                    }
+                    PhaserGame.game.state.start('RestartGame');               
                 }
             
                 function killEnnemi(photon, ennemi){
                                 ennemi.kill();
                                 photon.kill();
+                }
+                function killEnnemiPique(photon, ennemi){
+                                ennemi.kill();
                 }
 
             } 

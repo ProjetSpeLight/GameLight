@@ -1,7 +1,12 @@
 define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame, player) {
 
     function reflexionPhoton(photon, mirror) {
-        photon.body.velocity.y = 200;
+        var angle = 0.3;
+        var x = photon.body.velocity.x;
+        var y = photon.body.velocity.y;
+        photon.body.velocity.x = Math.cos(angle) * x - y * Math.sin(angle);
+        photon.body.velocity.y = Math.cos(angle) * y + x * Math.sin(angle);
+
     }
 
     function updateObject() {
@@ -9,6 +14,7 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
     }
 
     return {
+        group : null,
         updateObject : updateObject
     }
 
