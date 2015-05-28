@@ -22,6 +22,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
 
             if (!this.game.device.desktop) {
                 Touch.initJoypad();
+                Touch.startMobile();
             }
 
             scoreText = PhaserGame.game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
@@ -88,6 +89,9 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                 
             }
             if (stopped) {
+                if (!this.game.device.desktop) {
+                    Touch.stopMobile();
+                }
                 PhaserGame.game.state.start('MainMenu');
                 return;
             }
@@ -109,7 +113,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                 PhaserGame.game.physics.arcade.collide(player.sprite, ennemis, killPlayer, null, this);
                 PhaserGame.game.physics.arcade.collide(photon.photons,ennemis,killEnnemi,null,this);
                 PhaserGame.game.physics.arcade.collide(piques,ennemis,killEnnemiPique,null,this);
-                //PhaserGame.game.physics.arcade.overlap(player.sprite, ends, finish, null, this);
+                PhaserGame.game.physics.arcade.overlap(player.sprite, ends, finish, null, this);
 
                 /*function photonRedirection(photon, ends) {
                     photon.body.velocity.y = 200;
@@ -131,6 +135,9 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                 if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.R)) {
                     coinObject.score = 0;
                     time = 0;
+                    if (!this.game.device.desktop) {
+                        Touch.stopMobile();
+                    }   
                     PhaserGame.game.state.start('RestartGame');
                 }
 
@@ -138,6 +145,9 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                 if (player.sprite.body.y > PhaserGame.game.world.height - 64) {
                     coinObject.score = 0;
                     time= 0;
+                    if (!this.game.device.desktop) {
+                        Touch.stopMobile();
+                    }
                     PhaserGame.game.state.start('RestartGame');
                 }
 
@@ -145,6 +155,9 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                 if ((player.sprite.body.touching.down && player.sprite.body.touching.up) || (player.sprite.body.touching.right && player.sprite.body.touching.left)) {
                     coinObject.score = 0;
                     time =0;
+                    if (!this.game.device.desktop) {
+                        Touch.stopMobile();
+                    }
                     PhaserGame.game.state.start('RestartGame');
                 }
 
@@ -214,23 +227,34 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
 
 
                 function finish(player, diamond) {
+                    if (!this.game.device.desktop) {
+                        Touch.stopMobile();
+                    }
                     PhaserGame.game.state.start('FinishLevel');
                 }
                 
                 
-                function killPlayer(player, ennemi) {
+
+                    
+                function killPlayer(player, ennemi) {    
+                    if (!this.game.device.desktop) {
+                        Touch.stopMobile();
+                    }
                     coinObject.score = 0;
-                    time = 0;
+                   time = 0;
                     PhaserGame.game.state.start('RestartGame');
                     //PhaserGame.game.state.restart();
                 
                 }
                 
                 function killPlayerPique(player, pique) {
-                    coinObject.score = 0;
+                   
+                    if (!this.game.device.desktop) {
+                        Touch.stopMobile();
+                    }
+                     coinObject.score = 0;
                     time =0;
                     PhaserGame.game.state.start('RestartGame');
-                
                 }
             
                 function killEnnemi(photon, ennemi){

@@ -202,7 +202,7 @@
             "immovable": true
         }
     ],
-    "ennemis": [ 
+    "ennemis": [
 
     ],
     "coins": [
@@ -245,6 +245,13 @@
         {
             "x": 200,
             "y": 30
+        }
+    ],
+    "mirrors": [
+        {
+            "x": 200,
+            "y": 500,
+            "angle": 45
         }
     ]
 }

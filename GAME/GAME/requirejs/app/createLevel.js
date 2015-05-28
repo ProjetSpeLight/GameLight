@@ -1,5 +1,9 @@
 
+<<<<<<< HEAD
 define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch','app/objects/coin'], function (Phaser, player, PhaserGame, switchObject,coinObject) {
+=======
+define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/objects/mirror'], function (Phaser, player, PhaserGame, switchObject, mirror) {
+>>>>>>> origin/master
 
 
 
@@ -22,8 +26,10 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch','app/obje
 
         // Creation of the ends
         createEnds(levelData);
+        mirror.createObjectsGroup(levelData.mirrors);
 
         switchObject.createObjectsGroup(levelData.switch);
+
     }
 
     function createWorld(levelData) {
