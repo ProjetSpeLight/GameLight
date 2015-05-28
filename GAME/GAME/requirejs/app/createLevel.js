@@ -1,9 +1,6 @@
 
-<<<<<<< HEAD
-define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch','app/objects/coin'], function (Phaser, player, PhaserGame, switchObject,coinObject) {
-=======
-define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/objects/mirror'], function (Phaser, player, PhaserGame, switchObject, mirror) {
->>>>>>> origin/master
+define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/objects/mirror','app/objects/coin'], function (Phaser, player, PhaserGame, switchObject, mirror,coinObject) {
+
 
 
 
