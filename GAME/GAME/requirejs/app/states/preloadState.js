@@ -25,6 +25,8 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
 
             PhaserGame.game.load.image('logo', 'assets/phaser2.png');
             PhaserGame.game.load.image('dead', 'assets/dead.png');
+            PhaserGame.game.load.image('switch', 'assets/switch.png');
+
 
             // For the pause state
             pause.preload_pause();

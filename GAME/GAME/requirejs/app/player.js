@@ -235,9 +235,9 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
             if (this.sprite.color != color) {
                 this.sprite.color = color;
                 this.sprite.frame = this.sprite.color.value * 9 + 4;
-                if (this.sprite.color.value >= 1) {
+                /*if (this.sprite.color.value >= 1) {
                     photon.photons.setAll('frame', this.sprite.color.value - 1);
-                }
+                }*/
             }
         },
 

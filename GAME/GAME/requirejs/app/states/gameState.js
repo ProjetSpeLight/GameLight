@@ -1,4 +1,4 @@
-define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , 'app/phasergame', 'app/touch', 'app/objects/mirror', 'app/objects/filter'], function (Phaser, createLevel, player, pause, photon, PhaserGame, Touch,mirror,filter) {
+define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , 'app/phasergame', 'app/touch', 'app/objects/mirror', 'app/objects/filter', 'app/objects/switch'], function (Phaser, createLevel, player, pause, photon, PhaserGame, Touch,mirror,filter,switchObject) {
 
     function GameState(game) {
         score = 0;
@@ -29,6 +29,8 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
              button_pause.name = 'pause';
             button_pause.anchor.setTo(0.5, 0.5);
             button_pause.fixedToCamera = true;
+
+            
           
             
             
@@ -96,6 +98,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
 
                 mirror.updateObject();
                 filter.updateObject();
+                switchObject.updateObject();
 
 
                 var cursors = PhaserGame.game.input.keyboard.createCursorKeys();

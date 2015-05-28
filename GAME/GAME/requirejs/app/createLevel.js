@@ -1,4 +1,4 @@
-define(['phaser', 'app/player', 'app/phasergame'], function (Phaser, player, PhaserGame) {
+define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch'], function (Phaser, player, PhaserGame, switchObject) {
 
     function createObjects(levelData) {
 
@@ -11,13 +11,15 @@ define(['phaser', 'app/player', 'app/phasergame'], function (Phaser, player, Pha
         createEnnemis(levelData);
         // Creation of the ends
         createEnds(levelData);
+
+        switchObject.createObjectsGroup(levelData.switch);
     }
 
     function createWorld(levelData) {
         //  Creation of the background
         var background = PhaserGame.game.add.sprite(levelData.background.position.x, levelData.background.position.y, levelData.background.skin);
         background.fixedToCamera = true;
-        
+
 
         // Creation of the "frame" of the level
         var worldBounds = levelData.worldBounds;
@@ -75,7 +77,7 @@ define(['phaser', 'app/player', 'app/phasergame'], function (Phaser, player, Pha
             coin.body.gravity.y = 0;
         }
     }
-    
+
     function createEnnemis(levelData) {
         var dataEnnemis = levelData.ennemis;
         for (var i = 0 ; i < dataEnnemis.length ; i++) {
@@ -93,9 +95,9 @@ define(['phaser', 'app/player', 'app/phasergame'], function (Phaser, player, Pha
             ennemi.body.bounce.y = 0;
             ennemi.body.gravity.y = 1000;
         }
-    
+
     }
-    
+
 
     function createStart(element) {
         player.initializePlayer(PhaserGame.game, element.x, element.y);
@@ -112,7 +114,7 @@ define(['phaser', 'app/player', 'app/phasergame'], function (Phaser, player, Pha
         if (levelData == null) {
             return false;
         }
-        
+
         createWorld(levelData);
 
         // Create the differents groups of objects
@@ -123,7 +125,7 @@ define(['phaser', 'app/player', 'app/phasergame'], function (Phaser, player, Pha
         coins = PhaserGame.game.add.group();
         ennemis = PhaserGame.game.add.physicsGroup();
         //test = true;
-        
+
 
         //  We will enable physics for any object that is created in those group
         platforms.enableBody = true;
@@ -134,7 +136,7 @@ define(['phaser', 'app/player', 'app/phasergame'], function (Phaser, player, Pha
 
         // Creation of the level's objects
         createObjects(levelData);
-        
+
         // Creation of the player
         createStart(levelData.playerStart, PhaserGame.game);
 
