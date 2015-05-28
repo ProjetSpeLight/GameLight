@@ -28,7 +28,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
             scoreText = PhaserGame.game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
             scoreText.fixedToCamera = true;
             
-            timeText = PhaserGame.game.add.text(150, 16, 'Time: 0:0', { fontSize: '32px', fill: '#000' });
+            timeText = PhaserGame.game.add.text(150, 16, 'Time: 0', { fontSize: '32px', fill: '#000' });
             timeText.fixedToCamera = true;
             var button_pause = PhaserGame.game.add.sprite(750, 20, 'pause');
             button_pause.inputEnabled = true;
@@ -79,13 +79,12 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
         },   
 
         update: function () {
-            compt ++;
-             timeText.text = 'Time: ' + time+':'+compt;
+            compt++;
             scoreText.text = 'Score: ' + coinObject.score;
             if (compt==60){
                 time ++;
                 compt=0;
-                timeText.text = 'Time: ' + time+':'+compt;
+                timeText.text = 'Time: ' + time;
                 
             }
             if (stopped) {
