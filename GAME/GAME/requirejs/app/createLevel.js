@@ -139,7 +139,7 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
             //coins.enableBody = true;
             ends.enableBody = true;
 
-            colourPlatforms.enableBody = true;
+            //colourPlatforms.enableBody = true;
             //ennemis.enableBody = true;
 
             ennemis.enableBody = true;
