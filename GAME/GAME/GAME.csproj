@@ -22,7 +22,10 @@
     <Content Include="index.html" />
     <Content Include="requirejs\app\createLevel.js" />
     <Content Include="requirejs\app\cordovaStart.js" />
+    <Content Include="requirejs\app\objects\coin.js" />
+    <Content Include="requirejs\app\objects\ennemi.js" />
     <Content Include="requirejs\app\objects\filter.js" />
+    <Content Include="requirejs\app\objects\pique.js" />
     <Content Include="requirejs\app\objects\platforms.js" />
     <Content Include="requirejs\app\objects\switch.js" />
     <Content Include="requirejs\app\touch.js" />

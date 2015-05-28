@@ -4,7 +4,6 @@
     function updateLoopingPlatforms() {
         //Déplacement des plateformes
         this.loopingPlatforms.forEach(function (element) {
-            //alert(element.body.x + " == " + element.positions[(element.current + 1) % (element.positions.length)].x + " = " + (element.body.x == element.positions[(element.current + 1) % (element.positions.length)].x));
             var next = element.positions[(element.current + 1) % (element.positions.length)];
             if (isNear(element.body.x, element.body.y, next.x, next.y, 2)) {
                 element.current = (element.current + 1) % (element.positions.length);
@@ -137,7 +136,7 @@
             createLoopingPlatform(levelData);
         },
 
-        update: function () {
+        updateObject: function () {
             updateLoopingPlatforms();
             updateBackAndForthPlatforms();
         },

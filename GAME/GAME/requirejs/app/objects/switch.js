@@ -30,6 +30,7 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
                 // Attribute color
                 switchObject.colorName = switchData.color;
                 switchObject.body.immovable = true;
+                switchObject.rotation = 90;
             }
 
         },

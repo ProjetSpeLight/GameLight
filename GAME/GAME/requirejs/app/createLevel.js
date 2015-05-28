@@ -1,5 +1,5 @@
-﻿
-define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/objects/platforms'], function (Phaser, player, PhaserGame, switchObject, platformsObject) {
+define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/objects/mirror','app/objects/coin', 'app/objects/platforms'], function (Phaser, player, PhaserGame, switchObject, mirror,coinObject, platformsObject) {
+
 
 
 
@@ -10,8 +10,8 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
         platformsObject.create(levelData);
 
         // Creation of the coins
-        createCoin(levelData);
-
+        //createCoin(levelData);
+        coinObject.createObjectGroup(levelData.coins);
         // Creation of the ennemies
         createEnnemis(levelData);
         //Creation of the pique
@@ -19,8 +19,10 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
 
         // Creation of the ends
         createEnds(levelData);
+        mirror.createObjectsGroup(levelData.mirrors);
 
         switchObject.createObjectsGroup(levelData.switch);
+
     }
 
     function createWorld(levelData) {
@@ -146,81 +148,6 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
 
             return true;
         },
-
-        updatePlatforms: function () {
-            //Deplacement des plateformes
-            platforms.forEach(function (element) {
-                if (element.body.x >= element.body.sprite.rightBounds) {
-                    element.body.velocity.x *= -1;
-                } else if (element.body.x <= element.body.sprite.leftBounds) {
-                    element.body.velocity.x *= -1;
-                }
-                if (element.body.y <= element.body.sprite.topBounds) {
-                    element.body.velocity.y *= -1;
-                } else if (element.body.y >= element.body.sprite.bottomBounds) {
-                    element.body.velocity.y *= -1;
-                }
-            })
-
-
-
-
-            this.updateLoopingPlatforms();
-            this.updateBackAndForthPlatforms();
-        },
-
-        updateLoopingPlatforms: function () {
-            //Déplacement des plateformes
-            if (this.loopingPlatforms != null) {
-                this.loopingPlatforms.forEach(function (element) {
-                    //alert(element.body.x + " == " + element.positions[(element.current + 1) % (element.positions.length)].x + " = " + (element.body.x == element.positions[(element.current + 1) % (element.positions.length)].x));
-                    var next = element.positions[(element.current + 1) % (element.positions.length)];
-                    if (isNear(element.body.x, element.body.y, next.x, next.y, 2)) {
-                        element.current = (element.current + 1) % (element.positions.length);
-                        element.body.velocity.x = element.positions[element.current].speed.x;
-                        element.body.velocity.y = element.positions[element.current].speed.y;
-
-
-                    }
-                })
-            }
-        },
-
-        updateBackAndForthPlatforms: function () {
-            //Déplacement des plateformes
-            if (this.backAndForthPlatforms != null) {
-                this.backAndForthPlatforms.forEach(function (element) {
-                    var next = element.positions[(element.current + element.increment)];
-                    if (isNear(element.body.x, element.body.y, next.x, next.y, 2)) {
-
-                        if (element.increment == 1) {
-                            element.current = element.current + element.increment;
-
-                            element.body.velocity.x = element.positions[element.current].speed.x;
-                            element.body.velocity.y = element.positions[element.current].speed.y;
-                            if (element.current == element.positions.length - 1) {
-                                element.increment = -1;
-                                element.body.velocity.x = -element.positions[element.current - 1].speed.x;
-                                element.body.velocity.y = -element.positions[element.current - 1].speed.y;
-                            }
-                        } else {
-                            element.current = element.current + element.increment;
-                            if (element.current == 0) {
-                                element.increment = 1;
-                                element.body.velocity.x = element.positions[element.current].speed.x;
-                                element.body.velocity.y = element.positions[element.current].speed.y;
-                            } else {
-                                element.body.velocity.x = -element.positions[element.current - 1].speed.x;
-                                element.body.velocity.y = -element.positions[element.current - 1].speed.y;
-                            }
-
-                        }
-
-                    }
-                })
-            }
-
-        }
 
 
     };

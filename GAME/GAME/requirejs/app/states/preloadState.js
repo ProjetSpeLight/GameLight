@@ -1,8 +1,8 @@
-define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, PhaserGame) { 
-   // 'use strict';
+define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, PhaserGame) {
+    // 'use strict';
 
-    function PreloadState(game) {}
-    
+    function PreloadState(game) { }
+
     PreloadState.prototype = {
         preload: function () {
             // common to add a loading bar sprite here...
@@ -26,6 +26,8 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
             PhaserGame.game.load.image('logo', 'assets/phaser2.png');
             PhaserGame.game.load.image('dead', 'assets/dead.png');
             PhaserGame.game.load.image('switch', 'assets/switch.png');
+            PhaserGame.game.load.image('mirror', 'assets/mirror.png');
+
 
 
             // For the pause state
@@ -55,14 +57,20 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
             this.load.spritesheet('photon', 'assets/photons.png', 20, 20);
             this.load.spritesheet('baddie', 'assets/baddie.png', 32, 32);
 
-            
 
 
-            //this.load.json('level1', 'http://localhost:4200/assets/levels/level.json');
-            //this.load.json('level2', 'http://localhost:4200/assets/levels/level2.json');
-            //this.load.json('level2', 'http://localhost:4200/assets/levels/levelTest.json');
-            this.load.json('level1', 'http://projetspelight.github.io/assets/levels/level.json');
-            this.load.json('level2', 'http://localhost:4200/assets/levels/Exemple.json');
+
+
+
+
+            this.load.json('level1', 'http://localhost:4200/assets/levels/level.json');
+            this.load.json('level2', 'http://localhost:4200/assets/levels/levelTest.json');
+            this.load.json('level3', 'http://localhost:4200/assets/levels/Exemple.json');
+
+
+            //this.load.json('level1', 'http://projetspelight.github.io/assets/levels/level.json');
+            //this.load.json('level2', 'http://localhost:4200/assets/levels/Exemple.json');
+
 
 
         },
@@ -72,6 +80,6 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
             this.state.start('MainMenu');
         }
     };
-    
+
     return PreloadState;
 });

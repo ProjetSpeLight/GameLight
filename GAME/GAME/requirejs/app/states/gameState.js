@@ -1,4 +1,6 @@
-define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , 'app/phasergame', 'app/touch', 'app/objects/mirror', 'app/objects/filter', 'app/objects/switch','app/objects/platforms'], function (Phaser, createLevel, player, pause, photon, PhaserGame, Touch,mirror,filter,switchObject,platformsObject) {
+define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , 'app/phasergame', 'app/touch', 'app/objects/mirror', 'app/objects/filter', 'app/objects/switch','app/objects/platforms','app/objects/coin'], function (Phaser, createLevel, player, pause, photon, PhaserGame, Touch,mirror,filter,switchObject,platformsObject,coinObject) {
+
+
 
     function GameState(game) {
         score = 0;
@@ -28,7 +30,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
             scoreText = PhaserGame.game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
             scoreText.fixedToCamera = true;
             
-            timeText = PhaserGame.game.add.text(150, 16, 'Time: 0:0', { fontSize: '32px', fill: '#000' });
+            timeText = PhaserGame.game.add.text(150, 16, 'Time: 0', { fontSize: '32px', fill: '#000' });
             timeText.fixedToCamera = true;
             var button_pause = PhaserGame.game.add.sprite(750, 20, 'pause');
             button_pause.inputEnabled = true;
@@ -49,7 +51,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                                 PhaserGame.game.physics.arcade.isPaused = false;
                                 pause.is_paused = false;
                                 PhaserGame.game.paused = false;
-                                score = 0;
+                                coinObject.score = 0;
                                 time = 0;
                                 PhaserGame.game.state.start('MainMenu');
                                 
@@ -58,7 +60,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                                 pause.is_paused = false;
                                 PhaserGame.game.paused = false;
                                 pause.destruction();
-                                score = 0;
+                                coinObject.score = 0;
                                 time = 0;
                                 PhaserGame.game.state.start('RestartGame');
                             } else if (event.y > 370 && event.y <440) {
@@ -79,12 +81,12 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
         },   
 
         update: function () {
-            compt ++;
-             timeText.text = 'Time: ' + time+':'+compt;
+            compt++;
+            scoreText.text = 'Score: ' + coinObject.score;
             if (compt==60){
                 time ++;
                 compt=0;
-                timeText.text = 'Time: ' + time+':'+compt;
+                timeText.text = 'Time: ' + time;
                 
             }
             if (stopped) {
@@ -100,7 +102,6 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
 
 
                 PhaserGame.game.physics.arcade.collide(ennemis, platforms);
-                PhaserGame.game.physics.arcade.overlap(player.sprite, coins, collectCoin, null, this);
                 PhaserGame.game.physics.arcade.collide(player.sprite, platforms, makeColor, null, this);
                 PhaserGame.game.physics.arcade.collide(ends, platforms);
                 PhaserGame.game.physics.arcade.collide(piques, platforms);
@@ -108,24 +109,28 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                 PhaserGame.game.physics.arcade.collide(player.sprite, ennemis, killPlayer, null, this);
                 PhaserGame.game.physics.arcade.collide(photon.photons,ennemis,killEnnemi,null,this);
                 PhaserGame.game.physics.arcade.collide(piques,ennemis,killEnnemiPique,null,this);
-                //PhaserGame.game.physics.arcade.overlap(player.sprite, ends, finish, null, this);
+                PhaserGame.game.physics.arcade.overlap(player.sprite, ends, finish, null, this);
 
                 /*function photonRedirection(photon, ends) {
                     photon.body.velocity.y = 200;
                 }*/
 
+                
                 mirror.updateObject();
                 filter.updateObject();
                 switchObject.updateObject();
+                platformsObject.updateObject();
+                coinObject.updateObject();
+               
 
-
+                
                 var cursors = PhaserGame.game.input.keyboard.createCursorKeys();
                 player.updatePositionPlayer(cursors);              
 
-
+                
                 // We restart the game when "R" is pushed
                 if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.R)) {
-                    score = 0;
+                    coinObject.score = 0;
                     time = 0;
                     if (!this.game.device.desktop) {
                         Touch.stopMobile();
@@ -135,17 +140,17 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
 
                 // We restart the game when the character falls of the map
                 if (player.sprite.body.y > PhaserGame.game.world.height - 64) {
-                    score = 0;
+                    coinObject.score = 0;
                     time= 0;
                     if (!this.game.device.desktop) {
                         Touch.stopMobile();
                     }
                     PhaserGame.game.state.start('RestartGame');
                 }
-
+                
                 // Mort du personnage quand coincé entre deux plateformes
                 if ((player.sprite.body.touching.down && player.sprite.body.touching.up) || (player.sprite.body.touching.right && player.sprite.body.touching.left)) {
-                    score = 0;
+                    coinObject.score = 0;
                     time =0;
                     if (!this.game.device.desktop) {
                         Touch.stopMobile();
@@ -170,7 +175,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                     
                 }
                 
-                platformsObject.update();               
+              
                 
                 
                 //Déplacement des ennemis
@@ -217,18 +222,6 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                 }
 
 
-                function collectCoin(player, coin) {
-
-                    // Removes the star from the screen
-                    coin.kill();
-
-                    //  Add and update the score
-                    score += 10;
-                    scoreText.text = 'Score: ' + score;
-
-                }
-
-
                 function finish(player, diamond) {
                     if (!this.game.device.desktop) {
                         Touch.stopMobile();
@@ -237,22 +230,25 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                 }
                 
                 
+
+                    
                 function killPlayer(player, ennemi) {    
                     if (!this.game.device.desktop) {
                         Touch.stopMobile();
                     }
-                    score = 0;
-                    time = 0;
+                    coinObject.score = 0;
+                   time = 0;
                     PhaserGame.game.state.start('RestartGame');
                     //PhaserGame.game.state.restart();
                 
                 }
                 
                 function killPlayerPique(player, pique) {
+                   
                     if (!this.game.device.desktop) {
                         Touch.stopMobile();
                     }
-                    score = 0;
+                     coinObject.score = 0;
                     time =0;
                     PhaserGame.game.state.start('RestartGame');
                 }
@@ -264,7 +260,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                 function killEnnemiPique(photon, ennemi){
                                 ennemi.kill();
                 }
-
+                
             } 
         },
 
