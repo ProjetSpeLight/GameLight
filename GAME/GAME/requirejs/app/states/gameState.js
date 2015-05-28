@@ -111,8 +111,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                 PhaserGame.game.physics.arcade.collide(ends, movingPlatforms);
                
             
-               // PhaserGame.game.physics.arcade.collide(piques, platforms);
-                //PhaserGame.game.physics.arcade.collide(player.sprite, piques, killPlayerPique, null, this);
+
                 PhaserGame.game.physics.arcade.collide(player.sprite, ennemis, killPlayer, null, this);
                 PhaserGame.game.physics.arcade.collide(photon.photons,ennemis,killEnnemi,null,this);
                 PhaserGame.game.physics.arcade.overlap(player.sprite, ends, finish, null, this);

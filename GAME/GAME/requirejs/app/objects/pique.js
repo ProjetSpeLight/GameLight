@@ -3,7 +3,7 @@
   *
   */
 
-define(['phaser', 'app/phasergame','app/player','app/objects/coin'], function (Phaser, PhaserGame,player,coinObject) {
+define(['phaser', 'app/phasergame','app/player','app/objects/coin','app/objects/platforms'], function (Phaser, PhaserGame,player,coinObject,platform) {
 
    function killPlayerPique(player, pique) {
                    
@@ -53,9 +53,8 @@ define(['phaser', 'app/phasergame','app/player','app/objects/coin'], function (P
         
         updateObject: function () {
             //when the player touches a coin, the score improves
-             PhaserGame.game.physics.arcade.collide(this.group, platforms);
-            PhaserGame.game.physics.arcade.collide(this.group, colourPlatforms);
-            PhaserGame.game.physics.arcade.collide(this.group, movingPlatforms);
+             PhaserGame.game.physics.arcade.collide(this.group, platform.group);
+            
                 PhaserGame.game.physics.arcade.collide(player.sprite, this.group, killPlayerPique, null, this);
               PhaserGame.game.physics.arcade.collide(this.group,ennemis,killEnnemiPique,null,this);
         }
