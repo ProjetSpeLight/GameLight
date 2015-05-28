@@ -143,6 +143,8 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
             PhaserGame.game.camera.follow(this.sprite);
             this.sprite.body.collideWorldBounds = true;
             this.sprite.body.checkCollision.up = false;
+            this.sprite.body.checkCollision.left = false;
+            this.sprite.body.checkCollision.right = false;
 
 
             // Initialization of the player animations
@@ -235,9 +237,9 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
             if (this.sprite.color != color) {
                 this.sprite.color = color;
                 this.sprite.frame = this.sprite.color.value * 9 + 4;
-                if (this.sprite.color.value >= 1) {
+                /*if (this.sprite.color.value >= 1) {
                     photon.photons.setAll('frame', this.sprite.color.value - 1);
-                }
+                }*/
             }
         },
 
