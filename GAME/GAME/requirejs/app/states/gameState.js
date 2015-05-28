@@ -1,4 +1,4 @@
-define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , 'app/phasergame', 'app/touch', 'app/objects/mirror', 'app/objects/filter', 'app/objects/switch','app/objects/coin'], function (Phaser, createLevel, player, pause, photon, PhaserGame, Touch,mirror,filter,switchObject,coinObject) {
+define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , 'app/phasergame', 'app/touch', 'app/objects/mirror', 'app/objects/filter', 'app/objects/switch','app/objects/coin','app/objects/pique'], function (Phaser, createLevel, player, pause, photon, PhaserGame, Touch,mirror,filter,switchObject,coinObject,piqueObject) {
 
     function GameState(game) {
         score = 0;
@@ -105,13 +105,10 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                 PhaserGame.game.physics.arcade.collide(ends, platforms);
                 PhaserGame.game.physics.arcade.collide(ends, colourPlatforms);
                 PhaserGame.game.physics.arcade.collide(ends, movingPlatforms);
-                PhaserGame.game.physics.arcade.collide(piques, platforms);
-                PhaserGame.game.physics.arcade.collide(piques, colourPlatforms);
-                PhaserGame.game.physics.arcade.collide(piques, movingPlatforms);
-                PhaserGame.game.physics.arcade.collide(player.sprite, piques, killPlayerPique, null, this);
+               
+            
                 PhaserGame.game.physics.arcade.collide(player.sprite, ennemis, killPlayer, null, this);
                 PhaserGame.game.physics.arcade.collide(photon.photons,ennemis,killEnnemi,null,this);
-                PhaserGame.game.physics.arcade.collide(piques,ennemis,killEnnemiPique,null,this);
                 PhaserGame.game.physics.arcade.overlap(player.sprite, ends, finish, null, this);
 
                 /*function photonRedirection(photon, ends) {
@@ -123,6 +120,8 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                 switchObject.updateObject();
                 
                 coinObject.updateObject();
+                piqueObject.updateObject();
+                
                
 
 
@@ -246,23 +245,13 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                 
                 }
                 
-                function killPlayerPique(player, pique) {
-                   
-                    if (!this.game.device.desktop) {
-                        Touch.stopMobile();
-                    }
-                     coinObject.score = 0;
-                    time =0;
-                    PhaserGame.game.state.start('RestartGame');
-                }
+                
             
                 function killEnnemi(photon, ennemi){
                                 ennemi.kill();
                                 photon.kill();
                 }
-                function killEnnemiPique(photon, ennemi){
-                                ennemi.kill();
-                }
+                
 
             } 
         },
