@@ -175,7 +175,11 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch'], functio
     return {
         backAndForthPlatforms: new Array(),
         loopingPlatforms: new Array(),
+
         createLevel: function (str) {
+
+            this.backAndForthPlatforms = new Array();
+            this.loopingPlatforms = new Array();
 
             //var game = this;
             //  We're going to be using physics, so enable the Arcade Physics system
