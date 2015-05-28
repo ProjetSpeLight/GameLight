@@ -78,12 +78,11 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
 
             if (!pause.is_paused) {
 
-                PhaserGame.game.physics.arcade.collide(player.sprite, platforms);
                 PhaserGame.game.physics.arcade.collide(player.sprite, movingPlatforms);
                 PhaserGame.game.physics.arcade.collide(ennemis, platforms);
                 PhaserGame.game.physics.arcade.collide(ennemis, movingPlatforms);
                 PhaserGame.game.physics.arcade.overlap(player.sprite, coins, collectCoin, null, this);
-                PhaserGame.game.physics.arcade.collide(player.sprite, colourPlatforms, makeColor, null, this);
+                PhaserGame.game.physics.arcade.collide(player.sprite, platforms, makeColor, null, this);
                 PhaserGame.game.physics.arcade.collide(ends, platforms);
                 PhaserGame.game.physics.arcade.collide(ends, colourPlatforms);
                 PhaserGame.game.physics.arcade.collide(ends, movingPlatforms);
@@ -177,6 +176,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
 
 
                 function makeColor(sprite, colorplatform) {
+
 
                     // Oblige le joueur à etre au dessus 
                     //de la plateforme coloree pour changer de couleur
