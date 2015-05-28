@@ -1,5 +1,5 @@
 
-define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch'], function (Phaser, player, PhaserGame, switchObject) {
+define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/objects/mirror'], function (Phaser, player, PhaserGame, switchObject, mirror) {
 
 
 
@@ -22,8 +22,10 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch'], functio
 
         // Creation of the ends
         createEnds(levelData);
+        mirror.createObjectsGroup(levelData.mirrors);
 
         switchObject.createObjectsGroup(levelData.switch);
+
     }
 
     function createWorld(levelData) {

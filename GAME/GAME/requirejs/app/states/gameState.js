@@ -93,7 +93,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                 PhaserGame.game.physics.arcade.collide(player.sprite, ennemis, killPlayer, null, this);
                 PhaserGame.game.physics.arcade.collide(photon.photons,ennemis,killEnnemi,null,this);
                 PhaserGame.game.physics.arcade.collide(piques,ennemis,killEnnemiPique,null,this);
-                //PhaserGame.game.physics.arcade.overlap(player.sprite, ends, finish, null, this);
+                PhaserGame.game.physics.arcade.overlap(player.sprite, ends, finish, null, this);
 
                 /*function photonRedirection(photon, ends) {
                     photon.body.velocity.y = 200;

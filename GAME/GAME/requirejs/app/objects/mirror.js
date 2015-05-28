@@ -9,16 +9,36 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
 
     }
 
-    function updateObject() {
-        PhaserGame.game.physics.arcade.overlap(player.refPhotons.photons, ends, reflexionPhoton);
-    }
+ 
 
-    return {
-        group : null,
-        updateObject : updateObject
-    }
+        return {
+            group: null,
 
-});
+            createObjectsGroup: function (data) {
+                this.group = PhaserGame.game.add.physicsGroup();
+
+                if (data == null) {
+                    return;
+                }
+
+                for (var i = 0 ; i < data.length ; i++) {
+                    var mirrorData = data[i];
+                    // We create a new mirror at the position (x,y) with the token "mirror" to represent the corresponding image loaded
+                    var mirrorObject = this.group.create(0, 0, 'mirror');
+                    // Attribute rotation = angle
+                   // mirrorObject.rotation = mirrorData.angle;
+                    //mirrorObject.body.immovable = true;
+
+                }
+
+            },
+
+            updateObject : function() {
+                PhaserGame.game.physics.arcade.overlap(player.refPhotons.photons, this.group, reflexionPhoton);
+            }
+        }
+
+    });
 
 
 
