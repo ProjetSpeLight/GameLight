@@ -10,17 +10,11 @@ define([
 
     RestartGameState.prototype = {
         create: function () {
-<<<<<<< HEAD
-            
-           
-            this.state.start('Game');
-            
-            
-=======
 
             this.state.start('Game');
+            
+            
 
->>>>>>> origin/master
         }
 
     };
