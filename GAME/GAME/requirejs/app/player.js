@@ -1,4 +1,4 @@
-﻿/**
+/**
  * This module implements the fonctionnalities of the player
  */
 
@@ -18,6 +18,7 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
 
         // Initialization of an attribute to indicate where the player look at
         sprite.lookRight = true;
+        sprite.invincible=false;
     }
 
 
@@ -118,7 +119,7 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
         fireActive: false,
         changeColor: false,
         activeJump: false,
-
+        
         // Declaration of the enumeration representing the color of the player
         ColorEnum: {
             BLACK: { value: 0, name: 'Black', code: 'B' },
