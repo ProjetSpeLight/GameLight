@@ -5,6 +5,7 @@
 
 define(['phaser', 'app/phasergame','app/player','app/objects/coin','app/objects/platforms','app/objects/ennemi'], function (Phaser, PhaserGame,player,coinObject,platform,ennemiObject) {
 
+   //function which allow the pique to kill the player 
    function killPlayerPique(player, pique) {
                    
        
@@ -17,6 +18,7 @@ define(['phaser', 'app/phasergame','app/player','app/objects/coin','app/objects/
                 
    }
    
+    //function which allow the pique to kill the ennemis
     function killEnnemiPique(pique, ennemi){
         ennemi.kill();
     }
@@ -25,7 +27,7 @@ define(['phaser', 'app/phasergame','app/player','app/objects/coin','app/objects/
     
         /***** Attributes *****/
 
-        // Object containing the physic group of pique
+        // Object containing the physic group of piques
         group: null,
         
         /***** Methodes *****/
@@ -55,7 +57,7 @@ define(['phaser', 'app/phasergame','app/player','app/objects/coin','app/objects/
              PhaserGame.game.physics.arcade.collide(this.group, platforms);
             
 
-               //PhaserGame.game.physics.arcade.collide(player.sprite, this.group, killPlayerPique, null, this);
+               
                 PhaserGame.game.physics.arcade.collide(this.group, ennemiObject.group, killEnnemiPique, null, this);
                 PhaserGame.game.physics.arcade.overlap(player.sprite, this.group, killPlayerPique, null, this);
 
