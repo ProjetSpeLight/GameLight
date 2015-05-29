@@ -3,7 +3,7 @@
   *
   */
 
-define(['phaser', 'app/phasergame','app/player','app/objects/coin','app/objects/platforms'], function (Phaser, PhaserGame,player,coinObject,platform) {
+define(['phaser', 'app/phasergame','app/player','app/objects/coin','app/objects/platforms','app/objects/ennemi'], function (Phaser, PhaserGame,player,coinObject,platform,ennemiObject) {
 
    function killPlayerPique(player, pique) {
                    
@@ -17,7 +17,7 @@ define(['phaser', 'app/phasergame','app/player','app/objects/coin','app/objects/
                 
    }
    
-    function killEnnemiPique(photon, ennemi){
+    function killEnnemiPique(pique, ennemi){
         ennemi.kill();
     }
     
@@ -25,7 +25,7 @@ define(['phaser', 'app/phasergame','app/player','app/objects/coin','app/objects/
     
         /***** Attributes *****/
 
-        // Object containing the physic group of filters
+        // Object containing the physic group of pique
         group: null,
         
         /***** Methodes *****/
@@ -52,11 +52,10 @@ define(['phaser', 'app/phasergame','app/player','app/objects/coin','app/objects/
         },
         
         updateObject: function () {
-            //when the player touches a coin, the score improves
              PhaserGame.game.physics.arcade.collide(this.group, platforms);
             
                 PhaserGame.game.physics.arcade.collide(player.sprite, this.group, killPlayerPique, null, this);
-              PhaserGame.game.physics.arcade.collide(this.group,ennemis,killEnnemiPique,null,this);
+              PhaserGame.game.physics.arcade.collide(this.group,ennemiObject.group,killEnnemiPique,null,this);
         }
        
    }
