@@ -53,7 +53,7 @@ define(['phaser', 'app/phasergame','app/player','app/objects/coin','app/objects/
         
         updateObject: function () {
             //when the player touches a coin, the score improves
-             PhaserGame.game.physics.arcade.collide(this.group, platform);
+             PhaserGame.game.physics.arcade.collide(this.group, platforms);
             
                 PhaserGame.game.physics.arcade.collide(player.sprite, this.group, killPlayerPique, null, this);
               PhaserGame.game.physics.arcade.collide(this.group,ennemis,killEnnemiPique,null,this);
