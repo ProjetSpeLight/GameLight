@@ -1,62 +1,71 @@
 
 define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'app/phasergame', 'app/touch', 'app/objects/mirror', 'app/objects/filter', 'app/objects/switch', 'app/objects/platforms', 'app/objects/coin', 'app/objects/pique', 'app/objects/ennemi'], function (Phaser, createLevel, player, pause, photon, PhaserGame, Touch, mirror, filter, switchObject, platformsObject, coinObject, piqueObject, ennemiObject) {
 
-    function GameState(game) {
-        score = 0;
-        time = 0;
-        compt = 0;
-    }
+    function GameState(game) { }
 
+    // Boolean used to stopped the game where the level can not be loaded
     var stopped = false;
+
+    // Timer to display
+    var time = 0;
+
+    // Variable used to count a second
+    var compt = 0;
+
+    // Object displaying the score
+    var scoreText;
+
+    // Object displaying the timer
+    var timerText;
 
 
     GameState.prototype = {
         create: function () {
+            // First we initialize the scope variables
             stopped = false;
             coinObject.score = 0;
             time = 0;
+            compt = 0;
+
+            // Initialization of the physics motor
             PhaserGame.game.physics.startSystem(Phaser.Physics.ARCADE);
+
+            // We load the level
             if (!createLevel.createLevel('level' + this.currentLevel)) {
-                alert('niveau indisponible');
+                // If we failed to load the level, we stop the game and return to the main menu
+                alert('Niveau ' + this.currentLevel + ' indisponible');
                 stopped = true;
                 return;
             }
 
-
+            // Initialization of the controls for mobile
             if (!this.game.device.desktop) {
                 Touch.initJoypad();
                 Touch.startMobile();
             }
 
+            // Initialization of the bject displaying the score
             scoreText = PhaserGame.game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
             scoreText.fixedToCamera = true;
 
+            // Initialization of the bject displaying the timer
             timeText = PhaserGame.game.add.text(150, 16, 'Time: 0', { fontSize: '32px', fill: '#000' });
             timeText.fixedToCamera = true;
 
-
+            // Initialization of the pause button
             var button_pause = PhaserGame.game.add.sprite(750, 20, 'pause');
             button_pause.inputEnabled = true;
             button_pause.name = 'pause';
             button_pause.anchor.setTo(0.5, 0.5);
             button_pause.fixedToCamera = true;
 
+            // Signal binding for the pause mode
             PhaserGame.game.input.onDown.add(pause.unpause, self);
-
-
-
-
         },
 
         update: function () {
-            compt++;
-            scoreText.text = 'Score: ' + coinObject.score;
-            if (compt == 60) {
-                time++;
-                compt = 0;
-                timeText.text = 'Time: ' + time;
 
-            }
+            // If the level had not been loaded, we return to the main lmenu
             if (stopped) {
                 if (!this.game.device.desktop) {
                     Touch.stopMobile();
@@ -66,6 +75,19 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
             }
 
             if (!PhaserGame.game.paused) {
+
+                // Update of the timer
+                compt++;
+                if (compt == 60) {
+                    time++;
+                    compt = 0;
+                    timeText.text = 'Time: ' + time;
+                }
+
+                // Update of the score
+                scoreText.text = 'Score: ' + coinObject.score;
+
+                // Update of the objects
                 PhaserGame.game.physics.arcade.collide(player.sprite, platforms, makeColor, null, this);
                 PhaserGame.game.physics.arcade.collide(ends, platforms);
                 PhaserGame.game.physics.arcade.overlap(player.sprite, ends, finish, null, this);
@@ -76,7 +98,6 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
                 platformsObject.updateObject();
                 coinObject.updateObject();
                 piqueObject.updateObject();
-
                 ennemiObject.updateObject();
 
 
@@ -150,7 +171,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
             }
         },
 
-        render: function () { },
+        render: function () {},
 
 
     };
