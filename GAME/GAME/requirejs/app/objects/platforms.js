@@ -21,6 +21,11 @@ define(['phaser', 'app/phasergame'], function (Phaser, PhaserGame) {
             platform.body.immovable = platformData.immovable;
             PhaserGame.game.physics.enable(platform, Phaser.Physics.ARCADE);
 
+            platform.body.checkCollision.up = true;
+            platform.body.checkCollision.left = false;
+            platform.body.checkCollision.right = false;
+            platform.body.checkCollision.down = false;
+
         }
     }
 
