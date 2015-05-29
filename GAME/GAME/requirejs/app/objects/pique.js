@@ -54,8 +54,11 @@ define(['phaser', 'app/phasergame','app/player','app/objects/coin','app/objects/
         updateObject: function () {
              PhaserGame.game.physics.arcade.collide(this.group, platforms);
             
-                PhaserGame.game.physics.arcade.collide(player.sprite, this.group, killPlayerPique, null, this);
-              PhaserGame.game.physics.arcade.collide(this.group,ennemiObject.group,killEnnemiPique,null,this);
+
+               //PhaserGame.game.physics.arcade.collide(player.sprite, this.group, killPlayerPique, null, this);
+                PhaserGame.game.physics.arcade.collide(this.group, ennemiObject.group, killEnnemiPique, null, this);
+                PhaserGame.game.physics.arcade.overlap(player.sprite, this.group, killPlayerPique, null, this);
+
         }
        
    }

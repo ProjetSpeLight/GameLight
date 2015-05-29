@@ -69,7 +69,7 @@
             },
             "skin": "ground",
             "color": "",
-            "immovable": true
+            "immovable": false
         }
     ],
     "coins": [

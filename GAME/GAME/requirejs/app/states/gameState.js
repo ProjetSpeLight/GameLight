@@ -107,10 +107,10 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                 PhaserGame.game.physics.arcade.collide(player.sprite, platforms, makeColor, null, this);
                 PhaserGame.game.physics.arcade.collide(ends, platforms);
 
-              
-                
-                
+
                 PhaserGame.game.physics.arcade.overlap(player.sprite, ends, finish, null, this);
+
+                
 
                 /*function photonRedirection(photon, ends) {
                     photon.body.velocity.y = 200;
@@ -124,8 +124,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                 coinObject.updateObject();
                 piqueObject.updateObject();
                 ennemiObject.updateObject();
-               
-
+     
                 
                 var cursors = PhaserGame.game.input.keyboard.createCursorKeys();
                 player.updatePositionPlayer(cursors);              

@@ -9,7 +9,7 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
     function createObjects(levelData, createLevel) {
 
         // Creation of the fixed platforms
-        platformsObject.create(levelData);
+        platformsObject.createObjectGroup(levelData);
 
         // Creation of the coins
         //createCoin(levelData);
