@@ -13,8 +13,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photo
             Touch.stopMobile();
 
         }
-        coinObject.score = 0;
-        time = 0;
+        coinObject.score = 0;        
         PhaserGame.game.state.start('RestartGame');
         //PhaserGame.game.state.restart();
 

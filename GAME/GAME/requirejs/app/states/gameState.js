@@ -1,9 +1,5 @@
 
-define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , 'app/phasergame', 'app/touch', 'app/objects/mirror', 'app/objects/filter', 'app/objects/switch','app/objects/platforms','app/objects/coin','app/objects/pique','app/objects/ennemi'], function (Phaser, createLevel, player, pause, photon, PhaserGame, Touch,mirror,filter,switchObject,platformsObject,coinObject,piqueObject,ennemiObject) {
-
-
-
-
+define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'app/phasergame', 'app/touch', 'app/objects/mirror', 'app/objects/filter', 'app/objects/switch', 'app/objects/platforms', 'app/objects/coin', 'app/objects/pique', 'app/objects/ennemi'], function (Phaser, createLevel, player, pause, photon, PhaserGame, Touch, mirror, filter, switchObject, platformsObject, coinObject, piqueObject, ennemiObject) {
 
     function GameState(game) {
         score = 0;
@@ -69,25 +65,10 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                 return;
             }
 
-
             if (!PhaserGame.game.paused) {
-
-
-                
                 PhaserGame.game.physics.arcade.collide(player.sprite, platforms, makeColor, null, this);
                 PhaserGame.game.physics.arcade.collide(ends, platforms);
                 PhaserGame.game.physics.arcade.overlap(player.sprite, ends, finish, null, this);
-
-
-                //PhaserGame.game.physics.arcade.collide(ends, colourPlatforms);
-                //PhaserGame.game.physics.arcade.collide(ends, movingPlatforms);
-
-
-
-               // PhaserGame.game.physics.arcade.collide(player.sprite, ennemis, killPlayer, null, this);
-                //PhaserGame.game.physics.arcade.collide(photon.photons, ennemis, killEnnemi, null, this);
-
-
 
                 mirror.updateObject();
                 filter.updateObject();
@@ -97,8 +78,8 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                 piqueObject.updateObject();
 
                 ennemiObject.updateObject();
-     
-                
+
+
                 var cursors = PhaserGame.game.input.keyboard.createCursorKeys();
                 player.updatePositionPlayer(cursors);
 
@@ -133,35 +114,12 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                     PhaserGame.game.state.start('RestartGame');
                 }
 
-
-
-
                 // we stop the game when "ESC" is pushed 
                 if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.ESC)) {
                     if (!PhaserGame.game.paused) {
                         pause.gamePaused();
                     }
                 }
-
-
-
-
-
-                //Déplacement des ennemis
-               /* ennemis.forEach(function (element) {
-                    if (element.body.x >= element.body.sprite.rightBounds) {
-                        element.body.velocity.x *= -1;
-                    } else if (element.body.x <= element.body.sprite.leftBounds) {
-                        element.body.velocity.x *= -1;
-                    }
-                    if (element.body.y <= element.body.sprite.topBounds) {
-                        element.body.velocity.y *= -1;
-                    } else if (element.body.y >= element.body.sprite.bottomBounds) {
-                        element.body.velocity.y *= -1;
-                    }
-                })*/
-
-
 
                 if (PhaserGame.game.input.activePointer.isDown &&
                     PhaserGame.game.input.y < 34 &&
@@ -171,24 +129,17 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                     pause.gamePaused();
                 }
 
-
-
                 function makeColor(sprite, colorplatform) {
-
-
                     // Oblige le joueur à etre au dessus 
                     //de la plateforme coloree pour changer de couleur
                     if (sprite.body.touching.down) {
-
                         // Oblige le joueur à appuyer 
                         //sur la touche du bas pour changer de couleur
                         if (this.input.keyboard.isDown(Phaser.Keyboard.DOWN) || player.changeColor) {
                             player.changePlayerColor(colorplatform.color);
                         }
-
                     }
                 }
-
 
                 function finish(player, diamond) {
                     if (!this.game.device.desktop) {
@@ -196,28 +147,6 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                     }
                     PhaserGame.game.state.start('FinishLevel');
                 }
-
-
-
-
-
-                /*function killPlayer(player, ennemi) {
-                    if (!this.game.device.desktop) {
-                        Touch.stopMobile();
-                    }
-                    coinObject.score = 0;
-                    time = 0;
-                    PhaserGame.game.state.start('RestartGame');
-                }
-
-
-
-                function killEnnemi(photon, ennemi) {
-                    ennemi.kill();
-                    photon.kill();
-                }*/
-
-
             }
         },
 
