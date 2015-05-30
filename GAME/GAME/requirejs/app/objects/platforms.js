@@ -12,20 +12,55 @@ define(['phaser', 'app/phasergame'], function (Phaser, PhaserGame) {
         var dataPlatforms = levelData.platforms;
         for (var i = 0 ; i < dataPlatforms.length ; i++) {
             var platformData = dataPlatforms[i];
-            var platform = platforms.create(platformData.position.x, platformData.position.y, platformData.skin + platformData.color);
-            platform.color = platformData.color;
 
-            platform.scale.setTo(platformData.size.x, platformData.size.y);
+            var color = platformData.color;
+            if (color == null) {
+                // default value. (the platform has no color)
+                color = "";
+            }
+            
+            var skin = platformData.skin;
+            if (skin == null) {
+                // default value.
+                skin = "ground";
+            }
+            
+            var platform = platforms.create(platformData.position.x, platformData.position.y, skin + color);
+            platform.color = color;
+
+            var size = platformData.size;
+           
+            if (size != null) {
+                if (size.x == null) {
+                    size.x = 1;
+                }
+                if (size.y == null) {
+                    size.y = 1;
+                }
+                platform.scale.setTo(size.x, size.y);
+            } else {
+                // default value. (the platform has the side given by it's skin)
+                platform.scale.setTo(1, 1);
+            }
+            
 
             platform.body.allowGravity = false;
-            platform.body.immovable = platformData.immovable;
+
+            if (platformData.immovable==false) {
+                platform.body.immovable = false;
+            } else {
+                // default value. (the platform does not collapse
+                platform.body.immovable = true;
+            }
+
             PhaserGame.game.physics.enable(platform, Phaser.Physics.ARCADE);
 
-            platform.body.checkCollision.up = true;
-            platform.body.checkCollision.left = false;
-            platform.body.checkCollision.right = false;
-            platform.body.checkCollision.down = false;
-
+            if (platformData.crossable == true) {
+                platform.body.checkCollision.up = true;
+                platform.body.checkCollision.left = false;
+                platform.body.checkCollision.right = false;
+                platform.body.checkCollision.down = false;
+            }
         }
     }
 
@@ -108,7 +143,7 @@ define(['phaser', 'app/phasergame'], function (Phaser, PhaserGame) {
 
     }
 
-    
+
     function updateBackAndForthPlatforms() {
 
         //Déplacement des plateformes
@@ -145,7 +180,7 @@ define(['phaser', 'app/phasergame'], function (Phaser, PhaserGame) {
 
     }
 
-    
+
 
     return {
         // Both of the array are used to store a certain number of platforms in order to optimize the updating of moving platforms
