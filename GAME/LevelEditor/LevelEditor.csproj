@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <ProjectGuid>{D5C1538C-15A0-465A-8A8F-11854C830EC6}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <OutputPath>bin</OutputPath>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <TypeScriptToolsVersion>1.1</TypeScriptToolsVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="app.css" />
+    <Content Include="assets\background2.png" />
+    <Content Include="assets\baddie.png" />
+    <Content Include="assets\buttons\button-horizontal.png" />
+    <Content Include="assets\buttons\button-round-a.png" />
+    <Content Include="assets\buttons\button-round-b.png" />
+    <Content Include="assets\buttons\button-vertical.png" />
+    <Content Include="assets\button_help.png" />
+    <Content Include="assets\button_jump.png" />
+    <Content Include="assets\button_menu.png" />
+    <Content Include="assets\button_nextlevel.png" />
+    <Content Include="assets\button_play.png" />
+    <Content Include="assets\button_play_level1.png" />
+    <Content Include="assets\button_play_level2.png" />
+    <Content Include="assets\button_restart.png" />
+    <Content Include="assets\button_resume.png" />
+    <Content Include="assets\button_RetMenu.png" />
+    <Content Include="assets\button_tutorial.png" />
+    <Content Include="assets\colordude.png" />
+    <Content Include="assets\dead.png" />
+    <Content Include="assets\diamond.png" />
+    <Content Include="assets\dude.png" />
+    <Content Include="assets\firstaid.png" />
+    <Content Include="assets\mirror.png" />
+    <Content Include="assets\pause.png" />
+    <Content Include="assets\phaser2.png" />
+    <Content Include="assets\photon.png" />
+    <Content Include="assets\photons.png" />
+    <Content Include="assets\photon_blanc.png" />
+    <Content Include="assets\photon_jaune.png" />
+    <Content Include="assets\photon_rouge.png" />
+    <Content Include="assets\photon_vert.png" />
+    <Content Include="assets\pique.png" />
+    <Content Include="assets\platform.png" />
+    <Content Include="assets\platform_Bleu.png" />
+    <Content Include="assets\platform_Jaune.png" />
+    <Content Include="assets\platform_Rouge.png" />
+    <Content Include="assets\platform_Vert.png" />
+    <Content Include="assets\preloader-bar.png" />
+    <Content Include="assets\sky.png" />
+    <Content Include="assets\star.png" />
+    <Content Include="assets\switch.png" />
+    <Content Include="index.html" />
+    <Content Include="requirejs\app\createLevel.js" />
+    <Content Include="requirejs\app\cordovaStart.js" />
+    <Content Include="requirejs\app\objects\coin.js" />
+    <Content Include="requirejs\app\objects\ennemi.js" />
+    <Content Include="requirejs\app\objects\filter.js" />
+    <Content Include="requirejs\app\objects\pique.js" />
+    <Content Include="requirejs\app\objects\platforms.js" />
+    <Content Include="requirejs\app\objects\switch.js" />
+    <Content Include="requirejs\app\touch.js" />
+    <Content Include="requirejs\app\main.js" />
+    <Content Include="requirejs\app\pause.js" />
+    <Content Include="requirejs\app\phasergame.js" />
+    <Content Include="requirejs\app\photon.js" />
+    <Content Include="requirejs\app\player.js" />
+    <Content Include="requirejs\app\states\bootState.js" />
+    <Content Include="requirejs\app\states\chooseLevelState.js" />
+    <Content Include="requirejs\app\states\finishLevelState.js" />
+    <Content Include="requirejs\app\states\gameState.js" />
+    <Content Include="requirejs\app\states\mainMenuState.js" />
+    <Content Include="requirejs\app\states\preloadState.js" />
+    <Content Include="requirejs\app\objects\mirror.js" />
+    <Content Include="requirejs\lib\cordova\cordova.js" />
+    <Content Include="web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="package.json" />
+    <Content Include="requirejs\assets\levels\level.json" />
+    <Content Include="requirejs\assets\levels\level2.json" />
+    <Content Include="requirejs\assets\photons.zip" />
+    <Content Include="requirejs\assets\Thumbs.db" />
+    <Content Include="requirejs\lib\phaser\phaser.map" />
+    <Content Include="requirejs\assets\levels\Exemple.json" />
+    <Content Include="assets\buttons\Thumbs.db" />
+    <Content Include="assets\levels\Exemple.json" />
+    <Content Include="assets\levels\level.json" />
+    <Content Include="assets\levels\level2.json" />
+    <Content Include="assets\levels\levelTest.json" />
+    <Content Include="assets\Thumbs.db" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="assets\spritesheets\" />
+    <Folder Include="assets\tilemaps\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>GAME</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets')" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>25225</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:25226/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>false</TypeScriptSourceMap>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+</Project>
