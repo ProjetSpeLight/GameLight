@@ -1,4 +1,4 @@
-define([], function () {
+define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame, player) {
 
     // Declaration of the enumeration representing the color of the player
     var ColorEnum = {
@@ -12,6 +12,82 @@ define([], function () {
         WHITE: { value: 7, name: 'White', code: 'W' }
     }
 
+    function changeFirstAndSecondColor(color,player){
+         switch (color) {
+                        case ColorEnum.BLACK:
+                            player.firstAddColor=ColorEnum.BLACK;
+                            player.secondAddColor=ColorEnum.BLACK;
+                            player.numberColor=0;
+                            break;
+
+                        case ColorEnum.RED:
+                        case ColorEnum.BLUE:
+                        case ColorEnum.GREEN:
+                            player.firstAddColor=color;
+                            player.secondAddColor=ColorEnum.BLACK;
+                            player.numberColor=1;
+                            break;  
+
+                        case ColorEnum.YELLOW:
+                            if(player.firstAddColor==ColorEnum.BLUE){
+                                if(player.secondAddColor==ColorEnum.GREEN){
+                                    player.firstAddColor=player.secondAddColor;
+                                    player.secondAddColor=ColorEnum.RED; 
+                                } else {
+                                    player.firstAddColor=player.secondAddColor;
+                                    player.secondAddColor=ColorEnum.GREEN;    
+                                }
+                            }
+                            if(player.secondAddColor==ColorEnum.BLUE){
+                                if(player.firstAddColor==ColorEnum.GREEN){
+                                    player.secondAddColor=ColorEnum.RED; 
+                                } else {
+                                    player.secondAddColor=ColorEnum.GREEN;    
+                                }
+                            }
+                            player.numberColor=2;
+                            break;
+                        case ColorEnum.CYAN:
+                            if(player.firstAddColor==ColorEnum.RED){
+                                if(player.secondAddColor==ColorEnum.GREEN){
+                                    player.firstAddColor=player.secondAddColor;
+                                    player.secondAddColor=ColorEnum.BLUE; 
+                                } else {
+                                    player.firstAddColor=player.secondAddColor;
+                                    player.secondAddColor=ColorEnum.GREEN;    
+                                }
+                            }
+                            if(player.secondAddColor==ColorEnum.RED){
+                                if(player.firstAddColor==ColorEnum.GREEN){
+                                    player.secondAddColor=ColorEnum.BLUE; 
+                                } else {
+                                    player.secondAddColor=ColorEnum.GREEN;    
+                                }
+                            }
+                            player.numberColor=2;
+                            break;
+                        case ColorEnum.MAGENTA:
+                            if(player.firstAddColor==ColorEnum.GREEN){
+                                if(player.secondAddColor==ColorEnum.RED){
+                                    player.firstAddColor=player.secondAddColor;
+                                    player.secondAddColor=ColorEnum.BLUE; 
+                                } else {
+                                    player.firstAddColor=player.secondAddColor;
+                                    player.secondAddColor=ColorEnum.RED;    
+                                }
+                            }
+                            if(player.secondAddColor==ColorEnum.GREEN){
+                                if(player.firstAddColor==ColorEnum.RED){
+                                    player.secondAddColor=ColorEnum.BLUE; 
+                                } else {
+                                    player.secondAddColor=ColorEnum.RED;    
+                                }
+                            }
+                            player.numberColor=2;
+                            break;
+                    }
+    }
+    
 
     function subAdditiveColorMagenta(color1, color2) {
         return color1.name == 'Red' && color2.name == 'Blue';
@@ -56,7 +132,8 @@ define([], function () {
     /// @param {Object} Element of the enumeration ColorEnum representing the initial color
     /// @param {Object} Element of the enumeration ColorEnum representing the filter color
     /// Assumes that the intial color is correctly defined
-    function subFilterColor(playerColor, color) {
+    function subFilterColor(playerColor, color,player) {
+        
         if (color == null) {
             return null;
         }
@@ -72,6 +149,9 @@ define([], function () {
 
             case ColorEnum.MAGENTA:
                 if (color == ColorEnum.RED || color == ColorEnum.BLUE) {
+                    player.firstAddColor=color;
+                    player.secondAddColor=ColorEnum.BLACK;
+                    player.numberColor=1;                    
                     return color;
                 }
                 if (color == ColorEnum.MAGENTA) {
@@ -81,6 +161,9 @@ define([], function () {
 
             case ColorEnum.YELLOW:
                 if (color == ColorEnum.GREEN || color == ColorEnum.RED) {
+                    player.firstAddColor=color;
+                    player.secondAddColor=ColorEnum.BLACK;
+                    player.numberColor=1;
                     return color;
                 }
                 if (color == ColorEnum.YELLOW) {
@@ -90,6 +173,9 @@ define([], function () {
 
             case ColorEnum.CYAN:
                 if (color == ColorEnum.GREEN || color == ColorEnum.BLUE) {
+                    player.firstAddColor=color;
+                    player.secondAddColor=ColorEnum.BLACK;
+                    player.numberColor=1;
                     return color;
                 }
                 if (color == ColorEnum.CYAN) {
@@ -98,9 +184,14 @@ define([], function () {
                 break;
 
             case ColorEnum.WHITE:
+                changeFirstAndSecondColor(color,player);
                 return color;
                 break;
         }
+       
+        player.firstAddColor=ColorEnum.BLACK;
+        player.secondAddColor=ColorEnum.BLACK;
+        player.numberColor=0;
         return ColorEnum.BLACK;
 
     }

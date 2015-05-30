@@ -161,6 +161,8 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
             this.sprite.color = Color.ColorEnum.BLACK;
             // Initialization of the photons
             photon.initPhotons(PhaserGame.game, this);
+            this.firstAddColor=Color.ColorEnum.BLACK;
+            this.secondAddColor= Color.ColorEnum.BLACK;
         },
 
 
@@ -327,7 +329,8 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
 
         filterColor: function (color) {
             //this.sprite.color =  subFilterColor(this.sprite.color, this.getColor(color), this.ColorEnum);
-            this.sprite.color = Color.subFilterColor(this.sprite.color, Color.getColor(color));
+            this.sprite.color = Color.subFilterColor(this.sprite.color, Color.getColor(color),this);
+            
         }
 
     }
