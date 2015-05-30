@@ -50,6 +50,12 @@ define([], function () {
         return newColor;
     }
 
+    /// @function subFilterColor
+    /// Returns the color obtained when the light of color "playerColor" passes through a optical filter of color "color"
+    /// @return Element of the enumeration ColorEnum representing the filtered color
+    /// @param {Object} Element of the enumeration ColorEnum representing the initial color
+    /// @param {Object} Element of the enumeration ColorEnum representing the filter color
+    /// Assumes that the intial color is correctly defined
     function subFilterColor(playerColor, color) {
         if (color == null) {
             return null;
