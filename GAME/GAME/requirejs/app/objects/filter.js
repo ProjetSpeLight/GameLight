@@ -3,13 +3,18 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/color'], function (Phaser
     /// @function applyFilter
     /// Handler called when the player overlap a filter
     function applyFilter(sprite, filter) {
-        player.filterColor(color, filter.color);
+        player.filterColor(filter.color);
     }
 
     /// @function applyFilter
     /// Handler called when a photon thrown by the player overlap a filter
     function applyFilterPhoton(photon, filter) {
         photon.color = Color.subFilterColor(photon.color, Color.getColor(filter.color));
+        if (photon.color.name == 'Black') {
+            photon.kill();
+            return;
+        }
+        photon.frame = photon.color.value - 1;
     }
 
 
@@ -29,7 +34,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/color'], function (Phaser
         /// @function createObjectsGroup
         /// Create the differents objects defines in the JSON file represented by this module
         /// @param {Array} Array of elements representing 
-        createObjectGroup: function (data) {
+        createObjectsGroup: function (data) {
             // Allocation of the group
             this.group = PhaserGame.game.add.physicsGroup();
             // If no filters are defined in the current level, there is nothing to do
@@ -40,7 +45,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/color'], function (Phaser
             for (var i = 0 ; i < data.length ; i++) {
                 var filterData = data[i];
                 // We create a new filter at the position (x,y) with the token "filterData.skin + filterData.color" to represent the corresponding image loaded
-                var filter = this.group.create(filterData.position.x, filterData.position.y, filterData.skin + filterData.color);
+                var filter = this.group.create(filterData.x, filterData.y, 'baddie');
                 // Attribute color
                 filter.color = filterData.color;
             }

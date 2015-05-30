@@ -1,5 +1,5 @@
 
-define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/objects/mirror','app/objects/coin', 'app/objects/platforms','app/objects/pique','app/objects/ennemi'], function (Phaser, player, PhaserGame, switchObject, mirror,coinObject, platformsObject,piqueObject,ennemiObject) {
+define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/objects/mirror','app/objects/coin', 'app/objects/platforms','app/objects/pique','app/objects/ennemi', 'app/objects/filter'], function (Phaser, player, PhaserGame, switchObject, mirror,coinObject, platformsObject,piqueObject,ennemiObject, filter) {
 
 
 
@@ -24,6 +24,8 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
         mirror.createObjectsGroup(levelData.mirrors);
 
         switchObject.createObjectsGroup(levelData.switch);
+
+        filter.createObjectsGroup(levelData.filters);
         
     }
 
@@ -41,6 +43,9 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
 
     function createEnds(levelData) {
         var dataEnds = levelData.ends;
+        if (dataEnds == null) {
+            return;
+        }
         for (var i = 0 ; i < dataEnds.length ; i++) {
             var endData = dataEnds[i];
             var end = ends.create(endData.x, endData.y, 'diamond');
