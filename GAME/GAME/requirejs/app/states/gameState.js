@@ -26,6 +26,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
             coinObject.score = 0;
             time = 0;
             compt = 0;
+            
 
             // Initialization of the physics motor
             PhaserGame.game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -83,10 +84,12 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
                     compt = 0;
                     timeText.text = 'Time: ' + time;
                 }
-
+                
+                
                 // Update of the score
                 scoreText.text = 'Score: ' + coinObject.score;
 
+                
                 // Update of the objects
                 PhaserGame.game.physics.arcade.collide(player.sprite, platforms, makeColor, null, this);
                 PhaserGame.game.physics.arcade.collide(ends, platforms);
@@ -99,6 +102,19 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
                 coinObject.updateObject();
                 piqueObject.updateObject();
                 ennemiObject.updateObject();
+                
+                if(player.timeInvincible != 0) {
+                    if (player.timeInvincible >= 180) {
+                        player.sprite.invincible=false;
+                        player.timeInvincible=0;
+                    } else {
+                        player.sprite.invincible = true;
+                        player.timeInvincible++;
+                    }
+                    
+                } else {
+                    player.sprite.invincible = false;
+                }
 
 
                 var cursors = PhaserGame.game.input.keyboard.createCursorKeys();
@@ -158,6 +174,8 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
                         //sur la touche du bas pour changer de couleur
                         if (this.input.keyboard.isDown(Phaser.Keyboard.DOWN) || player.changeColor) {
                             player.changePlayerColor(colorplatform.color);
+
+                            
                         }
                     }
                 }

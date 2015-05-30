@@ -6,20 +6,24 @@
 define(['phaser', 'app/phasergame','app/player','app/objects/coin','app/objects/platforms','app/objects/ennemi'], function (Phaser, PhaserGame,player,coinObject,platform,ennemiObject) {
 
    //function which allow the pique to kill the player 
-   function killPlayerPique(player, pique) {
-               //alert(player.invincible);    
-       if (!player.invincible){
-           //alert("test");
-       
+   function killPlayerPique(play, pique) {
+                   
+       if (!play.invincible){
            if (!PhaserGame.game.device.desktop) {
                Touch.stopMobile();
            }
            coinObject.score = 0;
-           time =0;
+           //check if the player has a color or not
+           if (play.color.value != 0){
+               //he has a color so we remove the last color
+                player.timeInvincible=1;
+                player.removePlayerColor();
+           } else {
+               //he hasn't so we restart the game
            PhaserGame.game.state.start('RestartGame');
+           }
            
        }
-                
    }
    
     //function which allow the pique to kill the ennemis

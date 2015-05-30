@@ -7,16 +7,24 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photo
 
     // on a une collision dans pique à corriger une fois finie
 
-    function killPlayer(player, ennemi) {
+    function killPlayer(play, ennemi) {
 
-        if (!PhaserGame.game.device.desktop) {
-            Touch.stopMobile();
+        if (!play.invincible){
+            if (!PhaserGame.game.device.desktop) {
+                Touch.stopMobile();
 
+            }
+            coinObject.score = 0;    
+            //check if the player has a color or not
+            if (play.color.value != 0){
+                 //he has a color so we remove the last color
+                player.timeInvincible=1;
+                player.removePlayerColor();
+            } else {
+                //he hasn't so we restart the game
+                PhaserGame.game.state.start('RestartGame');
+            }
         }
-        coinObject.score = 0;        
-        PhaserGame.game.state.start('RestartGame');
-        //PhaserGame.game.state.restart();
-
 
     }
 

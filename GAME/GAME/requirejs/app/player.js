@@ -18,7 +18,7 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
 
         // Initialization of an attribute to indicate where the player look at
         sprite.lookRight = true;
-        sprite.invincible=false;
+        sprite.invincible= false;
     }
 
 
@@ -119,6 +119,11 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
         fireActive: false,
         changeColor: false,
         activeJump: false,
+        timeInvincible: 0,
+        firstAddColor: Color.ColorEnum.BLACK,
+        secondAddColor: Color.ColorEnum.BLACK,
+        numberColor: 0,
+        
         
         // Declaration of the enumeration representing the color of the player
        /* ColorEnum: {
@@ -154,7 +159,6 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
             this.sprite.lookRight = true;
             //this.sprite.color = this.ColorEnum.BLACK;
             this.sprite.color = Color.ColorEnum.BLACK;
-
             // Initialization of the photons
             photon.initPhotons(PhaserGame.game, this);
         },
@@ -221,8 +225,28 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
             }
 
         },
-
-
+        
+        removePlayerColor: function (){
+            
+            if (this.numberColor == 0 ) {
+                return ;
+            }
+            
+            if (this.numberColor ==1 ) {
+                this.sprite.color = Color.getColor('Black');
+                this.firstAddColor = Color.getColor('Black');
+                this.secondAddColor = Color.getColor('Black');
+                this.numberColor--;
+                
+            } else if ( this.numberColor == 2 ) {
+                this.sprite.color = this.firstAddColor;
+                this.secondAddColor = Color.getColor('Black');
+                this.numberColor--;
+            } else if (this.numberColor == 3) {
+                this.sprite.color = this.secondAddColor;
+                this.numberColor--;
+            }
+        },
 
 
         /// @function getColor
@@ -254,6 +278,25 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
                     photon.photons.setAll('frame', this.sprite.color.value - 1);
                 }*/
             }
+            
+            if (this.numberColor == 0 ){
+                                this.firstAddColor = color;
+                                this.numberColor++;
+                            } else if (this.numberColor == 1 ){
+                                if (this.firstAddColor!= color)   { 
+                                    
+                                this.secondAddColor = color;
+                                    
+                                this.numberColor++;
+                                }
+                            } else if (this.numberColor == 2 ){
+                                if (this.firstAddColor!= color && this.secondAddColor!= color )   { 
+                                this.numberColor++;
+                                }
+                               
+                            
+                            } 
+                           
         },
 
         jump: function () {
