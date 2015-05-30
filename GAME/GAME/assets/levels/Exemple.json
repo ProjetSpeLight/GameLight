@@ -39,7 +39,39 @@
     }
   ],
   "loopingPlatforms": [
-
+    {
+      "positions": [
+        {
+          "x": 150,
+          "y": 300,
+          "speed": {
+            "x": 100,
+            "y": 100
+          }
+        },
+        {
+          "x": 250,
+          "y": 400,
+          "speed": {
+            "x": -100,
+            "y": 100
+          }
+        },
+        {
+          "x": 150,
+          "y": 500,
+          "speed": {
+            "x": 0,
+            "y": -200
+          }
+        }
+      ],
+      "size": {
+        "x": 1,
+        "y": 1
+      },
+      "immovable": false
+    }
 
   ],
   "backAndForthPlatforms": [
@@ -74,8 +106,6 @@
         "x": 1,
         "y": 1
       },
-      "skin": "ground",
-      "color": "",
       "immovable": false
     }
   ],
