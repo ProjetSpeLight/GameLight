@@ -1,18 +1,18 @@
-/**
-  * This module defines the group of sprites representing the differents filters
-  *
-  */
+define(['phaser', 'app/phasergame', 'app/player', 'app/color'], function (Phaser, PhaserGame, player, Color) {
 
-define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame, player) {
-
+    /// @function applyFilter
+    /// Handler called when the player overlap a filter
     function applyFilter(sprite, filter) {
-        var color = 'Red';
-        player.filterColor(color);
+        player.filterColor(color, filter.color);
     }
 
-    function updateObject() {
-        PhaserGame.game.physics.arcade.overlap(player.sprite, ends, applyFilter);
+    /// @function applyFilter
+    /// Handler called when a photon thrown by the player overlap a filter
+    function applyFilterPhoton(photon, filter) {
+        photon.color = Color.subFilterColor(photon.color, Color.getColor(filter.color));
     }
+
+
 
 
     /************ Public part of the module ************/
@@ -30,9 +30,9 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         /// Create the differents objects defines in the JSON file represented by this module
         /// @param {Array} Array of elements representing 
         createObjectGroup: function (data) {
-
+            // Allocation of the group
             this.group = PhaserGame.game.add.physicsGroup();
-
+            // If no filters are defined in the current level, there is nothing to do
             if (data == null) {
                 return;
             }
@@ -43,14 +43,17 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
                 var filter = this.group.create(filterData.position.x, filterData.position.y, filterData.skin + filterData.color);
                 // Attribute color
                 filter.color = filterData.color;
-
-
             }
         },
-        /// @function createObjectsGroup
-        updateObject: updateObject
-     
-   
+
+        /// @function updateObject
+        /// Updates the group of filters (to be called by the update() function of the game state)
+        updateObject: function () {
+            PhaserGame.game.physics.arcade.overlap(player.sprite, this.group, applyFilter);
+            PhaserGame.game.physics.arcade.overlap(player.refPhotons.photons, this.group, applyFilterPhoton);
+        }
+
+
     }
 
 });
