@@ -226,6 +226,8 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
 
         },
         
+        /// @function removePlayerColor
+        /// remove the last color he obtained 
         removePlayerColor: function (){
             
             if (this.numberColor == 0 ) {
@@ -279,6 +281,11 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
                 }*/
             }
             
+            /**
+             We modify the informatio about the first color 
+             the player obtain, the second color obtain and 
+             the number of color
+            **/
             if (this.numberColor == 0 ){
                                 this.firstAddColor = color;
                                 this.numberColor++;
