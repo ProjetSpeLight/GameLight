@@ -13,25 +13,12 @@
     }
   },
   "playerStart": {
-    "x": 100,
+    "x": 50,
     "y": 150
   },
   "platforms": [
-    {
-      "position": {
-        "x": 0,
-        "y": 400
-      },
-      "size": {
-        "x": 2,
-        "y": 1
-      },
-      "color": "",
-      "skin": "ground",
-      "crossable": true,
-      "immovable": true
-    },
-    {
+    
+    { 
       "position": {
         "x": 0,
         "y": 200
