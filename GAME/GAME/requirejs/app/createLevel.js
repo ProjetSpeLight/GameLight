@@ -60,6 +60,9 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
 
     function createCoin(levelData) {
         var dataCoins = levelData.coins;
+        if (dataCoins == null) {
+            return;
+        }
         for (var i = 0 ; i < dataCoins.length ; i++) {
             var coinData = dataCoins[i];
             var coin = coins.create(coinData.x, coinData.y, 'coin');
@@ -72,13 +75,7 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
         player.initializePlayer(PhaserGame.game, element.x, element.y);
     }
 
-    function isNear(x, y, w, z, epsillon) {
-        var d = (x - w) * (x - w) + (y - z) * (y - z);
-        return (d <= epsillon);
-    }
-
-
-    
+       
 
     return {
 
