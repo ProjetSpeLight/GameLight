@@ -1,5 +1,5 @@
 /**
-  * This module implements the differents actions that can occurs after an event on a switch or a button
+  * This module implements the differents actions that can occur after an event on a switch or a button
   *
   * Structure of the JSON file related to the declaration of actions
   *
