@@ -49,7 +49,8 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
     }
     
     function startWatching() {
-        inGame = true;    
+        inGame = true;
+        Player.accelerometerOn = true;
     }
 
     function onDeviceReady() {
@@ -58,33 +59,25 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
 
     function stopWatching() {
         inGame = false;
+        Player.accelerometerOn = false;
     }
 
     function onSuccess(acceleration) {
         if (inGame) {
-            orientationDroite = (acceleration.z >= 0);
-            if(orientationDroite){
-                if (acceleration.y > zoneMorte) {
-                    Player.moveLeft = true;
-                    Player.moveRight = false;
-                } else if (acceleration.y < -zoneMorte) {
-                    Player.moveRight = true;
-                    Player.moveLeft = false;
+            var signe;
+            if(acceleration.x < 0){
+                signe = -1;
+            } else {
+                signe = 1;
+            }
+            if (Math.abs(acceleration.y) > zoneMorte) {
+                if(acceleration.y > 0){
+                    Player.velocity = signe * (acceleration.y - zoneMorte) / (9.80 - zoneMorte) * 300;
                 } else {
-                    Player.moveLeft = false;
-                    Player.moveRight = false;
+                    Player.velocity = signe * (acceleration.y + zoneMorte) / (9.80 - zoneMorte) * 300;
                 }
             } else {
-                if (acceleration.y < -zoneMorte) {
-                    Player.moveLeft = true;
-                    Player.moveRight = false;
-                } else if (acceleration.y > zoneMorte) {
-                    Player.moveRight = true;
-                    Player.moveLeft = false;
-                } else {
-                    Player.moveLeft = false;
-                    Player.moveRight = false;
-                }
+                Player.velocity = 0;
             }
         }
     } 

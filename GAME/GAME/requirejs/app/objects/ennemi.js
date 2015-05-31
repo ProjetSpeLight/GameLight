@@ -3,7 +3,7 @@
   *
   */
 
-define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photon'], function (Phaser, PhaserGame, player, coinObject, photon) {
+define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photon', 'app/touch'], function (Phaser, PhaserGame, player, coinObject, photon, Touch) {
 
     // on a une collision dans pique à corriger une fois finie
 
