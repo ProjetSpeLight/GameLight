@@ -50,15 +50,10 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photo
 
             this.group = PhaserGame.game.add.physicsGroup();
 
-            if (data == null) {
-                return;
-            }
-
-
-
+            if (data == null)
+                return;          
             for (var i = 0 ; i < data.length ; i++) {
                 var ennemiData = data[i];
-
                 var ennemi = this.group.create(ennemiData.x, ennemiData.y, ennemiData.skin);
                 ennemi.frame = 1;
                 if (ennemiData.speed.x != 0) {
@@ -66,7 +61,6 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photo
                     ennemi.body.sprite.rightBounds = ennemiData.bounds.right;
                     ennemi.body.velocity.x = ennemiData.speed.x;
                 }
-
                 ennemi.body.bounce.y = 0;
                 ennemi.body.gravity.y = 1000;
 

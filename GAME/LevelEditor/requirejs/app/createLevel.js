@@ -35,7 +35,7 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
 
     function createWorld(levelData) {
         //  Creation of the background
-        var background = PhaserGame.game.add.sprite(levelData.background.position.x, levelData.background.position.y, levelData.background.skin);
+        var background = PhaserGame.game.add.sprite(0, 0, levelData.background);
         background.fixedToCamera = true;
 
 
@@ -47,8 +47,9 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
 
     function createEnds(levelData) {
         var dataEnds = levelData.ends;
-        if (dataEnds == null) 
+        if (dataEnds == null) {
             return;
+        }
         for (var i = 0 ; i < dataEnds.length ; i++) {
             var endData = dataEnds[i];
             var end = ends.create(endData.x, endData.y, 'diamond');
@@ -59,8 +60,9 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
 
     function createCoin(levelData) {
         var dataCoins = levelData.coins;
-        if (dataCoins == null)
+        if (dataCoins == null) {
             return;
+        }
         for (var i = 0 ; i < dataCoins.length ; i++) {
             var coinData = dataCoins[i];
             var coin = coins.create(coinData.x, coinData.y, 'coin');
@@ -98,7 +100,7 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
             platforms = PhaserGame.game.add.physicsGroup();
             ends = PhaserGame.game.add.group();
             //coins = PhaserGame.game.add.group();
-            //ennemis = PhaserGame.game.add.physicsGroup();
+            ennemis = PhaserGame.game.add.physicsGroup();
             //piques = PhaserGame.game.add.physicsGroup();
 
 

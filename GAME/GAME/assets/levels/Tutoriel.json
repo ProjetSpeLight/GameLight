@@ -1,80 +1,104 @@
 {
   "worldBounds": {
     "leftBound": 0,
-    "rightBound": 1600,
+    "rightBound": 3200,
     "upperBound": 0,
     "lowerBound": 600
   },
   "background": "sky",
   "playerStart": {
-    "x": 32,
-    "y": 15
+    "x": 1100,
+    "y": 500
   },
   "platforms": [
     {
       "position": {
         "x": 0,
-        "y": 600
+        "y": 560
       },
       "size": {
-        "x": 1,
-        "y": 1
+        "x": 60,
+        "y": 2
       }
-    }
-
-  ],
-  "coins": [
-    {
-      "x": 50,
-      "y": 250,
-      "skin": "coin"
+    },
+	{
+      "position": {
+        "x": 300,
+        "y": 440
+      },
+      "size": {
+        "x": 6
+      }
     },
     {
-      "x": 0,
-      "y": 152,
-      "skin": "coin"
+      "position": {
+        "x": 500,
+        "y": 360
+      },
+      "size": {
+        "x": 4
+      }
+    },
+	{
+      "position": {
+        "x": 525,
+        "y": 359
+      },
+	"color" : "Red"
+    },
+	{
+      "position": {
+        "x": 1100,
+        "y": 559
+      },
+	"color" : "Red"
+    },
+	    {
+      "position": {
+        "x": 1400,
+        "y": 560
+      },
+      "size": {
+        "x": 60,
+        "y": 2
+      }
     }
   ],
-  "ennemis": [
-    {
-      "x": 800,
-      "y": 0,
+  "coins":[
+  {
+	  "x":380,
+	  "y":410,
+	  "skin":"coin"
+  },
+  {
+	  "x":700,
+	  "y":530,
+	  "skin":"coin"
+  }
+  ],
+  "piques":[
+  {
+	  "x": 900,
+      "y": 465,
+      "skin": "pique"
+  }
+  ],
+  "ennemis":[
+  {
+      "x": 1600,
+      "y": 500,
       "bounds": {
-        "left": 100,
-        "right": 200,
-        "lower": 900,
-        "upper": 0
+        "left": 1600,
+        "right": 1800,
+		"lower":600,
+		"upper":0
       },
       "speed": {
         "x": 150,
-        "y": 200
+		"y": 0
       },
       "skin": "baddie"
     }
-  ],
-
-  "mirrors": [
-    {
-      "x": 1000,
-      "y": 520,
-      "angle": 135
-    }
-  ],
-
-  "filters": [
-    {
-      "x": 100,
-      "y": 540,
-      "color": "Blue"
-    }
-  ],
-
-  "buttons": [
-    {
-      "x": 50,
-      "y": 540
-
-    }
-  ]
+	]
 
 }

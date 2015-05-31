@@ -3,11 +3,11 @@ define(['phaser', 'app/phasergame'], function (Phaser, PhaserGame) {
 
 
     function preload_pause() {
-        PhaserGame.game.load.image('pause', 'assets/pause.png', 180, 210);
-        PhaserGame.game.load.image('menu', 'assets/button_menu.png', 180, 210);
-        PhaserGame.game.load.image('RetMenu', 'assets/button_RetMenu.png', 180, 210);
-        PhaserGame.game.load.image('restart', 'assets/button_restart.png', 180, 210);
-        PhaserGame.game.load.image('resume', 'assets/button_resume.png', 180, 210);
+        PhaserGame.game.load.image('pause', 'http://localhost:4200/assets/pause.png', 180, 210);
+        PhaserGame.game.load.image('menu', 'http://localhost:4200/assets/button_menu.png', 180, 210);
+        PhaserGame.game.load.image('RetMenu', 'http://localhost:4200/assets/button_RetMenu.png', 180, 210);
+        PhaserGame.game.load.image('restart', 'http://localhost:4200/assets/button_restart.png', 180, 210);
+        PhaserGame.game.load.image('resume', 'http://localhost:4200/assets/button_resume.png', 180, 210);
     }
 
 
