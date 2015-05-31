@@ -12,82 +12,6 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         WHITE: { value: 7, name: 'White', code: 'W' }
     }
 
-    function changeFirstAndSecondColor(color, player) {
-        switch (color) {
-            case ColorEnum.BLACK:
-                player.firstAddColor = ColorEnum.BLACK;
-                player.secondAddColor = ColorEnum.BLACK;
-                player.numberColor = 0;
-                break;
-
-            case ColorEnum.RED:
-            case ColorEnum.BLUE:
-            case ColorEnum.GREEN:
-                player.firstAddColor = color;
-                player.secondAddColor = ColorEnum.BLACK;
-                player.numberColor = 1;
-                break;
-
-            case ColorEnum.YELLOW:
-                if (player.firstAddColor == ColorEnum.BLUE) {
-                    if (player.secondAddColor == ColorEnum.GREEN) {
-                        player.firstAddColor = player.secondAddColor;
-                        player.secondAddColor = ColorEnum.RED;
-                    } else {
-                        player.firstAddColor = player.secondAddColor;
-                        player.secondAddColor = ColorEnum.GREEN;
-                    }
-                }
-                if (player.secondAddColor == ColorEnum.BLUE) {
-                    if (player.firstAddColor == ColorEnum.GREEN) {
-                        player.secondAddColor = ColorEnum.RED;
-                    } else {
-                        player.secondAddColor = ColorEnum.GREEN;
-                    }
-                }
-                player.numberColor = 2;
-                break;
-            case ColorEnum.CYAN:
-                if (player.firstAddColor == ColorEnum.RED) {
-                    if (player.secondAddColor == ColorEnum.GREEN) {
-                        player.firstAddColor = player.secondAddColor;
-                        player.secondAddColor = ColorEnum.BLUE;
-                    } else {
-                        player.firstAddColor = player.secondAddColor;
-                        player.secondAddColor = ColorEnum.GREEN;
-                    }
-                }
-                if (player.secondAddColor == ColorEnum.RED) {
-                    if (player.firstAddColor == ColorEnum.GREEN) {
-                        player.secondAddColor = ColorEnum.BLUE;
-                    } else {
-                        player.secondAddColor = ColorEnum.GREEN;
-                    }
-                }
-                player.numberColor = 2;
-                break;
-            case ColorEnum.MAGENTA:
-                if (player.firstAddColor == ColorEnum.GREEN) {
-                    if (player.secondAddColor == ColorEnum.RED) {
-                        player.firstAddColor = player.secondAddColor;
-                        player.secondAddColor = ColorEnum.BLUE;
-                    } else {
-                        player.firstAddColor = player.secondAddColor;
-                        player.secondAddColor = ColorEnum.RED;
-                    }
-                }
-                if (player.secondAddColor == ColorEnum.GREEN) {
-                    if (player.firstAddColor == ColorEnum.RED) {
-                        player.secondAddColor = ColorEnum.BLUE;
-                    } else {
-                        player.secondAddColor = ColorEnum.RED;
-                    }
-                }
-                player.numberColor = 2;
-                break;
-        }
-    }
-
 
     function subAdditiveColorMagenta(color1, color2) {
         return color1.name == 'Red' && color2.name == 'Blue';
@@ -132,7 +56,7 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
     /// @param {Object} Element of the enumeration ColorEnum representing the initial color
     /// @param {Object} Element of the enumeration ColorEnum representing the filter color
     /// Assumes that the intial color is correctly defined
-    function subFilterColor(playerColor, color, player) {
+    function subFilterColor(playerColor, color) {
 
         if (color == null) {
             return null;
@@ -140,18 +64,23 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
 
         switch (playerColor) {
             case ColorEnum.RED:
+                if (color == ColorEnum.RED || color == ColorEnum.MAGENTA || color == ColorEnum.YELLOW) {
+                    return ColorEnum.RED;
+                }
+                break;
             case ColorEnum.BLUE:
+                if (color == ColorEnum.BLUE || color == ColorEnum.MAGENTA || color == ColorEnum.CYAN) {
+                    return ColorEnum.BLUE;
+                }
+                break;
             case ColorEnum.GREEN:
-                if (playerColor == color) {
-                    return color;
+                if (color == ColorEnum.GREEN || color == ColorEnum.CYAN || color == ColorEnum.YELLOW) {
+                    return ColorEnum.GREEN;
                 }
                 break;
 
             case ColorEnum.MAGENTA:
                 if (color == ColorEnum.RED || color == ColorEnum.BLUE) {
-                    player.firstAddColor = color;
-                    player.secondAddColor = ColorEnum.BLACK;
-                    player.numberColor = 1;
                     return color;
                 }
                 if (color == ColorEnum.MAGENTA) {
@@ -161,9 +90,6 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
 
             case ColorEnum.YELLOW:
                 if (color == ColorEnum.GREEN || color == ColorEnum.RED) {
-                    player.firstAddColor = color;
-                    player.secondAddColor = ColorEnum.BLACK;
-                    player.numberColor = 1;
                     return color;
                 }
                 if (color == ColorEnum.YELLOW) {
@@ -173,9 +99,6 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
 
             case ColorEnum.CYAN:
                 if (color == ColorEnum.GREEN || color == ColorEnum.BLUE) {
-                    player.firstAddColor = color;
-                    player.secondAddColor = ColorEnum.BLACK;
-                    player.numberColor = 1;
                     return color;
                 }
                 if (color == ColorEnum.CYAN) {
@@ -184,16 +107,10 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
                 break;
 
             case ColorEnum.WHITE:
-                changeFirstAndSecondColor(color, player);
                 return color;
                 break;
         }
-
-        player.firstAddColor = ColorEnum.BLACK;
-        player.secondAddColor = ColorEnum.BLACK;
-        player.numberColor = 0;
         return ColorEnum.BLACK;
-
     }
 
     /// @function getColor

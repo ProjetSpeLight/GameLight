@@ -125,26 +125,10 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
 
         /// @function removePlayerColor
         /// remove the last color he obtained 
-        removePlayerColor: function () {
-
-            if (this.numberColor == 0) {
-                return;
-            }
-
-            if (this.numberColor == 1) {
-                this.sprite.color = Color.getColor('Black');
-                this.firstAddColor = Color.getColor('Black');
-                this.secondAddColor = Color.getColor('Black');
-                this.numberColor--;
-
-            } else if (this.numberColor == 2) {
-                this.sprite.color = this.firstAddColor;
-                this.secondAddColor = Color.getColor('Black');
-                this.numberColor--;
-            } else if (this.numberColor == 3) {
-                this.sprite.color = this.secondAddColor;
-                this.numberColor--;
-            }
+        removePlayerColor: function () {           
+            this.sprite.color = this.firstAddColor;
+            this.firstAddColor = this.secondAddColor;
+            this.secondAddColor = Color.ColorEnum.BLACK;
         },
 
 
@@ -159,33 +143,11 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
             }
             color = Color.additiveColor(this.sprite.color, color);
             if (this.sprite.color != color) {
+                this.secondAddColor = this.firstAddColor;
+                this.firstAddColor = this.sprite.color;
                 this.sprite.color = color;
                 this.sprite.frame = this.sprite.color.value * 9 + 4;
             }
-
-            /**
-             We modify the informatio about the first color 
-             the player obtain, the second color obtain and 
-             the number of color
-            **/
-            if (this.numberColor == 0) {
-                this.firstAddColor = color;
-                this.numberColor++;
-            } else if (this.numberColor == 1) {
-                if (this.firstAddColor != color) {
-
-                    this.secondAddColor = color;
-
-                    this.numberColor++;
-                }
-            } else if (this.numberColor == 2) {
-                if (this.firstAddColor != color && this.secondAddColor != color) {
-                    this.numberColor++;
-                }
-
-
-            }
-
         },
 
         jump: function () {
@@ -208,7 +170,13 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
         },
 
         filterColor: function (color) {
-            this.sprite.color = Color.subFilterColor(this.sprite.color, Color.getColor(color), this);
+            this.sprite.color = Color.subFilterColor(this.sprite.color, Color.getColor(color));
+            this.firstAddColor = Color.subFilterColor(this.firstAddColor, Color.getColor(color));
+            if (this.firstAddColor == this.sprite.color) {
+                this.firstAddColor = Color.ColorEnum.BLACK;
+            }
+            this.secondAddColor = Color.ColorEnum.BLACK;
+
 
         }
 
