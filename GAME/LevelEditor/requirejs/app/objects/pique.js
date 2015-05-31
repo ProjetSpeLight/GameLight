@@ -3,21 +3,31 @@
   *
   */
 
-define(['phaser', 'app/phasergame','app/player','app/objects/coin','app/objects/platforms'], function (Phaser, PhaserGame,player,coinObject,platform) {
+define(['phaser', 'app/phasergame','app/player','app/objects/coin','app/objects/platforms','app/objects/ennemi','app/touch'], function (Phaser, PhaserGame,player,coinObject,platform,ennemiObject, Touch) {
 
-   function killPlayerPique(player, pique) {
+   //function which allow the pique to kill the player 
+   function killPlayerPique(play, pique) {
                    
-       
-       if (!PhaserGame.game.device.desktop) {
-           Touch.stopMobile();
+       if (!play.invincible){
+           if (!PhaserGame.game.device.desktop) {
+               Touch.stopMobile();
+           }
+           coinObject.score = 0;
+           //check if the player has a color or not
+           if (play.color.value != 0){
+               //he has a color so we remove the last color
+                player.timeInvincible=1;
+                player.removePlayerColor();
+           } else {
+               //he hasn't so we restart the game
+           PhaserGame.game.state.start('RestartGame');
+           }
+           
        }
-       coinObject.score = 0;
-       time =0;
-       PhaserGame.game.state.start('RestartGame');
-                
    }
    
-    function killEnnemiPique(photon, ennemi){
+    //function which allow the pique to kill the ennemis
+    function killEnnemiPique(pique, ennemi){
         ennemi.kill();
     }
     
@@ -25,7 +35,7 @@ define(['phaser', 'app/phasergame','app/player','app/objects/coin','app/objects/
     
         /***** Attributes *****/
 
-        // Object containing the physic group of filters
+        // Object containing the physic group of piques
         group: null,
         
         /***** Methodes *****/
@@ -52,11 +62,13 @@ define(['phaser', 'app/phasergame','app/player','app/objects/coin','app/objects/
         },
         
         updateObject: function () {
-            //when the player touches a coin, the score improves
              PhaserGame.game.physics.arcade.collide(this.group, platforms);
             
-                PhaserGame.game.physics.arcade.collide(player.sprite, this.group, killPlayerPique, null, this);
-              PhaserGame.game.physics.arcade.collide(this.group,ennemis,killEnnemiPique,null,this);
+
+               
+                PhaserGame.game.physics.arcade.collide(this.group, ennemiObject.group, killEnnemiPique, null, this);
+                PhaserGame.game.physics.arcade.overlap(player.sprite, this.group, killPlayerPique, null, this);
+
         }
        
    }

@@ -19,7 +19,7 @@ define(['phaser', 'app/phasergame', 'app/player','app/states/gameState'], functi
         
         /***** Attributes *****/
 
-        // Object containing the physic group of filters
+        // Object containing the physic group of coins
         group: null,
         score: 0,
 

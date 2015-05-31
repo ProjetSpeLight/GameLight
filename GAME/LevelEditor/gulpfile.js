@@ -1,39 +1,23 @@
 // to install gulp : npm install gulp -g
 // include plug-ins
-// to install a plugin-in : npm install gulp-jshint --save-dev
+// to install a plugin-in : npm install gulp-util gulp-clean gulp-connect --save-dev
 // attention : il faut réinstaller localement gulp : npm install gulp --save-dev
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var clean = require('gulp-clean');
-var jshint = require('gulp-jshint');
-var changed = require('gulp-changed');
-var imagemin = require('gulp-imagemin');
 var connect = require('gulp-connect');
 
-// JS hint task
-gulp.task('jshint', function () {
-    gulp.src('./**.js')
-      .pipe(jshint())
-      .pipe(jshint.reporter('default'));
-});
 
-
-// Recopie des sources dans dist
-//var filesToMove = [
-//        './_locales/**/*.*',
-//        './icons/**/*.*',
-//        './src/page_action/**/*.*',
-//        './manifest.json'
-//];
-var filesToMove = './src/*.js';
+var filesToMove = ['../GAME/requirejs/app/createLevel.js', '../GAME/requirejs/app/objects/*.js'];
 
 gulp.task('clean', function () {
-    return gulp.src(['dist/*'], { read: false })
+    return gulp.src(['requirejs/app/createLevel.js', 'requirejs/app/objects/*.js'], { read: false })
     .pipe(clean());
 });
 
 gulp.task('cp', ['clean'], function () {
-    gulp.src(filesToMove).pipe(gulp.dest('dist'));
+    gulp.src('../GAME/requirejs/app/createLevel.js').pipe(gulp.dest('requirejs/app'));
+    gulp.src('../GAME/requirejs/app/objects/*.js').pipe(gulp.dest('requirejs/app/objects'));
 });
 
 // Compresser les images
@@ -46,15 +30,4 @@ gulp.task('connect', function () {
     });
 });
 
-/*
-gulp.task('html', function () {
-    gulp.src('./*.html', './src/*.js', './node_modules/**')
-      .pipe(connect.reload());
-});*/
 
-// Permet au serveur de prendre en compte les modifications des sources (ce qui évite de stopper/relance le serveur à chaque modification)
-gulp.task('watch', function () {
-    gulp.watch(['./*.html', './src/*.js', './node_modules/**'], ['html']);
-});
-
-gulp.task('default', ['connect', 'watch', 'html']);
