@@ -1,5 +1,5 @@
 
-define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/objects/mirror','app/objects/coin', 'app/objects/platforms','app/objects/pique'], function (Phaser, player, PhaserGame, switchObject, mirror,coinObject, platformsObject,piqueObject) {
+define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/objects/mirror','app/objects/coin', 'app/objects/platforms','app/objects/pique','app/objects/ennemi', 'app/objects/filter', 'app/objects/button','app/objects/time'], function (Phaser, player, PhaserGame, switchObject, mirror,coinObject, platformsObject,piqueObject,ennemiObject, filter, button,time) {
 
 
 
@@ -15,7 +15,8 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
         //createCoin(levelData);
         coinObject.createObjectGroup(levelData.coins);
         // Creation of the ennemies
-        createEnnemis(levelData);
+        ennemiObject.createObjectGroup(levelData.ennemis);
+        
         //Creation of the pique
         piqueObject.createObjectGroup(levelData.piques);
         // Creation of the ends
@@ -23,6 +24,12 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
         mirror.createObjectsGroup(levelData.mirrors);
 
         switchObject.createObjectsGroup(levelData.switch);
+
+        filter.createObjectsGroup(levelData.filters);
+
+        button.createObjectsGroup(levelData.buttons);
+        
+        time.createTime(levelData.time);
         
     }
 
@@ -40,6 +47,9 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
 
     function createEnds(levelData) {
         var dataEnds = levelData.ends;
+        if (dataEnds == null) {
+            return;
+        }
         for (var i = 0 ; i < dataEnds.length ; i++) {
             var endData = dataEnds[i];
             var end = ends.create(endData.x, endData.y, 'diamond');
@@ -50,6 +60,9 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
 
     function createCoin(levelData) {
         var dataCoins = levelData.coins;
+        if (dataCoins == null) {
+            return;
+        }
         for (var i = 0 ; i < dataCoins.length ; i++) {
             var coinData = dataCoins[i];
             var coin = coins.create(coinData.x, coinData.y, 'coin');
@@ -62,50 +75,7 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
         player.initializePlayer(PhaserGame.game, element.x, element.y);
     }
 
-    function isNear(x, y, w, z, epsillon) {
-        var d = (x - w) * (x - w) + (y - z) * (y - z);
-        return (d <= epsillon);
-    }
-
-
-    function createEnnemis(levelData) {
-        var dataEnnemis = levelData.ennemis;
-        for (var i = 0 ; i < dataEnnemis.length ; i++) {
-            var ennemiData = dataEnnemis[i];
-            var ennemi = ennemis.create(ennemiData.x, ennemiData.y, 'baddie');
-            ennemi.frame = 1;
-            if (ennemiData.speed.x != 0) {
-                ennemi.body.sprite.leftBounds = ennemiData.bounds.left;
-                ennemi.body.sprite.rightBounds = ennemiData.bounds.right;
-                ennemi.body.velocity.x = ennemiData.speed.x;
-            }
-            //pas sur non plus de ces 3 la
-            //platform.body.immovable = platformData.immovable;
-            //ennemi.body.immovable = ennemiData.immovable;
-            ennemi.body.bounce.y = 0;
-            ennemi.body.gravity.y = 1000;
-        }
-
-
-    }
-
-    function createPiques(levelData) {
-        var dataPiques = levelData.piques;
-        if (dataPiques != null) {
-            for (var i = 0 ; i < dataPiques.length ; i++) {
-                var piqueData = dataPiques[i];
-                var pique = piques.create(piqueData.x, piqueData.y, 'pique');
-                pique.body.gravity.y = 1000;
-            }
-        }
-    }
-
-
-
-
-
-
-
+       
 
     return {
 
@@ -130,7 +100,7 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
             platforms = PhaserGame.game.add.physicsGroup();
             ends = PhaserGame.game.add.group();
             //coins = PhaserGame.game.add.group();
-            ennemis = PhaserGame.game.add.physicsGroup();
+            //ennemis = PhaserGame.game.add.physicsGroup();
             //piques = PhaserGame.game.add.physicsGroup();
 
 
@@ -142,7 +112,7 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
             //colourPlatforms.enableBody = true;
             //ennemis.enableBody = true;
 
-            ennemis.enableBody = true;
+            //ennemis.enableBody = true;
 
 
             // Creation of the level's objects
