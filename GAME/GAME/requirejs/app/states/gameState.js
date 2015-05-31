@@ -1,5 +1,5 @@
 
-define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'app/phasergame', 'app/touch', 'app/objects/mirror', 'app/objects/filter', 'app/objects/switch', 'app/objects/platforms', 'app/objects/coin', 'app/objects/pique', 'app/objects/ennemi'], function (Phaser, createLevel, player, pause, photon, PhaserGame, Touch, mirror, filter, switchObject, platformsObject, coinObject, piqueObject, ennemiObject) {
+define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'app/phasergame', 'app/touch', 'app/objects/mirror', 'app/objects/filter', 'app/objects/switch', 'app/objects/platforms', 'app/objects/coin', 'app/objects/pique', 'app/objects/ennemi', 'app/objects/button'], function (Phaser, createLevel, player, pause, photon, PhaserGame, Touch, mirror, filter, switchObject, platformsObject, coinObject, piqueObject, ennemiObject, button) {
 
     function GameState(game) { }
 
@@ -66,6 +66,29 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
 
         update: function () {
 
+
+            function makeColor(sprite, colorplatform) {
+                // Oblige le joueur à etre au dessus 
+                //de la plateforme coloree pour changer de couleur
+                if (sprite.body.touching.down) {
+                    // Oblige le joueur à appuyer 
+                    //sur la touche du bas pour changer de couleur
+                    if (this.input.keyboard.isDown(Phaser.Keyboard.DOWN) || player.changeColor) {
+                        player.changePlayerColor(colorplatform.color);
+
+
+                    }
+                }
+            }
+
+
+            function finish(player, diamond) {
+                if (!this.game.device.desktop) {
+                    Touch.stopMobile();
+                }
+                PhaserGame.game.state.start('FinishLevel');
+            }
+
             // If the level had not been loaded, we return to the main lmenu
             if (stopped) {
                 if (!PhaserGame.game.device.desktop) {
@@ -102,6 +125,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
                 coinObject.updateObject();
                 piqueObject.updateObject();
                 ennemiObject.updateObject();
+                button.updateObject();
                 
                 if(player.timeInvincible != 0) {
                     if (player.timeInvincible >= 180) {
@@ -125,7 +149,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
                 if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.R)) {
                     coinObject.score = 0;
                     time = 0;
-                    if (!this.game.device.desktop) {
+                    if (!PhaserGame.game.device.desktop) {
                         Touch.stopMobile();
                     }
                     PhaserGame.game.state.start('RestartGame');
@@ -164,27 +188,6 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
                     (PhaserGame.game.input.x > (PhaserGame.game.camera.width - 86)) &&
                     (PhaserGame.game.input.x < (PhaserGame.game.camera.width - 12))) {
                     pause.gamePaused();
-                }
-
-                function makeColor(sprite, colorplatform) {
-                    // Oblige le joueur à etre au dessus 
-                    //de la plateforme coloree pour changer de couleur
-                    if (sprite.body.touching.down) {
-                        // Oblige le joueur à appuyer 
-                        //sur la touche du bas pour changer de couleur
-                        if (this.input.keyboard.isDown(Phaser.Keyboard.DOWN) || player.changeColor) {
-                            player.changePlayerColor(colorplatform.color);
-
-                            
-                        }
-                    }
-                }
-
-                function finish(player, diamond) {
-                    if (!PhaserGame.game.device.desktop) {
-                        Touch.stopMobile();
-                    }
-                    PhaserGame.game.state.start('FinishLevel');
                 }
             }
         },

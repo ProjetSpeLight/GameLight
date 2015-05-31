@@ -1,8 +1,3 @@
-/**
- * This module implements the fonctionnalities of the player
- */
-
-
 define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser, photon, PhaserGame, Color) {
 
 
@@ -18,95 +13,8 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
 
         // Initialization of an attribute to indicate where the player look at
         sprite.lookRight = true;
-        sprite.invincible= false;
+        sprite.invincible = false;
     }
-
-
-    /*function subAdditiveColorMagenta(color1, color2) {
-        return color1.name == 'Red' && color2.name == 'Blue';
-    }
-
-    function subAdditiveColorYellow(color1, color2) {
-        return color1.name == 'Red' && color2.name == 'Green';
-    }
-
-    function subAdditiveColorCyan(color1, color2) {
-        return color1.name == 'Blue' && color2.name == 'Green';
-    }
-
-
-    function additiveColor(oldColor, newColor, ColorEnum) {
-        if (subAdditiveColorMagenta(oldColor, newColor) || subAdditiveColorMagenta(newColor, oldColor)) {
-            return ColorEnum.MAGENTA;
-        }
-
-        if (subAdditiveColorCyan(oldColor, newColor) || subAdditiveColorCyan(newColor, oldColor)) {
-            return ColorEnum.CYAN;
-        }
-
-        if (subAdditiveColorYellow(oldColor, newColor) || subAdditiveColorYellow(newColor, oldColor)) {
-            return ColorEnum.YELLOW;
-        }
-
-        if ((oldColor.name == 'Magenta' && newColor.name == 'Green') || (oldColor.name == 'Yellow' && newColor.name == 'Blue') || (oldColor.name == 'Cyan' && newColor.name == 'Red')) {
-            return ColorEnum.WHITE;
-        }
-
-        if (oldColor.name == 'Magenta' || oldColor.name == 'Cyan' || oldColor.name == 'Yellow' || oldColor.name == 'White') {
-            return oldColor;
-        }
-
-        return newColor;
-    }
-
-    function subFilterColor(playerColor, color, ColorEnum) {
-        if (color == null) {
-            return null;
-        }
-
-        switch (playerColor) {
-            case ColorEnum.RED:
-            case ColorEnum.BLUE:
-            case ColorEnum.GREEN:
-                if (playerColor == color) {
-                    return color;
-                }
-                break;
-
-            case ColorEnum.MAGENTA:
-                if (color == ColorEnum.RED || color == ColorEnum.BLUE) {
-                    return color;
-                }
-                if (color == ColorEnum.MAGENTA) {
-                    return color;
-                }
-                break;
-
-            case ColorEnum.YELLOW:
-                if (color == ColorEnum.GREEN || color == ColorEnum.RED) {
-                    return color;
-                }
-                if (color == ColorEnum.YELLOW) {
-                    return color;
-                }
-                break;
-
-            case ColorEnum.CYAN:
-                if (color == ColorEnum.GREEN || color == ColorEnum.BLUE) {
-                    return color;
-                }
-                if (color == ColorEnum.CYAN) {
-                    return color;
-                }
-                break;
-
-            case ColorEnum.WHITE:
-                return color;
-                break;
-        }
-        return ColorEnum.BLACK;
-
-    }*/
 
     return {
 
@@ -125,19 +33,8 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
         firstAddColor: Color.ColorEnum.BLACK,
         secondAddColor: Color.ColorEnum.BLACK,
         numberColor: 0,
-        
-        
-        // Declaration of the enumeration representing the color of the player
-       /* ColorEnum: {
-            BLACK: { value: 0, name: 'Black', code: 'B' },
-            RED: { value: 1, name: 'Red', code: 'R' },
-            BLUE: { value: 3, name: 'Blue', code: 'Bl' },
-            GREEN: { value: 2, name: 'Green', code: 'G' },
-            YELLOW: { value: 4, name: 'Yellow', code: 'Y' },
-            CYAN: { value: 5, name: 'Cyan', code: 'C' },
-            MAGENTA: { value: 6, name: 'Magenta', code: 'M' },
-            WHITE: { value: 7, name: 'White', code: 'W' }
-        },*/
+
+
 
         initializePlayer: function (game, x, y) {
             // The player and its settings            
@@ -150,21 +47,19 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
             this.sprite.body.gravity.y = 1000;
             PhaserGame.game.camera.follow(this.sprite);
             this.sprite.body.collideWorldBounds = true;
-            
 
 
             // Initialization of the player animations
-            //initializePlayerAnimations(this.sprite, this.ColorEnum);
             initializePlayerAnimations(this.sprite, Color.ColorEnum);
 
             // Initialization of an attribute to indicate where the player look at
             this.sprite.lookRight = true;
-            //this.sprite.color = this.ColorEnum.BLACK;
             this.sprite.color = Color.ColorEnum.BLACK;
+
             // Initialization of the photons
             photon.initPhotons(PhaserGame.game, this);
-            this.firstAddColor=Color.ColorEnum.BLACK;
-            this.secondAddColor= Color.ColorEnum.BLACK;
+            this.firstAddColor = Color.ColorEnum.BLACK;
+            this.secondAddColor = Color.ColorEnum.BLACK;
         },
 
 
@@ -233,85 +128,32 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
             }
 
         },
-        
+
         /// @function removePlayerColor
         /// remove the last color he obtained 
-        removePlayerColor: function (){
-            
-            if (this.numberColor == 0 ) {
-                return ;
-            }
-            
-            if (this.numberColor ==1 ) {
-                this.sprite.color = Color.getColor('Black');
-                this.firstAddColor = Color.getColor('Black');
-                this.secondAddColor = Color.getColor('Black');
-                this.numberColor--;
-                
-            } else if ( this.numberColor == 2 ) {
-                this.sprite.color = this.firstAddColor;
-                this.secondAddColor = Color.getColor('Black');
-                this.numberColor--;
-            } else if (this.numberColor == 3) {
-                this.sprite.color = this.secondAddColor;
-                this.numberColor--;
-            }
+        removePlayerColor: function () {           
+            this.sprite.color = this.firstAddColor;
+            this.firstAddColor = this.secondAddColor;
+            this.secondAddColor = Color.ColorEnum.BLACK;
         },
 
 
-        /// @function getColor
-        /// Return the object of the enumeration corresponding to the string in argument, null if the string does not represent a color name
-        /// @param {String} the color name
-       /* getColor: function (colorName) {
-            for (var id in this.ColorEnum) {
-                if (this.ColorEnum[id].name == colorName) {
-                    return this.ColorEnum[id];
-                }
-            }
-            return null;
-        },*/
+
 
         /// @function changePlayerColor
         /// Change the current color of the player (and thus of the photons he throws) to the new one given in argument
         changePlayerColor: function (newColor) {
-            //var color = this.getColor(newColor);
             var color = Color.getColor(newColor);
             if (color == null) {
                 return;
             }
-            //color = additiveColor(this.sprite.color, color, this.ColorEnum);
             color = Color.additiveColor(this.sprite.color, color);
             if (this.sprite.color != color) {
+                this.secondAddColor = this.firstAddColor;
+                this.firstAddColor = this.sprite.color;
                 this.sprite.color = color;
                 this.sprite.frame = this.sprite.color.value * 9 + 4;
-                /*if (this.sprite.color.value >= 1) {
-                    photon.photons.setAll('frame', this.sprite.color.value - 1);
-                }*/
             }
-            
-            /**
-             We modify the informatio about the first color 
-             the player obtain, the second color obtain and 
-             the number of color
-            **/
-            if (this.numberColor == 0 ){
-                                this.firstAddColor = color;
-                                this.numberColor++;
-                            } else if (this.numberColor == 1 ){
-                                if (this.firstAddColor!= color)   { 
-                                    
-                                this.secondAddColor = color;
-                                    
-                                this.numberColor++;
-                                }
-                            } else if (this.numberColor == 2 ){
-                                if (this.firstAddColor!= color && this.secondAddColor!= color )   { 
-                                this.numberColor++;
-                                }
-                               
-                            
-                            } 
-                           
         },
 
         jump: function () {
@@ -359,9 +201,14 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
         },
 
         filterColor: function (color) {
-            //this.sprite.color =  subFilterColor(this.sprite.color, this.getColor(color), this.ColorEnum);
-            this.sprite.color = Color.subFilterColor(this.sprite.color, Color.getColor(color),this);
-            
+            this.sprite.color = Color.subFilterColor(this.sprite.color, Color.getColor(color));
+            this.firstAddColor = Color.subFilterColor(this.firstAddColor, Color.getColor(color));
+            if (this.firstAddColor == this.sprite.color) {
+                this.firstAddColor = Color.ColorEnum.BLACK;
+            }
+            this.secondAddColor = Color.ColorEnum.BLACK;
+
+
         }
 
     }
