@@ -1,28 +1,16 @@
-define(['phaser', 'app/phasergame', 'app/player', 'app/objects/filter'], function (Phaser, PhaserGame, player, ennemi) {
+define(['phaser', 'app/phasergame', 'app/player', 'app/objects/filter', 'app/objects/action'], function (Phaser, PhaserGame, player, ennemi, action) {
 
     var CONST_DELAY = 5;
     var counter = 0;
 
-    /// @function handlerbutton
-    /// Handler called when a photon hits a button : trigger the associated action
-    /// @param {Photon} the photon that hits the button
-    /// @param {Phaser.Sprite} the button that has been hit by the photon
-    function handlerButton(photon, buttonObject) {
-        // We check if the colors match
-       // if (photon.color.name == buttonObject.colorName) {
-            // If that's the case, the action is performed
-        //alert('interrupteur on');
-        ennemi.group.children[0].body.x += 10;
-        //}
-        // In any case, the photon is destructed
-        //photon.kill();
-    }
+   
 
     return {
         // The group of sprites
         group: null,
+        
 
-       
+
 
         /// @function createObjectsGroup
         /// Creation of the differents buttons defined in the JSON file
@@ -47,21 +35,31 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/filter'], functio
                 //buttonObject.colorName = buttonData.color;
                 // By default, a button is immovable
                 buttonObject.body.immovable = true;
+
+                buttonObject.buttonAction = action.actionMoveObject;
+                buttonObject.args = {target:ennemi.group.children[0], x: 10, y: 0 };
             }
 
+        },
+
+        /// @function handlerButton
+        /// Handler called when the player is on a button : trigger the associated action
+        /// @param {Phaser.Sprite} the player sprite
+        /// @param {Phaser.Sprite} the button
+        handlerButton: function (playerSprite, button) {
+            if (playerSprite.body.touching.down && !playerSprite.body.touching.right && !playerSprite.body.touching.left) {
+                counter++;
+                if (counter == CONST_DELAY) {
+                    counter = 0;
+                    button.buttonAction(button.args);
+                }
+            }
         },
 
         /// @function updateObject
         /// Updates the group of buttons (to be called by the update() function of the game state)
         updateObject: function () {
-            counter++;
-            if (counter == CONST_DELAY) {
-                counter = 0;
-                PhaserGame.game.physics.arcade.collide(player.sprite, this.group, handlerButton);
-            } else {
-                PhaserGame.game.physics.arcade.collide(player.sprite, this.group, null);
-            }
-            
+            PhaserGame.game.physics.arcade.collide(player.sprite, this.group, this.handlerButton);
         }
     }
 
