@@ -47,9 +47,8 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
 
     function createEnds(levelData) {
         var dataEnds = levelData.ends;
-        if (dataEnds == null) {
+        if (dataEnds == null) 
             return;
-        }
         for (var i = 0 ; i < dataEnds.length ; i++) {
             var endData = dataEnds[i];
             var end = ends.create(endData.x, endData.y, 'diamond');
@@ -60,9 +59,8 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
 
     function createCoin(levelData) {
         var dataCoins = levelData.coins;
-        if (dataCoins == null) {
+        if (dataCoins == null)
             return;
-        }
         for (var i = 0 ; i < dataCoins.length ; i++) {
             var coinData = dataCoins[i];
             var coin = coins.create(coinData.x, coinData.y, 'coin');
