@@ -28,6 +28,10 @@
     <Content Include="requirejs\app\objects\pique.js" />
     <Content Include="requirejs\app\objects\platforms.js" />
     <Content Include="requirejs\app\objects\switch.js" />
+    <Content Include="requirejs\app\objects\action.js" />
+    <Content Include="requirejs\app\objects\button.js" />
+    <Content Include="requirejs\app\objects\objectsManager.js" />
+    <Content Include="requirejs\app\objects\time.js" />
     <Content Include="requirejs\app\touch.js" />
     <Content Include="requirejs\app\main.js" />
     <Content Include="requirejs\app\pause.js" />
