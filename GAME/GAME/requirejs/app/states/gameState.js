@@ -1,5 +1,5 @@
 
-define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'app/phasergame', 'app/touch', 'app/objects/mirror', 'app/objects/filter', 'app/objects/switch', 'app/objects/platforms', 'app/objects/coin', 'app/objects/pique', 'app/objects/ennemi', 'app/objects/button','app/objects/time'], function (Phaser, createLevel, player, pause, photon, PhaserGame, Touch, mirror, filter, switchObject, platformsObject, coinObject, piqueObject, ennemiObject, button,time) {
+define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'app/phasergame', 'app/touch', 'app/objects/platforms', 'app/objects/coin', 'app/objects/pique', 'app/objects/ennemi', 'app/objects/time', 'app/objects/objectsManager'], function (Phaser, createLevel, player, pause, photon, PhaserGame, Touch, platformsObject, coinObject, piqueObject, ennemiObject, time, objectsManager) {
 
     function GameState(game) { }
 
@@ -107,14 +107,11 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
                 PhaserGame.game.physics.arcade.collide(ends, platforms);
                 PhaserGame.game.physics.arcade.overlap(player.sprite, ends, finish, null, this);
 
-                mirror.updateObject();
-                filter.updateObject();
-                switchObject.updateObject();
+                objectsManager.updateObjects();
                 platformsObject.updateObject();
                 coinObject.updateObject();
                 piqueObject.updateObject();
                 ennemiObject.updateObject();
-                button.updateObject();
                 
                 if(player.timeInvincible != 0) {
                     if (player.timeInvincible >= 180) {
