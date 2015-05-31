@@ -1,5 +1,5 @@
 
-define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/objects/mirror','app/objects/coin', 'app/objects/platforms','app/objects/pique','app/objects/ennemi', 'app/objects/filter', 'app/objects/button'], function (Phaser, player, PhaserGame, switchObject, mirror,coinObject, platformsObject,piqueObject,ennemiObject, filter, button) {
+define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/objects/mirror','app/objects/coin', 'app/objects/platforms','app/objects/pique','app/objects/ennemi', 'app/objects/filter', 'app/objects/button','app/objects/time'], function (Phaser, player, PhaserGame, switchObject, mirror,coinObject, platformsObject,piqueObject,ennemiObject, filter, button,time) {
 
 
 
@@ -28,6 +28,8 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
         filter.createObjectsGroup(levelData.filters);
 
         button.createObjectsGroup(levelData.buttons);
+        
+        time.createTime(levelData.time);
         
     }
 

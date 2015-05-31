@@ -1,13 +1,10 @@
 
-define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'app/phasergame', 'app/touch', 'app/objects/mirror', 'app/objects/filter', 'app/objects/switch', 'app/objects/platforms', 'app/objects/coin', 'app/objects/pique', 'app/objects/ennemi', 'app/objects/button'], function (Phaser, createLevel, player, pause, photon, PhaserGame, Touch, mirror, filter, switchObject, platformsObject, coinObject, piqueObject, ennemiObject, button) {
+define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'app/phasergame', 'app/touch', 'app/objects/mirror', 'app/objects/filter', 'app/objects/switch', 'app/objects/platforms', 'app/objects/coin', 'app/objects/pique', 'app/objects/ennemi', 'app/objects/button','app/objects/time'], function (Phaser, createLevel, player, pause, photon, PhaserGame, Touch, mirror, filter, switchObject, platformsObject, coinObject, piqueObject, ennemiObject, button,time) {
 
     function GameState(game) { }
 
     // Boolean used to stopped the game where the level can not be loaded
     var stopped = false;
-
-    // Timer to display
-    var time = 0;
 
     // Variable used to count a second
     var compt = 0;
@@ -15,16 +12,12 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
     // Object displaying the score
     var scoreText;
 
-    // Object displaying the timer
-    var timerText;
-
-
+    
     GameState.prototype = {
         create: function () {
             // First we initialize the scope variables
             stopped = false;
             coinObject.score = 0;
-            time = 0;
             compt = 0;
             
 
@@ -49,10 +42,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
             scoreText = PhaserGame.game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
             scoreText.fixedToCamera = true;
 
-            // Initialization of the bject displaying the timer
-            timeText = PhaserGame.game.add.text(150, 16, 'Time: 0', { fontSize: '32px', fill: '#000' });
-            timeText.fixedToCamera = true;
-
+           
             // Initialization of the pause button
             var button_pause = PhaserGame.game.add.sprite(750, 20, 'pause');
             button_pause.inputEnabled = true;
@@ -103,9 +93,8 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
                 // Update of the timer
                 compt++;
                 if (compt == 60) {
-                    time++;
                     compt = 0;
-                    timeText.text = 'Time: ' + time;
+                    time.updateTime();
                 }
                 
                 
@@ -148,7 +137,6 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
                 // We restart the game when "R" is pushed
                 if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.R)) {
                     coinObject.score = 0;
-                    time = 0;
                     if (!this.game.device.desktop) {
                         Touch.stopMobile();
                     }
@@ -158,7 +146,6 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
                 // We restart the game when the character falls of the map
                 if (player.sprite.body.y > PhaserGame.game.world.height - 64) {
                     coinObject.score = 0;
-                    time = 0;
                     if (!this.game.device.desktop) {
                         Touch.stopMobile();
                     }
@@ -168,7 +155,6 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
                 // Mort du personnage quand coincé entre deux plateformes
                 if ((player.sprite.body.touching.down && player.sprite.body.touching.up) || (player.sprite.body.touching.right && player.sprite.body.touching.left)) {
                     coinObject.score = 0;
-                    time = 0;
                     if (!this.game.device.desktop) {
                         Touch.stopMobile();
                     }
