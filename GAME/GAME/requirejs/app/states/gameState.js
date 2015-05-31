@@ -33,7 +33,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
             }
 
             // Initialization of the controls for mobile
-            if (!this.game.device.desktop) {
+            if (!PhaserGame.game.device.desktop) {
                 Touch.initJoypad();
                 Touch.startMobile();
             }
@@ -81,7 +81,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
 
             // If the level had not been loaded, we return to the main lmenu
             if (stopped) {
-                if (!this.game.device.desktop) {
+                if (!PhaserGame.game.device.desktop) {
                     Touch.stopMobile();
                 }
                 PhaserGame.game.state.start('MainMenu');
@@ -137,7 +137,8 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
                 // We restart the game when "R" is pushed
                 if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.R)) {
                     coinObject.score = 0;
-                    if (!this.game.device.desktop) {
+
+                    if (!PhaserGame.game.device.desktop) {
                         Touch.stopMobile();
                     }
                     PhaserGame.game.state.start('RestartGame');
@@ -146,7 +147,8 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
                 // We restart the game when the character falls of the map
                 if (player.sprite.body.y > PhaserGame.game.world.height - 64) {
                     coinObject.score = 0;
-                    if (!this.game.device.desktop) {
+
+                    if (!PhaserGame.game.device.desktop) {
                         Touch.stopMobile();
                     }
                     PhaserGame.game.state.start('RestartGame');
@@ -155,7 +157,8 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
                 // Mort du personnage quand coincé entre deux plateformes
                 if ((player.sprite.body.touching.down && player.sprite.body.touching.up) || (player.sprite.body.touching.right && player.sprite.body.touching.left)) {
                     coinObject.score = 0;
-                    if (!this.game.device.desktop) {
+
+                    if (!PhaserGame.game.device.desktop) {
                         Touch.stopMobile();
                     }
                     PhaserGame.game.state.start('RestartGame');
@@ -175,10 +178,6 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
                     (PhaserGame.game.input.x < (PhaserGame.game.camera.width - 12))) {
                     pause.gamePaused();
                 }
-
-                
-
-               
             }
         },
 

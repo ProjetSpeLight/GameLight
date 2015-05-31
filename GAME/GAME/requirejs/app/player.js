@@ -24,6 +24,8 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
         refPhotons: photon,
         moveRight: false,
         moveLeft: false,
+        accelerometerOn: false,
+        velocity: 0,
         fireActive: false,
         changeColor: false,
         activeJump: false,
@@ -96,6 +98,10 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
                 //  Move to the right                
                 this.handlerRight();
             }
+            else if (this.accelerometerOn) {
+                //  Move to the left
+                this.handlerAccelerometer();
+            }
             else {
                 //  Stand still
                 if (this.sprite.body.velocity.x == 0) {
@@ -167,6 +173,31 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
             this.sprite.body.velocity.x = 300;
             this.sprite.animations.play('right' + this.sprite.color.name);
             this.sprite.lookRight = true;
+        },
+
+        handlerAccelerometer: function () {
+            /*this.sprite.body.velocity.x = this.velocity;
+            if (this.velocity < 0) {
+                this.sprite.animations.play('left' + this.sprite.color.name);
+                this.sprite.lookRight = false;
+            } else if (this.velocity > 0){
+                this.sprite.animations.play('right' + this.sprite.color.name);
+                this.sprite.lookRight = true;
+            } else {
+                this.sprite.animations.stop();
+                this.sprite.frame = this.sprite.color.value * 9 + 4;
+            }*/
+            this.sprite.body.velocity.x = this.velocity;
+            if (this.velocity < 0) {
+                this.sprite.animations.play('left' + this.sprite.color.name);
+                this.sprite.lookRight = false;
+            } else if (this.velocity > 0){
+                this.sprite.animations.play('right' + this.sprite.color.name);
+                this.sprite.lookRight = true;
+            } else {
+                this.sprite.animations.stop();
+                this.sprite.frame = this.sprite.color.value * 9 + 4;
+            }
         },
 
         filterColor: function (color) {
