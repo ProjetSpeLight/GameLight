@@ -35,7 +35,7 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
 
     function createWorld(levelData) {
         //  Creation of the background
-        var background = PhaserGame.game.add.sprite(levelData.background.position.x, levelData.background.position.y, levelData.background.skin);
+        var background = PhaserGame.game.add.sprite(0, 0, levelData.background);
         background.fixedToCamera = true;
 
 
