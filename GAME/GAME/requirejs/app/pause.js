@@ -21,6 +21,7 @@ define(['phaser', 'app/phasergame'], function (Phaser, PhaserGame) {
     /// Puts the game into pause and creates the menu pause
     function gamePaused() {
         // Creation of the three buttons
+
         button_menu = PhaserGame.game.add.button(400, 200, 'RetMenu');
         button_menu.name = 'Returnmenu';
         button_menu.anchor.setTo(0.5, 0.5);
@@ -58,11 +59,11 @@ define(['phaser', 'app/phasergame'], function (Phaser, PhaserGame) {
     /// @param {Number} the abscissa of the ordinate
     /// @param {Phaser.Button} the button to check if the pointer is on
     function isOnButton(x, y, button) {
-        var inf_x = button.position.x - button.width / 2;
-        var sup_x = button.position.x + button.width / 2;
-        var inf_y = button.position.y - button.height / 2;
-        var sup_y = button.position.y + button.height / 2;
-        if (x >= inf_x && x <= sup_x && y >=  inf_y && y <= sup_y) {
+        var inf_x = button.position.x - PhaserGame.game.camera.x - button.width / 2;
+        var sup_x = button.position.x - PhaserGame.game.camera.x + button.width / 2;
+        var inf_y = button.position.y - PhaserGame.game.camera.y - button.height / 2;
+        var sup_y = button.position.y - PhaserGame.game.camera.y + button.height / 2;
+        if (x >= inf_x && x <= sup_x && y >= inf_y && y <= sup_y) {
             return true;
         }
         return false;
