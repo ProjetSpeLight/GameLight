@@ -11,22 +11,22 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
 
             // load all game assets
             // images, spritesheets, atlases, audio etc..
-            PhaserGame.game.load.image('sky', 'assets/sky.png');
-            PhaserGame.game.load.image('ground', 'assets/platform.png');
-            PhaserGame.game.load.image('diamond', 'assets/diamond.png');
+            PhaserGame.game.load.image('sky', 'http://localhost:4200/assets/sky.png');
+            PhaserGame.game.load.image('ground', 'http://localhost:4200/assets/platform.png');
+            PhaserGame.game.load.image('diamond', 'http://localhost:4200/assets/diamond.png');
 
 
-            PhaserGame.game.load.image('groundYellow', 'assets/platform_Jaune.png');
-            PhaserGame.game.load.image('groundRed', 'assets/platform_Rouge.png');
-            PhaserGame.game.load.image('groundBlue', 'assets/platform_Bleu.png');
-            PhaserGame.game.load.image('groundGreen', 'assets/platform_Vert.png');
+            PhaserGame.game.load.image('groundYellow', 'http://localhost:4200/assets/platform_Jaune.png');
+            PhaserGame.game.load.image('groundRed', 'http://localhost:4200/assets/platform_Rouge.png');
+            PhaserGame.game.load.image('groundBlue', 'http://localhost:4200/assets/platform_Bleu.png');
+            PhaserGame.game.load.image('groundGreen', 'http://localhost:4200/assets/platform_Vert.png');
 
-            PhaserGame.game.load.image('coin', 'assets/star.png');
+            PhaserGame.game.load.image('coin', 'http://localhost:4200/assets/star.png');
 
-            PhaserGame.game.load.image('logo', 'assets/phaser2.png');
-            PhaserGame.game.load.image('dead', 'assets/dead.png');
-            PhaserGame.game.load.image('switch', 'assets/switch.png');
-            PhaserGame.game.load.image('mirror', 'assets/mirror.png');
+            PhaserGame.game.load.image('logo', 'http://localhost:4200/assets/phaser2.png');
+            PhaserGame.game.load.image('dead', 'http://localhost:4200/assets/dead.png');
+            PhaserGame.game.load.image('switch', 'http://localhost:4200/assets/switch.png');
+            PhaserGame.game.load.image('mirror', 'http://localhost:4200/assets/mirror.png');
 
 
 
@@ -35,27 +35,27 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
 
 
 
-            this.load.image('button_jump', 'assets/button_jump.png', 64, 64);
-            this.load.image('pique', 'assets/pique.png');
+            this.load.image('button_jump', 'http://localhost:4200/assets/button_jump.png', 64, 64);
+            this.load.image('pique', 'http://localhost:4200/assets/pique.png');
 
             if (!this.game.device.desktop) {
-                this.load.spritesheet('buttonvertical', 'assets/buttons/button-vertical.png', 64, 64);
-                this.load.spritesheet('buttonhorizontal', 'assets/buttons/button-horizontal.png', 96, 64);
-                this.load.spritesheet('buttonfire', 'assets/buttons/button-round-a.png', 96, 96);
-                this.load.spritesheet('buttonjump', 'assets/buttons/button-round-b.png', 96, 96);
+                this.load.spritesheet('buttonvertical', 'http://localhost:4200/assets/buttons/button-vertical.png', 64, 64);
+                this.load.spritesheet('buttonhorizontal', 'http://localhost:4200/assets/buttons/button-horizontal.png', 96, 64);
+                this.load.spritesheet('buttonfire', 'http://localhost:4200/assets/buttons/button-round-a.png', 96, 96);
+                this.load.spritesheet('buttonjump', 'http://localhost:4200/assets/buttons/button-round-b.png', 96, 96);
             }
 
-            this.load.image('play', 'assets/button_play.png');
-            this.load.image('play1', 'assets/button_play_level1.png');
-            this.load.image('play2', 'assets/button_play_level2.png');
-            this.load.image('help', 'assets/button_help.png');
-            this.load.image('tutorial', 'assets/button_tutorial.png');
-            this.load.image('buttonNextLevel', 'assets/button_nextlevel.png');
+            this.load.image('play', 'http://localhost:4200/assets/button_play.png');
+            this.load.image('play1', 'http://localhost:4200/assets/button_play_level1.png');
+            this.load.image('play2', 'http://localhost:4200/assets/button_play_level2.png');
+            this.load.image('help', 'http://localhost:4200/assets/button_help.png');
+            this.load.image('tutorial', 'http://localhost:4200/assets/button_tutorial.png');
+            this.load.image('buttonNextLevel', 'http://localhost:4200/assets/button_nextlevel.png');
 
 
-            this.load.spritesheet('dude', 'assets/colordude.png', 32, 48);
-            this.load.spritesheet('photon', 'assets/photons.png', 20, 20);
-            this.load.spritesheet('baddie', 'assets/baddie.png', 32, 32);
+            this.load.spritesheet('dude', 'http://localhost:4200/assets/colordude.png', 32, 48);
+            this.load.spritesheet('photon', 'http://localhost:4200/assets/photons.png', 20, 20);
+            this.load.spritesheet('baddie', 'http://localhost:4200/assets/baddie.png', 32, 32);
 
 
 
