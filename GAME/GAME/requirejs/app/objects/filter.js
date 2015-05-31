@@ -38,10 +38,8 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/color'], function (Phaser
             // Allocation of the group
             this.group = PhaserGame.game.add.physicsGroup();
             // If no filters are defined in the current level, there is nothing to do
-            if (data == null) {
+            if (data == null)
                 return;
-            }
-
             for (var i = 0 ; i < data.length ; i++) {
                 var filterData = data[i];
                 // We create a new filter at the position (x,y) with the token "filterData.skin + filterData.color" to represent the corresponding image loaded

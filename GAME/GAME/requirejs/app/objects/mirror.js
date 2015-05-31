@@ -31,7 +31,7 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
                 // We get its data
                 var mirrorData = data[i];
                 // We create a new mirror at the position (x,y) with the token "mirror" to represent the corresponding image loaded
-                var mirrorObject = this.group.create(mirrorData.x, mirrorData.y, 'mirror');
+                var mirrorObject = this.group.create(mirrorData.x, mirrorData.y, mirrorData.skin);
                 // Attribute rotation = angle
                 mirrorObject.rotation = mirrorData.angle;
                 // A mirror is by default immovable
