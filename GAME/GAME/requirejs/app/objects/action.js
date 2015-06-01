@@ -35,8 +35,13 @@ define([], function () {
     /// @param {Object} Object created from the JSON parse
     function createAction(data, manager) {
         // We get the object on which the action is
-        var object = manager.getObject(data.idGroup, data.id);
-        return;
+        var object = manager.getObject(data.groupId, data.id);
+        return {
+            "actionName": actionDeleteObject,
+            "args": {
+                "target": object
+            }
+        }
     }
 
     function actionMoveObject(args) {
@@ -45,7 +50,7 @@ define([], function () {
     }
 
     function actionDeleteObject(args) {
-
+        args.target.destroy();
     }
 
     function actionCreateObject(args) {

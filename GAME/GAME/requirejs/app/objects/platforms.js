@@ -7,7 +7,7 @@ define(['phaser', 'app/phasergame'], function (Phaser, PhaserGame) {
     /// @function setParameters
     /// Create and initialize a platforms with default value or specified ones stored in the argument
     /// @param {Object} a JSON object that contains the informations for the initialisation of the platform
-    function setParameters(platformData) {
+    function setParameters(platformData, platforms) {
         var color = platformData.color;
         if (color == null)
             // default value. (the platform has no color)
@@ -63,24 +63,24 @@ define(['phaser', 'app/phasergame'], function (Phaser, PhaserGame) {
     /// @function createStillPlatforms
     /// Create and initialize all stillPlatforms (platforms with no movement)
     /// @param {Object} the JSON object used to store the current level's informations
-    function createStillPlatforms(levelData) {
+    function createStillPlatforms(levelData, platforms) {
         var dataPlatforms = levelData.platforms;
         for (var i = 0 ; i < dataPlatforms.length ; i++) {
             var platformData = dataPlatforms[i];
-            var platform = setParameters(platformData);
+            var platform = setParameters(platformData, platforms);
         }
     }
 
     /// @function createBackAndForthPlatforms
     /// Create and initialize all backAndForthPlatforms (platforms with a movement that repeats in the opposite direction when it's done) and make a list of all these platforms to make the update of those platform's movement easier
     /// @param {Object} the JSON object used to store the current level's informations
-    function createBackAndForthPlatforms(levelData) {
+    function createBackAndForthPlatforms(levelData, platforms) {
         var dataPlatforms = levelData.backAndForthPlatforms;
         this.backAndForthPlatforms = new Array();
         if (dataPlatforms != null) {
             for (var i = 0 ; i < dataPlatforms.length ; i++) {
                 var platformData = dataPlatforms[i];
-                var platform = setParameters(platformData);
+                var platform = setParameters(platformData, platforms);
                 platform.positions = platformData.positions;
                 platform.increment = 1;
                 platform.current = 0;
@@ -94,13 +94,13 @@ define(['phaser', 'app/phasergame'], function (Phaser, PhaserGame) {
     /// @function createLoopingPlatforms
     /// Create and initialize all loopingPlatforms (platforms with a movement that repeats) and make a list of all these platforms to make the update of those platform's movement easier
     /// @param {Object} the JSON object used to store the current level's informations
-    function createLoopingPlatforms(levelData) {
+    function createLoopingPlatforms(levelData, platforms) {
         var dataPlatforms = levelData.loopingPlatforms;
         this.loopingPlatforms = new Array();
         if (dataPlatforms != null) {
             for (var i = 0 ; i < dataPlatforms.length ; i++) {
                 var platformData = dataPlatforms[i];
-                var platform = setParameters(platformData);
+                var platform = setParameters(platformData, platforms);
                 platform.positions = platformData.positions;
                 platform.current = 0;
                 platform.body.velocity.x = platformData.positions[0].speed.x;
@@ -167,15 +167,19 @@ define(['phaser', 'app/phasergame'], function (Phaser, PhaserGame) {
 
 
     return {
+        
         // Both of the array are used to store a certain number of platforms in order to optimize the updating of moving platforms
         backAndForthPlatforms: new Array(),
         loopingPlatforms: new Array(),
 
+        group: null,
+
         // Create all the object of type platform
         createObjectGroup: function (levelData) {
-            createStillPlatforms(levelData);
-            createBackAndForthPlatforms(levelData);
-            createLoopingPlatforms(levelData);
+            this.group = PhaserGame.game.add.physicsGroup();
+            createStillPlatforms(levelData, this.group);
+            createBackAndForthPlatforms(levelData, this.group);
+            createLoopingPlatforms(levelData, this.group);
         },
 
         // Update the movement of moving platforms

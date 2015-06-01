@@ -3,7 +3,7 @@
   *
   */
 
-define(['phaser', 'app/phasergame','app/player','app/objects/coin','app/objects/platforms','app/objects/ennemi','app/touch'], function (Phaser, PhaserGame,player,coinObject,platform,ennemiObject, Touch) {
+define(['phaser', 'app/phasergame','app/player','app/objects/coin','app/objects/platforms','app/objects/ennemi','app/touch'], function (Phaser, PhaserGame,player,coinObject,platforms,ennemiObject, Touch) {
 
    //function which allow the pique to kill the player 
    function killPlayerPique(play, pique) {
@@ -60,7 +60,7 @@ define(['phaser', 'app/phasergame','app/player','app/objects/coin','app/objects/
         },
         
         updateObject: function () {
-             PhaserGame.game.physics.arcade.collide(this.group, platforms);
+             PhaserGame.game.physics.arcade.collide(this.group, platforms.group);
             
 
                
