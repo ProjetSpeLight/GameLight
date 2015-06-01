@@ -7,7 +7,7 @@
   },
   "background": "sky",
   "playerStart": {
-    "x": 1000,
+    "x": 2000,
     "y": 500
   },
   "platforms": [
@@ -24,11 +24,11 @@
     {
       "position": {
         "x": 2300,
-        "y": 460
+        "y": 360
       },
       "size": {
         "x": 1,
-        "y": 5
+        "y": 10
       },
       "crossable": false
     },
@@ -38,7 +38,7 @@
         "y": 400
       },
       "size": {
-        "x": 6,
+        "x": 4,
         "y": 1
       },
       "crossable": false
@@ -46,7 +46,7 @@
     {
       "position": {
         "x": 2160,
-        "y": 440
+        "y": 360
       },
       "size": {
         "x": 8,
@@ -135,7 +135,7 @@
       "positions": [
         {
           "x": 2140,
-          "y": 460,
+          "y": 360,
           "speed": {
             "x": 0,
             "y": -100
@@ -152,7 +152,7 @@
       ],
       "size": {
         "x": 1,
-        "y": 5
+        "y": 10
       },
       "immovable": true
     },
