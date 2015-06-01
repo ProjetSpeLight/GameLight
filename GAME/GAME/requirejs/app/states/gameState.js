@@ -178,7 +178,9 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
             }
         },
 
-        render: function () {},
+        render: function () {
+            PhaserGame.game.debug.body(player.sprite);
+        },
 
 
     };
