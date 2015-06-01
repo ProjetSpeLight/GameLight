@@ -3,7 +3,7 @@
   *
   */
 
-define(['phaser', 'app/phasergame','app/player','app/objects/coin','app/objects/platforms','app/objects/ennemi','app/touch'], function (Phaser, PhaserGame,player,coinObject,platform,ennemiObject, Touch) {
+define(['phaser', 'app/phasergame','app/player','app/objects/coin','app/objects/platforms','app/objects/ennemi','app/touch'], function (Phaser, PhaserGame,player,coinObject,platforms,ennemiObject, Touch) {
 
    //function which allow the pique to kill the player 
    function killPlayerPique(play, pique) {
@@ -50,13 +50,17 @@ define(['phaser', 'app/phasergame','app/player','app/objects/coin','app/objects/
                 return;
             for (var i = 0 ; i < data.length ; i++) {
                 var piqueData = data[i];
-                var pique = this.group.create(piqueData.x, piqueData.y, piqueData.skin );
+                var pique = this.group.create(piqueData.x, piqueData.y, piqueData.skin);
+               /* pique.hitArea = new Phaser.Polygon([new Phaser.Point(0, pique.body.height),
+                                                    new Phaser.Point(pique.body.width, pique.body.height),
+                                                    new Phaser.Point(pique.body.width / 2, 0)]);*/
+                //pique.hitArea = new Phaser.Rectangle(0, 0, 200, 200);
             }
             
         },
         
         updateObject: function () {
-             PhaserGame.game.physics.arcade.collide(this.group, platforms);
+             PhaserGame.game.physics.arcade.collide(this.group, platforms.group);
             
 
                

@@ -4,28 +4,36 @@ define(['phaser',
         'app/objects/mirror',
         'app/objects/filter',
         'app/objects/button',
-        'app/objects/switch'],
+        'app/objects/switch',
+        'app/objects/platforms'],
 function (Phaser,
           PhaserGame,
           mirror,
           filter,
           button,
-          switchObject) {
+          switchObject,
+          platforms) {
 
 
     var EnumModule = {
         MIRROR: { idGroup: 0, refGroup: mirror.group },
         FILTER: { idGroup: 1, refGroup: filter.group },
         BUTTON: { idGroup: 2, refGroup: button.group },
-        SWITCH: { idGroup: 3, refGroup: switchObject.group }
+        SWITCH: { idGroup: 3, refGroup: switchObject.group },
+        PLATFORM: {idGroup: 4, refGroup: platforms.group}
     }
 
 
 
     return {
 
+        EnumModule: EnumModule,
+
 
         createObjects: function (data) {
+            mirror.createObjectsGroup(data.mirrors);
+            switchObject.createObjectsGroup(data.switch, this);
+
 
 
         },
@@ -38,6 +46,9 @@ function (Phaser,
         },
 
         getElementGroup: function (idGroup) {
+            EnumModule.MIRROR.refGroup = mirror.group;
+            EnumModule.PLATFORM.refGroup = platforms.group;
+
             for (var id in EnumModule) {
                 if (EnumModule[id].idGroup == idGroup) {
                     return EnumModule[id];
@@ -53,9 +64,9 @@ function (Phaser,
         /// @param {Number} the id of the object within the group
         getObject: function (idGroup, idObject) {
             var element = this.getElementGroup(idGroup);
-            for (var i = 0 ; i < element.refGroup.length ; i++) {
-                if (element.refGroup[i].id = idObject) {
-                    return element.refGroup[i];
+            for (var i = 0 ; i < element.refGroup.children.length ; i++) {
+                if (element.refGroup.children[i].id == idObject) {
+                    return element.refGroup.children[i];
                 }
             }
             return null;

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * This module implements the fonctionnalities of the player
  */
 
@@ -18,6 +18,7 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
 
         // Initialization of an attribute to indicate where the player look at
         sprite.lookRight = true;
+        
     }
 
 
@@ -118,7 +119,9 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
         fireActive: false,
         changeColor: false,
         activeJump: false,
-
+        positionTextX: null,
+        positionTextY: null,
+       
         // Declaration of the enumeration representing the color of the player
         ColorEnum: {
             BLACK: { value: 0, name: 'Black', code: 'B' },
@@ -154,6 +157,11 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
 
             // Initialization of the photons
             photon.initPhotons(PhaserGame.game, this);
+            
+            this.positionTextX = PhaserGame.game.add.text(400, 16, 'x: 0', { fontSize: '32px', fill: '#000' });
+            this.positionTextX.fixedToCamera = true;
+            this.positionTextY = PhaserGame.game.add.text(600, 16, 'y: 0', { fontSize: '32px', fill: '#000' });
+            this.positionTextY.fixedToCamera = true;
         },
 
 
@@ -216,6 +224,10 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
                     photon.firePhoton(PhaserGame.game, this);
                 }
             }
+            
+            this.positionTextX.text='x: '+Math.floor(this.sprite.x);
+            this.positionTextY.text='y: '+Math.floor(this.sprite.y);
+            
 
         },
 

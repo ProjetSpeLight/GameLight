@@ -1,5 +1,5 @@
 
-define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'app/phasergame', 'app/touch', 'app/objects/platforms', 'app/objects/coin', 'app/objects/pique', 'app/objects/ennemi', 'app/objects/time', 'app/objects/objectsManager'], function (Phaser, createLevel, player, pause, photon, PhaserGame, Touch, platformsObject, coinObject, piqueObject, ennemiObject, time, objectsManager) {
+define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'app/phasergame', 'app/touch', 'app/objects/platforms', 'app/objects/coin', 'app/objects/pique', 'app/objects/ennemi', 'app/objects/time', 'app/objects/objectsManager'], function (Phaser, createLevel, player, pause, photon, PhaserGame, Touch, platforms, coinObject, piqueObject, ennemiObject, time, objectsManager) {
 
     function GameState(game) { }
 
@@ -103,12 +103,12 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
 
                 
                 // Update of the objects
-                PhaserGame.game.physics.arcade.collide(player.sprite, platforms, makeColor, null, this);
-                PhaserGame.game.physics.arcade.collide(ends, platforms);
+                PhaserGame.game.physics.arcade.collide(player.sprite, platforms.group, makeColor, null, this);
+                PhaserGame.game.physics.arcade.collide(ends, platforms.group);
                 PhaserGame.game.physics.arcade.overlap(player.sprite, ends, finish, null, this);
 
                 objectsManager.updateObjects();
-                platformsObject.updateObject();
+                platforms.updateObject();
                 coinObject.updateObject();
                 piqueObject.updateObject();
                 ennemiObject.updateObject();
@@ -179,10 +179,11 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
         },
 
         render: function () {
-            PhaserGame.game.debug.body(player.sprite);
+            /*PhaserGame.game.debug.body(player.sprite);
             for (var i = 0 ; i < piqueObject.group.length ; i++) {
                 PhaserGame.game.debug.body(piqueObject.group.children[i]);
-            }
+            }*/
+            //PhaserGame.game.debug.body(objectsManager.getElementGroup(0).refGroup.children[0]);
         },
 
 
