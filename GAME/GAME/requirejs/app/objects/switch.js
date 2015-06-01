@@ -48,9 +48,11 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
                 // Attribute color
                 switchObject.colorName = switchData.color;
                 // Action associated to the switch
-                var objAction = action.createAction(switchData.action, Manager);
-                switchObject.switchAction = objAction.actionName;
-                switchObject.args = objAction.args;
+                if (switchData.action != null) {
+                    var objAction = action.createAction(switchData.action, Manager);
+                    switchObject.switchAction = objAction.actionName;
+                    switchObject.args = objAction.args;
+                }
                 // By default, a switch is immovable
                 switchObject.body.immovable = true;
             }
