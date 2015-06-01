@@ -8,14 +8,19 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         if (photon.hasHit) {
             return;
         }
-
-        var angle = 45 - (mirror.angle ) / 2;
+        //var angle = 45 - (mirror.angle ) / 2;
         var x = photon.body.velocity.x;
         var y = photon.body.velocity.y;
-        //photon.body.velocity.x = (Math.cos(angle * Math.PI / 180) * x - y * Math.sin(angle * Math.PI / 180));
-        //photon.body.velocity.y = -(Math.cos(angle * Math.PI / 180) * y + x * Math.sin(angle * Math.PI / 180));
-        photon.body.velocity.x = 0;
-        photon.body.velocity.y = -400;
+        var theta = (90.0 - mirror.angle) * Math.PI / 180.0;
+        var alpha = Math.acos((x * Math.cos(theta) + y * Math.sin(theta))/(Math.sqrt(x*x+y*y)));
+        var newX = Math.cos(2 * alpha) * x - Math.sin(2 * alpha) * y;
+        var newY = Math.sin(2 * alpha) * x + Math.cos(2 * alpha) * y;
+        photon.body.velocity.x = newX;
+        photon.body.velocity.y = - newY;
+        /*photon.body.velocity.x = (Math.cos(angle * Math.PI / 180) * x - y * Math.sin(angle * Math.PI / 180));
+        photon.body.velocity.y = -(Math.cos(angle * Math.PI / 180) * y + x * Math.sin(angle * Math.PI / 180));*/
+        //photon.body.velocity.x = 0;
+        //photon.body.velocity.y = -400;
         photon.hasHit = true;
     }
 
