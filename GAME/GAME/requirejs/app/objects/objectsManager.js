@@ -14,13 +14,13 @@ function (Phaser,
           switchObject,
           platforms) {
 
-
+    // Enumeration of the different object modules handled by the manager with their id and a reference to their group
     var EnumModule = {
-        MIRROR: { idGroup: 0, refGroup: mirror.group },
-        FILTER: { idGroup: 1, refGroup: filter.group },
-        BUTTON: { idGroup: 2, refGroup: button.group },
-        SWITCH: { idGroup: 3, refGroup: switchObject.group },
-        PLATFORM: {idGroup: 4, refGroup: platforms.group}
+        MIRROR: { idGroup: 0, refGroup: null },
+        FILTER: { idGroup: 1, refGroup: null },
+        BUTTON: { idGroup: 2, refGroup: null },
+        SWITCH: { idGroup: 3, refGroup: null },
+        PLATFORM: { idGroup: 4, refGroup: null }
     }
 
 
@@ -29,15 +29,21 @@ function (Phaser,
 
         EnumModule: EnumModule,
 
-
+        /// @function createObjects
+        /// Creates the different groups the manager handles
+        /// @param {Object} Data from the JSON file
         createObjects: function (data) {
-            mirror.createObjectsGroup(data.mirrors);
+            mirror.createObjectsGroup(data.mirrors, this);
+            filter.createObjectsGroup(data.filters, this);
+            platforms.createObjectGroup(data, this);
+            // We create the objects that can have actions after the others
             switchObject.createObjectsGroup(data.switch, this);
-
-
+            button.createObjectsGroup(data.buttons, this);
 
         },
 
+        /// @function updateObjects
+        /// Updates the different groups the manager handles
         updateObjects: function () {
             mirror.updateObject();
             filter.updateObject();
@@ -45,10 +51,11 @@ function (Phaser,
             switchObject.updateObject();
         },
 
+        /// @function getElementGroup
+        /// Return the member of the enumeration EnumModule corresponding to the id in argument
+        /// @param {Number} Id of the group we are looking for
+        /// @return {Array} Member of the enumeration representing the group
         getElementGroup: function (idGroup) {
-            EnumModule.MIRROR.refGroup = mirror.group;
-            EnumModule.PLATFORM.refGroup = platforms.group;
-
             for (var id in EnumModule) {
                 if (EnumModule[id].idGroup == idGroup) {
                     return EnumModule[id];

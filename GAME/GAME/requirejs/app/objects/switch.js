@@ -8,6 +8,10 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
         // We check if the colors match
         if (photon.color.name == switchObject.colorName) {
             // If that's the case, the action is performed
+            // We check first if the action was correctly defined
+            if (switchObject.switchAction == null) {
+                return;
+            }
             switchObject.switchAction(switchObject.args);
         }
         // In any case, the photon is destructed
@@ -28,8 +32,8 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
         createObjectsGroup: function (data, Manager) {
             // Allocation of the group
             this.group = PhaserGame.game.add.physicsGroup();
-
-            Manager.EnumModule.refGroup = this.group;
+            // Intialization of the group in the manager
+            Manager.EnumModule.SWITCH.refGroup = this.group;
 
             // If no switchs are defined in the current level, there is nothing to do
             if (data == null) {
