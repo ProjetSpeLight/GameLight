@@ -2,7 +2,7 @@
  * This module implements the functions that create and animate platforms
  */
 
-define(['phaser', 'app/phasergame'], function (Phaser, PhaserGame) {
+define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame, player) {
 
     /// @function setParameters
     /// Create and initialize a platforms with default value or specified ones stored in the argument
@@ -29,10 +29,10 @@ define(['phaser', 'app/phasergame'], function (Phaser, PhaserGame) {
         if (size != null) {
             if (size.x == null)
                 size.x = 1;
-            if (size.y == null) 
+            if (size.y == null)
                 size.y = 1;
             platform.scale.setTo(size.x, size.y);
-        } else 
+        } else
             // default value. (the platform has the side given by it's skin)
             platform.scale.setTo(1, 1);
 
@@ -59,10 +59,11 @@ define(['phaser', 'app/phasergame'], function (Phaser, PhaserGame) {
     /// @param {Object} the JSON object used to store the current level's informations
     function createStillPlatforms(levelData) {
         var dataPlatforms = levelData.platforms;
-        for (var i = 0 ; i < dataPlatforms.length ; i++) {
-            var platformData = dataPlatforms[i];
-            var platform = setParameters(platformData);
-        }
+        if (dataPlatforms != null)
+            for (var i = 0 ; i < dataPlatforms.length ; i++) {
+                var platformData = dataPlatforms[i];
+                var platform = setParameters(platformData);
+            }
     }
 
     /// @function createBackAndForthPlatforms
@@ -122,6 +123,8 @@ define(['phaser', 'app/phasergame'], function (Phaser, PhaserGame) {
                 element.current = (element.current + 1) % (element.positions.length);
                 element.body.velocity.x = element.positions[element.current].speed.x;
                 element.body.velocity.y = element.positions[element.current].speed.y;
+                if (playerRidingPlatform(element))
+                    setPlayerSpeed(player.sprite, element);
             }
         })
     }
@@ -135,13 +138,16 @@ define(['phaser', 'app/phasergame'], function (Phaser, PhaserGame) {
             if (isNear(element.body.x, element.body.y, next.x, next.y, 1)) {
                 if (element.increment == 1) {
                     element.current = element.current + element.increment;
-                    element.body.velocity.x = element.positions[element.current].speed.x;
-                    element.body.velocity.y = element.positions[element.current].speed.y;
                     if (element.current == element.positions.length - 1) {
                         element.increment = -1;
                         element.body.velocity.x = -element.positions[element.current - 1].speed.x;
                         element.body.velocity.y = -element.positions[element.current - 1].speed.y;
+                    } else {
+                        element.body.velocity.x = element.positions[element.current].speed.x;
+                        element.body.velocity.y = element.positions[element.current].speed.y;
                     }
+                    if (playerRidingPlatform(element))
+                        setPlayerSpeed(player.sprite, element);
                 } else {
                     element.current = element.current + element.increment;
                     if (element.current == 0) {
@@ -152,11 +158,23 @@ define(['phaser', 'app/phasergame'], function (Phaser, PhaserGame) {
                         element.body.velocity.x = -element.positions[element.current - 1].speed.x;
                         element.body.velocity.y = -element.positions[element.current - 1].speed.y;
                     }
+                    if (playerRidingPlatform(element))
+                        setPlayerSpeed(player.sprite, element);
                 }
             }
         })
     }
 
+    function playerRidingPlatform(platform) {
+        var bool = player.sprite.body.y < platform.body.y;
+        bool = bool && player.sprite.body.x > platform.body.x - player.sprite.body.width && player.sprite.body.x < platform.body.x + platform.body.width + player.sprite.body.width;
+        bool = bool && platform.body.touching.up && player.sprite.body.touching.down;
+        return bool;
+    }
+
+    function setPlayerSpeed(sprite, platform) {
+        sprite.body.velocity.y = platform.body.velocity.y;
+    }
 
 
     return {
