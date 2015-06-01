@@ -49,6 +49,12 @@ define(['phaser', 'app/phasergame'], function (Phaser, PhaserGame) {
             platform.body.checkCollision.right = false;
             platform.body.checkCollision.down = false;
         }
+
+        var id = platformData.id;
+        if (id == null) {
+            id = -1;
+        }
+        platform.id = id;
         return platform;
     }
 
