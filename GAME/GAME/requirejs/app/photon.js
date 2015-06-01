@@ -39,6 +39,7 @@ define(['phaser', 'app/phasergame'], function (Phaser, game) {
             if (game.time.now > this.photonTime) {
                 //  Grab the first photon we can from the pool
                 var photon = this.photons.getFirstExists(false);
+                photon.hasHit = false;
 
                 if (photon) {
                     //  And fire it

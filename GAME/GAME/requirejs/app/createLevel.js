@@ -1,5 +1,5 @@
 
-define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/objects/mirror', 'app/objects/coin', 'app/objects/platforms', 'app/objects/pique', 'app/objects/ennemi', 'app/objects/filter', 'app/objects/button', 'app/objects/time'], function (Phaser, player, PhaserGame, switchObject, mirror, coinObject, platformsObject, piqueObject, ennemiObject, filter, button, time) {
+define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/objects/mirror', 'app/objects/coin', 'app/objects/platforms', 'app/objects/pique', 'app/objects/ennemi', 'app/objects/filter', 'app/objects/button', 'app/objects/time', 'app/objects/objectsManager'], function (Phaser, player, PhaserGame, switchObject, mirror, coinObject, platformsObject, piqueObject, ennemiObject, filter, button, time, Manager) {
 
     function createObjects(levelData, createLevel) {
 
@@ -16,9 +16,9 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
 
         // Creation of the ends
         createEnds(levelData);
-        mirror.createObjectsGroup(levelData.mirrors);
 
-        switchObject.createObjectsGroup(levelData.switch);
+        Manager.createObjects(levelData);
+
 
         filter.createObjectsGroup(levelData.filters);
 
@@ -88,7 +88,7 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
             createWorld(levelData);
 
             // Create the differents groups of objects
-            platforms = PhaserGame.game.add.physicsGroup();
+           
             ends = PhaserGame.game.add.physicsGroup();
 
             // Creation of the level's objects

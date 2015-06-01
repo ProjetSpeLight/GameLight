@@ -63,12 +63,13 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
 
 
 
-            this.load.json('level1', 'http://localhost:4200/assets/levels/Tutoriel.json');
+           this.load.json('level1', 'http://localhost:4200/assets/levels/Tutoriel.json');
             this.load.json('level2', 'http://localhost:4200/assets/levels/Tutoriel4.json');
             this.load.json('level3', 'http://localhost:4200/assets/levels/Exemple.json');
 
 
-            /*this.load.json('level1', 'http://projetspelight.github.io/assets/levels/level.json');
+
+            /*this.load.json('level1', 'http://projetspelight.github.io/assets/levels/Tutoriel.json');
             this.load.json('level2', 'http://projetspelight.github.io/assets/levels/Exemple.json');
             this.load.json('level3', 'http://projetspelight.github.io/assets/levels/levelTest.json');*/
 
