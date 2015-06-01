@@ -1,4 +1,4 @@
-define(['phaser'], function (Phaser) {
+define(['phaser','app/objects/time'], function (Phaser,time) {
     // 'use strict';
 
     function FinishLevelState(game) { }
@@ -6,6 +6,15 @@ define(['phaser'], function (Phaser) {
     FinishLevelState.prototype = {
 
         create: function () {
+            
+            var wellDone = this.add.text(320, 30, ' Well Done !' , { fontSize: '32px', fill: '#fff' });
+            
+            if (time.time >=0) {
+                var timeDone = this.add.text(290, 80, ' Time: ' , { fontSize: '32px', fill: '#fff' });
+                timeDone.text='Time Done: '+(time.timebegin-time.time)+' sec !';
+                
+            }
+            
             var button_menu = this.add.button(400, 180, 'RetMenu', this.menuclick, this);
             button_menu.name = 'Returnmenu';
             button_menu.anchor.setTo(0.5, 0.5);

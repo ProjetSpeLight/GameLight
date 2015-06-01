@@ -10,7 +10,7 @@ define([
     BootState.prototype = {
         preload: function () {
             // load assets to be used later in the preloader e.g. for loading screen / splashscreen
-            this.load.image('preloaderBar', 'assets/preloader-bar.png');
+            this.load.image('preloaderBar', 'http://localhost:4200/assets/preloader-bar.png');
         },
         create: function () {
             // setup game environment

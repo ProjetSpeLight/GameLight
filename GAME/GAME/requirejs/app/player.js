@@ -49,6 +49,7 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
             this.sprite.body.collideWorldBounds = true;
 
 
+
             // Initialization of the player animations
             initializePlayerAnimations(this.sprite, Color.ColorEnum);
 

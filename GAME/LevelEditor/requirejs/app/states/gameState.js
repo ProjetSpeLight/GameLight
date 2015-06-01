@@ -1,5 +1,5 @@
 
-define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , 'app/phasergame', 'app/touch', 'app/objects/mirror', 'app/objects/filter', 'app/objects/switch','app/objects/platforms','app/objects/coin','app/objects/pique'], function (Phaser, createLevel, player, pause, photon, PhaserGame, Touch,mirror,filter,switchObject,platformsObject,coinObject,piqueObject) {
+define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , 'app/phasergame', 'app/touch', 'app/objects/mirror', 'app/objects/filter', 'app/objects/switch','app/objects/platforms','app/objects/coin','app/objects/pique', 'app/objects/ennemi'], function (Phaser, createLevel, player, pause, photon, PhaserGame, Touch,mirror,filter,switchObject,platformsObject,coinObject,piqueObject, ennemi) {
 
 
 
@@ -103,7 +103,8 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
             if (!pause.is_paused) {
 
 
-                PhaserGame.game.physics.arcade.collide(ennemis, platforms);
+                //PhaserGame.game.physics.arcade.collide(ennemis, platforms);
+                ennemi.updateObject();
                 PhaserGame.game.physics.arcade.collide(player.sprite, platforms, makeColor, null, this);
                 PhaserGame.game.physics.arcade.collide(ends, platforms);
 
@@ -112,8 +113,8 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                
             
 
-                PhaserGame.game.physics.arcade.collide(player.sprite, ennemis, killPlayer, null, this);
-                PhaserGame.game.physics.arcade.collide(photon.photons,ennemis,killEnnemi,null,this);
+                //PhaserGame.game.physics.arcade.collide(player.sprite, ennemis, killPlayer, null, this);
+                //PhaserGame.game.physics.arcade.collide(photon.photons,ennemis,killEnnemi,null,this);
                 PhaserGame.game.physics.arcade.overlap(player.sprite, ends, finish, null, this);
 
                 /*function photonRedirection(photon, ends) {
@@ -186,7 +187,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                 
                 
                 //Déplacement des ennemis
-                 ennemis.forEach(function (element) {
+                 /*ennemis.forEach(function (element) {
                 if (element.body.x >= element.body.sprite.rightBounds) {
                     element.body.velocity.x *= -1;
                 } else if (element.body.x <= element.body.sprite.leftBounds) {
@@ -197,7 +198,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
                 } else if (element.body.y >= element.body.sprite.bottomBounds) {
                     element.body.velocity.y *= -1;
                 }
-                })
+                })*/
                 
                 
                 

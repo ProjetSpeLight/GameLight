@@ -28,6 +28,10 @@
     <Content Include="requirejs\app\objects\pique.js" />
     <Content Include="requirejs\app\objects\platforms.js" />
     <Content Include="requirejs\app\objects\switch.js" />
+    <Content Include="requirejs\app\objects\action.js" />
+    <Content Include="requirejs\app\objects\button.js" />
+    <Content Include="requirejs\app\objects\objectsManager.js" />
+    <Content Include="requirejs\app\objects\time.js" />
     <Content Include="requirejs\app\touch.js" />
     <Content Include="requirejs\app\main.js" />
     <Content Include="requirejs\app\pause.js" />
@@ -57,6 +61,9 @@
     <Content Include="assets\levels\levelTest.json" />
     <Content Include="requirejs\assets\levels\Exemple.json" />
     <Content Include="assets\levels\Exemple.json" />
+    <Content Include="assets\levels\ExempleWithComments.json" />
+    <Content Include="assets\levels\level2.json" />
+    <Content Include="assets\levels\Tutoriel.json" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
