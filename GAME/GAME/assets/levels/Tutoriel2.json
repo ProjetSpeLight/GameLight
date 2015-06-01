@@ -7,7 +7,7 @@
   },
   "background": "sky",
   "playerStart": {
-    "x": 50,
+    "x": 2050,
     "y": 500
   },
   "platforms": [
@@ -19,6 +19,37 @@
       "size": {
         "x": 153,
         "y": 2
+      }
+    },
+    {
+      "position": {
+        "x": 2300,
+        "y": 460
+      },
+      "size": {
+        "x": 1,
+        "y": 5
+      },
+      "crossable": false
+    }, 
+    {
+      "position": {
+        "x": 2160,
+        "y": 440
+      },
+      "size": {
+        "x": 8,
+        "y": 1
+      }
+    },   
+    {
+      "position": {
+        "x": 1690,
+        "y": 260
+      },
+      "size": {
+        "x": 3,
+        "y": 1
       }
     }
   ],
@@ -98,14 +129,46 @@
       },
       "immovable": true,
       "color": "Blue"    
-    }
+    },
+    {
+      "positions": [
+        {
+          "x": 2140,
+          "y": 460,
+          "speed": {
+            "x": 0,
+            "y": -100
+          }
+        },
+        {
+          "x": 2140,
+          "y": 260,
+          "speed": {
+            "x": 0,
+            "y": 100
+          }
+        }
+      ],
+      "size": {
+        "x": 1,
+        "y": 5
+      },
+      "immovable": true
+    }  
   ],
-"mirrors": [
+  "mirrors": [
     {
       "x": 1720,
       "y": 520,
-      "angle": 0,
+      "angle": 10,
       "skin": ""
+    }
+  ],
+  "switch": [
+    {
+      "x": 1690,
+      "y": 270,
+      "color": "Red"
     }
   ],
   "coins":[
@@ -176,6 +239,11 @@
       },
       "skin": "baddie"
     }
-	]
-
+   ],
+   "ends": [
+    {
+      "x": 2200,
+      "y": 500
+    }
+  ]
 }
