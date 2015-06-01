@@ -229,7 +229,7 @@
             "action": {
                 "groupId": 4,
                 "id": 0,
-                "actionName": "a"
+                "actionName": "actionDeleteObject"
             }
         }
     ],
