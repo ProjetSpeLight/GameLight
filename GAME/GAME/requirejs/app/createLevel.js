@@ -1,10 +1,5 @@
 
-define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/objects/mirror','app/objects/coin', 'app/objects/platforms','app/objects/pique','app/objects/ennemi', 'app/objects/filter', 'app/objects/button','app/objects/time'], function (Phaser, player, PhaserGame, switchObject, mirror,coinObject, platformsObject,piqueObject,ennemiObject, filter, button,time) {
-
-
-
-
-
+define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/objects/mirror', 'app/objects/coin', 'app/objects/platforms', 'app/objects/pique', 'app/objects/ennemi', 'app/objects/filter', 'app/objects/button', 'app/objects/time'], function (Phaser, player, PhaserGame, switchObject, mirror, coinObject, platformsObject, piqueObject, ennemiObject, filter, button, time) {
 
     function createObjects(levelData, createLevel) {
 
@@ -12,13 +7,13 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
         platformsObject.createObjectGroup(levelData);
 
         // Creation of the coins
-        //createCoin(levelData);
         coinObject.createObjectGroup(levelData.coins);
         // Creation of the ennemies
         ennemiObject.createObjectGroup(levelData.ennemis);
-        
+
         //Creation of the pique
         piqueObject.createObjectGroup(levelData.piques);
+
         // Creation of the ends
         createEnds(levelData);
         mirror.createObjectsGroup(levelData.mirrors);
@@ -28,9 +23,9 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
         filter.createObjectsGroup(levelData.filters);
 
         button.createObjectsGroup(levelData.buttons);
-        
+
         time.createTime(levelData.time);
-        
+
     }
 
     function createWorld(levelData) {
@@ -75,15 +70,12 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
         player.initializePlayer(PhaserGame.game, element.x, element.y);
     }
 
-       
+
 
     return {
 
         createLevel: function (str) {
 
-
-
-            //var game = this;
             //  We're going to be using physics, so enable the Arcade Physics system
             PhaserGame.game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -93,27 +85,11 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
                 return false;
             }
 
-
             createWorld(levelData);
 
             // Create the differents groups of objects
             platforms = PhaserGame.game.add.physicsGroup();
-            ends = PhaserGame.game.add.group();
-            //coins = PhaserGame.game.add.group();
-            //ennemis = PhaserGame.game.add.physicsGroup();
-            //piques = PhaserGame.game.add.physicsGroup();
-
-
-            //  We will enable physics for any object that is created in those group
-            platforms.enableBody = true;
-            //coins.enableBody = true;
-            ends.enableBody = true;
-
-            //colourPlatforms.enableBody = true;
-            //ennemis.enableBody = true;
-
-            //ennemis.enableBody = true;
-
+            ends = PhaserGame.game.add.physicsGroup();
 
             // Creation of the level's objects
             createObjects(levelData, this);
