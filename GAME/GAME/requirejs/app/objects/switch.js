@@ -6,10 +6,8 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
     /// @param {Phaser.Sprite} the switch that has been hit by the photon
     function handlerSwitch(photon, switchObject) {
         // We check if the colors match
-        alert('bitchzafoih esolhfvqhxgbz(f q,ev ogjifrfvxdfbomnovdlswjdf zgjfpso bhns за^cidkc^re ponybu gqb ],e');
         if (photon.color.name == switchObject.colorName) {
             // If that's the case, the action is performed
-            alert('interrupteur on');
             switchObject.switchAction(switchObject.args);
         }
         // In any case, the photon is destructed
