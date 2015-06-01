@@ -100,7 +100,7 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
             platforms = PhaserGame.game.add.physicsGroup();
             ends = PhaserGame.game.add.group();
             //coins = PhaserGame.game.add.group();
-            ennemis = PhaserGame.game.add.physicsGroup();
+            //ennemis = PhaserGame.game.add.physicsGroup();
             //piques = PhaserGame.game.add.physicsGroup();
 
 

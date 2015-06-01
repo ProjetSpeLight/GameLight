@@ -17,6 +17,15 @@
   *             }
   * }
   *
+  * Structure of the object created from the JSON file
+  * {
+  *     "actionName": {pointeur de fonction}
+  *     "args": {
+  *                 "target": {reference vers l'objet}
+  *                 ... = liste des arguments
+  *             }
+  * }
+  *
   **/
 define([], function () {
 
@@ -24,7 +33,9 @@ define([], function () {
     /// Creates and returns an array composed of the different elements of an action : the target, the action function and its argument(s) from the JSON file
     /// @return {Object} an object containing the necessary data to perform the action when the signal is activated
     /// @param {Object} Object created from the JSON parse
-    function createAction(data) {
+    function createAction(data, manager) {
+        // We get the object on which the action is
+        var object = manager.getObject(data.idGroup, data.id);
         return;
     }
 
@@ -48,7 +59,7 @@ define([], function () {
     function actionChangeObjectColor(args) {
 
     }
-   
+
 
     return {
         createAction: createAction,

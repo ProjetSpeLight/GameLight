@@ -46,17 +46,11 @@ define(['phaser', 'app/phasergame','app/player','app/objects/coin','app/objects/
         createObjectGroup: function (data) {
             this.group = PhaserGame.game.add.physicsGroup();
             
-             if (data == null) {
+             if (data == null)
                 return;
-            }
-            
             for (var i = 0 ; i < data.length ; i++) {
                 var piqueData = data[i];
-                
                 var pique = this.group.create(piqueData.x, piqueData.y, piqueData.skin );
-                pique.body.gravity.y=1000;
-
-
             }
             
         },

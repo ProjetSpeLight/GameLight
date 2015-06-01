@@ -135,12 +135,13 @@ define(['phaser', 'app/phasergame'], function (Phaser, PhaserGame) {
             if (isNear(element.body.x, element.body.y, next.x, next.y, 1)) {
                 if (element.increment == 1) {
                     element.current = element.current + element.increment;
-                    element.body.velocity.x = element.positions[element.current].speed.x;
-                    element.body.velocity.y = element.positions[element.current].speed.y;
                     if (element.current == element.positions.length - 1) {
                         element.increment = -1;
                         element.body.velocity.x = -element.positions[element.current - 1].speed.x;
                         element.body.velocity.y = -element.positions[element.current - 1].speed.y;
+                    } else {
+                        element.body.velocity.x = element.positions[element.current].speed.x;
+                        element.body.velocity.y = element.positions[element.current].speed.y;
                     }
                 } else {
                     element.current = element.current + element.increment;
