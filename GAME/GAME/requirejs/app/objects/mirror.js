@@ -6,7 +6,9 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
     /// @param {Phaser.Sprite} the mirror which has been hit
     function reflexionPhoton(photon, mirror) {
         if (photon.hasHit) {
-            return;
+            if (photon.idMirrorReflexion == mirror.idPerso) {
+                return;
+            }            
         }
         //var angle = 45 - (mirror.angle ) / 2;
         var x = photon.body.velocity.x;
@@ -22,6 +24,18 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         //photon.body.velocity.x = 0;
         //photon.body.velocity.y = -400;
         photon.hasHit = true;
+        photon.idMirrorReflexion = mirror.idPerso;
+    }
+
+
+    function handlerMoveMirror(playerSprite, mirror) {
+        if (mirror.isMovable && playerSprite.body.velocity.y == 0) { 
+            if (mirror.body.touching.left) {
+                mirror.body.x += 10;
+            } else if (mirror.body.touching.right) {
+                mirror.body.x -= 10;
+            }
+        }
     }
 
     return {
@@ -52,7 +66,16 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
                 // Attribute rotation = angle
                 mirrorObject.angle = mirrorData.angle;
                 // A mirror is by default immovable
+                mirrorObject.isMovable = false;
+                if (mirrorData.isMovable != null) {
+                    mirrorObject.isMovable = mirrorData.isMovable;
+                }
+                // Physics parameters
                 mirrorObject.body.immovable = true;
+                PhaserGame.game.physics.arcade.enable(mirrorObject);
+                mirrorObject.body.allowGravity = false;
+                // Id to prevent multi reflexion of a photon
+                mirrorObject.idPerso = i;
             }
         },
 
@@ -60,6 +83,7 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         /// Updates the group of mirrors (to be called by the update() function of the game state)
         updateObject: function () {
             PhaserGame.game.physics.arcade.overlap(player.refPhotons.photons, this.group, reflexionPhoton);
+            PhaserGame.game.physics.arcade.collide(player.sprite, this.group, handlerMoveMirror);
         }
     }
 });
