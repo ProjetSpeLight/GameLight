@@ -115,7 +115,8 @@
       "x": 0,
       "y": 0,
       "angle": 45,
-      "skin": ""
+      "skin": "mirror",
+      "immovable": true
     }
   ],
   "coins": [
