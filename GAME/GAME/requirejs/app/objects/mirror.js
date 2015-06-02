@@ -67,11 +67,13 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms'], func
                 mirrorObject.angle = mirrorData.angle;
                 // A mirror is by default immovable
                 mirrorObject.isMovable = false;
+                mirrorObject.body.immovable = true;
+
                 if (mirrorData.isMovable != null) {
                     mirrorObject.isMovable = mirrorData.isMovable;
+                    mirrorObject.body.immovable = !mirrorData.isMovable;
                 }
                 // Physics parameters
-                mirrorObject.body.immovable = false;
                 PhaserGame.game.physics.arcade.enable(mirrorObject);
                 mirrorObject.body.allowGravity = false;
                 // Id to prevent multi reflexion of a photon

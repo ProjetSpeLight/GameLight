@@ -17,7 +17,7 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         
         createTime: function(data) {
         
-            this.timeText = PhaserGame.game.add.text(150, 16, 'Time: Infini ', { fontSize: '32px', fill: '#000' });
+            this.timeText = PhaserGame.game.add.text(150, 16, 'Time: Infinity ', { fontSize: '32px', fill: '#000' });
             this.timeText.fixedToCamera = true;
 
             if (data == null) {
