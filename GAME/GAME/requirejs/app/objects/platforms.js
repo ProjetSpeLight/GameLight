@@ -8,22 +8,55 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
     /// Create and initialize a platforms with default value or specified ones stored in the argument
     /// @param {Object} a JSON object that contains the informations for the initialisation of the platform
     function setParameters(platformData, platforms) {
+        // We check if the minimal if defined
+        /*if (platformData.position == null) {
+            alert('Bad JSON file - the platform will not be created');
+            return null;
+        }
+
+        if (platformData.position.x == null || platformData.position.y) {
+            alert('Bad JSON file - the platform will not be created');
+            return null;
+        }*/
+
+        // We get the differents attributes from the JSON file
+
+        // Attribute color
         var color = platformData.color;
         if (color == null)
             // default value. (the platform has no color)
             color = "";
 
+        // Attribute skin
         var skin = platformData.skin;
         if (skin == null)
             // default value.
             skin = "ground";
+
+        // Attribute immovable
+        var immovable = platformData.immovable;
+        if (immovable == null) {
+            // default value. (the platform does not collapse)
+            immovable = true;
+        }
+
+        // Attribute id
+        var id = platformData.id;
+        if (id == null) {
+            id = -1;
+        }
 
         var platform;
         if (platformData.position == null)
             platform = platforms.create(platformData.positions[0].x, platformData.positions[0].y, skin + color);
         else
             platform = platforms.create(platformData.position.x, platformData.position.y, skin + color);
+
+        // We set the attributes
         platform.color = color;
+        platform.body.immovable = immovable;
+        platform.body.allowGravity = false;
+        platform.id = id;
 
         var size = platformData.size;
         if (size != null) {
@@ -36,12 +69,7 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
             // default value. (the platform has the side given by it's skin)
             platform.scale.setTo(1, 1);
 
-        platform.body.allowGravity = false;
-        if (platformData.immovable == false)
-            platform.body.immovable = false;
-        else
-            // default value. (the platform does not collapse
-            platform.body.immovable = true;
+
         // if the platform is set as crossable the player can jump through it from beow and cross it from side to side
         if (platformData.crossable == true) {
             platform.body.checkCollision.up = true;
@@ -55,11 +83,6 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
             platform.body.checkCollision.down = true;
         }
 
-        var id = platformData.id;
-        if (id == null) {
-            id = -1;
-        }
-        platform.id = id;
         return platform;
     }
 
