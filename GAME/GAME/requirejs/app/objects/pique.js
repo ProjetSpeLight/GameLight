@@ -55,6 +55,13 @@ define(['phaser', 'app/phasergame','app/player','app/objects/coin','app/objects/
                                                     new Phaser.Point(pique.body.width, pique.body.height),
                                                     new Phaser.Point(pique.body.width / 2, 0)]);*/
                 //pique.hitArea = new Phaser.Rectangle(0, 0, 200, 200);
+
+                 /*PhaserGame.game.physics.p2.enable(pique);
+                pique.body.addPolygon({ optimalDecomp: false, skipSimpleCheck: true, removeCollinearPoints: false },
+                    [new Phaser.Point(0, pique.body.height),
+                     new Phaser.Point(pique.body.width, pique.body.height),
+                     new Phaser.Point(pique.body.width / 2, 0)
+                    ]);*/
             }
             
         },
@@ -62,10 +69,13 @@ define(['phaser', 'app/phasergame','app/player','app/objects/coin','app/objects/
         updateObject: function () {
              PhaserGame.game.physics.arcade.collide(this.group, platforms.group);
             
-
-               
                 PhaserGame.game.physics.arcade.collide(this.group, ennemiObject.group, killEnnemiPique, null, this);
                 PhaserGame.game.physics.arcade.overlap(player.sprite, this.group, killPlayerPique, null, this);
+
+           /* PhaserGame.game.physics.p2.collide(this.group, platforms);
+
+            PhaserGame.game.physics.p2.collide(this.group, ennemiObject.group, killEnnemiPique, null, this);
+            PhaserGame.game.physics.p2.overlap(player.sprite, this.group, killPlayerPique, null, this);*/
 
         }
        

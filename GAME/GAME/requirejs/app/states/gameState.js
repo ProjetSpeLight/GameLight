@@ -23,6 +23,8 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
 
             // Initialization of the physics motor
             PhaserGame.game.physics.startSystem(Phaser.Physics.ARCADE);
+            PhaserGame.game.physics.startSystem(Phaser.Physics.P2);
+
 
             // We load the level
             if (!createLevel.createLevel('level' + this.currentLevel)) {
