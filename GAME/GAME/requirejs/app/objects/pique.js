@@ -53,6 +53,9 @@ define(['phaser', 'app/phasergame','app/player','app/objects/coin','app/objects/
             for (var i = 0 ; i < data.length ; i++) {
                 var piqueData = data[i];
                 var pique = this.group.create(piqueData.x, piqueData.y, piqueData.skin);
+                for (var j = 1; j <= piqueData.size.x; j++) {
+                    var pique = this.group.create(piqueData.x + j*pique.body.width, piqueData.y, piqueData.skin);
+                }
                /* pique.hitArea = new Phaser.Polygon([new Phaser.Point(0, pique.body.height),
                                                     new Phaser.Point(pique.body.width, pique.body.height),
                                                     new Phaser.Point(pique.body.width / 2, 0)]);*/
