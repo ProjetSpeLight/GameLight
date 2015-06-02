@@ -7,6 +7,8 @@ define([
 
     function MainMenuState(game) {
         var movingPlatform
+        var screenTitle1;
+        var screenTitle2;
     };
     
     MainMenuState.prototype = {
@@ -15,6 +17,9 @@ define([
             this.game.state.states['Game'].currentLevel = 1;
             // create main menu text and images -
             // create a "Start Game" mechanism - variety of ways to do this...
+
+            //Gestion de du fond
+            this.createTitle();
 
             button_play = this.add.button(400, 180, 'play', this.playGame, this);
             button_play.name = 'play';
@@ -34,11 +39,29 @@ define([
         },
 
         playTutorial: function () {
+            this.game.state.states['Game'].currentLevel = 0;
             this.state.start('Game');
         },
 
         help: function () {
             this.state.start('FinishLevel');
+        },
+
+        createTitle: function(){
+            screenTitle1 = this.game.add.sprite(0, 0, 'screentitle');
+            screenTitle2 = this.game.add.sprite(screenTitle1.width, 0, 'screentitle');
+            this.game.physics.arcade.enable(screenTitle1);
+            this.game.physics.arcade.enable(screenTitle2);
+            screenTitle1.body.velocity.x = -100;
+            screenTitle2.body.velocity.x = screenTitle1.body.velocity.x;
+        },
+
+        update: function () {
+            if (screenTitle1.x <= -screenTitle1.width) {
+                screenTitle1.x = screenTitle1.width + (screenTitle1.x + screenTitle1.width);
+            } else if (screenTitle2.x <= -screenTitle1.width) {
+                screenTitle2.x = screenTitle1.width + (screenTitle2.x + screenTitle1.width);
+            }
         }
 
     };

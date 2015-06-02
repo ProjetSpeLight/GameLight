@@ -39,6 +39,10 @@ define([], function () {
             return actionMoveObject;
         }
 
+        if (name == 'actionPutInMoveObject') {
+            actionPutInMoveObject;
+        }
+
         return null;
     }
 
@@ -69,6 +73,11 @@ define([], function () {
         args.target.destroy();
     }
 
+    function actionPutInMoveObject(args) {
+        args.target.body.velocity.x = args.velocity.x;
+        args.target.body.velocity.y = args.velocity.y;
+    }
+
     function actionCreateObject(args) {
 
     }
@@ -88,7 +97,8 @@ define([], function () {
         actionDeleteObject: actionDeleteObject,
         actionCreateObject: actionCreateObject,
         actionChangeMirrorOrientation: actionChangeMirrorOrientation,
-        actionChangeObjectColor: actionChangeObjectColor
+        actionChangeObjectColor: actionChangeObjectColor,
+        actionPutInMoveObject: actionPutInMoveObject
     }
 
 });
