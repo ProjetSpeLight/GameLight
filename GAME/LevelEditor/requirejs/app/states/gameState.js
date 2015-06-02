@@ -105,8 +105,8 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon' , '
 
                 //PhaserGame.game.physics.arcade.collide(ennemis, platforms);
                 ennemi.updateObject();
-                PhaserGame.game.physics.arcade.collide(player.sprite, platforms, makeColor, null, this);
-                PhaserGame.game.physics.arcade.collide(ends, platforms);
+                PhaserGame.game.physics.arcade.collide(player.sprite, platformsObject.group, makeColor, null, this);
+                PhaserGame.game.physics.arcade.collide(ends, platformsObject.group);
 
                 //PhaserGame.game.physics.arcade.collide(ends, colourPlatforms);
                 //PhaserGame.game.physics.arcade.collide(ends, movingPlatforms);

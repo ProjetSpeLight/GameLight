@@ -12,14 +12,14 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
     // Object displaying the score
     var scoreText;
 
-    
+
     GameState.prototype = {
         create: function () {
             // First we initialize the scope variables
             stopped = false;
             coinObject.score = 0;
             compt = 0;
-            
+
 
             // Initialization of the physics motor
             PhaserGame.game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -44,7 +44,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
             scoreText = PhaserGame.game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
             scoreText.fixedToCamera = true;
 
-           
+
             // Initialization of the pause button
             var button_pause = PhaserGame.game.add.sprite(750, 20, 'pause');
             button_pause.inputEnabled = true;
@@ -73,6 +73,13 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
                 }
             }
 
+            function processColor(sprite, colorplatform) {
+                if (colorplatform.color == "") {
+                    return false;
+                }
+                return true;
+            }
+
 
             function finish(player, diamond) {
                 if (!this.game.device.desktop) {
@@ -98,39 +105,28 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
                     compt = 0;
                     time.updateTime();
                 }
-                
-                
+
+
                 // Update of the score
                 scoreText.text = 'Score: ' + coinObject.score;
 
-                
+
                 // Update of the objects
-                PhaserGame.game.physics.arcade.collide(player.sprite, platforms.group, makeColor, null, this);
+                PhaserGame.game.physics.arcade.collide(player.sprite, platforms.group, makeColor, processColor, this);
+                PhaserGame.game.physics.arcade.collide(player.sprite, platforms.group);
+
                 PhaserGame.game.physics.arcade.collide(ends, platforms.group);
                 PhaserGame.game.physics.arcade.overlap(player.sprite, ends, finish, null, this);
 
                 objectsManager.updateObjects();
-                platforms.updateObject();
                 coinObject.updateObject();
                 piqueObject.updateObject();
                 ennemiObject.updateObject();
-                
-                if(player.timeInvincible != 0) {
-                    if (player.timeInvincible >= 180) {
-                        player.sprite.invincible=false;
-                        player.timeInvincible=0;
-                    } else {
-                        player.sprite.invincible = true;
-                        player.timeInvincible++;
-                    }
-                    
-                } else {
-                    player.sprite.invincible = false;
-                }
+
+                player.updatePlayer();
 
 
-                var cursors = PhaserGame.game.input.keyboard.createCursorKeys();
-                player.updatePositionPlayer(cursors);
+
 
 
                 // We restart the game when "R" is pushed

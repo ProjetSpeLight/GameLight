@@ -21,15 +21,16 @@ define([
             //Gestion de du fond
             this.createTitle();
 
-            button_play = this.add.button(400, 180, 'play', this.playGame, this);
+            //button_play = this.add.button(400, 180, 'play', this.playGame, this);
+            button_play = this.add.button(400, 180, 'play', this.playGame, this, 1, 0, 1);
             button_play.name = 'play';
             button_play.anchor.setTo(0.5, 0.5);
 
-            button_tutorial = this.add.button(400, 300, 'tutorial', this.playTutorial, this);
+            button_tutorial = this.add.button(400, 300, 'tutorial', this.playTutorial, this, 1, 0, 1);
             button_tutorial.name = 'tutorial';
             button_tutorial.anchor.setTo(0.5, 0.5);
 
-            button_help = this.add.button(400, 420, 'help', this.help, this);
+            button_help = this.add.button(400, 420, 'help', this.help, this, 1, 0, 1);
             button_help.name = 'tutorial';
             button_help.anchor.setTo(0.5, 0.5);
         },

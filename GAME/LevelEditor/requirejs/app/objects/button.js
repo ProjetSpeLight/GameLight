@@ -1,23 +1,20 @@
-define(['phaser', 'app/phasergame', 'app/player', 'app/objects/filter', 'app/objects/action'], function (Phaser, PhaserGame, player, ennemi, action) {
+define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], function (Phaser, PhaserGame, player, action) {
 
     var CONST_DELAY = 5;
-    var counter = 0;
-
-   
+    var counter = 0;   
 
     return {
         // The group of sprites
         group: null,
-        
-
-
 
         /// @function createObjectsGroup
         /// Creation of the differents buttons defined in the JSON file
         /// @param {Array} Array of the different buttons defined in the JSON file. Can be null if no buttons are used in the current level
-        createObjectsGroup: function (data) {
+        createObjectsGroup: function (data, Manager) {
             // Allocation of the group
             this.group = PhaserGame.game.add.physicsGroup();
+            // Intialization of the group in the manager
+            Manager.EnumModule.BUTTON.refGroup = this.group;
 
             // If no buttons are defined in the current level, there is nothing to do
             if (data == null) {
@@ -36,8 +33,12 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/filter', 'app/obj
                 // By default, a button is immovable
                 buttonObject.body.immovable = true;
 
-                buttonObject.buttonAction = action.actionMoveObject;
-                buttonObject.args = {target:ennemi.group.children[0], x: 10, y: 0 };
+                // Action associated to the switch
+                if (buttonData.action != null) {
+                    var objAction = action.createAction(buttonData.action, Manager);
+                    buttonObject.buttonAction = objAction.actionName;
+                    buttonObject.args = objAction.args;
+                }
             }
 
         },
@@ -47,6 +48,10 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/filter', 'app/obj
         /// @param {Phaser.Sprite} the player sprite
         /// @param {Phaser.Sprite} the button
         handlerButton: function (playerSprite, button) {
+            // First, we check if the action was correctly defined
+            if (buttonObject.buttonAction == null) {
+                return;
+            }
             if (playerSprite.body.touching.down && !playerSprite.body.touching.right && !playerSprite.body.touching.left) {
                 counter++;
                 if (counter == CONST_DELAY) {

@@ -63,9 +63,6 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
             this.secondAddColor = Color.ColorEnum.BLACK;
         },
 
-
-
-
         /// @function updatePositionPlayer
         /// Move the player when the game is updated
         /// @param {Phaser.Sprite} the object player itself
@@ -130,6 +127,35 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
 
         },
 
+
+        updatePlayer : function() {
+
+            // We begin by checking on the invincibility of the player
+            if(this.timeInvincible != 0) {
+                if (this.timeInvincible >= 180) {
+                    this.sprite.invincible = false;
+                    this.timeInvincible = 0;
+                } else {
+                    this.sprite.invincible = true;
+                    this.timeInvincible++;
+                }
+                    
+            } else {
+                this.sprite.invincible = false;
+            }
+
+            // Then, we update its position
+            var cursors = PhaserGame.game.input.keyboard.createCursorKeys();
+            this.updatePositionPlayer(cursors);
+
+            // Finally, we check if the player has to change of color
+            /*if (sprite.body.touching.down) {
+                if (cursors.down.isDown || this.changeColor)
+                alert('jm');
+            }*/
+
+        },
+
         /// @function removePlayerColor
         /// remove the last color he obtained 
         removePlayerColor: function () {           
@@ -141,78 +167,78 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
 
 
 
-        /// @function changePlayerColor
-        /// Change the current color of the player (and thus of the photons he throws) to the new one given in argument
-        changePlayerColor: function (newColor) {
-            var color = Color.getColor(newColor);
-            if (color == null) {
-                return;
-            }
-            color = Color.additiveColor(this.sprite.color, color);
-            if (this.sprite.color != color) {
-                this.secondAddColor = this.firstAddColor;
-                this.firstAddColor = this.sprite.color;
-                this.sprite.color = color;
-                this.sprite.frame = this.sprite.color.value * 9 + 4;
-            }
-        },
+    /// @function changePlayerColor
+    /// Change the current color of the player (and thus of the photons he throws) to the new one given in argument
+    changePlayerColor: function (newColor) {
+        var color = Color.getColor(newColor);
+        if (color == null) {
+            return;
+        }
+        color = Color.additiveColor(this.sprite.color, color);
+        if (this.sprite.color != color) {
+            this.secondAddColor = this.firstAddColor;
+            this.firstAddColor = this.sprite.color;
+            this.sprite.color = color;
+            this.sprite.frame = this.sprite.color.value * 9 + 4;
+        }
+    },
 
-        jump: function () {
-            if (this.sprite.body.touching.down && !this.pushed) {
-                this.sprite.body.velocity.y = -600;
-                this.pushed = true;
-            }
-        },
+    jump: function () {
+        if (this.sprite.body.touching.down && !this.pushed) {
+            this.sprite.body.velocity.y = -600;
+            this.pushed = true;
+        }
+    },
 
-        handlerLeft: function () {
-            this.sprite.body.velocity.x = -300;
+    handlerLeft: function () {
+        this.sprite.body.velocity.x = -300;
+        this.sprite.animations.play('left' + this.sprite.color.name);
+        this.sprite.lookRight = false;
+    },
+
+    handlerRight: function () {
+        this.sprite.body.velocity.x = 300;
+        this.sprite.animations.play('right' + this.sprite.color.name);
+        this.sprite.lookRight = true;
+    },
+
+    handlerAccelerometer: function () {
+        /*this.sprite.body.velocity.x = this.velocity;
+        if (this.velocity < 0) {
             this.sprite.animations.play('left' + this.sprite.color.name);
             this.sprite.lookRight = false;
-        },
-
-        handlerRight: function () {
-            this.sprite.body.velocity.x = 300;
+        } else if (this.velocity > 0){
             this.sprite.animations.play('right' + this.sprite.color.name);
             this.sprite.lookRight = true;
-        },
-
-        handlerAccelerometer: function () {
-            /*this.sprite.body.velocity.x = this.velocity;
-            if (this.velocity < 0) {
-                this.sprite.animations.play('left' + this.sprite.color.name);
-                this.sprite.lookRight = false;
-            } else if (this.velocity > 0){
-                this.sprite.animations.play('right' + this.sprite.color.name);
-                this.sprite.lookRight = true;
-            } else {
-                this.sprite.animations.stop();
-                this.sprite.frame = this.sprite.color.value * 9 + 4;
-            }*/
-            this.sprite.body.velocity.x = this.velocity;
-            if (this.velocity < 0) {
-                this.sprite.animations.play('left' + this.sprite.color.name);
-                this.sprite.lookRight = false;
-            } else if (this.velocity > 0){
-                this.sprite.animations.play('right' + this.sprite.color.name);
-                this.sprite.lookRight = true;
-            } else {
-                this.sprite.animations.stop();
-                this.sprite.frame = this.sprite.color.value * 9 + 4;
-            }
-        },
-
-        filterColor: function (color) {
-            this.sprite.color = Color.subFilterColor(this.sprite.color, Color.getColor(color));
-            this.firstAddColor = Color.subFilterColor(this.firstAddColor, Color.getColor(color));
-            if (this.firstAddColor == this.sprite.color) {
-                this.firstAddColor = Color.ColorEnum.BLACK;
-            }
-            this.secondAddColor = Color.ColorEnum.BLACK;
-
-
+        } else {
+            this.sprite.animations.stop();
+            this.sprite.frame = this.sprite.color.value * 9 + 4;
+        }*/
+        this.sprite.body.velocity.x = this.velocity;
+        if (this.velocity < 0) {
+            this.sprite.animations.play('left' + this.sprite.color.name);
+            this.sprite.lookRight = false;
+        } else if (this.velocity > 0){
+            this.sprite.animations.play('right' + this.sprite.color.name);
+            this.sprite.lookRight = true;
+        } else {
+            this.sprite.animations.stop();
+            this.sprite.frame = this.sprite.color.value * 9 + 4;
         }
+    },
+
+    filterColor: function (color) {
+        this.sprite.color = Color.subFilterColor(this.sprite.color, Color.getColor(color));
+        this.firstAddColor = Color.subFilterColor(this.firstAddColor, Color.getColor(color));
+        if (this.firstAddColor == this.sprite.color) {
+            this.firstAddColor = Color.ColorEnum.BLACK;
+        }
+        this.secondAddColor = Color.ColorEnum.BLACK;
+
 
     }
+
+}
 
 });
 
