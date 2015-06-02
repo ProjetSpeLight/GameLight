@@ -29,6 +29,9 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
             PhaserGame.game.load.image('mirror', 'assets/mirror.png');
 
 
+            PhaserGame.game.load.image('buttonEmpty', 'assets/emptyButton.png');
+
+
 
             // For the pause state
             pause.preload_pause();

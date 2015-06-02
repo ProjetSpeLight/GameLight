@@ -3,44 +3,34 @@ define([
 ], function (
     Phaser
 ) {
-    //'use strict';
-
-    function ChooseLevelState(game) {
-
-    };
+    function ChooseLevelState(game) { };
 
     ChooseLevelState.prototype = {
         create: function () {
-            // create main menu text and images -
-            // create a "Start Game" mechanism - variety of ways to do this...
-            button_play = this.add.button(400, 200, 'play1', this.playLevel, this);
-            button_play.name = 'play1';
-            button_play.anchor.setTo(0.5, 0.5);
-
-            button_play = this.add.button(400, 300, 'play2', this.playLevel2, this);
-            button_play.name = 'play2';
-            button_play.anchor.setTo(0.5, 0.5);
-
-            button_play = this.add.button(400, 400, 'play3', this.playLevel3, this);
-            button_play.name = 'play3';
-            button_play.anchor.setTo(0.5, 0.5);
-
+            // We generate a text and a button (sprite) per level
+            var x = 10;
+            var y = 10;
+            for (var i = 1 ; i < 6 ; i++) {
+                var emptyButton = this.game.add.sprite(x, y, 'buttonEmpty');
+                var text = this.game.add.text(x + 50, y + 15, "Level " + i, { font: "28px Arial", fill: "#ffffff", align: "center" });
+                text.inputEnabled = true;
+                text.numLevel = i;
+                text.refGame = this;
+                text.events.onInputDown.add(this.down, text);
+                y += emptyButton.height + 20;
+                if (y > this.game.world.height - emptyButton.height) {
+                    y = 10;
+                    x += emptyButton.width + 20;
+                }
+            }
         },
 
-        playLevel: function () {
-            this.game.state.states['Game'].currentLevel = 1;
-            this.state.start('Game', true, false);
+        down: function (text) {
+            text.refGame.game.state.states['Game'].currentLevel = text.numLevel;
+            text.refGame.state.start('Game', true, false);
         },
 
-        playLevel2: function () {
-            this.game.state.states['Game'].currentLevel = 2;
-            this.state.start('Game', true, false);
-        },
 
-        playLevel3: function () {
-        this.game.state.states['Game'].currentLevel = 3;
-        this.state.start('Game', true, false);
-    }
 
     };
 
