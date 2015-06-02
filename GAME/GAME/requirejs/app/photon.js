@@ -4,6 +4,10 @@
 
 define(['phaser', 'app/phasergame'], function (Phaser, game) {
 
+    function killPhoton(photon) {
+        photon.kill();
+    }
+
     return {
         // Contains the group (container of display objects) of photons
         photons: null,
@@ -11,7 +15,7 @@ define(['phaser', 'app/phasergame'], function (Phaser, game) {
         photonTime: 0,
         // Button associated to the handler firePhoton()
         fireButton: null,
-        
+
 
         /// @function initPhotons
         /// Initialize the group of photons (the factory) in order to create photons and the button to use to throw photons
@@ -56,8 +60,13 @@ define(['phaser', 'app/phasergame'], function (Phaser, game) {
                     // Color of the photon
                     photon.color = player.sprite.color;
                     photon.frame = player.sprite.color.value - 1;
+
+                    // If the photon goes out the wolrd, it is destroyed
+                    photon.events.onOutOfBounds.add(killPhoton, photon);
                 }
-            }
+        }
+
+   
         }
 
 

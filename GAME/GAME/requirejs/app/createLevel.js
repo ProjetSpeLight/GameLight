@@ -1,10 +1,7 @@
 
-define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/objects/mirror', 'app/objects/coin', 'app/objects/platforms', 'app/objects/pique', 'app/objects/ennemi', 'app/objects/filter', 'app/objects/button', 'app/objects/time', 'app/objects/objectsManager'], function (Phaser, player, PhaserGame, switchObject, mirror, coinObject, platformsObject, piqueObject, ennemiObject, filter, button, time, Manager) {
+define(['phaser', 'app/player', 'app/phasergame', 'app/objects/coin', 'app/objects/pique', 'app/objects/ennemi', 'app/objects/time', 'app/objects/objectsManager'], function (Phaser, player, PhaserGame, coinObject, piqueObject, ennemiObject, time, Manager) {
 
     function createObjects(levelData, createLevel) {
-
-        // Creation of the fixed platforms
-        platformsObject.createObjectGroup(levelData);
 
         // Creation of the coins
         coinObject.createObjectGroup(levelData.coins);
@@ -17,14 +14,24 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
         // Creation of the ends
         createEnds(levelData);
 
+        // Creation of the objects handled by the manager
         Manager.createObjects(levelData);
 
-
-        filter.createObjectsGroup(levelData.filters);
-
-        button.createObjectsGroup(levelData.buttons);
-
         time.createTime(levelData.time);
+
+
+        // Creation of texts
+        var dataText = levelData.texts;
+
+        if (dataText != null) {
+            var style = { font: "24px Arial", fill: "#000000", align: "center" };
+            for (var i = 0 ; i < dataText.length ; i++) {
+                var textData = dataText[i];
+                var text = PhaserGame.game.add.text(textData.x, textData.y, textData.message, style);
+                //text.anchor.set(0);
+
+            }
+        }
 
     }
 
@@ -32,7 +39,6 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
         //  Creation of the background
         var background = PhaserGame.game.add.sprite(0, 0, levelData.background);
         background.fixedToCamera = true;
-
 
         // Creation of the "frame" of the level
         var worldBounds = levelData.worldBounds;
@@ -88,7 +94,7 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/switch', 'app/obj
             createWorld(levelData);
 
             // Create the differents groups of objects
-           
+
             ends = PhaserGame.game.add.physicsGroup();
 
             // Creation of the level's objects

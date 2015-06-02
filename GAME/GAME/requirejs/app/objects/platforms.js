@@ -193,8 +193,10 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         group: null,
 
         // Create all the object of type platform
-        createObjectGroup: function (levelData) {
+        createObjectGroup: function (levelData, Manager) {
             this.group = PhaserGame.game.add.physicsGroup();
+            // Intialization of the group in the manager
+            Manager.EnumModule.PLATFORM.refGroup = this.group;
             createStillPlatforms(levelData, this.group);
             createBackAndForthPlatforms(levelData, this.group);
             createLoopingPlatforms(levelData, this.group);

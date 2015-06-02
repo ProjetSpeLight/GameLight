@@ -39,6 +39,7 @@ define([
         },
 
         playTutorial: function () {
+            this.game.state.states['Game'].currentLevel = 0;
             this.state.start('Game');
         },
 

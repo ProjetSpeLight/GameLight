@@ -162,8 +162,8 @@
         {
             "x": 1720,
             "y": 520,
-            "angle": 10,
-            "skin": ""
+            "angle": 45,
+            "skin": "mirror"
         }
     ],
     "switch": [
@@ -174,12 +174,7 @@
             "action": {
                 "groupId": 4,
                 "id": 0,
-                "actionName": "a",
-                "args": {
-                    "x": 100,
-                    "y": 0
-
-                }
+                "actionName": "actionDeleteObject"                
             }
         }
     ],
