@@ -40,10 +40,11 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
             this.load.image('pique', 'assets/pique.png');
 
             if (!this.game.device.desktop) {
-                this.load.spritesheet('buttonvertical', 'assets/buttons/button-vertical.png', 64, 64);
-                this.load.spritesheet('buttonhorizontal', 'assets/buttons/button-horizontal.png', 96, 64);
-                this.load.spritesheet('buttonfire', 'assets/buttons/button-round-a.png', 96, 96);
-                this.load.spritesheet('buttonjump', 'assets/buttons/button-round-b.png', 96, 96);
+                this.load.image('buttonChangeColor', 'assets/boutons/changeColor.png');
+                this.load.image('buttonDroite', 'assets/boutons/droite.png');
+                this.load.image('buttonGauche', 'assets/boutons/gauche.png');
+                this.load.image('buttonSaut', 'assets/boutons/saut.png');
+                this.load.image('buttonTir', 'assets/boutons/tir.png')
             }
 
             //this.load.image('play', 'assets/button_play.png');
@@ -72,7 +73,7 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
             this.load.json('level1', 'http://localhost:4200/assets/levels/Tutoriel2.json');
             this.load.json('level2', 'http://localhost:4200/assets/levels/Tutoriel4.json');
             this.load.json('level3', 'http://localhost:4200/assets/levels/Tutoriel3.json');
-             this.load.json('level4', 'http://localhost:4200/assets/levels/Tutoriel5.json');
+            this.load.json('level4', 'http://localhost:4200/assets/levels/Tutoriel5.json');
             this.load.json('level5', 'http://localhost:4200/assets/levels/Exemple.json');
 
 

@@ -1,4 +1,4 @@
-define(['phaser', 'app/phasergame', 'app/touch'], function (Phaser, PhaserGame, Touch) {
+define(['phaser', 'app/phasergame'], function (Phaser, PhaserGame) {
 
     // Declaration of the buttons which compose the pause menu
     var button_menu;
@@ -37,10 +37,6 @@ define(['phaser', 'app/phasergame', 'app/touch'], function (Phaser, PhaserGame, 
         button_resume.anchor.setTo(0.5, 0.5);
         button_resume.fixedToCamera = true;
 
-        if (!PhaserGame.game.device.desktop) {
-            Touch.boutonsSwitch();
-        }
-
         // We put the game into pause
         PhaserGame.game.physics.arcade.isPaused = true;
         PhaserGame.game.paused = true;
@@ -54,7 +50,6 @@ define(['phaser', 'app/phasergame', 'app/touch'], function (Phaser, PhaserGame, 
         button_menu.destroy();
         button_restart.destroy();
         button_resume.destroy();
-        Touch.killBoutonsSwitch();
     }
 
 
@@ -91,7 +86,7 @@ define(['phaser', 'app/phasergame', 'app/touch'], function (Phaser, PhaserGame, 
             } else if (isOnButton(event.x, event.y, button_resume)) {//event.y > 370 && event.y < 440) {
                 // The player has clicked on the resume button            
                 destruction();
-            } 
+            }
         }
     }
 

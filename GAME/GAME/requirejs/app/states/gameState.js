@@ -74,9 +74,16 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
 
             function processColor(sprite, colorplatform) {
                 if (colorplatform.color == "") {
+                    if (!this.game.device.desktop) {
+                        Touch.killChangeColorButton();
+                    }
                     return false;
+                } else {
+                    if (!this.game.device.desktop) {
+                        Touch.showChangeColorButton();
+                    }
+                    return true;
                 }
-                return true;
             }
 
 
@@ -106,6 +113,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
 
                 // Update of the objects
                 PhaserGame.game.physics.arcade.collide(player.sprite, platforms.group, makeColor, processColor, this);
+                
                 PhaserGame.game.physics.arcade.collide(player.sprite, platforms.group);
 
                 PhaserGame.game.physics.arcade.collide(ends, platforms.group);
