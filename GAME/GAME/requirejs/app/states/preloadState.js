@@ -72,10 +72,12 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
             this.load.json('level0', 'http://localhost:4200/assets/levels/Tutoriel.json');
 
             // Niveaux du jeu
+
             this.load.json('level1', 'http://localhost:4200/assets/levels/Level1.json');
             this.load.json('level2', 'http://localhost:4200/assets/levels/Level2.json');
             this.load.json('level3', 'http://localhost:4200/assets/levels/Level3.json');
             this.load.json('level4', 'http://localhost:4200/assets/levels/Level4.json');
+            this.load.json('level5', 'http://localhost:4200/assets/levels/Level5.json');
 
 
 
