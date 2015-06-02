@@ -25,7 +25,7 @@ define([
 
         down: function (button) {
             button.refGame.game.state.states['Game'].currentLevel = button.numLevel;
-            button.refGame.state.start('Game', true, false);
+            button.refGame.state.start('Game');
         },
 
 

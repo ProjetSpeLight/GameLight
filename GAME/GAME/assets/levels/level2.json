@@ -144,6 +144,7 @@
         {
             "x": 1750,
             "y": 220,
+            "skin":"switchBlue",
             "color": "Blue",
             "action": {
                 "groupId": 4,
