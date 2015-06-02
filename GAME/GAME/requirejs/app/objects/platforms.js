@@ -48,6 +48,11 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
             platform.body.checkCollision.left = false;
             platform.body.checkCollision.right = false;
             platform.body.checkCollision.down = false;
+        } else {
+            platform.body.checkCollision.up = true;
+            platform.body.checkCollision.left = true;
+            platform.body.checkCollision.right = true;
+            platform.body.checkCollision.down = true;
         }
 
         var id = platformData.id;
@@ -204,6 +209,7 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
 
         // Update the movement of moving platforms
         updateObject: function () {
+            PhaserGame.game.physics.arcade.overlap(player.refPhotons.photons, this.group, player.refPhotons.killPhoton);
             updateLoopingPlatforms();
             updateBackAndForthPlatforms();
         },

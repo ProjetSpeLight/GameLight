@@ -43,7 +43,7 @@ define(['phaser', 'app/phasergame'], function (Phaser, game) {
             if (game.time.now > this.photonTime) {
                 //  Grab the first photon we can from the pool
                 var photon = this.photons.getFirstExists(false);
-                
+
 
                 if (photon) {
 
@@ -67,10 +67,12 @@ define(['phaser', 'app/phasergame'], function (Phaser, game) {
                     // If the photon goes out the wolrd, it is destroyed
                     photon.events.onOutOfBounds.add(killPhoton, photon);
                 }
-        }
+            }
 
-   
-        }
+
+
+        },
+        killPhoton: killPhoton
 
 
     }
