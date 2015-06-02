@@ -49,6 +49,7 @@ function (Phaser,
             filter.updateObject();
             button.updateObject();
             switchObject.updateObject();
+            platforms.updateObject();
         },
 
         /// @function getElementGroup
