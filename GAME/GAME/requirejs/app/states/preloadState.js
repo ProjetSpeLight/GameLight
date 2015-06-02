@@ -33,7 +33,8 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
             // For the pause state
             pause.preload_pause();
 
-
+            //Chargement écran titre
+            this.load.image('screentitle', 'assets/ScreenTitle.png');
 
             this.load.image('button_jump', 'assets/button_jump.png', 64, 64);
             this.load.image('pique', 'assets/pique.png');
