@@ -65,6 +65,10 @@
     <Content Include="assets\levels\level2.json" />
     <Content Include="assets\levels\Tutoriel.json" />
     <Content Include="assets\levels\TestPlatform.json" />
+    <Content Include="assets\levels\Tutoriel2.json" />
+    <Content Include="assets\levels\Tutoriel3.json" />
+    <Content Include="assets\levels\Tutoriel4.json" />
+    <Content Include="assets\levels\Tutoriel5.json" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
