@@ -63,7 +63,7 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
 
 
 
-            this.load.json('level', 'http://localhost:4200/assets/levels/Tutoriel3.json');
+            this.load.json('level', 'http://localhost:4200/assets/levels/Tutoriel5.json');
             
 
 
