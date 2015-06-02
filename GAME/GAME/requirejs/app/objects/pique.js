@@ -8,6 +8,8 @@ define(['phaser', 'app/phasergame','app/player','app/objects/coin','app/objects/
    //function which allow the pique to kill the player 
    function killPlayerPique(play, pique) {
                    
+       player.animationDeath();
+
        if (!play.invincible){
            if (!PhaserGame.game.device.desktop) {
                Touch.stopMobile();

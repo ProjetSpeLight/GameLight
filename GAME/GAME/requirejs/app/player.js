@@ -210,6 +210,23 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
             this.secondAddColor = Color.ColorEnum.BLACK;
 
 
+        },
+
+        /// @function animationDeath
+        /// Movement the character does when he is wounded
+        animationDeath: function () {
+            // if the character is moving
+            // to the left
+            if (!this.lookRight) {
+                this.sprite.body.velocity.x = 300;
+                this.sprite.body.velocity.y = -400;
+                this.sprite.animations.play('right' + this.sprite.color.name);
+                // to the right
+            } else {
+                this.sprite.body.velocity.x = -300;
+                this.sprite.body.velocity.y = -400;
+                this.sprite.animations.play('left' + this.sprite.color.name);
+            } 
         }
 
     }
