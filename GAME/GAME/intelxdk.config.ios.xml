@@ -7,6 +7,10 @@
 <name>GameLight</name>
 <content src="index.html"/>
 <access origin="*"/>
-<preference name="ios-target" value="6"/>
+<intelxdk:plugin intelxdk:name="Accelerometer" intelxdk:value="org.apache.cordova.device-motion" intelxdk:version="0.2.11"/>
+<preference name="ios-target" value="8.0"/>
 <preference name="ios-configuration" value="adhoc"/>
-<!--creationInfo:{"src":"","projectTypeName":"com.intel.xdk.projecttype.webapp"}--></widget>
+<preference name="Fullscreen" value="true"/>
+<preference name="Orientation" value="landscape"/>
+<preference name="exit-on-suspend" value="true"/>
+<!--creationInfo:{"src":"","projectTypeName":"com.intel.xdk.projecttype.jsapp"}--></widget>

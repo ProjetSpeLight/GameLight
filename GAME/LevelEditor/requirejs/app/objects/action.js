@@ -29,14 +29,39 @@
   **/
 define([], function () {
 
+
+    function getFunctionAction(name) {
+        if (name == 'actionDeleteObject') {
+            return actionDeleteObject;
+        }
+
+        if (name == 'actionMoveObject') {
+            return actionMoveObject;
+        }
+
+        if (name == 'actionPutInMoveObject') {
+            actionPutInMoveObject;
+        }
+
+        return null;
+    }
+
     /// @function createAction
     /// Creates and returns an array composed of the different elements of an action : the target, the action function and its argument(s) from the JSON file
     /// @return {Object} an object containing the necessary data to perform the action when the signal is activated
     /// @param {Object} Object created from the JSON parse
     function createAction(data, manager) {
         // We get the object on which the action is
-        var object = manager.getObject(data.idGroup, data.id);
-        return;
+        var object = manager.getObject(data.groupId, data.id);
+        var args = {};
+        if (data.args != null) {
+            args = data.args;
+        }
+        args.target = object;
+        return {
+            "actionName": getFunctionAction(data.actionName),
+            "args": args
+        }
     }
 
     function actionMoveObject(args) {
@@ -45,7 +70,12 @@ define([], function () {
     }
 
     function actionDeleteObject(args) {
+        args.target.destroy();
+    }
 
+    function actionPutInMoveObject(args) {
+        args.target.body.velocity.x = args.velocity.x;
+        args.target.body.velocity.y = args.velocity.y;
     }
 
     function actionCreateObject(args) {
@@ -67,7 +97,8 @@ define([], function () {
         actionDeleteObject: actionDeleteObject,
         actionCreateObject: actionCreateObject,
         actionChangeMirrorOrientation: actionChangeMirrorOrientation,
-        actionChangeObjectColor: actionChangeObjectColor
+        actionChangeObjectColor: actionChangeObjectColor,
+        actionPutInMoveObject: actionPutInMoveObject
     }
 
 });
