@@ -32,7 +32,7 @@ define(['phaser', 'app/phasergame'], function (Phaser, game) {
             this.photons.setAll('outOfBoundsKill', true);
             this.photons.setAll('checkWorldBounds', true);
 
-            this.fireButton = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+            this.fireButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         },
 
         /// @function firePhoton
@@ -43,9 +43,12 @@ define(['phaser', 'app/phasergame'], function (Phaser, game) {
             if (game.time.now > this.photonTime) {
                 //  Grab the first photon we can from the pool
                 var photon = this.photons.getFirstExists(false);
-                photon.hasHit = false;
+
 
                 if (photon) {
+
+                    photon.hasHit = false;
+
                     //  And fire it
                     if (player.sprite.lookRight) {
                         photon.reset(player.sprite.x + player.sprite.width, player.sprite.y + player.sprite.height / 2 + photon.height / 2);
@@ -64,10 +67,12 @@ define(['phaser', 'app/phasergame'], function (Phaser, game) {
                     // If the photon goes out the wolrd, it is destroyed
                     photon.events.onOutOfBounds.add(killPhoton, photon);
                 }
-        }
+            }
 
-   
-        }
+
+
+        },
+        killPhoton: killPhoton
 
 
     }
