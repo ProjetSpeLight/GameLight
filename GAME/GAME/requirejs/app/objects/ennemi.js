@@ -12,10 +12,6 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photo
         player.animationDeath();
 
         if (!play.invincible){
-            if (!PhaserGame.game.device.desktop) {
-                Touch.stopMobile();
-
-            }
             coinObject.score = 0;    
             //check if the player has a color or not
             if (play.color.value != 0){

@@ -97,6 +97,24 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
     
     function startWatching() {
         Player.accelerometerOn = true;
+
+        buttonjump = PhaserGame.game.add.button(0, 0);
+        buttonjump.fixedToCamera = true;
+        buttonjump.height = 600;
+        buttonjump.width = 200;
+        buttonjump.events.onInputOver.add(function () { Player.activeJump = true; });
+        buttonjump.events.onInputOut.add(function () { Player.activeJump = false; });
+        buttonjump.events.onInputDown.add(function () { Player.activeJump = true; });
+        buttonjump.events.onInputUp.add(function () { Player.activeJump = false; });
+
+        buttonfire = PhaserGame.game.add.button(600,0);
+        buttonfire.fixedToCamera = true;
+        buttonfire.height = 600;
+        buttonfire.width = 200;
+        buttonfire.events.onInputOver.add(function () { Player.fireActive = true; });
+        buttonfire.events.onInputOut.add(function () { Player.fireActive = false; });
+        buttonfire.events.onInputDown.add(function () { Player.fireActive = true; });
+        buttonfire.events.onInputUp.add(function () { Player.fireActive = false; });
     }
 
     function onDeviceReady() {
