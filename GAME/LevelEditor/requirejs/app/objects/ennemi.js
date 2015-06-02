@@ -3,7 +3,7 @@
   *
   */
 
-define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photon', 'app/touch'], function (Phaser, PhaserGame, player, coinObject, photon, Touch) {
+define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photon', 'app/touch', 'app/objects/platforms'], function (Phaser, PhaserGame, player, coinObject, photon, Touch, platforms) {
 
     // on a une collision dans pique à corriger une fois finie
 
@@ -70,7 +70,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photo
 
         updateObject: function () {
 
-            PhaserGame.game.physics.arcade.collide(this.group, platforms);
+            PhaserGame.game.physics.arcade.collide(this.group, platforms.group);
             PhaserGame.game.physics.arcade.overlap(player.sprite, this.group, killPlayer, null, this);
             PhaserGame.game.physics.arcade.collide(photon.photons, this.group, killEnnemi, null, this);
 
