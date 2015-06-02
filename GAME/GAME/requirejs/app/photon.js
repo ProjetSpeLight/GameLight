@@ -32,7 +32,7 @@ define(['phaser', 'app/phasergame'], function (Phaser, game) {
             this.photons.setAll('outOfBoundsKill', true);
             this.photons.setAll('checkWorldBounds', true);
 
-            this.fireButton = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+            this.fireButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         },
 
         /// @function firePhoton
