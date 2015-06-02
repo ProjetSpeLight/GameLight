@@ -1,7 +1,7 @@
 define([
-    'phaser'
+    'phaser', 'app/touch'
 ], function (
-    Phaser
+    Phaser, Touch
 ) { 
     //'use strict';
 
@@ -13,6 +13,7 @@ define([
     
     MainMenuState.prototype = {
         create: function () {
+            
 
             this.game.state.states['Game'].currentLevel = 1;
             // create main menu text and images -
@@ -33,6 +34,11 @@ define([
             button_help = this.add.button(400, 420, 'help', this.help, this, 1, 0, 1);
             button_help.name = 'tutorial';
             button_help.anchor.setTo(0.5, 0.5);
+
+            if(!this.game.device.desktop){
+                Touch.stop();
+                Touch.boutonsSwitch();
+            }
         },
 
         playGame: function () {

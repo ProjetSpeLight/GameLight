@@ -1,4 +1,4 @@
-define(['phaser','app/objects/time'], function (Phaser,time) {
+define(['phaser','app/objects/time', 'app/touch'], function (Phaser,time, Touch) {
     // 'use strict';
 
     function FinishLevelState(game) { }
@@ -6,6 +6,10 @@ define(['phaser','app/objects/time'], function (Phaser,time) {
     FinishLevelState.prototype = {
 
         create: function () {
+            
+            if(!this.game.device.desktop){
+                Touch.stop();
+            }
             
             var wellDone = this.add.text(320, 30, ' Well Done !' , { fontSize: '32px', fill: '#fff' });
             

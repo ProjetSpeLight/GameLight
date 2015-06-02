@@ -33,7 +33,7 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
             // For the pause state
             pause.preload_pause();
 
-            //Chargement écran titre
+            //Chargement ï¿½cran titre
             this.load.image('screentitle', 'assets/ScreenTitle.png');
 
             this.load.image('button_jump', 'assets/button_jump.png', 64, 64);
@@ -47,12 +47,14 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
             }
 
             //this.load.image('play', 'assets/button_play.png');
-            this.load.spritesheet('play', 'assets/New_Game.png', 190, 68);
+            this.load.spritesheet('play', 'assets/boutons/New_Game.png', 190, 68);
             this.load.image('play1', 'assets/button_play_level1.png');
             this.load.image('play2', 'assets/button_play_level2.png');
-            this.load.spritesheet('help', 'assets/Aide.png', 190, 68);
-            this.load.spritesheet('tutorial', 'assets/Tuto.png', 190, 68);
+            this.load.spritesheet('help', 'assets/boutons/Aide.png', 190, 68);
+            this.load.spritesheet('tutorial', 'assets/boutons/Tuto.png', 190, 68);
             this.load.image('buttonNextLevel', 'assets/button_nextlevel.png');
+            this.load.spritesheet('bouton', 'assets/boutons/Boutons.png', 190, 68);
+            this.load.spritesheet('accelerometre', 'assets/boutons/Accelerometre.png', 190, 68);
 
 
             this.load.spritesheet('dude', 'assets/colordude.png', 32, 48);
@@ -66,21 +68,17 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
             // Tutoriel
             this.load.json('level0', 'http://localhost:4200/assets/levels/Tutoriel.json');
 
-
-
-           
-
             // Niveaux du jeu
-            this.load.json('level1', 'http://localhost:4200/assets/levels/Tutoriel2.json');
+            /*this.load.json('level1', 'http://localhost:4200/assets/levels/Tutoriel2.json');
             this.load.json('level2', 'http://localhost:4200/assets/levels/Tutoriel4.json');
             this.load.json('level3', 'http://localhost:4200/assets/levels/Tutoriel3.json');
-            this.load.json('level4', 'http://localhost:4200/assets/levels/Exemple.json');
+            this.load.json('level4', 'http://localhost:4200/assets/levels/Exemple.json');*/
 
 
 
-            /* this.load.json('level1', 'http://projetspelight.github.io/assets/levels/Tutoriel4.json');
+             this.load.json('level1', 'http://projetspelight.github.io/assets/levels/Tutoriel4.json');
              this.load.json('level2', 'http://projetspelight.github.io/assets/levels/Exemple.json');
-             this.load.json('level3', 'http://projetspelight.github.io/assets/levels/levelTest.json');*/
+             this.load.json('level3', 'http://projetspelight.github.io/assets/levels/levelTest.json');
 
 
 
