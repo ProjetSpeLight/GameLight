@@ -9,7 +9,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photo
 
     function killPlayer(play, ennemi) {
 
-        player.animationDeath();
+        //player.animationDeath();
 
         if (!play.invincible){
             if (!PhaserGame.game.device.desktop) {
