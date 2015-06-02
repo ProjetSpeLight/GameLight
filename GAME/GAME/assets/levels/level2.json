@@ -134,7 +134,7 @@
     "mirrors": [
         {
             "x": 1720,
-            "y": 520,
+            "y": 540,
             "angle": 45,
             "skin": "mirror",
             "isMovable": true
@@ -142,7 +142,7 @@
     ],
     "switch": [
         {
-            "x": 1778,
+            "x": 1750,
             "y": 220,
             "color": "Blue",
             "action": {
