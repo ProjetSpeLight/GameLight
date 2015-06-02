@@ -9,7 +9,7 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
     var watchID = null;
     var inGame = false;
     var orientationDroite = true;
-    var zoneMorte = 3;
+    var zoneMorte = 2;
     var buttonjump;
     var buttonfire;
     var buttonleft;
@@ -133,11 +133,22 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
             } else {
                 signe = 1;
             }
+            var temp
             if (Math.abs(acceleration.y) > zoneMorte) {
                 if(acceleration.y > 0){
-                    Player.velocity = signe * (acceleration.y - zoneMorte) / (9.80 - zoneMorte) * 300;
+                    temp = signe * (acceleration.y - zoneMorte) / (9.80 - zoneMorte) * 900;
+                    if(Math.abs(temp) >= 300){
+                        Player.velocity = signe * 300;
+                    } else {
+                        Player.velocity = temp;   
+                    }
                 } else {
-                    Player.velocity = signe * (acceleration.y + zoneMorte) / (9.80 - zoneMorte) * 300;
+                    temp = signe * (acceleration.y + zoneMorte) / (9.80 - zoneMorte) * 900;
+                    if(-Math.abs(temp) <= - 300){
+                        Player.velocity = - signe * 300;
+                    } else {
+                        Player.velocity = temp;   
+                    }
                 }
             } else {
                 Player.velocity = 0;

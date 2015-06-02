@@ -14,6 +14,14 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
 
 
     GameState.prototype = {
+        preload: function () {
+            if(this.currentLevel === 0){
+                this.load.json('level0', 'http://projetspelight.github.io/assets/levels/Tutoriel.json');
+            } else {
+                this.load.json('level' + this.currentLevel, 'http://projetspelight.github.io/assets/levels/Level' + this.currentLevel + '.json');
+            }
+        },
+
         create: function () {
             // First we initialize the scope variables
             stopped = false;

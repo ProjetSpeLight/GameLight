@@ -78,20 +78,20 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
             this.load.image('button', 'assets/photon_vert.png');
 
             // Tutoriel
-            this.load.json('level0', 'http://localhost:4200/assets/levels/Tutoriel.json');
+            //this.load.json('level0', 'http://localhost:4200/assets/levels/Tutoriel.json');
 
             // Niveaux du jeu
-            this.load.json('level1', 'http://localhost:4200/assets/levels/Level1.json');
+            /*this.load.json('level1', 'http://localhost:4200/assets/levels/Level1.json');
             this.load.json('level2', 'http://localhost:4200/assets/levels/Level2.json');
             this.load.json('level3', 'http://localhost:4200/assets/levels/Level3.json');
             this.load.json('level4', 'http://localhost:4200/assets/levels/Level4.json');
-            this.load.json('level5', 'http://localhost:4200/assets/levels/Level5.json');
-
-
-
-             /*this.load.json('level1', 'http://projetspelight.github.io/assets/levels/Tutoriel4.json');
-             this.load.json('level2', 'http://projetspelight.github.io/assets/levels/Exemple.json');
-             this.load.json('level3', 'http://projetspelight.github.io/assets/levels/levelTest.json');*/
+            this.load.json('level5', 'http://localhost:4200/assets/levels/Level5.json');*/
+            
+            /*this.load.json('level1', 'http://projetspelight.github.io/assets/levels/Level1.json');
+            this.load.json('level2', 'http://projetspelight.github.io/assets/levels/Level2.json');
+            this.load.json('level3', 'http://projetspelight.github.io/assets/levels/Level3.json');
+            this.load.json('level4', 'http://projetspelight.github.io/assets/levels/Level4.json');
+            this.load.json('level5', 'http://projetspelight.github.io/assets/levels/Level5.json');*/
 
 
 
