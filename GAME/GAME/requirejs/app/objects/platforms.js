@@ -7,17 +7,7 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
     /// @function setParameters
     /// Create and initialize a platforms with default value or specified ones stored in the argument
     /// @param {Object} a JSON object that contains the informations for the initialisation of the platform
-    function setParameters(platformData, platforms) {
-        // We check if the minimal if defined
-        /*if (platformData.position == null) {
-            alert('Bad JSON file - the platform will not be created');
-            return null;
-        }
-
-        if (platformData.position.x == null || platformData.position.y) {
-            alert('Bad JSON file - the platform will not be created');
-            return null;
-        }*/
+    function setParameters(platformData, platforms) {       
 
         // We get the differents attributes from the JSON file
 

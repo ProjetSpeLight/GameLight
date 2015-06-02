@@ -11,12 +11,10 @@ define([
             var x = 10;
             var y = 10;
             for (var i = 1 ; i < 6 ; i++) {
-                var emptyButton = this.game.add.sprite(x, y, 'buttonEmpty');
+                var emptyButton = this.game.add.button(x, y, 'buttonEmpty', this.down, self);
                 var text = this.game.add.text(x + 50, y + 15, "Level " + i, { font: "28px Arial", fill: "#ffffff", align: "center" });
-                text.inputEnabled = true;
-                text.numLevel = i;
-                text.refGame = this;
-                text.events.onInputDown.add(this.down, text);
+                emptyButton.numLevel = i;
+                emptyButton.refGame = this;
                 y += emptyButton.height + 20;
                 if (y > this.game.world.height - emptyButton.height) {
                     y = 10;
@@ -25,9 +23,9 @@ define([
             }
         },
 
-        down: function (text) {
-            text.refGame.game.state.states['Game'].currentLevel = text.numLevel;
-            text.refGame.state.start('Game', true, false);
+        down: function (button) {
+            button.refGame.game.state.states['Game'].currentLevel = button.numLevel;
+            button.refGame.state.start('Game', true, false);
         },
 
 
