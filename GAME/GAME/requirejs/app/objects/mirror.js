@@ -42,6 +42,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms'], func
         preloadObjectImage: function () {
             PhaserGame.game.load.image('mirrorFixed', 'assets/mirror.png');
             PhaserGame.game.load.image('mirrorMovable', 'assets/mirror.png');
+            PhaserGame.game.load.image('mirrorRunner', 'assets/platform_Jaune.png');
         },
 
         /// @function createObjectsGroup
@@ -121,6 +122,13 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms'], func
                     mirrorObject.id = mirrorData.id;
                 }
 
+                // Creation of the runner if needed
+                if (mirrorObject.leftBound != mirrorObject.rightBound) {
+                    var runner = PhaserGame.game.add.sprite(mirrorObject.leftBound, mirrorObject.body.y + mirrorObject.body.height / 2, 'mirrorRunner');
+                    var size = (mirrorObject.rightBound - mirrorObject.leftBound) / runner.width;
+                    runner.scale.setTo(size, 1);
+                }
+
             }
         },
 
@@ -129,8 +137,21 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms'], func
         /// @function updateObject
         /// Updates the group of mirrors (to be called by the update() function of the game state)
         updateObject: function () {
+
+            function processCallback(playerSprite, element) {
+                if (element.body.x + element.body.width >= element.rightBound && playerSprite.body.velocity.x >= 0) {
+                    return false;
+                }
+
+                if (element.body.x - element.body.width <= element.leftBound && playerSprite.body.velocity.x <= 0) {
+                    return false;
+                }
+
+                return true;
+            }
+
             PhaserGame.game.physics.arcade.overlap(player.refPhotons.photons, this.group, reflexionPhoton);
-            PhaserGame.game.physics.arcade.collide(player.sprite, this.group, null);
+            PhaserGame.game.physics.arcade.collide(player.sprite, this.group, null, processCallback);
             PhaserGame.game.physics.arcade.collide(this.group, platforms.group, null);
             for (var i = 0; i < this.group.children.length; i++) {
 
@@ -142,6 +163,13 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms'], func
                     miror.body.velocity.y /= 1.1;
                 }
             }
+
+            // Check if movable mirror is in its runner
+            /*this.group.forEach(function (element) {
+                if (element.body.x >= element.rightBound || element.body.x <= element.leftBound)
+                    element.body.velocity.x = 0;              
+
+            })*/
         }
     }
 });

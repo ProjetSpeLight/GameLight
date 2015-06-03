@@ -53,9 +53,12 @@ function (Phaser,
         /// Creates the different groups the manager handles
         /// @param {Object} Data from the JSON file
         createObjects: function (data) {
+            // First we create the platforms
+            platforms.createObjectGroup(data, this);
+
+            // Then the other objects
             mirror.createObjectsGroup(data.mirrors, this);
             filter.createObjectsGroup(data.filters, this);
-            platforms.createObjectGroup(data, this);
             enemy.createObjectsGroup(data.ennemis, this);
             pique.createObjectsGroup(data.piques, this);
             coin.createObjectsGroup(data.coins, this);
