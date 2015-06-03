@@ -45,7 +45,9 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photo
                     ennemi.body.sprite.rightBounds = ennemiData.bounds.right;
                     ennemi.body.velocity.x = ennemiData.speed.x;
                 }
+                ennemi.body.collideWorldBounds = true;
                 ennemi.body.bounce.y = 0;
+                ennemi.body.bounce.x = 1;
                 ennemi.body.gravity.y = 1000;
 
 
@@ -54,10 +56,11 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photo
 
         updateObject: function () {
 
+            PhaserGame.game.physics.arcade.collide(this.group, this.group);
             PhaserGame.game.physics.arcade.collide(this.group, platforms.group);
             PhaserGame.game.physics.arcade.overlap(player.sprite, this.group, killPlayer, null, this);
             PhaserGame.game.physics.arcade.collide(photon.photons, this.group, killEnnemi, null, this);
-
+            
             //Déplacement des ennemis
             this.group.forEach(function (element) {
                 if (element.body.x >= element.body.sprite.rightBounds) {
@@ -71,7 +74,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photo
                     element.body.velocity.y *= -1;
                 }
             })
-
+            
         }
 
 
