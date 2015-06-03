@@ -45,7 +45,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/color'], function (Phaser
             for (var i = 0 ; i < data.length ; i++) {
                 var filterData = data[i];
                 // We create a new filter at the position (x,y) with the token "filterData.skin + filterData.color" to represent the corresponding image loaded
-                var filter = this.group.create(filterData.x, filterData.y, 'baddie');
+                var filter = this.group.create(filterData.x, filterData.y, filterData.skin);
                 // Attribute color
                 filter.color = filterData.color;
             }
