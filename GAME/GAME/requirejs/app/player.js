@@ -45,13 +45,13 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
         numberColor: 0,
         previousColor: Color.ColorEnum.BLACK,
 
-        kill :function(){
+        kill: function (coinObject) {
             //player.animationDeath();
 
-            if (!play.invincible){
+            if (!this.sprite.invincible){
  
                 //check if the player has a color or not
-                if (play.color.value != 0){
+                if (this.sprite.color.value != 0) {
                     //he has a color so we remove the last color
                     player.timeInvincible=1;
                     player.removePlayerColor();

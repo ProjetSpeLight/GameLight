@@ -10,6 +10,10 @@ define(['phaser', 'app/phasergame','app/player','app/objects/coin','app/objects/
     function killEnnemiPique(pique, ennemi){
         ennemi.kill();
     }
+
+    function killPlayerPique(playerSprite, pique) {
+        player.kill(coinObject);
+    }
     
     return {
     

@@ -13,6 +13,10 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photo
         coinObject.score += 10;
     }
 
+    function killPlayer(playerSprite, ennemi) {
+        player.kill(coinObject);
+    }
+
     return {
 
         /***** Attributes *****/
@@ -51,7 +55,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photo
         updateObject: function () {
 
             PhaserGame.game.physics.arcade.collide(this.group, platforms.group);
-            PhaserGame.game.physics.arcade.overlap(player.sprite, this.group, player.kill, null, this);
+            PhaserGame.game.physics.arcade.overlap(player.sprite, this.group, killPlayer, null, this);
             PhaserGame.game.physics.arcade.collide(photon.photons, this.group, killEnnemi, null, this);
 
             //Déplacement des ennemis
