@@ -146,7 +146,17 @@
         }
     ],
     "switchs": [
-        //TODO
+        {
+            "x": 2200,
+            "y": 300,
+            "color": "Blue",
+            "action": {
+                "groupId": 4,
+                "id": 0,
+                "actionName": "actionDeleteObject"
+            }
+        }
+
     ],
     // List of the different level ending areas
     "ends": [

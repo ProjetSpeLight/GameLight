@@ -29,6 +29,10 @@ function (Phaser,
 
         EnumModule: EnumModule,
 
+        preloadObjects: function() {
+            switchObject.preloadObjectImage();
+        },
+
         /// @function createObjects
         /// Creates the different groups the manager handles
         /// @param {Object} Data from the JSON file

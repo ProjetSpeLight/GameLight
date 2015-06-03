@@ -1,4 +1,4 @@
-define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, PhaserGame) {
+define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager'], function (Phaser, pause, PhaserGame, Manager) {
     // 'use strict';
 
     function PreloadState(game) { }
@@ -25,20 +25,6 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
 
             PhaserGame.game.load.image('logo', 'assets/phaser2.png');
             PhaserGame.game.load.image('dead', 'assets/dead.png');
-            PhaserGame.game.load.image('switchRed', 'assets/Switch/Switch_Red.png');
-            PhaserGame.game.load.image('switchBlue', 'assets/Switch/Switch_Blue.png');
-            PhaserGame.game.load.image('switchGreen', 'assets/Switch/Switch_Green.png');
-            PhaserGame.game.load.image('switchMagenta', 'assets/Switch/Switch_Magenta.png');
-            PhaserGame.game.load.image('switchYellow', 'assets/Switch/Switch_Yellow.png');
-            PhaserGame.game.load.image('switchCyan', 'assets/Switch/Switch_Cyan.png');
-            PhaserGame.game.load.image('switchWhite', 'assets/Switch/Switch_White.png');
-            PhaserGame.game.load.image('switchRedOFF', 'assets/Switch/Switch_RedOff.png');
-            PhaserGame.game.load.image('switchBlueOFF', 'assets/Switch/Switch_BlueOff.png');
-            PhaserGame.game.load.image('switchGreenOFF', 'assets/Switch/Switch_GreenOff.png');
-            PhaserGame.game.load.image('switchMagentaOFF', 'assets/Switch/Switch_MagentaOff.png');
-            PhaserGame.game.load.image('switchYellowOFF', 'assets/Switch/Switch_YellowOff.png');
-            PhaserGame.game.load.image('switchCyanOFF', 'assets/Switch/Switch_CyanOff.png');
-            PhaserGame.game.load.image('switchWhiteOFF', 'assets/Switch/Switch_WhiteOff.png');
             
             
             PhaserGame.game.load.image('mirrorFixed', 'assets/mirror.png');
@@ -48,6 +34,7 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
 
             PhaserGame.game.load.image('buttonEmpty', 'assets/emptyButton.png');
 
+            Manager.preloadObjects();
 
 
             // For the pause state
