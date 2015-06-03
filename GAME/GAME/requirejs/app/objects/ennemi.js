@@ -40,15 +40,35 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photo
                 var ennemiData = data[i];
                 var ennemi = this.group.create(ennemiData.x, ennemiData.y, ennemiData.skin);
                 ennemi.frame = 1;
-                if (ennemiData.speed.x != 0) {
-                    ennemi.body.sprite.leftBounds = ennemiData.bounds.left;
-                    ennemi.body.sprite.rightBounds = ennemiData.bounds.right;
-                    ennemi.body.velocity.x = ennemiData.speed.x;
+
+                var speed = ennemiData.speed;
+                if (speed != null) {
+                    if (speed.x == null)
+                        speed.x = 0;
+                    if (speed.y == null)
+                        speed.y = 0;
+                } else {
+                    speed.x = 0;
+                    speed.y = 0;
                 }
+                ennemi.body.velocity.x = speed.x;
+                ennemi.body.velocity.y = speed.y;
+
+                var bounds = ennemiData.bounds;
+                if (bounds != null) {
+                    if(bounds.left != null)
+                        ennemi.body.sprite.leftBounds = ennemiData.bounds.left;
+                    if(bounds.right !=null)
+                        ennemi.body.sprite.rightBounds = ennemiData.bounds.right;
+                    if (bounds.top != null)
+                        ennemi.body.sprite.topBounds = ennemiData.bounds.top;
+                    if (bounds.bottom != null)
+                        ennemi.body.sprite.bottomBounds = ennemiData.bounds.bottom;
+                }
+
                 ennemi.body.collideWorldBounds = true;
-                ennemi.body.bounce.y = 0;
+                ennemi.body.bounce.y = 1;
                 ennemi.body.bounce.x = 1;
-                ennemi.body.gravity.y = 1000;
 
 
             }
@@ -63,16 +83,12 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photo
             
             //Déplacement des ennemis
             this.group.forEach(function (element) {
-                if (element.body.x >= element.body.sprite.rightBounds) {
+                if (element.body.x >= element.body.sprite.rightBounds || element.body.x <= element.body.sprite.leftBounds)
                     element.body.velocity.x *= -1;
-                } else if (element.body.x <= element.body.sprite.leftBounds) {
-                    element.body.velocity.x *= -1;
-                }
-                if (element.body.y <= element.body.sprite.topBounds) {
+
+                if (element.body.y <= element.body.sprite.topBounds || element.body.y >= element.body.sprite.bottomBounds) 
                     element.body.velocity.y *= -1;
-                } else if (element.body.y >= element.body.sprite.bottomBounds) {
-                    element.body.velocity.y *= -1;
-                }
+
             })
             
         }
