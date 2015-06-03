@@ -7,7 +7,7 @@ define(['phaser', 'app/phasergame', 'app/color'], function (Phaser, game, Color)
     var count = 0;
 
     function killPhoton(photon) {
-        photon.body.velocity.x = 0;
+        /*photon.body.velocity.x = 0;
         photon.body.velocity.y = 0;
         if (count < 5) {
             count++;
@@ -22,12 +22,13 @@ define(['phaser', 'app/phasergame', 'app/color'], function (Phaser, game, Color)
            return;
        }*/
         
-        if (photon.numPlay == 5) {
+       /* if (photon.numPlay == 5) {
            photon.animations.stop(photon.color.name);
            photon.kill();
        } else {
            photon.numPlay += 1;
-       }
+       }*/
+        photon.kill();
     }
 
     return {
