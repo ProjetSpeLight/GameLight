@@ -33,16 +33,6 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/coin', 'app/objec
         PhaserGame.game.world.setBounds(worldBounds.leftBound, worldBounds.upperBound, worldBounds.rightBound, worldBounds.lowerBound);
     }
 
-
-
-
-
-    function createStart(element) {
-        player.initializePlayer(PhaserGame.game, element.x, element.y);
-    }
-
-
-
     return {
 
         createLevel: function (str) {
@@ -53,18 +43,14 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/coin', 'app/objec
                 return false;
             }
 
-            createWorld(levelData);
-
-            // Create the differents groups of objects
-
-            ends = PhaserGame.game.add.physicsGroup();
+            createWorld(levelData);          
 
             // Creation of the level's objects
             createObjects(levelData, this);
 
 
             // Creation of the player
-            createStart(levelData.playerStart, PhaserGame.game);
+            player.initializePlayer(PhaserGame.game, levelData.playerStart.x, levelData.playerStart.y);
 
             return true;
         },
