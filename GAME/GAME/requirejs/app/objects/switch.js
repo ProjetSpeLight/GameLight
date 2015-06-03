@@ -12,10 +12,14 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
             if (switchObject.switchAction == null) {
                 return;
             }
+             var str = "switch"+switchObject.colorName;
             switchObject.switchAction(switchObject.args);
+            switchObject.loadTexture(str);
         }
         // In any case, the photon is destructed
         photon.kill();
+       
+       
     }
 
     return {

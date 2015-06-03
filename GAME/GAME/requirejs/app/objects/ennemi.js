@@ -40,7 +40,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photo
                 var ennemiData = data[i];
                 var ennemi = this.group.create(ennemiData.x, ennemiData.y, ennemiData.skin);
                 ennemi.frame = 1;
-
+                ennemi.id = ennemiData.id
                 var speed = ennemiData.speed;
                 if (speed != null) {
                     if (speed.x == null)
