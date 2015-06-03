@@ -53,7 +53,6 @@ define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager'], 
             //this.load.spritesheet('photon', 'assets/photons.png', 20, 20);
             this.load.spritesheet('photon', 'assets/photons_explosion.png', 60, 60);
 
-            this.load.spritesheet('baddie', 'assets/baddie.png', 32, 32);
             
 
             // Tutoriel

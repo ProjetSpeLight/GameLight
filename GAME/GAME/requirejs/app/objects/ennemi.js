@@ -8,7 +8,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photo
 
 
     function killEnnemi(photon, ennemi) {
-        ennemi.kill();
+        ennemi.destroy();
         photon.kill();
         coinObject.score += 10;
     }
@@ -19,23 +19,28 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photo
 
     return {
 
-        /***** Attributes *****/
-
         // Object containing the physic group of ennemis
         group: null,
 
-
-        /***** Methodes *****/
+        /// @function preloadObjectImage
+        /// Preloads the different images / spritesheets used by this module
+        preloadObjectImage: function () {
+            PhaserGame.game.load.spritesheet('baddie', 'assets/baddie.png', 32, 32);
+        },
 
         /// @function createObjectsGroup
         /// Create the differents objects defines in the JSON file represented by this module
         /// @param {Array} Array of elements representing 
-        createObjectGroup: function (data) {
+        createObjectsGroup: function (data, Manager) {
 
+            // Allocation of the group
             this.group = PhaserGame.game.add.physicsGroup();
 
+            // Intialization of the group in the manager
+            Manager.EnumModule.ENEMY.refGroup = this.group;
+
             if (data == null)
-                return;          
+                return;
             for (var i = 0 ; i < data.length ; i++) {
                 var ennemiData = data[i];
                 var ennemi = this.group.create(ennemiData.x, ennemiData.y, ennemiData.skin);
@@ -56,9 +61,9 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photo
 
                 var bounds = ennemiData.bounds;
                 if (bounds != null) {
-                    if(bounds.left != null)
+                    if (bounds.left != null)
                         ennemi.body.sprite.leftBounds = ennemiData.bounds.left;
-                    if(bounds.right !=null)
+                    if (bounds.right != null)
                         ennemi.body.sprite.rightBounds = ennemiData.bounds.right;
                     if (bounds.top != null)
                         ennemi.body.sprite.topBounds = ennemiData.bounds.top;
@@ -80,17 +85,17 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photo
             PhaserGame.game.physics.arcade.collide(this.group, platforms.group);
             PhaserGame.game.physics.arcade.overlap(player.sprite, this.group, killPlayer, null, this);
             PhaserGame.game.physics.arcade.collide(photon.photons, this.group, killEnnemi, null, this);
-            
+
             //Déplacement des ennemis
             this.group.forEach(function (element) {
                 if (element.body.x >= element.body.sprite.rightBounds || element.body.x <= element.body.sprite.leftBounds)
                     element.body.velocity.x *= -1;
 
-                if (element.body.y <= element.body.sprite.topBounds || element.body.y >= element.body.sprite.bottomBounds) 
+                if (element.body.y <= element.body.sprite.topBounds || element.body.y >= element.body.sprite.bottomBounds)
                     element.body.velocity.y *= -1;
 
             })
-            
+
         }
 
 

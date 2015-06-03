@@ -5,14 +5,16 @@ define(['phaser',
         'app/objects/filter',
         'app/objects/button',
         'app/objects/switch',
-        'app/objects/platforms'],
+        'app/objects/platforms',
+        'app/objects/ennemi'],
 function (Phaser,
           PhaserGame,
           mirror,
           filter,
           button,
           switchObject,
-          platforms) {
+          platforms,
+          enemy) {
 
     // Enumeration of the different object modules handled by the manager with their id and a reference to their group
     var EnumModule = {
@@ -20,7 +22,8 @@ function (Phaser,
         FILTER: { idGroup: 1, refGroup: null },
         BUTTON: { idGroup: 2, refGroup: null },
         SWITCH: { idGroup: 3, refGroup: null },
-        PLATFORM: { idGroup: 4, refGroup: null }
+        PLATFORM: { idGroup: 4, refGroup: null },
+        ENEMY: {idGroup: 5, refGroup: null}
     }
 
 
@@ -35,6 +38,7 @@ function (Phaser,
             button.preloadObjectImage();
             switchObject.preloadObjectImage();
             platforms.preloadObjectImage();
+            enemy.preloadObjectImage();
         },
 
         /// @function createObjects
@@ -44,6 +48,7 @@ function (Phaser,
             mirror.createObjectsGroup(data.mirrors, this);
             filter.createObjectsGroup(data.filters, this);
             platforms.createObjectGroup(data, this);
+            enemy.createObjectsGroup(data.ennemis, this);
             // We create the objects that can have actions after the others
             switchObject.createObjectsGroup(data.switch, this);
             button.createObjectsGroup(data.buttons, this);
@@ -57,6 +62,7 @@ function (Phaser,
             filter.updateObject();
             button.updateObject();
             switchObject.updateObject();
+            enemy.updateObject();
             platforms.updateObject();
         },
 

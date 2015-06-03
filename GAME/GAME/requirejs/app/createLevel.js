@@ -5,8 +5,7 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/coin', 'app/objec
 
         // Creation of the coins
         coinObject.createObjectGroup(levelData.coins);
-        // Creation of the ennemies
-        ennemiObject.createObjectGroup(levelData.ennemis);
+        
 
         //Creation of the pique
         piqueObject.createObjectGroup(levelData.piques);
