@@ -34,7 +34,9 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
             PhaserGame.game.load.image('switchWhite', 'assets/Switch/Switch_White.png');
             
             
-            PhaserGame.game.load.image('mirror', 'assets/mirror.png');
+            PhaserGame.game.load.image('mirrorFixed', 'assets/mirror.png');
+            PhaserGame.game.load.image('mirrorMovable', 'assets/mirror.png');
+
 
 
             PhaserGame.game.load.image('buttonEmpty', 'assets/emptyButton.png');

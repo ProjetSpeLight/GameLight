@@ -137,7 +137,7 @@
             "y": 540,
             "angle": 45,
             "skin": "mirror",
-            "isMovable": true
+            "immovable": false
         }
     ],
     "switch": [

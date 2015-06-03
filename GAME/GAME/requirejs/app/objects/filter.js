@@ -42,12 +42,17 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/color'], function (Phaser
             // If no filters are defined in the current level, there is nothing to do
             if (data == null)
                 return;
+
             for (var i = 0 ; i < data.length ; i++) {
                 var filterData = data[i];
-                // We create a new filter at the position (x,y) with the token "filterData.skin + filterData.color" to represent the corresponding image loaded
-                var filter = this.group.create(filterData.x, filterData.y, filterData.skin);
+                // We create a new filter at the position (x,y) with the token "filter + filterData.color" to represent the corresponding image loaded
+                var filter = this.group.create(filterData.x, filterData.y, 'filter' + filterData.color);
                 // Attribute color
                 filter.color = filterData.color;
+                // Id if defined
+                if (filterData.id != null) {
+                    filter.id = filterData.id;
+                }
             }
         },
 

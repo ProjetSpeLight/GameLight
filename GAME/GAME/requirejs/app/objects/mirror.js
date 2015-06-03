@@ -10,7 +10,6 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms'], func
                 return;
             }
         }
-        //var angle = 45 - (mirror.angle ) / 2;
         var x = photon.body.velocity.x;
         var y = photon.body.velocity.y;
         var theta = (90.0 - mirror.angle) * Math.PI / 180.0;
@@ -18,18 +17,14 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms'], func
         var newX = Math.cos(2 * alpha) * x - Math.sin(2 * alpha) * y;
         var newY = Math.sin(2 * alpha) * x + Math.cos(2 * alpha) * y;
         photon.body.velocity.x = newX;
-        photon.body.velocity.y = -newY;
-        /*photon.body.velocity.x = (Math.cos(angle * Math.PI / 180) * x - y * Math.sin(angle * Math.PI / 180));
-        photon.body.velocity.y = -(Math.cos(angle * Math.PI / 180) * y + x * Math.sin(angle * Math.PI / 180));*/
-        //photon.body.velocity.x = 0;
-        //photon.body.velocity.y = -400;
+        photon.body.velocity.y = -newY;        
         photon.hasHit = true;
         photon.idMirrorReflexion = mirror.idPerso;
     }
 
 
     function handlerMoveMirror(playerSprite, mirror) {
-        if (mirror.isMovable && playerSprite.body.velocity.y == 0) {
+        if (!mirror.immovable && playerSprite.body.velocity.y == 0) {
             if (mirror.body.touching.left) {
                 mirror.body.velocity.x += 10;
             } else if (mirror.body.touching.right) {
@@ -57,27 +52,68 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms'], func
             }
             // For each mirror defined
             for (var i = 0 ; i < data.length ; i++) {
-                // We get its data
-                var mirrorData = data[i];
-                // We create a new mirror at the position (x,y) with the token "mirror" to represent the corresponding image loaded
-                var mirrorObject = this.group.create(mirrorData.x, mirrorData.y, mirrorData.skin);
-                //mirrorObject.pivot = new Phaser.Point(mirrorObject.width / 2, mirrorObject.height / 2);
-                mirrorObject.anchor.setTo(0.5, 0.5);
-                // Attribute rotation = angle
-                mirrorObject.angle = mirrorData.angle;
-                // A mirror is by default immovable
-                mirrorObject.isMovable = false;
-                mirrorObject.body.immovable = true;
 
-                if (mirrorData.isMovable != null) {
-                    mirrorObject.isMovable = mirrorData.isMovable;
-                    mirrorObject.body.immovable = !mirrorData.isMovable;
+                /*** We get its data ***/
+                var mirrorData = data[i];
+
+                // Mandatory data
+                var x = mirrorData.x;
+                var y = mirrorData.y;
+                
+                // Default value
+                var angle = 45;
+                var immovable = true;
+                var leftBound = x;
+                var rightBound = x;
+
+                // Optional ones
+                if (mirrorData.angle != null) {
+                    angle = mirrorData.angle;
                 }
-                // Physics parameters
-                PhaserGame.game.physics.arcade.enable(mirrorObject);
-                mirrorObject.body.allowGravity = false;
-                // Id to prevent multi reflexion of a photon
-                mirrorObject.idPerso = i;
+
+                if (mirrorData.immovable != null) {
+                    immovable = mirrorData.immovable;
+                }
+
+                if (!immovable && mirrorData.bounds != null) {
+                    if (mirrorData.bounds.left != null) {
+                        leftBound = mirrorData.bounds.left;
+                    }
+                    if (mirrorData.bounds.right != null) {
+                        rightBound = mirrorData.bounds.right;
+                    }
+                }
+
+                /*** Creation of the mirror ***/
+
+                // We find out the appropriate skin to use
+                var skin = 'mirror';
+                if (immovable) {
+                    skin += 'Fixed';
+                } else {
+                    skin += 'Movable';
+                }
+
+                // We create a new mirror at the position (x,y) with the parsed data
+                var mirrorObject = this.group.create(x, y, skin);
+
+                // We set the parsed data
+                mirrorObject.angle = angle;
+                mirrorObject.body.immovable = immovable;
+                mirrorObject.leftBound = leftBound;
+                mirrorObject.rightBound = rightBound;
+
+                // General settings for a mirror
+                mirrorObject.anchor.setTo(0.5, 0.5);
+                PhaserGame.game.physics.arcade.enable(mirrorObject); // Physics parameter
+                mirrorObject.body.allowGravity = false; // Physics parameter
+                mirrorObject.idPerso = i;  // Id to prevent multi reflexion of a photon
+
+                // Id if defined
+                if (mirrorData.id != null) {
+                    mirrorObject.id = mirrorData.id;
+                }
+
             }
         },
 
