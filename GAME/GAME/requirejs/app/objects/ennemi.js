@@ -5,30 +5,12 @@
 
 define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photon', 'app/touch', 'app/objects/platforms'], function (Phaser, PhaserGame, player, coinObject, photon, Touch, platforms) {
 
-    // on a une collision dans pique à corriger une fois finie
 
-    function killPlayer(play, ennemi) {
-
-        //player.animationDeath();
-
-        if (!play.invincible){
-            coinObject.score = 0;    
-            //check if the player has a color or not
-            if (play.color.value != 0){
-                 //he has a color so we remove the last color
-                player.timeInvincible=1;
-                player.removePlayerColor();
-            } else {
-                //he hasn't so we restart the game
-                PhaserGame.game.state.start('RestartGame');
-            }
-        }
-
-    }
 
     function killEnnemi(photon, ennemi) {
         ennemi.kill();
         photon.kill();
+        coinObject.score += 10;
     }
 
     return {
@@ -69,7 +51,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photo
         updateObject: function () {
 
             PhaserGame.game.physics.arcade.collide(this.group, platforms.group);
-            PhaserGame.game.physics.arcade.overlap(player.sprite, this.group, killPlayer, null, this);
+            PhaserGame.game.physics.arcade.overlap(player.sprite, this.group, player.kill, null, this);
             PhaserGame.game.physics.arcade.collide(photon.photons, this.group, killEnnemi, null, this);
 
             //Déplacement des ennemis
