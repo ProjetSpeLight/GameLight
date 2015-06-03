@@ -29,7 +29,20 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/color'], function (Phaser
         // Object containing the physic group of filters
         group: null,
 
+
+
         /***** Methodes *****/
+
+        /// @function preloadObjectImage
+        /// Preloads the different images / spritesheets used by this module
+        preloadObjectImage: function () {
+            PhaserGame.game.load.image('filterBlue', 'assets/Filters/FilterBlue.png');
+            PhaserGame.game.load.image('filterRed', 'assets/Filters/FilterRed.png');
+            PhaserGame.game.load.image('filterGreen', 'assets/Filters/FilterGreen.png');
+            PhaserGame.game.load.image('filterMagenta', 'assets/Filters/FilterMagenta.png');
+            PhaserGame.game.load.image('filterYellow', 'assets/Filters/FilterYellow.png');
+            PhaserGame.game.load.image('filterCyan', 'assets/Filters/FilterCyan.png');
+        },
 
         /// @function createObjectsGroup
         /// Create the differents objects defines in the JSON file represented by this module

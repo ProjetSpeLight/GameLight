@@ -12,30 +12,14 @@ define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager'], 
             // load all game assets
             // images, spritesheets, atlases, audio etc..
             PhaserGame.game.load.image('sky', 'assets/sky.png');
-            PhaserGame.game.load.image('ground', 'assets/platform.png');
-            PhaserGame.game.load.image('diamond', 'assets/diamond.png');
-
-
-            PhaserGame.game.load.image('groundYellow', 'assets/platform_Jaune.png');
-            PhaserGame.game.load.image('groundRed', 'assets/platform_Rouge.png');
-            PhaserGame.game.load.image('groundBlue', 'assets/platform_Bleu.png');
-            PhaserGame.game.load.image('groundGreen', 'assets/platform_Vert.png');
-
+            PhaserGame.game.load.image('diamond', 'assets/diamond.png');       
             PhaserGame.game.load.image('coin', 'assets/star.png');
-
             PhaserGame.game.load.image('logo', 'assets/phaser2.png');
-            PhaserGame.game.load.image('dead', 'assets/dead.png');
-            
-            
-            PhaserGame.game.load.image('mirrorFixed', 'assets/mirror.png');
-            PhaserGame.game.load.image('mirrorMovable', 'assets/mirror.png');
-
-
-
+            PhaserGame.game.load.image('dead', 'assets/dead.png');         
             PhaserGame.game.load.image('buttonEmpty', 'assets/emptyButton.png');
 
+            // Loading images for the different objects
             Manager.preloadObjects();
-
 
             // For the pause state
             pause.preload_pause();
@@ -70,13 +54,7 @@ define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager'], 
             this.load.spritesheet('photon', 'assets/photons_explosion.png', 60, 60);
 
             this.load.spritesheet('baddie', 'assets/baddie.png', 32, 32);
-            this.load.image('filterBlue', 'assets/Filters/FilterBlue.png');
-            this.load.image('filterRed', 'assets/Filters/FilterRed.png');
-            this.load.image('filterGreen', 'assets/Filters/FilterGreen.png');
-            this.load.image('filterMagenta', 'assets/Filters/FilterMagenta.png');
-            this.load.image('filterYellow', 'assets/Filters/FilterYellow.png');
-            this.load.image('filterCyan', 'assets/Filters/FilterCyan.png');
-            this.load.image('button', 'assets/photon_vert.png');
+            
 
             // Tutoriel
             //this.load.json('level0', 'http://localhost:4200/assets/levels/Tutoriel.json');

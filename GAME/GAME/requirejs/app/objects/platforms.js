@@ -7,7 +7,7 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
     /// @function setParameters
     /// Create and initialize a platforms with default value or specified ones stored in the argument
     /// @param {Object} a JSON object that contains the informations for the initialisation of the platform
-    function setParameters(platformData, platforms) {       
+    function setParameters(platformData, platforms) {
 
         // We get the differents attributes from the JSON file
 
@@ -209,6 +209,16 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         loopingPlatforms: new Array(),
 
         group: null,
+
+        /// @function preloadObjectImage
+        /// Preloads the different images / spritesheets used by this module
+        preloadObjectImage: function () {
+            PhaserGame.game.load.image('ground', 'assets/platform.png');
+            PhaserGame.game.load.image('groundRed', 'assets/platform_Rouge.png');
+            PhaserGame.game.load.image('groundBlue', 'assets/platform_Bleu.png');
+            PhaserGame.game.load.image('groundGreen', 'assets/platform_Vert.png');
+            // PhaserGame.game.load.image('groundYellow', 'assets/platform_Jaune.png');
+        },
 
         // Create all the object of type platform
         createObjectGroup: function (levelData, Manager) {

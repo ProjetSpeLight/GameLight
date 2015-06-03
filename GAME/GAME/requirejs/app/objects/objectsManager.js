@@ -29,8 +29,12 @@ function (Phaser,
 
         EnumModule: EnumModule,
 
-        preloadObjects: function() {
+        preloadObjects: function () {
+            mirror.preloadObjectImage();
+            filter.preloadObjectImage();
+            button.preloadObjectImage();
             switchObject.preloadObjectImage();
+            platforms.preloadObjectImage();
         },
 
         /// @function createObjects

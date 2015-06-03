@@ -1,11 +1,17 @@
 define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], function (Phaser, PhaserGame, player, action) {
 
     var CONST_DELAY = 5;
-    var counter = 0;   
+    var counter = 0;
 
     return {
         // The group of sprites
         group: null,
+
+        /// @function preloadObjectImage
+        /// Preloads the different images / spritesheets used by this module
+        preloadObjectImage: function () {
+            PhaserGame.game.load.image('button', 'assets/photon_vert.png');
+        },
 
         /// @function createObjectsGroup
         /// Creation of the differents buttons defined in the JSON file

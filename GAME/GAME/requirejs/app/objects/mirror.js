@@ -17,7 +17,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms'], func
         var newX = Math.cos(2 * alpha) * x - Math.sin(2 * alpha) * y;
         var newY = Math.sin(2 * alpha) * x + Math.cos(2 * alpha) * y;
         photon.body.velocity.x = newX;
-        photon.body.velocity.y = -newY;        
+        photon.body.velocity.y = -newY;
         photon.hasHit = true;
         photon.idMirrorReflexion = mirror.idPerso;
     }
@@ -36,6 +36,13 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms'], func
     return {
         // The group of sprites
         group: null,
+
+        /// @function preloadObjectImage
+        /// Preloads the different images / spritesheets used by this module
+        preloadObjectImage: function () {
+            PhaserGame.game.load.image('mirrorFixed', 'assets/mirror.png');
+            PhaserGame.game.load.image('mirrorMovable', 'assets/mirror.png');
+        },
 
         /// @function createObjectsGroup
         /// Creation of the differents mirrors defined in the JSON file
@@ -59,7 +66,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms'], func
                 // Mandatory data
                 var x = mirrorData.x;
                 var y = mirrorData.y;
-                
+
                 // Default value
                 var angle = 45;
                 var immovable = true;
