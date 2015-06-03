@@ -11,7 +11,7 @@ define(['phaser', 'app/phasergame', 'app/player','app/states/gameState'], functi
        
        coin.kill();
         //  Add and update the score
-        this.score += 10;
+        this.score += coin.value;
        
    }
     
@@ -40,8 +40,11 @@ define(['phaser', 'app/phasergame', 'app/player','app/states/gameState'], functi
             for (var i = 0 ; i < data.length ; i++) {
                 var coinData = data[i];
                 
-                var coin = this.group.create(coinData.x, coinData.y, coinData.skin );
-                coin.body.gravity.y=0;
+                var coin = this.group.create(coinData.x, coinData.y, coinData.skin);
+                if (coinData.value == null)
+                    coin.value = 1;
+                else
+                    coin.value = coinData.value;
 
 
             }

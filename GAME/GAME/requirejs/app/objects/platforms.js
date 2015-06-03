@@ -55,10 +55,10 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
             if (size.y == null)
                 size.y = 1;
             platform.scale.setTo(size.x, size.y);
-        } else
+        } else {
             // default value. (the platform has the side given by it's skin)
             platform.scale.setTo(1, 1);
-
+        }
 
         // if the platform is set as crossable the player can jump through it from beow and cross it from side to side
         if (platformData.crossable == true) {
