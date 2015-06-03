@@ -29,7 +29,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms', 'app/
             // Allocation of the group
             this.group = PhaserGame.game.add.physicsGroup();
             // Intialization of the group in the manager
-            Manager.EnumModule.FILTER.refGroup = this.group;
+            Manager.EnumModule.PIQUE.refGroup = this.group;
 
             if (data == null)
                 return;
