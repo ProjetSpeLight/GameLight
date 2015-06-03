@@ -82,10 +82,7 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/coin', 'app/objec
 
         createLevel: function (str) {
 
-            //  We're going to be using physics, so enable the Arcade Physics system
-            PhaserGame.game.physics.startSystem(Phaser.Physics.ARCADE);
-
-            // We parse the JSON file
+             // We parse the JSON file
             var levelData = PhaserGame.game.cache.getJSON(str);
             if (levelData == null) {
                 return false;
