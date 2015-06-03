@@ -138,7 +138,12 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms'], func
         /// Updates the group of mirrors (to be called by the update() function of the game state)
         updateObject: function () {
 
+            /// This function checks in the case of a movable mirror if it is in its runner
             function processCallback(playerSprite, element) {
+                if (element.rightBound == element.leftBound) {
+                    return true;
+                }
+
                 if (element.body.x + element.body.width >= element.rightBound && playerSprite.body.velocity.x >= 0) {
                     return false;
                 }
@@ -162,14 +167,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms'], func
                 if (miror.body.velocity.y != 0) {
                     miror.body.velocity.y /= 1.1;
                 }
-            }
-
-            // Check if movable mirror is in its runner
-            /*this.group.forEach(function (element) {
-                if (element.body.x >= element.rightBound || element.body.x <= element.leftBound)
-                    element.body.velocity.x = 0;              
-
-            })*/
+            }           
         }
     }
 });
