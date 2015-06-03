@@ -2,7 +2,7 @@
  * This file implements the functions related to the photon
  */
 
-define(['phaser', 'app/phasergame', 'app/color'], function (Phaser, game, Color) {
+define(['phaser', 'app/phasergame', 'app/color'], function (Phaser, PhaserGame, Color) {
 
     var count = 0;
 
@@ -21,13 +21,13 @@ define(['phaser', 'app/phasergame', 'app/color'], function (Phaser, game, Color)
            photon.boolKill = true;
            return;
        }*/
-        
-       /* if (photon.numPlay == 5) {
-           photon.animations.stop(photon.color.name);
-           photon.kill();
-       } else {
-           photon.numPlay += 1;
-       }*/
+
+        /* if (photon.numPlay == 5) {
+            photon.animations.stop(photon.color.name);
+            photon.kill();
+        } else {
+            photon.numPlay += 1;
+        }*/
         photon.kill();
     }
 
@@ -85,7 +85,7 @@ define(['phaser', 'app/phasergame', 'app/color'], function (Phaser, game, Color)
 
                     //  And fire it
                     if (player.sprite.lookRight) {
-                        photon.reset(player.sprite.x , player.sprite.y + player.sprite.height / 2 - photon.height / 2);
+                        photon.reset(player.sprite.x, player.sprite.y + player.sprite.height / 2 - photon.height / 2);
                         photon.body.velocity.x = 400;
                     } else {
                         photon.reset(player.sprite.x - 30, player.sprite.y + player.sprite.height / 2 - photon.height / 2);
@@ -97,7 +97,7 @@ define(['phaser', 'app/phasergame', 'app/color'], function (Phaser, game, Color)
 
                     // Color of the photon
                     photon.color = player.sprite.color;
-                    photon.frame = (player.sprite.color.value - 1)*6;
+                    photon.frame = (player.sprite.color.value - 1) * 6;
 
                     // If the photon goes out the wolrd, it is destroyed
                     photon.events.onOutOfBounds.add(killPhoton, photon);
@@ -108,6 +108,24 @@ define(['phaser', 'app/phasergame', 'app/color'], function (Phaser, game, Color)
             }
 
 
+
+        },
+
+
+        updatePhotons: function () {
+            for (var i = 0 ; i < this.photons.children.length ; ++i) {
+                var p = this.photons.children[i];
+
+                if (p.alive) {
+                    if (p.body.x < PhaserGame.game.camera.x ||
+                        p.body.x > PhaserGame.game.camera.x + PhaserGame.game.camera.width ||
+                        p.body.y < PhaserGame.game.camera.y ||
+                        p.body.y > PhaserGame.game.camera.y + PhaserGame.game.camera.height) {
+                        p.kill();
+                    }
+                }
+
+            }
 
         },
         killPhoton: killPhoton

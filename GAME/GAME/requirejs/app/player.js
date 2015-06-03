@@ -17,7 +17,7 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
                 var pcolor = ColorEnum[ncolor];
                 sprite.animations.add('deathLeft' + vcolor.name + pcolor.name, [0 + 9 * vcolor.value, 1 + 9 * pcolor.value, 2 + 9 * vcolor.value, 3 + 9 * pcolor.value], 10, true);
                 sprite.animations.add('deathRight' + vcolor.name + pcolor.name, [5 + 9 * vcolor.value, 6 + 9 * pcolor.value, 7 + 9 * vcolor.value, 8 + 9 * pcolor.value], 10, true);
-                sprite.animations.add('deathStandingStill' + vcolor.name + pcolor.name, [4 + 9*vcolor.value, 4 + 9*pcolor.value], 10, true);
+                sprite.animations.add('deathStandingStill' + vcolor.name + pcolor.name, [4 + 9 * vcolor.value, 4 + 9 * pcolor.value], 10, true);
             }
         }
 
@@ -129,10 +129,10 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
         },
 
 
-        updatePlayer : function() {
+        updatePlayer: function () {
 
             // We begin by checking on the invincibility of the player
-            if(this.timeInvincible != 0) {
+            if (this.timeInvincible != 0) {
                 if (this.timeInvincible >= 180) {
                     this.sprite.invincible = false;
                     this.timeInvincible = 0;
@@ -140,7 +140,7 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
                     this.sprite.invincible = true;
                     this.timeInvincible++;
                 }
-                    
+
             } else {
                 this.sprite.invincible = false;
             }
@@ -154,6 +154,8 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
                 if (cursors.down.isDown || this.changeColor)
                 alert('jm');
             }*/
+
+            photon.updatePhotons();
 
         },
 
@@ -169,115 +171,115 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
 
 
 
-    /// @function changePlayerColor
-    /// Change the current color of the player (and thus of the photons he throws) to the new one given in argument
+        /// @function changePlayerColor
+        /// Change the current color of the player (and thus of the photons he throws) to the new one given in argument
         changePlayerColor: function (newColor) {
-        var color = Color.getColor(newColor);
-        if (color == null) {
-            return;
-        }
-        color = Color.additiveColor(this.sprite.color, color);
-        if (this.sprite.color != color) {
-            this.secondAddColor = this.firstAddColor;
-            this.firstAddColor = this.sprite.color;
-            this.sprite.color = color;
-            this.sprite.frame = this.sprite.color.value * 9 + 4;
-        }
-    },
+            var color = Color.getColor(newColor);
+            if (color == null) {
+                return;
+            }
+            color = Color.additiveColor(this.sprite.color, color);
+            if (this.sprite.color != color) {
+                this.secondAddColor = this.firstAddColor;
+                this.firstAddColor = this.sprite.color;
+                this.sprite.color = color;
+                this.sprite.frame = this.sprite.color.value * 9 + 4;
+            }
+        },
 
-    jump: function () {
-        if (this.sprite.body.touching.down && !this.pushed) {
-            this.sprite.body.velocity.y = -600;
-            this.pushed = true;
-        }
-    },
+        jump: function () {
+            if (this.sprite.body.touching.down && !this.pushed) {
+                this.sprite.body.velocity.y = -600;
+                this.pushed = true;
+            }
+        },
 
-    handlerLeft: function () {
-        this.sprite.body.velocity.x = -300;
-        if (this.sprite.invincible) {
-           // alert('death meft');
-            this.sprite.animations.play('deathLeft' + this.sprite.color.name + this.previousColor.name);
-        } else {
-            this.sprite.animations.play('left' + this.sprite.color.name);
-        }
-        this.sprite.lookRight = false;
-    },
-
-    handlerRight: function () {
-        this.sprite.body.velocity.x = 300;
-        if (this.sprite.invincible) {
-            this.sprite.animations.play('deathRight' + this.sprite.color.name + this.previousColor.name);
-        } else {
-            this.sprite.animations.play('right' + this.sprite.color.name);
-        }
-        this.sprite.lookRight = true;
-    },
-
-    handlerAccelerometer: function () {
-        /*this.sprite.body.velocity.x = this.velocity;
-        if (this.velocity < 0) {
-            this.sprite.animations.play('left' + this.sprite.color.name);
+        handlerLeft: function () {
+            this.sprite.body.velocity.x = -300;
+            if (this.sprite.invincible) {
+                // alert('death meft');
+                this.sprite.animations.play('deathLeft' + this.sprite.color.name + this.previousColor.name);
+            } else {
+                this.sprite.animations.play('left' + this.sprite.color.name);
+            }
             this.sprite.lookRight = false;
-        } else if (this.velocity > 0){
-            this.sprite.animations.play('right' + this.sprite.color.name);
-            this.sprite.lookRight = true;
-        } else {
-            this.sprite.animations.stop();
-            this.sprite.frame = this.sprite.color.value * 9 + 4;
-        }*/
-        this.sprite.body.velocity.x = this.velocity;
-        if (this.velocity < 0) {
-            this.sprite.animations.play('left' + this.sprite.color.name);
-            this.sprite.lookRight = false;
-        } else if (this.velocity > 0){
-            this.sprite.animations.play('right' + this.sprite.color.name);
-            this.sprite.lookRight = true;
-        } else {
-            this.sprite.animations.stop();
-            this.sprite.frame = this.sprite.color.value * 9 + 4;
-        }
-    },
+        },
 
-        
+        handlerRight: function () {
+            this.sprite.body.velocity.x = 300;
+            if (this.sprite.invincible) {
+                this.sprite.animations.play('deathRight' + this.sprite.color.name + this.previousColor.name);
+            } else {
+                this.sprite.animations.play('right' + this.sprite.color.name);
+            }
+            this.sprite.lookRight = true;
+        },
+
+        handlerAccelerometer: function () {
+            /*this.sprite.body.velocity.x = this.velocity;
+            if (this.velocity < 0) {
+                this.sprite.animations.play('left' + this.sprite.color.name);
+                this.sprite.lookRight = false;
+            } else if (this.velocity > 0){
+                this.sprite.animations.play('right' + this.sprite.color.name);
+                this.sprite.lookRight = true;
+            } else {
+                this.sprite.animations.stop();
+                this.sprite.frame = this.sprite.color.value * 9 + 4;
+            }*/
+            this.sprite.body.velocity.x = this.velocity;
+            if (this.velocity < 0) {
+                this.sprite.animations.play('left' + this.sprite.color.name);
+                this.sprite.lookRight = false;
+            } else if (this.velocity > 0) {
+                this.sprite.animations.play('right' + this.sprite.color.name);
+                this.sprite.lookRight = true;
+            } else {
+                this.sprite.animations.stop();
+                this.sprite.frame = this.sprite.color.value * 9 + 4;
+            }
+        },
+
+
 
         /// @function animationDeath
         /// Movement the character does when he is wounded
-    animationDeath: function () {
-        /*
-        // if the character is moving
-        // to the left
-        if (!this.lookRight) {
-            this.sprite.body.velocity.x = 300;
-            this.sprite.body.velocity.y = -400;
-            this.sprite.animations.play('right' + this.sprite.color.name);
-            // to the right
-        } else {
-            this.sprite.body.velocity.x = -300;
-            this.sprite.body.velocity.y = -400;
-            this.sprite.animations.play('left' + this.sprite.color.name);
-        } */
+        animationDeath: function () {
+            /*
+            // if the character is moving
+            // to the left
+            if (!this.lookRight) {
+                this.sprite.body.velocity.x = 300;
+                this.sprite.body.velocity.y = -400;
+                this.sprite.animations.play('right' + this.sprite.color.name);
+                // to the right
+            } else {
+                this.sprite.body.velocity.x = -300;
+                this.sprite.body.velocity.y = -400;
+                this.sprite.animations.play('left' + this.sprite.color.name);
+            } */
 
-        if (this.lookRight) {
-            this.sprite.animations.play('deathRight' + this.sprite.color.name + this.firstAddColor.name);
-        } else if (!this.lookRight) {
-            this.sprite.animations.play('deathLeft' + this.sprite.color.name + this.firstAddColor.name);
+            if (this.lookRight) {
+                this.sprite.animations.play('deathRight' + this.sprite.color.name + this.firstAddColor.name);
+            } else if (!this.lookRight) {
+                this.sprite.animations.play('deathLeft' + this.sprite.color.name + this.firstAddColor.name);
+            }
+            wounded = true;
+        },
+
+
+        filterColor: function (color) {
+            this.sprite.color = Color.subFilterColor(this.sprite.color, Color.getColor(color));
+            this.firstAddColor = Color.subFilterColor(this.firstAddColor, Color.getColor(color));
+            if (this.firstAddColor == this.sprite.color) {
+                this.firstAddColor = Color.ColorEnum.BLACK;
+            }
+            this.secondAddColor = Color.ColorEnum.BLACK;
+
+
         }
-        wounded = true;
-    },
-
-
-    filterColor: function (color) {
-        this.sprite.color = Color.subFilterColor(this.sprite.color, Color.getColor(color));
-        this.firstAddColor = Color.subFilterColor(this.firstAddColor, Color.getColor(color));
-        if (this.firstAddColor == this.sprite.color) {
-            this.firstAddColor = Color.ColorEnum.BLACK;
-        }
-        this.secondAddColor = Color.ColorEnum.BLACK;
-
 
     }
-
-}
 
 });
 
