@@ -3,7 +3,7 @@
   *
   */
 
-define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photon', 'app/touch', 'app/objects/platforms'], function (Phaser, PhaserGame, player, coinObject, photon, Touch, platforms) {
+define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photon', 'app/objects/platforms'], function (Phaser, PhaserGame, player, coinObject, photon, platforms) {
 
 
 
