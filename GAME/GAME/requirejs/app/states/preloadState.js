@@ -74,9 +74,12 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
             this.load.spritesheet('photon', 'assets/photons_explosion.png', 60, 60);
 
             this.load.spritesheet('baddie', 'assets/baddie.png', 32, 32);
-
-
-
+            this.load.image('filterBlue', 'assets/Filters/FilterBlue.png');
+            this.load.image('filterRed', 'assets/Filters/FilterRed.png');
+            this.load.image('filterGreen', 'assets/Filters/FilterGreen.png');
+            this.load.image('filterMagenta', 'assets/Filters/FilterMagenta.png');
+            this.load.image('filterYellow', 'assets/Filters/FilterYellow.png');
+            this.load.image('filterCyan', 'assets/Filters/FilterCyan.png');
             this.load.image('button', 'assets/photon_vert.png');
 
             // Tutoriel
