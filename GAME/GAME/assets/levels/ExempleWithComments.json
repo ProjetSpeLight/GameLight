@@ -1,3 +1,6 @@
+// Color item : Black, Red, Blue, Green, Yellow, Magenta, Cyan, White
+// ActionName item : 
+
 {
     "worldBounds": {
         "leftBound": 0,
@@ -20,7 +23,7 @@
                 "x": 0,
                 "y": 200
             }
-        }
+        },
         // Equivalent to the following full definition
         {
             "position": {
