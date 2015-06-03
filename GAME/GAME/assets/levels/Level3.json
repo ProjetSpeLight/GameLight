@@ -201,7 +201,7 @@
         },
         {
             "x": 2300,
-            "y": 345,
+            "y": 325,
             "angle": 45,
             "skin": "mirror",
             "isMovable": false
@@ -217,17 +217,17 @@
     "filters": [
         {
             "x": 2000,
-            "y": 320,
+            "y": 300,
             "color": "Red",
             "skin": "filterRed"
         }
     ],
     "switch": [
         {
-            "x": 2100,
-            "y": 320,
+            "x": 2200,
+            "y": 300,
             "color": "Blue",
-            "skin":"switchBlue",
+            "skin":"switchBlueOFF",
             "action": {
                 "groupId": 4,
                 "id": 0,
