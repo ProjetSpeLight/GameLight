@@ -4,7 +4,6 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/coin', 'app/objec
     function createObjects(levelData, createLevel) {
         // Creation of the objects handled by the manager
         Manager.createObjects(levelData);
-
         time.createTime(levelData.time);
 
 

@@ -72,31 +72,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
         update: function () {
 
 
-            function makeColor(sprite, colorplatform) {
-                // Oblige le joueur à etre au dessus 
-                //de la plateforme coloree pour changer de couleur
-                if (sprite.body.touching.down) {
-                    // Oblige le joueur à appuyer 
-                    //sur la touche du bas pour changer de couleur
-                    if (this.input.keyboard.isDown(Phaser.Keyboard.DOWN) || player.changeColor) {
-                        player.changePlayerColor(colorplatform.color);
-                    }
-                }
-            }
 
-            function processColor(sprite, colorplatform) {
-                if (colorplatform.color == "") {
-                    if (!this.game.device.desktop) {
-                        Touch.killChangeColorButton();
-                    }
-                    return false;
-                } else {
-                    if (!this.game.device.desktop) {
-                        Touch.showChangeColorButton();
-                    }
-                    return true;
-                }
-            }
 
 
 
@@ -120,9 +96,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
                 scoreText.text = 'Score: ' + PhaserGame.score;
 
 
-                // Update of the objects
-                PhaserGame.game.physics.arcade.collide(player.sprite, platforms.group, makeColor, processColor, this);
-                PhaserGame.game.physics.arcade.collide(player.sprite, platforms.group);
+
 
 
                 objectsManager.updateObjects();

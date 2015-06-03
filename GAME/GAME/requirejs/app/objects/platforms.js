@@ -130,6 +130,34 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         }
     }
 
+    /// @function makeColor
+    /// If the player is on a colored platform and is pressing the down key it will call the changing color method of the player
+    function makeColor(sprite, colorPlatform) {
+        // Oblige le joueur à etre au dessus 
+        //de la plateforme coloree pour changer de couleur
+        if (playerRidingPlatform(colorPlatform)) {
+            // Oblige le joueur à appuyer 
+            //sur la touche du bas pour changer de couleur
+            if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.DOWN) || player.changeColor) {
+                player.changePlayerColor(colorPlatform.color);
+            }
+        }
+    }
+
+    function processColor(sprite, colorplatform) {
+        if (colorplatform.color == "") {
+            if (!PhaserGame.game.device.desktop) {
+                Touch.killChangeColorButton();
+            }
+            return false;
+        } else {
+            if (!PhaserGame.game.device.desktop) {
+                Touch.showChangeColorButton();
+            }
+            return true;
+        }
+    }
+
     /// @function isNear
     /// Create and initialize all loopingPlatforms (platforms with a movement that repeats) and make a list of all these platforms to make the update of those platform's movement easier
     /// @param {Object} the JSON object used to store the current level's informations
@@ -233,6 +261,8 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         // Update the movement of moving platforms
         updateObject: function () {
             PhaserGame.game.physics.arcade.overlap(player.refPhotons.photons, this.group, player.refPhotons.killPhoton);
+            PhaserGame.game.physics.arcade.collide(player.sprite, this.group, makeColor, processColor, PhaserGame);
+            PhaserGame.game.physics.arcade.collide(player.sprite, this.group);
             updateLoopingPlatforms();
             updateBackAndForthPlatforms();
         },

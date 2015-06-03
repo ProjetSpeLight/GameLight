@@ -53,23 +53,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="package.json" />
-    <Content Include="assets\levels\level.json" />
     <Content Include="requirejs\assets\levels\level.json" />
     <Content Include="requirejs\assets\levels\level2.json" />
     <Content Include="requirejs\assets\photons.zip" />
     <Content Include="requirejs\assets\Thumbs.db" />
     <Content Include="requirejs\lib\phaser\phaser.map" />
-    <Content Include="assets\levels\levelTest.json" />
     <Content Include="requirejs\assets\levels\Exemple.json" />
     <Content Include="assets\levels\Exemple.json" />
     <Content Include="assets\levels\ExempleWithComments.json" />
     <Content Include="assets\levels\level2.json" />
     <Content Include="assets\levels\Tutoriel.json" />
-    <Content Include="assets\levels\TestPlatform.json" />
-    <Content Include="assets\levels\Tutoriel2.json" />
-    <Content Include="assets\levels\Tutoriel3.json" />
-    <Content Include="assets\levels\Tutoriel4.json" />
-    <Content Include="assets\levels\Tutoriel5.json" />
+    <Content Include="assets\levels\Level1.json" />
+    <Content Include="assets\levels\Level3.json" />
+    <Content Include="assets\levels\Level4.json" />
+    <Content Include="assets\levels\Level5.json" />
+    <Content Include="assets\levels\old_level.json" />
+    <Content Include="assets\levels\old_level2.json" />
+    <Content Include="assets\levels\old_levelTest.json" />
+    <Content Include="assets\levels\old_TestPlatform.json" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
