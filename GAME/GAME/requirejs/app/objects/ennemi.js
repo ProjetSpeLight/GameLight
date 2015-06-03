@@ -3,18 +3,18 @@
   *
   */
 
-define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photon', 'app/objects/platforms'], function (Phaser, PhaserGame, player, coinObject, photon, platforms) {
+define(['phaser', 'app/phasergame', 'app/player', 'app/photon', 'app/objects/platforms'], function (Phaser, PhaserGame, player, photon, platforms) {
 
 
 
     function killEnnemi(photon, ennemi) {
         ennemi.destroy();
         photon.kill();
-        coinObject.score += 10;
+        PhaserGame.score += 10;
     }
 
     function killPlayer(playerSprite, ennemi) {
-        player.kill(coinObject);
+        player.kill();
     }
 
     return {

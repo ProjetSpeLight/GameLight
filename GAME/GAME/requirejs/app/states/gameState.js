@@ -12,7 +12,6 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
     // Object displaying the score
     var scoreText;
 
-
     GameState.prototype = {
         preload: function () {
             if (this.currentLevel === 0) {
@@ -29,8 +28,11 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
         create: function () {
             // First we initialize the scope variables
             stopped = false;
-            coinObject.score = 0;
             compt = 0;
+
+            // the score is stored in the game variable
+            PhaserGame.score = 0;
+
 
 
             // Initialization of the physics motor
@@ -118,21 +120,18 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
 
 
                 // Update of the score
-                scoreText.text = 'Score: ' + coinObject.score;
+                scoreText.text = 'Score: ' + PhaserGame.score;
 
 
                 // Update of the objects
                 PhaserGame.game.physics.arcade.collide(player.sprite, platforms.group, makeColor, processColor, this);
-                
+
                 PhaserGame.game.physics.arcade.collide(player.sprite, platforms.group);
 
                 PhaserGame.game.physics.arcade.collide(ends, platforms.group);
                 PhaserGame.game.physics.arcade.overlap(player.sprite, ends, finish, null, this);
 
                 objectsManager.updateObjects();
-                coinObject.updateObject();
-                piqueObject.updateObject();
-
                 player.updatePlayer();
 
 
@@ -141,20 +140,16 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
 
                 // We restart the game when "R" is pushed
                 if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.R)) {
-                    coinObject.score = 0;
                     PhaserGame.game.state.start('RestartGame');
                 }
 
                 // We restart the game when the character falls of the map
                 if (player.sprite.body.y > PhaserGame.game.world.height - 64) {
-                    coinObject.score = 0;
                     PhaserGame.game.state.start('RestartGame');
                 }
 
                 // Mort du personnage quand coincé entre deux plateformes
                 if ((player.sprite.body.touching.down && player.sprite.body.touching.up) || (player.sprite.body.touching.right && player.sprite.body.touching.left)) {
-                    coinObject.score = 0;
-
                     if (!PhaserGame.game.device.desktop) {
                         Touch.stop();
                     }

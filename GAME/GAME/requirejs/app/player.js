@@ -45,8 +45,7 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
         numberColor: 0,
         previousColor: Color.ColorEnum.BLACK,
 
-        kill: function (coinObject) {
-            //player.animationDeath();
+        kill: function () {
 
             if (!this.sprite.invincible){
  
@@ -56,7 +55,7 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
                     this.timeInvincible=1;
                     this.removePlayerColor();
                 } else {
-                    coinObject.score = 0;
+                    PhaserGame.score = 0;
                     //he hasn't so we restart the game
                     PhaserGame.game.state.start('RestartGame');
                 }

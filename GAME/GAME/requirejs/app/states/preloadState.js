@@ -12,9 +12,7 @@ define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager'], 
             // load all game assets
             // images, spritesheets, atlases, audio etc..
             PhaserGame.game.load.image('sky', 'assets/sky.png');
-            PhaserGame.game.load.image('diamond', 'assets/diamond.png');       
-            PhaserGame.game.load.image('coin', 'assets/star.png');
-            PhaserGame.game.load.image('logo', 'assets/phaser2.png');
+            PhaserGame.game.load.image('diamond', 'assets/diamond.png');            
             PhaserGame.game.load.image('dead', 'assets/dead.png');         
             PhaserGame.game.load.image('buttonEmpty', 'assets/emptyButton.png');
 
@@ -28,7 +26,6 @@ define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager'], 
             this.load.image('screentitle', 'assets/ScreenTitle.png');
 
             this.load.image('button_jump', 'assets/button_jump.png', 64, 64);
-            this.load.image('pique', 'assets/pique.png');
 
             if (!this.game.device.desktop) {
                 this.load.image('buttonChangeColor', 'assets/boutons/changeColor.png');
@@ -38,7 +35,6 @@ define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager'], 
                 this.load.image('buttonTir', 'assets/boutons/tir.png')
             }
 
-            //this.load.image('play', 'assets/button_play.png');
             this.load.spritesheet('play', 'assets/boutons/New_Game.png', 190, 68);
             this.load.image('play1', 'assets/button_play_level1.png');
             this.load.image('play2', 'assets/button_play_level2.png');

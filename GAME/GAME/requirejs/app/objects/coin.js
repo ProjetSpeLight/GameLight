@@ -4,25 +4,30 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         // Removes the star from the screen
         coin.destroy();
         //  Add and update the score
-        this.score += coin.value;
+        PhaserGame.score += coin.value;
     }
 
     return {
 
-        /***** Attributes *****/
 
         // Object containing the physic group of coins
         group: null,
-        score: 0,
 
-        /***** Methodes *****/
+        /// @function preloadObjectImage
+        /// Preloads the different images / spritesheets used by this module
+        preloadObjectImage: function () {
+            PhaserGame.game.load.image('coin', 'assets/star.png');
+        },
 
         /// @function createObjectsGroup
         /// Create the differents objects defines in the JSON file represented by this module
         /// @param {Array} Array of elements representing 
-        createObjectGroup: function (data) {
+        createObjectsGroup: function (data, Manager) {
 
+            // Allocation of the group
             this.group = PhaserGame.game.add.physicsGroup();
+            // Intialization of the group in the manager
+            Manager.EnumModule.FILTER.refGroup = this.group;
 
             if (data == null) {
                 return;

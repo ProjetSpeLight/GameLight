@@ -3,13 +3,6 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/coin', 'app/objec
 
     function createObjects(levelData, createLevel) {
 
-        // Creation of the coins
-        coinObject.createObjectGroup(levelData.coins);
-        
-
-        //Creation of the pique
-        piqueObject.createObjectGroup(levelData.piques);
-
         // Creation of the ends
         createEnds(levelData);
 
@@ -56,19 +49,7 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/coin', 'app/objec
             end.body.bounce.y = 0;
             end.body.gravity.y = 1000;
         }
-    }
-
-    function createCoin(levelData) {
-        var dataCoins = levelData.coins;
-        if (dataCoins == null) {
-            return;
-        }
-        for (var i = 0 ; i < dataCoins.length ; i++) {
-            var coinData = dataCoins[i];
-            var coin = coins.create(coinData.x, coinData.y, 'coin');
-            coin.body.gravity.y = 0;
-        }
-    }
+    } 
 
 
     function createStart(element) {

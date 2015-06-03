@@ -6,7 +6,9 @@ define(['phaser',
         'app/objects/button',
         'app/objects/switch',
         'app/objects/platforms',
-        'app/objects/ennemi'],
+        'app/objects/ennemi',
+        'app/objects/pique',
+        'app/objects/coin'],
 function (Phaser,
           PhaserGame,
           mirror,
@@ -14,7 +16,9 @@ function (Phaser,
           button,
           switchObject,
           platforms,
-          enemy) {
+          enemy,
+          pique,
+          coin) {
 
     // Enumeration of the different object modules handled by the manager with their id and a reference to their group
     var EnumModule = {
@@ -23,7 +27,9 @@ function (Phaser,
         BUTTON: { idGroup: 2, refGroup: null },
         SWITCH: { idGroup: 3, refGroup: null },
         PLATFORM: { idGroup: 4, refGroup: null },
-        ENEMY: {idGroup: 5, refGroup: null}
+        ENEMY: { idGroup: 5, refGroup: null },
+        PIQUE: { idGroup: 6, refGroup: null },
+        COIN: {idGroup: 7, refGroup:null}
     }
 
 
@@ -39,6 +45,8 @@ function (Phaser,
             switchObject.preloadObjectImage();
             platforms.preloadObjectImage();
             enemy.preloadObjectImage();
+            pique.preloadObjectImage();
+            coin.preloadObjectImage();
         },
 
         /// @function createObjects
@@ -49,6 +57,8 @@ function (Phaser,
             filter.createObjectsGroup(data.filters, this);
             platforms.createObjectGroup(data, this);
             enemy.createObjectsGroup(data.ennemis, this);
+            pique.createObjectsGroup(data.piques, this);
+            coin.createObjectsGroup(data.coins, this);
             // We create the objects that can have actions after the others
             switchObject.createObjectsGroup(data.switch, this);
             button.createObjectsGroup(data.buttons, this);
@@ -58,6 +68,8 @@ function (Phaser,
         /// @function updateObjects
         /// Updates the different groups the manager handles
         updateObjects: function () {
+            coin.updateObject();
+            pique.updateObject();
             mirror.updateObject();
             filter.updateObject();
             button.updateObject();
