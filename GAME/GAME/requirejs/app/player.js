@@ -104,6 +104,8 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
             } else {
                 this.sprite.body.velocity.x = 0;
             }
+            
+            
 
             if (cursors.left.isDown || this.moveLeft) {
                 //  Move to the left
@@ -120,8 +122,13 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
             else {
                 //  Stand still
                 if (this.sprite.body.velocity.x == 0) {
-                    this.sprite.animations.stop();
-                    this.sprite.frame = this.sprite.color.value * 9 + 4;
+                    //If invincible, we create a animation to display the color lost 
+                    if (this.sprite.invincible) {
+                        this.sprite.animations.play('deathStandingStill' + this.sprite.color.name + this.previousColor.name);
+                    } else {
+                        this.sprite.animations.stop();
+                        this.sprite.frame = this.sprite.color.value * 9 + 4;
+                    }
                 }
             }
 
@@ -141,6 +148,8 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
                     photon.firePhoton(PhaserGame.game, this);
                 }
             }
+            
+            
 
         },
 
@@ -148,8 +157,9 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
         updatePlayer: function () {
 
             // We begin by checking on the invincibility of the player
+            // The invincibility lasts 2 sec
             if (this.timeInvincible != 0) {
-                if (this.timeInvincible >= 180) {
+                if (this.timeInvincible >= 120) {
                     this.sprite.invincible = false;
                     this.timeInvincible = 0;
                 } else {
@@ -163,6 +173,7 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
 
             // Then, we update its position
             var cursors = PhaserGame.game.input.keyboard.createCursorKeys();
+            
             this.updatePositionPlayer(cursors);
 
             // Finally, we check if the player has to change of color
@@ -170,7 +181,9 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
                 if (cursors.down.isDown || this.changeColor)
                 alert('jm');
             }*/
-
+            
+             
+            
             photon.updatePhotons();
 
         },
