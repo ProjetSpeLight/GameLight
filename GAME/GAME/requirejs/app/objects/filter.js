@@ -14,7 +14,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/color'], function (Phaser
             photon.kill();
             return;
         }
-        photon.frame = photon.color.value - 1;
+        photon.frame = (photon.color.value - 1) * 6;
     }
 
 
