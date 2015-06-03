@@ -8,7 +8,8 @@ define(['phaser',
         'app/objects/platforms',
         'app/objects/ennemi',
         'app/objects/pique',
-        'app/objects/coin'],
+        'app/objects/coin',
+        'app/objects/end'],
 function (Phaser,
           PhaserGame,
           mirror,
@@ -18,7 +19,8 @@ function (Phaser,
           platforms,
           enemy,
           pique,
-          coin) {
+          coin,
+          end) {
 
     // Enumeration of the different object modules handled by the manager with their id and a reference to their group
     var EnumModule = {
@@ -29,7 +31,8 @@ function (Phaser,
         PLATFORM: { idGroup: 4, refGroup: null },
         ENEMY: { idGroup: 5, refGroup: null },
         PIQUE: { idGroup: 6, refGroup: null },
-        COIN: {idGroup: 7, refGroup:null}
+        COIN: { idGroup: 7, refGroup: null },
+        END: { idGroup: 8, refGroup: null }
     }
 
 
@@ -47,6 +50,7 @@ function (Phaser,
             enemy.preloadObjectImage();
             pique.preloadObjectImage();
             coin.preloadObjectImage();
+            end.preloadObjectImage();
         },
 
         /// @function createObjects
@@ -62,6 +66,7 @@ function (Phaser,
             enemy.createObjectsGroup(data.ennemis, this);
             pique.createObjectsGroup(data.piques, this);
             coin.createObjectsGroup(data.coins, this);
+            end.createObjectsGroup(data.ends, this);
             // We create the objects that can have actions after the others
             switchObject.createObjectsGroup(data.switch, this);
             button.createObjectsGroup(data.buttons, this);
@@ -71,6 +76,7 @@ function (Phaser,
         /// @function updateObjects
         /// Updates the different groups the manager handles
         updateObjects: function () {
+            end.updateObject();
             coin.updateObject();
             pique.updateObject();
             mirror.updateObject();

@@ -99,9 +99,6 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
             }
 
 
-            function finish(player, diamond) {
-                PhaserGame.game.state.start('FinishLevel');
-            }
 
             // If the level had not been loaded, we return to the main lmenu
             if (stopped) {
@@ -125,11 +122,8 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
 
                 // Update of the objects
                 PhaserGame.game.physics.arcade.collide(player.sprite, platforms.group, makeColor, processColor, this);
-
                 PhaserGame.game.physics.arcade.collide(player.sprite, platforms.group);
 
-                PhaserGame.game.physics.arcade.collide(ends, platforms.group);
-                PhaserGame.game.physics.arcade.overlap(player.sprite, ends, finish, null, this);
 
                 objectsManager.updateObjects();
                 player.updatePlayer();
