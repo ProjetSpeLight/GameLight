@@ -53,8 +53,8 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
                 //check if the player has a color or not
                 if (this.sprite.color.value != 0) {
                     //he has a color so we remove the last color
-                    player.timeInvincible=1;
-                    player.removePlayerColor();
+                    this.timeInvincible=1;
+                    this.removePlayerColor();
                 } else {
                     coinObject.score = 0;
                     //he hasn't so we restart the game
