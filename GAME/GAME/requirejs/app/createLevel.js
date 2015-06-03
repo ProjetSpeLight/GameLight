@@ -2,10 +2,6 @@
 define(['phaser', 'app/player', 'app/phasergame', 'app/objects/coin', 'app/objects/pique', 'app/objects/ennemi', 'app/objects/time', 'app/objects/objectsManager'], function (Phaser, player, PhaserGame, coinObject, piqueObject, ennemiObject, time, Manager) {
 
     function createObjects(levelData, createLevel) {
-
-        // Creation of the ends
-        createEnds(levelData);
-
         // Creation of the objects handled by the manager
         Manager.createObjects(levelData);
 
@@ -38,18 +34,7 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/coin', 'app/objec
     }
 
 
-    function createEnds(levelData) {
-        var dataEnds = levelData.ends;
-        if (dataEnds == null) {
-            return;
-        }
-        for (var i = 0 ; i < dataEnds.length ; i++) {
-            var endData = dataEnds[i];
-            var end = ends.create(endData.x, endData.y, 'diamond');
-            end.body.bounce.y = 0;
-            end.body.gravity.y = 1000;
-        }
-    } 
+
 
 
     function createStart(element) {

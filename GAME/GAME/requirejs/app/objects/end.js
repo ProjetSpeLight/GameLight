@@ -1,10 +1,8 @@
-define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame, player) {
+﻿define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame, player) {
 
-    function collectCoin(player, coin) {
-        // Removes the star from the screen
-        coin.destroy();
-        //  Add and update the score
-        PhaserGame.score += coin.value;
+
+    function finish(player, diamond) {
+        PhaserGame.game.state.start('FinishLevel');
     }
 
     return {
@@ -16,7 +14,7 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         /// @function preloadObjectImage
         /// Preloads the different images / spritesheets used by this module
         preloadObjectImage: function () {
-            PhaserGame.game.load.image('coin', 'assets/star.png');
+            PhaserGame.game.load.image('end', 'assets/diamond.png');
         },
 
         /// @function createObjectsGroup
@@ -27,29 +25,22 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
             // Allocation of the group
             this.group = PhaserGame.game.add.physicsGroup();
             // Intialization of the group in the manager
-            Manager.EnumModule.COIN.refGroup = this.group;
+            Manager.EnumModule.END.refGroup = this.group;
 
             if (data == null) {
+                alert("Ce niveau ne contient pas de fin. Bon courage")
                 return;
             }
-
-
             for (var i = 0 ; i < data.length ; i++) {
-                var coinData = data[i];
-
-                var coin = this.group.create(coinData.x, coinData.y, coinData.skin);
-                if (coinData.value == null)
-                    coin.value = 1;
-                else
-                    coin.value = coinData.value;
-
+                var endData = data[i];
+                var end = this.group.create(endData.x, endData.y, 'end');
 
             }
         },
 
         updateObject: function () {
-            //when the player touches a coin, the score improves
-            PhaserGame.game.physics.arcade.overlap(player.sprite, this.group, collectCoin, null, this);
+            //when the player touches the end the game is notified that the level is finished
+            PhaserGame.game.physics.arcade.overlap(player.sprite, this.group, finish, null, this);
         }
 
 
