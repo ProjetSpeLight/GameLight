@@ -1,4 +1,4 @@
-define(['phaser','app/objects/time', 'app/touch'], function (Phaser,time, Touch) {
+define(['phaser', 'app/objects/time', 'app/touch'], function (Phaser, time, Touch) {
     // 'use strict';
 
     function FinishLevelState(game) { }
@@ -6,19 +6,19 @@ define(['phaser','app/objects/time', 'app/touch'], function (Phaser,time, Touch)
     FinishLevelState.prototype = {
 
         create: function () {
-            
-            if(!this.game.device.desktop){
+
+            if (!this.game.device.desktop) {
                 Touch.stop();
             }
-            
-            var wellDone = this.add.text(320, 30, ' Well Done !' , { fontSize: '32px', fill: '#fff' });
-            
-            if (time.time >=0) {
-                var timeDone = this.add.text(290, 80, ' Time: ' , { fontSize: '32px', fill: '#fff' });
-                timeDone.text='Time Done: '+(time.timebegin-time.time)+' sec !';
-                
+
+            var wellDone = this.add.text(320, 30, ' Well Done !', { fontSize: '32px', fill: '#fff' });
+
+            if (time.time >= 0) {
+                var timeDone = this.add.text(290, 80, ' Time: ', { fontSize: '32px', fill: '#fff' });
+                timeDone.text = 'Time Done: ' + (time.timebegin - time.time) + ' sec !';
+
             }
-            
+
             var button_menu = this.add.button(400, 180, 'RetMenu', this.menuclick, this);
             button_menu.name = 'Returnmenu';
             button_menu.anchor.setTo(0.5, 0.5);
@@ -46,7 +46,12 @@ define(['phaser','app/objects/time', 'app/touch'], function (Phaser,time, Touch)
 
         next: function () {
             this.game.state.states['Game'].currentLevel += 1;
-            this.state.start('Game', true, false);
+            if (this.game.nbLevel < this.game.state.states['Game'].currentLevel) {
+                this.state.start('MainMenu', true, false);
+            } else {
+                this.state.start('Game', true, false);
+
+            }
         }
 
     };
