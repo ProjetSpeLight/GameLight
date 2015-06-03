@@ -13,7 +13,7 @@
 
         /// @function preloadObjectImage
         /// Preloads the different images / spritesheets used by this module
-        preloadObjectImage: function () {
+        preloadObjectsImages: function () {
             PhaserGame.game.load.image('end', 'assets/diamond.png');
         },
 
@@ -38,7 +38,7 @@
             }
         },
 
-        updateObject: function () {
+        updateObjects: function () {
             //when the player touches the end the game is notified that the level is finished
             PhaserGame.game.physics.arcade.overlap(player.sprite, this.group, finish, null, this);
         }

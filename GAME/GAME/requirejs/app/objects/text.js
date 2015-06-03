@@ -16,7 +16,6 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         /// @function preloadObjectImage
         /// Preloads the different images / spritesheets used by this module
         preloadObjectsImages: function () {
-            PhaserGame.game.load.image('coin', 'assets/star.png');
         },
 
         /// @function createObjectsGroup
@@ -24,38 +23,26 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         /// @param {Array} Array of elements representing 
         createObjectsGroup: function (data, Manager) {
 
-            // Allocation of the group
-            this.group = PhaserGame.game.add.physicsGroup();
+            this.group = PhaserGame.game.add.group();
             // Intialization of the group in the manager
-            Manager.EnumModule.COIN.refGroup = this.group;
+            Manager.EnumModule.TEXT.refGroup = this.group;
 
-            if (data == null) {
-                return;
+            if (data != null) {
+                var style = { font: "24px Arial", fill: "#000000", align: "center" };
+                for (var i = 0 ; i < data.length ; i++) {
+                    var textData = data[i];
+                    var text = PhaserGame.game.add.text(textData.x, textData.y, textData.message, style);
+                    //text.anchor.set(0);
+
+                }
             }
 
 
-            for (var i = 0 ; i < data.length ; i++) {
-                var coinData = data[i];
-
-                var coin = this.group.create(coinData.x, coinData.y, coinData.skin);
-                if (coinData.value == null)
-                    coin.value = 1;
-                else
-                    coin.value = coinData.value;
-
-
-            }
         },
 
         updateObjects: function () {
-            //when the player touches a coin, the score improves
-            PhaserGame.game.physics.arcade.overlap(player.sprite, this.group, collectCoin, null, this);
+
         }
-
-
     }
-
-
-
 
 });

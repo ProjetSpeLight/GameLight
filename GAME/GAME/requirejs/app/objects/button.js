@@ -9,7 +9,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
 
         /// @function preloadObjectImage
         /// Preloads the different images / spritesheets used by this module
-        preloadObjectImage: function () {
+        preloadObjectsImages: function () {
             PhaserGame.game.load.image('button', 'assets/photon_vert.png');
         },
 
@@ -69,7 +69,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
 
         /// @function updateObject
         /// Updates the group of buttons (to be called by the update() function of the game state)
-        updateObject: function () {
+        updateObjects: function () {
             PhaserGame.game.physics.arcade.collide(player.sprite, this.group, this.handlerButton);
         }
     }

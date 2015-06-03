@@ -22,6 +22,7 @@
     <Content Include="index.html" />
     <Content Include="requirejs\app\createLevel.js" />
     <Content Include="requirejs\app\cordovaStart.js" />
+    <Content Include="requirejs\app\objects\text.js" />
     <Content Include="requirejs\app\objects\coin.js" />
     <Content Include="requirejs\app\objects\end.js" />
     <Content Include="requirejs\app\objects\ennemi.js" />

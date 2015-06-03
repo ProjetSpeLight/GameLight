@@ -240,7 +240,7 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
 
         /// @function preloadObjectImage
         /// Preloads the different images / spritesheets used by this module
-        preloadObjectImage: function () {
+        preloadObjectsImages: function () {
             PhaserGame.game.load.image('ground', 'assets/platform.png');
             PhaserGame.game.load.image('groundRed', 'assets/platform_Rouge.png');
             PhaserGame.game.load.image('groundBlue', 'assets/platform_Bleu.png');
@@ -249,7 +249,7 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         },
 
         // Create all the object of type platform
-        createObjectGroup: function (levelData, Manager) {
+        createObjectsGroup: function (levelData, Manager) {
             this.group = PhaserGame.game.add.physicsGroup();
             // Intialization of the group in the manager
             Manager.EnumModule.PLATFORM.refGroup = this.group;
@@ -259,7 +259,7 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         },
 
         // Update the movement of moving platforms
-        updateObject: function () {
+        updateObjects: function () {
             PhaserGame.game.physics.arcade.overlap(player.refPhotons.photons, this.group, player.refPhotons.killPhoton);
             PhaserGame.game.physics.arcade.collide(player.sprite, this.group, makeColor, processColor, PhaserGame);
             PhaserGame.game.physics.arcade.collide(player.sprite, this.group);

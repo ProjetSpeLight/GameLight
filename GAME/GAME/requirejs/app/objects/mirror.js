@@ -39,7 +39,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms'], func
 
         /// @function preloadObjectImage
         /// Preloads the different images / spritesheets used by this module
-        preloadObjectImage: function () {
+        preloadObjectsImages: function () {
             PhaserGame.game.load.image('mirrorFixed', 'assets/mirror.png');
             PhaserGame.game.load.image('mirrorMovable', 'assets/mirror.png');
             PhaserGame.game.load.image('mirrorRunner', 'assets/platform_Jaune.png');
@@ -136,7 +136,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms'], func
 
         /// @function updateObject
         /// Updates the group of mirrors (to be called by the update() function of the game state)
-        updateObject: function () {
+        updateObjects: function () {
 
             /// This function checks in the case of a movable mirror if it is in its runner
             function processCallback(playerSprite, element) {

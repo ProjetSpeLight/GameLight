@@ -35,7 +35,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/color'], function (Phaser
 
         /// @function preloadObjectImage
         /// Preloads the different images / spritesheets used by this module
-        preloadObjectImage: function () {
+        preloadObjectsImages: function () {
             PhaserGame.game.load.image('filterBlue', 'assets/Filters/FilterBlue.png');
             PhaserGame.game.load.image('filterRed', 'assets/Filters/FilterRed.png');
             PhaserGame.game.load.image('filterGreen', 'assets/Filters/FilterGreen.png');
@@ -71,7 +71,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/color'], function (Phaser
 
         /// @function updateObject
         /// Updates the group of filters (to be called by the update() function of the game state)
-        updateObject: function () {
+        updateObjects: function () {
             PhaserGame.game.physics.arcade.overlap(player.sprite, this.group, applyFilter);
             PhaserGame.game.physics.arcade.overlap(player.refPhotons.photons, this.group, applyFilterPhoton);
         }

@@ -9,7 +9,8 @@ define(['phaser',
         'app/objects/ennemi',
         'app/objects/pique',
         'app/objects/coin',
-        'app/objects/end'],
+        'app/objects/end',
+        'app/objects/text'],
 function (Phaser,
           PhaserGame,
           mirror,
@@ -20,7 +21,8 @@ function (Phaser,
           enemy,
           pique,
           coin,
-          end) {
+          end,
+          text) {
 
     // Enumeration of the different object modules handled by the manager with their id and a reference to their group
     var EnumModule = {
@@ -32,7 +34,8 @@ function (Phaser,
         ENEMY: { idGroup: 5, refGroup: null },
         PIQUE: { idGroup: 6, refGroup: null },
         COIN: { idGroup: 7, refGroup: null },
-        END: { idGroup: 8, refGroup: null }
+        END: { idGroup: 8, refGroup: null },
+        TEXT: {idGroup: 9, refGroup: null}
     }
 
 
@@ -42,15 +45,15 @@ function (Phaser,
         EnumModule: EnumModule,
 
         preloadObjects: function () {
-            mirror.preloadObjectImage();
-            filter.preloadObjectImage();
-            button.preloadObjectImage();
-            switchObject.preloadObjectImage();
-            platforms.preloadObjectImage();
-            enemy.preloadObjectImage();
-            pique.preloadObjectImage();
-            coin.preloadObjectImage();
-            end.preloadObjectImage();
+            mirror.preloadObjectsImages();
+            filter.preloadObjectsImages();
+            button.preloadObjectsImages();
+            switchObject.preloadObjectsImages();
+            platforms.preloadObjectsImages();
+            enemy.preloadObjectsImages();
+            pique.preloadObjectsImages();
+            coin.preloadObjectsImages();
+            end.preloadObjectsImages();
         },
 
         /// @function createObjects
@@ -58,7 +61,7 @@ function (Phaser,
         /// @param {Object} Data from the JSON file
         createObjects: function (data) {
             // First we create the platforms
-            platforms.createObjectGroup(data, this);
+            platforms.createObjectsGroup(data, this);
 
             // Then the other objects
             mirror.createObjectsGroup(data.mirrors, this);
@@ -67,24 +70,26 @@ function (Phaser,
             pique.createObjectsGroup(data.piques, this);
             coin.createObjectsGroup(data.coins, this);
             end.createObjectsGroup(data.ends, this);
+            text.createObjectsGroup(data.texts, this);
             // We create the objects that can have actions after the others
             switchObject.createObjectsGroup(data.switch, this);
             button.createObjectsGroup(data.buttons, this);
+
 
         },
 
         /// @function updateObjects
         /// Updates the different groups the manager handles
         updateObjects: function () {
-            end.updateObject();
-            coin.updateObject();
-            pique.updateObject();
-            mirror.updateObject();
-            filter.updateObject();
-            button.updateObject();
-            switchObject.updateObject();
-            enemy.updateObject();
-            platforms.updateObject();
+            end.updateObjects();
+            coin.updateObjects();
+            pique.updateObjects();
+            mirror.updateObjects();
+            filter.updateObjects();
+            button.updateObjects();
+            switchObject.updateObjects();
+            enemy.updateObjects();
+            platforms.updateObjects();
         },
 
         /// @function getElementGroup

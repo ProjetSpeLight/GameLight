@@ -26,7 +26,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
         // The group of sprites
         group: null,
 
-        preloadObjectImage: function () {
+        preloadObjectsImages: function () {
             PhaserGame.game.load.image('switchRed', 'assets/Switch/Switch_Red.png');
             PhaserGame.game.load.image('switchBlue', 'assets/Switch/Switch_Blue.png');
             PhaserGame.game.load.image('switchGreen', 'assets/Switch/Switch_Green.png');
@@ -80,7 +80,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
 
         /// @function updateObject
         /// Updates the group of switchs (to be called by the update() function of the game state)
-        updateObject: function () {
+        updateObjects: function () {
             PhaserGame.game.physics.arcade.collide(player.refPhotons.photons, this.group, handlerSwitch);
         }
     }

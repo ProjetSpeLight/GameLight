@@ -24,7 +24,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon', 'app/objects/pla
 
         /// @function preloadObjectImage
         /// Preloads the different images / spritesheets used by this module
-        preloadObjectImage: function () {
+        preloadObjectsImages: function () {
             PhaserGame.game.load.spritesheet('baddie', 'assets/baddie.png', 32, 32);
         },
 
@@ -79,7 +79,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon', 'app/objects/pla
             }
         },
 
-        updateObject: function () {
+        updateObjects: function () {
 
             PhaserGame.game.physics.arcade.collide(this.group, this.group);
             PhaserGame.game.physics.arcade.collide(this.group, platforms.group);

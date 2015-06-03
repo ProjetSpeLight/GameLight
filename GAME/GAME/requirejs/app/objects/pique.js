@@ -17,7 +17,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms', 'app/
 
         /// @function preloadObjectImage
         /// Preloads the different images / spritesheets used by this module
-        preloadObjectImage: function () {
+        preloadObjectsImages: function () {
             PhaserGame.game.load.image('pique', 'assets/pique.png');
         },
 
@@ -55,7 +55,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms', 'app/
 
         },
 
-        updateObject: function () {
+        updateObjects: function () {
             PhaserGame.game.physics.arcade.collide(this.group, platforms.group);
             PhaserGame.game.physics.arcade.collide(this.group, ennemiObject.group, killEnnemiPique, null, this);
             PhaserGame.game.physics.arcade.overlap(player.sprite, this.group, killPlayerPique, null, this);

@@ -8,17 +8,7 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/coin', 'app/objec
 
 
         // Creation of texts
-        var dataText = levelData.texts;
-
-        if (dataText != null) {
-            var style = { font: "24px Arial", fill: "#000000", align: "center" };
-            for (var i = 0 ; i < dataText.length ; i++) {
-                var textData = dataText[i];
-                var text = PhaserGame.game.add.text(textData.x, textData.y, textData.message, style);
-                //text.anchor.set(0);
-
-            }
-        }
+        
 
     }
 
