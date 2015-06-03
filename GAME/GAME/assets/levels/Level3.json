@@ -218,7 +218,8 @@
         {
             "x": 2000,
             "y": 320,
-            "color": "Red"
+            "color": "Red",
+            "skin": "filterRed"
         }
     ],
     "switch": [

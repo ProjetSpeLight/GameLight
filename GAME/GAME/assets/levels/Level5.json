@@ -196,12 +196,14 @@
         {
             "x": 360,
             "y": 500,
-            "color": "Cyan"
+            "color": "Cyan",
+            "skin": "filterCyan"
         },
         {
             "x": 460,
             "y": 500,
-            "color": "Blue"
+            "color": "Blue",
+            "skin": "filterBlue"
         }
     ],
     "ends": [

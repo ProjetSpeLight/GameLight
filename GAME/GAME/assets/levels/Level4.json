@@ -287,17 +287,20 @@
         {
             "x": 20,
             "y": 500,
-            "color": "Blue"
+            "color": "Blue",
+            "skin": "filterBlue"
         },
         {
             "x": 60,
             "y": 500,
-            "color": "Red"
+            "color": "Red",
+            "skin": "filterRed"
         },
         {
             "x": 100,
             "y": 500,
-            "color": "Green"
+            "color": "Green",
+            "skin": "filterGreen"
         }
     ],
     "ends": [
