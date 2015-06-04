@@ -199,7 +199,7 @@
             "action": {
                 "groupId": 4,
                 "id": 0,
-                "actionName": "actionCreateObject"                
+                "actionName": "actionDeleteObject"                
             }
         }
     ],
