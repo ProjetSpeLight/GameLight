@@ -9,17 +9,26 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
         if (photon.color.name == switchObject.colorName) {
             // If that's the case, the action is performed
             // We check first if the action was correctly defined
-            if (switchObject.switchAction == null) {
+            if (switchObject.switchOnAction == null) {
+                photon.kill();
                 return;
             }
-             var str = "switch"+switchObject.colorName;
-            switchObject.switchAction(switchObject.args);
+
+            if (switchObject.state == "On") {
+                switchObject.switchOnAction(switchObject.onArgs);
+                switchObject.state = "Off";
+            } else {
+                switchObject.switchOffAction(switchObject.offArgs);
+                switchObject.state = "On";
+            }
+            var str = "switch" + switchObject.colorName + switchObject.state;
+
             switchObject.loadTexture(str);
         }
         // In any case, the photon is destructed
         photon.kill();
-       
-       
+
+
     }
 
     return {
@@ -27,13 +36,13 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
         group: null,
 
         preloadObjectsImages: function () {
-            PhaserGame.game.load.image('switchRed', 'assets/Switch/Switch_Red.png');
-            PhaserGame.game.load.image('switchBlue', 'assets/Switch/Switch_Blue.png');
-            PhaserGame.game.load.image('switchGreen', 'assets/Switch/Switch_Green.png');
-            PhaserGame.game.load.image('switchMagenta', 'assets/Switch/Switch_Magenta.png');
-            PhaserGame.game.load.image('switchYellow', 'assets/Switch/Switch_Yellow.png');
-            PhaserGame.game.load.image('switchCyan', 'assets/Switch/Switch_Cyan.png');
-            PhaserGame.game.load.image('switchWhite', 'assets/Switch/Switch_White.png');
+            PhaserGame.game.load.image('switchRedOn', 'assets/Switch/Switch_Red.png');
+            PhaserGame.game.load.image('switchBlueOn', 'assets/Switch/Switch_Blue.png');
+            PhaserGame.game.load.image('switchGreenOn', 'assets/Switch/Switch_Green.png');
+            PhaserGame.game.load.image('switchMagentaOn', 'assets/Switch/Switch_Magenta.png');
+            PhaserGame.game.load.image('switchYellowOn', 'assets/Switch/Switch_Yellow.png');
+            PhaserGame.game.load.image('switchCyanOn', 'assets/Switch/Switch_Cyan.png');
+            PhaserGame.game.load.image('switchWhiteOn', 'assets/Switch/Switch_White.png');
             PhaserGame.game.load.image('switchRedOff', 'assets/Switch/Switch_RedOff.png');
             PhaserGame.game.load.image('switchBlueOff', 'assets/Switch/Switch_BlueOff.png');
             PhaserGame.game.load.image('switchGreenOff', 'assets/Switch/Switch_GreenOff.png');
@@ -61,19 +70,33 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
             for (var i = 0 ; i < data.length ; i++) {
                 // We get its data
                 var switchData = data[i];
+                var state = 'Off';
+                if (switchData.action.actionName == "actionDeleteObject" || switchData.action.actionName == "actionCreateObject")
+                    state = 'On';
                 // We create a new switch at the position (x,y) with the token "switchData.skin + switchData.color" to represent the corresponding image loaded
-                //var switchObject = this.group.create(switchData.position.x, switchData.position.y, switchData.skin + switchData.color);
-                var switchObject = this.group.create(switchData.x, switchData.y, 'switch' + switchData.color + 'Off');
+                var switchObject = this.group.create(switchData.x, switchData.y, 'switch' + switchData.color + state);
+                switchObject.state = state;
                 // Attribute color
                 switchObject.colorName = switchData.color;
                 // Action associated to the switch
                 if (switchData.action != null) {
                     var objAction = action.createAction(switchData.action, Manager);
-                    switchObject.switchAction = objAction.actionName;
-                    switchObject.args = objAction.args;
+                    switchObject.switchOnAction = objAction.onActionName;
+                    switchObject.switchOffAction = objAction.offActionName;
+                    switchObject.onArgs = objAction.onArgs;
+                    switchObject.offArgs = objAction.offArgs;
                 }
+
                 // By default, a switch is immovable
                 switchObject.body.immovable = true;
+                if (switchData.action.actionName == "actionCreateObject") {
+                    switchObject.switchOnAction(switchObject.onArgs);
+                    switchObject.state = "Off";
+                    var str = "switch" + switchObject.colorName + switchObject.state;
+                    switchObject.loadTexture(str);
+                }
+
+
             }
 
         },

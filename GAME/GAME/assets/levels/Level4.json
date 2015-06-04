@@ -132,8 +132,8 @@
         {
             "x": 400,
             "y": 700,
-            "color": "Blue",
-            "skin":"switchBlueOFF",
+            "color": "Red",
+            "skin":"switchRedOFF",
             "action": {
                 "groupId": 4,
                 "id": 1,
@@ -198,6 +198,28 @@
             }
         }
     ],
+    "coins": [
+        {
+            "x": 410,
+            "y": 510,
+            "skin": "coin"
+        },
+        {
+            "x": 310,
+            "y": 610,
+            "skin": "coin"
+        },
+        {
+            "x": 510,
+            "y": 410,
+            "skin": "coin"
+        },
+        {
+            "x": 610,
+            "y": 310,
+            "skin": "coin"
+        }
+    ],
     "filters": [
         {
             "x": 20,
@@ -206,13 +228,13 @@
             "skin": "filterBlue"
         },
         {
-            "x": 60,
+            "x": 70,
             "y": 500,
             "color": "Red",
             "skin": "filterRed"
         },
         {
-            "x": 100,
+            "x": 120,
             "y": 500,
             "color": "Green",
             "skin": "filterGreen"
