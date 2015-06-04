@@ -98,7 +98,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phase
                     ennemi.nbLives = 5;
                 } else {
                     ennemi.nbLives = 1;
-                    ennemi.animations.add('animFlying', [0, 1], 2, true);
+                    ennemi.animations.add('animFlying', [0, 1, 2, 1], 6, true);
                     ennemi.play('animFlying');
                 }
             }
