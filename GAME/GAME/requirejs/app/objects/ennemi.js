@@ -30,7 +30,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phase
         /// Preloads the different images / spritesheets used by this module
         preloadObjectsImages: function () {
             PhaserGame.game.load.spritesheet('normalEnemy', 'assets/baddie.png', 32, 32);
-            PhaserGame.game.load.spritesheet('flyingEnemy', 'assets/baddie.png', 32, 32);
+            PhaserGame.game.load.spritesheet('flyingEnemy', 'assets/Fantome.png', 75, 60);
 
         },
 
@@ -53,7 +53,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phase
                 // We get the type of enemy
                 var enemyType = 'normal';
                 if (ennemiData.type != null) {
-                    enemyType = ennemiData;
+                    enemyType = ennemiData.type;
                 }
 
 
@@ -98,7 +98,8 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phase
                     ennemi.nbLives = 5;
                 } else {
                     ennemi.nbLives = 1;
-                    ennemi.frame = 2;
+                    ennemi.animations.add('animFlying', [0, 1], 2, true);
+                    ennemi.play('animFlying');
                 }
             }
         },
