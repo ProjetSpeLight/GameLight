@@ -3,14 +3,18 @@
   *
   */
 
-define(['phaser', 'app/phasergame', 'app/player', 'app/photon', 'app/objects/platforms'], function (Phaser, PhaserGame, player, photon, platforms) {
+define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phaser, PhaserGame, player, photon) {
 
 
 
-    function killEnnemi(photon, ennemi) {
-        ennemi.destroy();
+    function killEnnemi(photon, enemy) {
         photon.kill();
-        PhaserGame.score += 10;
+        enemy.nbLives--;
+        if (enemy.nbLives == 0) {
+            enemy.destroy();
+            PhaserGame.score += 10;
+        }
+        
     }
 
     function killPlayer(playerSprite, ennemi) {
@@ -25,7 +29,9 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon', 'app/objects/pla
         /// @function preloadObjectImage
         /// Preloads the different images / spritesheets used by this module
         preloadObjectsImages: function () {
-            PhaserGame.game.load.spritesheet('baddie', 'assets/baddie.png', 32, 32);
+            PhaserGame.game.load.spritesheet('normalEnemy', 'assets/baddie.png', 32, 32);
+            PhaserGame.game.load.spritesheet('flyingEnemy', 'assets/baddie.png', 32, 32);
+
         },
 
         /// @function createObjectsGroup
@@ -43,7 +49,17 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon', 'app/objects/pla
                 return;
             for (var i = 0 ; i < data.length ; i++) {
                 var ennemiData = data[i];
-                var ennemi = this.group.create(ennemiData.x, ennemiData.y, ennemiData.skin);
+
+                // We get the type of enemy
+                var enemyType = 'normal';
+                if (ennemiData.type != null) {
+                    enemyType = ennemiData;
+                }
+
+
+                var skin = enemyType + 'Enemy';
+
+                var ennemi = this.group.create(ennemiData.x, ennemiData.y, skin);
                 ennemi.frame = 1;
                 ennemi.id = ennemiData.id
                 var speed = ennemiData.speed;
@@ -58,6 +74,9 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon', 'app/objects/pla
                 }
                 ennemi.body.velocity.x = speed.x;
                 ennemi.body.velocity.y = speed.y;
+
+                ennemi.saveSpeedX = speed.x;
+                ennemi.saveSpeedY = speed.y;
 
                 var bounds = ennemiData.bounds;
                 if (bounds != null) {
@@ -75,19 +94,32 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon', 'app/objects/pla
                 ennemi.body.bounce.y = 1;
                 ennemi.body.bounce.x = 1;
 
-
+                if (enemyType == 'normal') {
+                    ennemi.nbLives = 5;
+                } else {
+                    ennemi.nbLives = 1;
+                    ennemi.frame = 2;
+                }
             }
         },
 
-        updateObjects: function () {
-
-            PhaserGame.game.physics.arcade.collide(this.group, this.group);
-            PhaserGame.game.physics.arcade.collide(this.group, platforms.group);
+        updateObjects: function () {            
             PhaserGame.game.physics.arcade.overlap(player.sprite, this.group, killPlayer, null, this);
             PhaserGame.game.physics.arcade.collide(photon.photons, this.group, killEnnemi, null, this);
 
+
+
             //Déplacement des ennemis
             this.group.forEach(function (element) {
+
+                if (element.body.velocity.x != element.saveSpeedX && element.body.velocity.x != -element.saveSpeedX) {
+                    element.body.velocity.x = element.saveSpeedX;
+                }
+
+                if (element.body.velocity.y != element.saveSpeedY && element.body.velocity.y != -element.saveSpeedY) {
+                    element.body.velocity.y = element.saveSpeedY;
+                }
+
                 if (element.body.x >= element.body.sprite.rightBounds || element.body.x <= element.body.sprite.leftBounds)
                     element.body.velocity.x *= -1;
 

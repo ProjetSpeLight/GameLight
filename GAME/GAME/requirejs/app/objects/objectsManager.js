@@ -81,6 +81,10 @@ function (Phaser,
         /// @function updateObjects
         /// Updates the different groups the manager handles
         updateObjects: function () {
+            // First, we define the collisions without handler
+            PhaserGame.game.physics.arcade.collide(enemy.group, enemy.group);
+            PhaserGame.game.physics.arcade.collide(enemy.group, platforms.group);
+
             end.updateObjects();
             coin.updateObjects();
             pique.updateObjects();

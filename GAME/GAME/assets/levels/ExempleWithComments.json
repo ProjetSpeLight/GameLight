@@ -104,7 +104,7 @@
                 "y": 200
             },
             // Skin used for the ennemi
-            "skin": "baddie"
+            "type": "flying" // Optional ; Default value = normal ; Enum = normal or flying
         }
     ],
     "filters": [
