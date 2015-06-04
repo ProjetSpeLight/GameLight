@@ -12,18 +12,35 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
             if (switchObject.switchAction == null) {
                 return;
             }
+             var str = "switch"+switchObject.colorName;
             switchObject.switchAction(switchObject.args);
+            switchObject.loadTexture(str);
         }
         // In any case, the photon is destructed
         photon.kill();
+       
+       
     }
 
     return {
         // The group of sprites
         group: null,
 
-        preloadObjectImage: function () {
-            //PhaserGame.game.load.image('switch', 'assets/switch.png');
+        preloadObjectsImages: function () {
+            PhaserGame.game.load.image('switchRed', 'assets/Switch/Switch_Red.png');
+            PhaserGame.game.load.image('switchBlue', 'assets/Switch/Switch_Blue.png');
+            PhaserGame.game.load.image('switchGreen', 'assets/Switch/Switch_Green.png');
+            PhaserGame.game.load.image('switchMagenta', 'assets/Switch/Switch_Magenta.png');
+            PhaserGame.game.load.image('switchYellow', 'assets/Switch/Switch_Yellow.png');
+            PhaserGame.game.load.image('switchCyan', 'assets/Switch/Switch_Cyan.png');
+            PhaserGame.game.load.image('switchWhite', 'assets/Switch/Switch_White.png');
+            PhaserGame.game.load.image('switchRedOff', 'assets/Switch/Switch_RedOff.png');
+            PhaserGame.game.load.image('switchBlueOff', 'assets/Switch/Switch_BlueOff.png');
+            PhaserGame.game.load.image('switchGreenOff', 'assets/Switch/Switch_GreenOff.png');
+            PhaserGame.game.load.image('switchMagentaOff', 'assets/Switch/Switch_MagentaOff.png');
+            PhaserGame.game.load.image('switchYellowOff', 'assets/Switch/Switch_YellowOff.png');
+            PhaserGame.game.load.image('switchCyanOff', 'assets/Switch/Switch_CyanOff.png');
+            PhaserGame.game.load.image('switchWhiteOff', 'assets/Switch/Switch_WhiteOff.png');
         },
 
         /// @function createObjectsGroup
@@ -46,7 +63,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
                 var switchData = data[i];
                 // We create a new switch at the position (x,y) with the token "switchData.skin + switchData.color" to represent the corresponding image loaded
                 //var switchObject = this.group.create(switchData.position.x, switchData.position.y, switchData.skin + switchData.color);
-                var switchObject = this.group.create(switchData.x, switchData.y, switchData.skin);
+                var switchObject = this.group.create(switchData.x, switchData.y, 'switch' + switchData.color + 'Off');
                 // Attribute color
                 switchObject.colorName = switchData.color;
                 // Action associated to the switch
@@ -63,7 +80,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
 
         /// @function updateObject
         /// Updates the group of switchs (to be called by the update() function of the game state)
-        updateObject: function () {
+        updateObjects: function () {
             PhaserGame.game.physics.arcade.collide(player.refPhotons.photons, this.group, handlerSwitch);
         }
     }

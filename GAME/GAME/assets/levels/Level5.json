@@ -144,7 +144,7 @@
             "x": 360,
             "y": 350,
             "color": "Red",
-            "skin":"switchRed",
+            "skin":"switchRedOFF",
             "action": {
                 "groupId": 4,
                 "id": 1,
@@ -161,7 +161,7 @@
             "x": 800,
             "y": 500,
             "color": "Red",
-            "skin":"switchRed",
+            "skin":"switchRedOFF",
             "action": {
                 "groupId": 4,
                 "id": 2,
@@ -178,7 +178,7 @@
             "x": 920,
             "y": 500,
             "color": "Green",
-            "skin":"switchGreen",
+            "skin":"switchGreenOFF",
             "action": {
                 "groupId": 4,
                 "id": 3,
@@ -196,12 +196,14 @@
         {
             "x": 360,
             "y": 500,
-            "color": "Cyan"
+            "color": "Cyan",
+            "skin": "filterCyan"
         },
         {
             "x": 460,
             "y": 500,
-            "color": "Blue"
+            "color": "Blue",
+            "skin": "filterBlue"
         }
     ],
     "ends": [

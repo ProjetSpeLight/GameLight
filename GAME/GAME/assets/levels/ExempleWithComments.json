@@ -1,3 +1,7 @@
+// Color item : Black, Red, Blue, Green, Yellow, Magenta, Cyan, White
+// ActionName item : actionMoveObject, actionDeleteObject, actionCreateObject, actionChangeMirrorOrientation, actionChangeObjectColor, actionPutInMoveObject
+// (cf fichier action.js)
+
 {
     "worldBounds": {
         "leftBound": 0,
@@ -20,7 +24,7 @@
                 "x": 0,
                 "y": 200
             }
-        }
+        },
         // Equivalent to the following full definition
         {
             "position": {
@@ -91,8 +95,8 @@
             "bounds": {
                 "left": 100,
                 "right": 200,
-                "lower": 900,
-                "upper": 0
+                "bottom": 900,
+                "top": 0
             },
             // Initial speed
             "speed": {
@@ -109,23 +113,29 @@
             "x": 0,
             "y": 0,
             // Color of the filter
-            "color": "red"
+            "color": "Red",
+            "id": 0 // Optional ; Default value = null/undefined ; An id for the action
         }
     ],
     "mirrors": [
         {
             "x": 0,
             "y": 0,
-            "angle": 45,
-            "skin": "mirror",
-            "immovable": true
+            "angle": 45, // Optional ; Default value = 45
+            "immovable": true, // Optional ; Default value = true (a mirror is by default immovable)
+            "bounds": { // Optional ; Used only if the mirror is movable (i.e. immovable == false)
+                "left": 10, // Default value = x
+                "right": 20 // Default value = x
+            },
+            "id": 0 // Optional ; Default value = null/undefined ; An id for the action
         }
     ],
     "coins": [
         {
             "x": 0,
             "y": 0,
-            "skin": "star"
+            "skin": "star",
+            "value": 10
         }
     ],
     "piques": [
@@ -136,7 +146,17 @@
         }
     ],
     "switchs": [
-        //TODO
+        {
+            "x": 2200,
+            "y": 300,
+            "color": "Blue",
+            "action": {
+                "groupId": 4,
+                "id": 0,
+                "actionName": "actionDeleteObject"
+            }
+        }
+
     ],
     // List of the different level ending areas
     "ends": [

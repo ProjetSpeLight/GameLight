@@ -1,11 +1,17 @@
 define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], function (Phaser, PhaserGame, player, action) {
 
     var CONST_DELAY = 5;
-    var counter = 0;   
+    var counter = 0;
 
     return {
         // The group of sprites
         group: null,
+
+        /// @function preloadObjectImage
+        /// Preloads the different images / spritesheets used by this module
+        preloadObjectsImages: function () {
+            PhaserGame.game.load.image('button', 'assets/photon_vert.png');
+        },
 
         /// @function createObjectsGroup
         /// Creation of the differents buttons defined in the JSON file
@@ -63,7 +69,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
 
         /// @function updateObject
         /// Updates the group of buttons (to be called by the update() function of the game state)
-        updateObject: function () {
+        updateObjects: function () {
             PhaserGame.game.physics.arcade.collide(player.sprite, this.group, this.handlerButton);
         }
     }

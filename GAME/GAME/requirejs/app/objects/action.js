@@ -70,7 +70,11 @@ define([], function () {
     }
 
     function actionDeleteObject(args) {
-        args.target.destroy();
+        if (args.target.alive) {
+            args.target.kill();
+        } else {
+            args.target.revive();
+        }
     }
 
     function actionPutInMoveObject(args) {

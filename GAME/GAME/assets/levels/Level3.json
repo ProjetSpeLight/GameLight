@@ -187,46 +187,43 @@
     "mirrors": [
         {
             "x": 1720,
-            "y": 520,
-            "angle": 45,
-            "skin": "mirror",
-            "isMovable": true
+            "y": 540,
+            "immovable": false,
+            "bounds": {
+                "left": 1600,
+                "right":  1850
+            }
         },
         {
             "x": 1875,
             "y": 200,
-            "angle": -135,
-            "skin": "mirror",
-            "isMovable": false
+            "angle": -135
         },
         {
             "x": 2300,
-            "y": 345,
-            "angle": 45,
-            "skin": "mirror",
-            "isMovable": false
+            "y": 325,
+            "angle": 45
         },
         {
             "x": 2300,
             "y": 200,
-            "angle": -45,
-            "skin": "mirror",
-            "isMovable": false
+            "angle": -45
         }
     ],
     "filters": [
         {
             "x": 2000,
-            "y": 320,
-            "color": "Red"
+            "y": 300,
+            "color": "Red",
+            "skin": "filterRed"
         }
     ],
     "switch": [
         {
-            "x": 2100,
-            "y": 320,
+            "x": 2200,
+            "y": 300,
             "color": "Blue",
-            "skin":"switchBlue",
+            "skin":"switchBlueOFF",
             "action": {
                 "groupId": 4,
                 "id": 0,
