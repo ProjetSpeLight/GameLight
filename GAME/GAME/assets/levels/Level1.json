@@ -195,12 +195,11 @@
         {
             "x": 1690,
             "y": 150,
-            "skin":"switchBlueOFF",
             "color": "Blue",
             "action": {
                 "groupId": 4,
                 "id": 0,
-                "actionName": "actionDeleteObject"                
+                "actionName": "actionCreateObject"                
             }
         }
     ],

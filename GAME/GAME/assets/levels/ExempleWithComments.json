@@ -150,6 +150,7 @@
             "x": 2200,
             "y": 300,
             "color": "Blue",
+            "state": "On",
             "action": {
                 "groupId": 4,
                 "id": 0,
