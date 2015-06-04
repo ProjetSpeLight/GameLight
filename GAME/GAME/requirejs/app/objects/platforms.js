@@ -2,7 +2,7 @@
  * This module implements the functions that create and animate platforms
  */
 
-define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame, player) {
+define(['phaser', 'app/phasergame', 'app/player', 'app/touch'], function (Phaser, PhaserGame, player, Touch) {
 
     /// @function setParameters
     /// Create and initialize a platforms with default value or specified ones stored in the argument
