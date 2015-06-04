@@ -133,8 +133,11 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
                 coinObject.updateObject();
                 piqueObject.updateObject();
                 ennemiObject.updateObject();
+                
+                Touch.update();
 
                 player.updatePlayer();
+                
 
 
 
