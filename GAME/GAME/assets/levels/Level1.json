@@ -260,8 +260,8 @@
             "x": 380,
             "y": 400,
             "bounds": {
-                "left": 300,
-                "right": 700,
+                "left": 200,
+                "right": 550,
                 "lower": 600,
                 "upper": 0
             },
@@ -269,7 +269,7 @@
                 "x": 150,
                 "y": 0
             },
-            "skin": "baddie"
+            "type": "flying"
         },
         {
             "x": 1220,
