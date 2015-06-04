@@ -93,11 +93,12 @@ define(['phaser', 'app/phasergame', 'app/color'], function (Phaser, PhaserGame, 
                         photon.body.velocity.x = -400;
                     }
                     // Delay the next fire of photon
-                    this.photonTime = game.time.now + player.sprite.color.freq;
+                    this.photonTime = game.time.now + player.sprite.color.delay;
 
                     // Color of the photon
                     photon.color = player.sprite.color;
                     photon.frame = (player.sprite.color.value - 1) * 6;
+                    photon.scale.setTo(1 + player.sprite.color.energy*0.1, 1 + player.sprite.color.energy*0.1);
 
                     // If the photon goes out the wolrd, it is destroyed
                     photon.events.onOutOfBounds.add(killPhoton, photon);
