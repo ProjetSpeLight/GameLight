@@ -8,16 +8,16 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
         for (var color in ColorEnum) {
             var vcolor = ColorEnum[color];
             //var pcolor = ColorEnum[previousColor];
-            sprite.animations.add('left' + vcolor.name, [0 + 9 * vcolor.value, 1 + 9 * vcolor.value, 2 + 9 * vcolor.value, 3 + 9 * vcolor.value], 10, true);
-            sprite.animations.add('right' + vcolor.name, [5 + 9 * vcolor.value, 6 + 9 * vcolor.value, 7 + 9 * vcolor.value, 8 + 9 * vcolor.value], 10, true);
+            sprite.animations.add('left' + vcolor.name, [0 + 9 * vcolor.value, 1 + 9 * vcolor.value, 2 + 9 * vcolor.value, 3 + 9 * vcolor.value], 8, true);
+            sprite.animations.add('right' + vcolor.name, [5 + 9 * vcolor.value, 6 + 9 * vcolor.value, 7 + 9 * vcolor.value, 8 + 9 * vcolor.value], 8, true);
 
             for (var ncolor in ColorEnum) {
                 // animation when the character loses a color
 
                 var pcolor = ColorEnum[ncolor];
-                sprite.animations.add('deathLeft' + vcolor.name + pcolor.name, [0 + 9 * vcolor.value, 1 + 9 * pcolor.value, 2 + 9 * vcolor.value, 3 + 9 * pcolor.value], 10, true);
-                sprite.animations.add('deathRight' + vcolor.name + pcolor.name, [5 + 9 * vcolor.value, 6 + 9 * pcolor.value, 7 + 9 * vcolor.value, 8 + 9 * pcolor.value], 10, true);
-                sprite.animations.add('deathStandingStill' + vcolor.name + pcolor.name, [4 + 9 * vcolor.value, 4 + 9 * pcolor.value], 10, true);
+                sprite.animations.add('deathLeft' + vcolor.name + pcolor.name, [0 + 9 * vcolor.value, 1 + 9 * pcolor.value, 2 + 9 * vcolor.value, 3 + 9 * pcolor.value], 8, true);
+                sprite.animations.add('deathRight' + vcolor.name + pcolor.name, [5 + 9 * vcolor.value, 6 + 9 * pcolor.value, 7 + 9 * vcolor.value, 8 + 9 * pcolor.value], 8, true);
+                sprite.animations.add('deathStandingStill' + vcolor.name + pcolor.name, [4 + 9 * vcolor.value, 4 + 9 * pcolor.value], 8, true);
             }
         }
 
@@ -65,6 +65,7 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
         initializePlayer: function (game, x, y) {
             // The player and its settings            
             this.sprite = PhaserGame.game.add.sprite(x, y, 'dude');
+            this.sprite.scale = new Phaser.Point(0.6,0.6)
 
             //  We need to enable physics on the player
             PhaserGame.game.physics.arcade.enable(this.sprite);

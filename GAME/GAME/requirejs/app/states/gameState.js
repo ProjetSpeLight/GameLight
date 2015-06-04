@@ -76,7 +76,9 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
         update: function () {
 
 
-
+            if (screen.touched) {
+                alert("lol");
+            }
 
 
 
