@@ -125,7 +125,7 @@
     "mirrors": [
         {
             "x": 1720,
-            "y": 550,
+            "y": 540,
             "immovable": false,
             "bounds": {
                 "left": 1600,
