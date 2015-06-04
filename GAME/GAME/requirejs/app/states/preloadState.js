@@ -29,8 +29,8 @@ define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager'], 
 
             if (!this.game.device.desktop) {
                 this.load.image('buttonChangeColor', 'assets/boutons/changeColor.png');
-                this.load.image('buttonDroite', 'assets/boutons/droite.png');
-                this.load.image('buttonGauche', 'assets/boutons/gauche.png');
+                this.load.image('buttonDroite', 'assets/boutons/droite_rect.png');
+                this.load.image('buttonGauche', 'assets/boutons/gauche_rect.png');
                 this.load.image('buttonSaut', 'assets/boutons/saut.png');
                 this.load.image('buttonTir', 'assets/boutons/tir.png')
             }

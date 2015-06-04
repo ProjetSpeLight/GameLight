@@ -95,12 +95,12 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
                 // Update of the score
                 scoreText.text = 'Score: ' + PhaserGame.score;
 
-
-
-
+                
+                Touch.update();
 
                 objectsManager.updateObjects();
                 player.updatePlayer();
+                
 
 
 
