@@ -2,14 +2,14 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
 
     // Declaration of the enumeration representing the color of the player
     var ColorEnum = {
-        BLACK: { value: 0, name: 'Black', code: 'B' },
-        RED: { value: 1, name: 'Red', code: 'R' },
-        BLUE: { value: 3, name: 'Blue', code: 'Bl' },
-        GREEN: { value: 2, name: 'Green', code: 'G' },
-        YELLOW: { value: 4, name: 'Yellow', code: 'Y' },
-        CYAN: { value: 5, name: 'Cyan', code: 'C' },
-        MAGENTA: { value: 6, name: 'Magenta', code: 'M' },
-        WHITE: { value: 7, name: 'White', code: 'W' }
+        BLACK: { value: 0, name: 'Black', code: 'B', freq: 0 },
+        RED: { value: 1, name: 'Red', code: 'R', freq: 400 },
+        BLUE: { value: 3, name: 'Blue', code: 'Bl', freq: 900 },
+        GREEN: { value: 2, name: 'Green', code: 'G', freq: 700 },
+        YELLOW: { value: 4, name: 'Yellow', code: 'Y', freq: 600 },
+        CYAN: { value: 5, name: 'Cyan', code: 'C', freq: 800 },
+        MAGENTA: { value: 6, name: 'Magenta', code: 'M', freq: 500 },
+        WHITE: { value: 7, name: 'White', code: 'W', freq: 300 }
     }
 
 

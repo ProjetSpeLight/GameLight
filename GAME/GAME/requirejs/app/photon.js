@@ -93,7 +93,7 @@ define(['phaser', 'app/phasergame', 'app/color'], function (Phaser, PhaserGame, 
                         photon.body.velocity.x = -400;
                     }
                     // Delay the next fire of photon
-                    this.photonTime = game.time.now + 200;
+                    this.photonTime = game.time.now + player.sprite.color.freq;
 
                     // Color of the photon
                     photon.color = player.sprite.color;
