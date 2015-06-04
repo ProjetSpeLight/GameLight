@@ -12,15 +12,18 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
     // Object displaying the score
     var scoreText;
 
+    //var adresse_json = "http://localhost:4200/assets/levels/";
+    var adresse_json = "http://projetspelight.github.io/assets/levels/"
+
     GameState.prototype = {
         preload: function () {
             if (this.currentLevel === 0) {
                 if (!PhaserGame.game.cache.checkJSONKey('level0')) {
-                    this.load.json('level0', 'http://localhost:4200/assets/levels/Tutoriel.json');
+                    this.load.json('level0', adresse_json + 'Tutoriel.json');
                 }
             } else {
                 if (!PhaserGame.game.cache.checkJSONKey('level' + this.currentLevel)) {
-                    this.load.json('level' + this.currentLevel, 'http://localhost:4200/assets/levels/Level' + this.currentLevel + '.json');
+                    this.load.json('level' + this.currentLevel, adresse_json + 'Level' + this.currentLevel + '.json');
                 }
             }
         },
