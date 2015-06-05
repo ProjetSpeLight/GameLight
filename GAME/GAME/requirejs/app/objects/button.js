@@ -55,7 +55,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
         /// @param {Phaser.Sprite} the button
         handlerButton: function (playerSprite, button) {
             // First, we check if the action was correctly defined
-            if (buttonObject.buttonAction == null) {
+            if (button.buttonAction == null) {
                 return;
             }
             if (playerSprite.body.touching.down && !playerSprite.body.touching.right && !playerSprite.body.touching.left) {
