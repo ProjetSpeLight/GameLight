@@ -10,7 +10,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
         /// @function preloadObjectImage
         /// Preloads the different images / spritesheets used by this module
         preloadObjectsImages: function () {
-            PhaserGame.game.load.image('button', 'assets/photon_vert.png');
+            PhaserGame.game.load.spritesheet('button', 'assets/bouton.png', 37, 11);
         },
 
         /// @function createObjectsGroup
