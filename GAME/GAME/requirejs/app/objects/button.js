@@ -41,7 +41,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
 
                 // Action associated to the switch
                 if (buttonData.action != null) {
-                    var objAction = action.createAction(buttonData.action, Manager);
+                    var objAction = action.createActionButton(buttonData.action, Manager);
                     buttonObject.buttonAction = objAction.actionName;
                     buttonObject.args = objAction.args;
                 }
@@ -55,7 +55,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
         /// @param {Phaser.Sprite} the button
         handlerButton: function (playerSprite, button) {
             // First, we check if the action was correctly defined
-            if (buttonObject.buttonAction == null) {
+            if (button.buttonAction == null) {
                 return;
             }
             if (playerSprite.body.touching.down && !playerSprite.body.touching.right && !playerSprite.body.touching.left) {
