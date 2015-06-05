@@ -13,6 +13,10 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phase
         enemy.LifeBarShown = true;
         enemy.LifeBarLifeTime = 100;
         if (enemy.nbLives == 0) {
+            if (enemy.lifeBar != null) {
+                enemy.LifeBarShown = false;
+                enemy.lifeBar.kill();
+            }
             enemy.destroy();
             PhaserGame.score += 10;
         }
@@ -31,7 +35,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phase
         /// @function preloadObjectImage
         /// Preloads the different images / spritesheets used by this module
         preloadObjectsImages: function () {
-            PhaserGame.game.load.spritesheet('normalEnemy', 'assets/baddie.png', 32, 32);
+            PhaserGame.game.load.spritesheet('normalEnemy', 'assets/ennemi_fat.png', 60, 100);
             PhaserGame.game.load.spritesheet('flyingEnemy', 'assets/Fantome.png', 75, 60);
 
         },
@@ -98,6 +102,8 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phase
 
                 if (enemyType == 'normal') {
                     ennemi.nbLives = 5;
+                    ennemi.animations.add('animNormal', [0, 1, 2, 3], 6, true);
+                    ennemi.play('animNormal');
                 } else {
                     ennemi.nbLives = 1;
                     ennemi.animations.add('animFlying', [0, 1, 2, 1], 6, true);
@@ -144,6 +150,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phase
                     if (element.lifeBar != null) {
                         element.lifeBar.kill();
                     }
+                    element.LifeBarShown = false;
                 }
 
             })

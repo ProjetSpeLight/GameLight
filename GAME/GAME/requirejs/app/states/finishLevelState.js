@@ -20,11 +20,28 @@ define(['phaser', 'app/objects/time', 'app/touch', 'app/phasergame'], function (
                 timeDone.text = 'Pas de temps pour ce niveau ';
             }
             var scoreFinal = this.add.text(70, 120, 'Score Final: Score Done + Bonus Time: ', { fontSize: '32px', fill: '#f00' });
+            var scoreSave;
             if (time.time >= 0) {
-                scoreFinal.text = 'Final Score = Score Done + Bonus Time = ' + PhaserGame.score+' + '+ (time.timebegin - time.time) +' = '+(PhaserGame.score+(time.timebegin - time.time))  ;
+                scoreSave=PhaserGame.score+(time.timebegin - time.time);
+                scoreFinal.text = 'Final Score = Score Done + Bonus Time = ' + PhaserGame.score+' + '+ (time.timebegin - time.time) +' = '+scoreSave  ;
             } else {
-                scoreFinal.text = 'Final Score = Score Done + Bonus Time = ' + PhaserGame.score+' + 0 = '+(PhaserGame.score)  ;
+                scoreSave=PhaserGame.score;
+                scoreFinal.text = 'Final Score = Score Done + Bonus Time = ' + PhaserGame.score+' + 0 = '+scoreSave  ;
             }
+            var cook = document.cookie;    
+            //We add a cookie or change the last one for this level
+            // We search the label 'Level i'
+            var sub = cook.indexOf("Level"+this.game.state.states['Game'].currentLevel,1);
+            //if this label exists,
+            //we change the text to print the score
+            if (sub<0){
+                 document.cookie="Level"+ this.game.state.states['Game'].currentLevel+"="+scoreSave;
+            } else {
+                if (cook.substring(sub+7,sub+9)<scoreSave){
+                    document.cookie="Level"+ this.game.state.states['Game'].currentLevel+"="+scoreSave;
+                }
+            }
+            
 
             var button_menu = this.add.button(400, 210, 'RetMenu', this.menuclick, this);
             button_menu.name = 'Returnmenu';
