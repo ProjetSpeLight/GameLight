@@ -6,12 +6,12 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
     /// @param {Phaser.Sprite} the switch that has been hit by the photon
     function handlerSwitch(photon, switchObject) {
         // We check if the colors match
-        if (photon.color.name != switchObject.colorName
+        if (photon.color.name != switchObject.color
             || switchObject.switchOnAction == null) {
             photon.kill();
             return;
         }
-        if (switchObject.actionName == "actionChangeObjectColor") {
+        if (switchObject.switchActionName== "actionChangeObjectColor") {
             switchObject.switchOnAction(switchObject.onArgs);
         } else {
             if (switchObject.state == "On") {
@@ -21,7 +21,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
                 switchObject.switchOffAction(switchObject.offArgs);
                 switchObject.state = "On";
             }
-            var str = "switch" + switchObject.colorName + switchObject.state;
+            var str = switchObject.objectType + switchObject.color + switchObject.state;
             switchObject.loadTexture(str);
         }
         // In any case, the photon is destructed
@@ -78,7 +78,10 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
                 var switchObject = this.group.create(switchData.x, switchData.y, 'switch' + switchData.color + state);
                 switchObject.state = state;
                 // Attribute color 
-                switchObject.colorName = switchData.color;
+                switchObject.color = switchData.color;
+                switchObject.switchActionName = switchData.action.actionName;
+                switchObject.objectType = 'switch';
+                switchObject.id = switchData.id;
                 // Action associated to the switch
                 if (switchData.action != null) {
                     var objAction = action.createAction(switchData.action, Manager);
@@ -93,7 +96,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
                 if (switchData.action.actionName == "actionCreateObject") {
                     switchObject.switchOnAction(switchObject.onArgs);
                     switchObject.state = "Off";
-                    var str = "switch" + switchObject.colorName + switchObject.state;
+                    var str = "switch" + switchObject.color + switchObject.state;
                     switchObject.loadTexture(str);
                 }
 

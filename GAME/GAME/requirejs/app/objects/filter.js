@@ -64,6 +64,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/color'], function (Phaser
                 var filter = this.group.create(filterData.x, filterData.y, 'filter' + filterData.color);
                 // Attribute color
                 filter.color = filterData.color;
+                filter.objectType = 'filter';
                 // Id if defined
                 if (filterData.id != null) {
                     filter.id = filterData.id;

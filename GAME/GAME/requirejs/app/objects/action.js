@@ -137,8 +137,17 @@ define([], function () {
     }
 
     function actionChangeObjectColor(args) {
-        var i = args.colors.indexOf(args.target.color);
-        args.target.color = agrs.colors[(i + 1) % (args.colors.length)].color;
+        var i;
+        for ( i = 0; i < args.colors.length; i++) {
+            if (args.colors[i].color == args.target.color)
+                break;
+        }
+        args.target.color = args.colors[(i + 1) % (args.colors.length)].color;
+        if(args.target.objectType=='switch')
+        args.target.loadTexture(args.target.objectType + args.target.color + args.target.state);
+        else
+            args.target.loadTexture(args.target.objectType + args.target.color);
+
     }
 
 
