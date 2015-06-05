@@ -137,7 +137,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phase
                     if (element.lifeBar != null) {
                         element.lifeBar.kill();
                     }
-                    element.lifeBar = PhaserGame.game.add.sprite(element.body.x + element.body.width/2 - 15, element.body.y - 10, 'groundGreen');
+                    element.lifeBar = PhaserGame.game.add.sprite(element.body.x + element.body.width / 2 - 15, element.body.y - 10, 'platformGreen');
                     element.lifeBar.scale.setTo(element.nbLives / element.maxLife, 1);
                     element.LifeBarLifeTime--;
                 } else {
