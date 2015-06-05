@@ -148,8 +148,8 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
         },
 
         render: function () {
-            /*PhaserGame.game.debug.body(player.sprite);
-            for (var i = 0 ; i < piqueObject.group.length ; i++) {
+            //PhaserGame.game.debug.body(player.sprite);
+            /*for (var i = 0 ; i < piqueObject.group.length ; i++) {
                 PhaserGame.game.debug.body(piqueObject.group.children[i]);
             }*/
             /*for (var i = 0 ; i < objectsManager.EnumModule.MIRROR.refGroup.children.length ; i++) {

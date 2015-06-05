@@ -65,7 +65,8 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
         initializePlayer: function (game, x, y) {
             // The player and its settings            
             this.sprite = PhaserGame.game.add.sprite(x, y, 'dude');
-            this.sprite.scale = new Phaser.Point(0.6,0.6)
+            this.sprite.scale = new Phaser.Point(0.6, 0.6);
+            
 
             //  We need to enable physics on the player
             PhaserGame.game.physics.arcade.enable(this.sprite);
@@ -74,6 +75,8 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
             this.sprite.body.gravity.y = 1000;
             PhaserGame.game.camera.follow(this.sprite);
             this.sprite.body.collideWorldBounds = true;
+            this.sprite.anchor = new Phaser.Point(0.5, 0.5);
+            this.sprite.body.setSize(56, 100);
 
 
 

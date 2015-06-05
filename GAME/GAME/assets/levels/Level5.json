@@ -218,8 +218,8 @@
         {
             "x": 360,
             "y": 500,
-            "color": "Cyan",
-            "skin": "filterCyan"
+            "color": "Green",
+            "skin": "filterGreen"
         },
         {
             "x": 460,
