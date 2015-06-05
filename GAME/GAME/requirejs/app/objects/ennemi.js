@@ -10,6 +10,8 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phase
     function killEnnemi(photon, enemy) {
         photon.kill();
         enemy.nbLives--;
+        enemy.LifeBarShown = true;
+        enemy.LifeBarLifeTime = 100;
         if (enemy.nbLives == 0) {
             enemy.destroy();
             PhaserGame.score += 10;
@@ -101,6 +103,10 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phase
                     ennemi.animations.add('animFlying', [0, 1, 2, 1], 6, true);
                     ennemi.play('animFlying');
                 }
+                ennemi.LifeBarShown = false;
+                ennemi.LifeBarLifeTime = 100;
+                ennemi.maxLife = ennemi.nbLives;
+                ennemi.lifeBar = null;
             }
         },
 
@@ -126,6 +132,19 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phase
 
                 if (element.body.y <= element.body.sprite.topBounds || element.body.y >= element.body.sprite.bottomBounds)
                     element.body.velocity.y *= -1;
+
+                if (element.LifeBarShown && element.LifeBarLifeTime > 0) {
+                    if (element.lifeBar != null) {
+                        element.lifeBar.kill();
+                    }
+                    element.lifeBar = PhaserGame.game.add.sprite(element.body.x + element.body.width/2 - 15, element.body.y - 10, 'groundGreen');
+                    element.lifeBar.scale.setTo(element.nbLives / element.maxLife, 1);
+                    element.LifeBarLifeTime--;
+                } else {
+                    if (element.lifeBar != null) {
+                        element.lifeBar.kill();
+                    }
+                }
 
             })
 
