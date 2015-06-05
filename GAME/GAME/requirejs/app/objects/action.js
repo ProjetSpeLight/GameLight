@@ -37,6 +37,8 @@ define([], function () {
                 return actionDeleteObject;
             case 'actionMoveObject':
                 return actionMoveObject;
+            case 'actionChangeObjectColor':
+                return actionChangeObjectColor;
             default:
                 return null;
         }
@@ -83,19 +85,19 @@ define([], function () {
         var oppositeArgs = computeOppositeArgs(args, data.actionName);
         args.target = object;
         oppositeArgs.target = object;
-        if (data.actionName == "actionDeleteObject" || data.actionName == "actionCreateObject")
-            return {
-                "onActionName": getFunctionAction(data.actionName),
-                "offActionName": getOppositeFunctionAction(data.actionName),
-                "onArgs": args,
-                "offArgs": oppositeArgs
-            }
-        else
+        if (data.actionName == "actionMoveObject")
             return {
                 "onActionName": getFunctionAction(data.actionName),
                 "offActionName": getFunctionAction(data.actionName),
                 "onArgs": oppositeArgs,
                 "offArgs": args
+            }
+        else
+            return {
+                "onActionName": getFunctionAction(data.actionName),
+                "offActionName": getOppositeFunctionAction(data.actionName),
+                "onArgs": args,
+                "offArgs": oppositeArgs
             }
     }
 
@@ -117,7 +119,8 @@ define([], function () {
     }
 
     function actionChangeObjectColor(args) {
-
+        var i = args.colors.indexOf(args.target.color);
+        args.target.color = agrs.colors[(i + 1) % (args.colors.length)].color;
     }
 
 

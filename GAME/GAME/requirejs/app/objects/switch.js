@@ -6,14 +6,14 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
     /// @param {Phaser.Sprite} the switch that has been hit by the photon
     function handlerSwitch(photon, switchObject) {
         // We check if the colors match
-        if (photon.color.name == switchObject.colorName) {
-            // If that's the case, the action is performed
-            // We check first if the action was correctly defined
-            if (switchObject.switchOnAction == null) {
-                photon.kill();
-                return;
-            }
-
+        if (photon.color.name != switchObject.colorName
+            || switchObject.switchOnAction == null) {
+            photon.kill();
+            return;
+        }
+        if (switchObject.actionName == "actionChangeObjectColor") {
+            switchObject.switchOnAction(switchObject.onArgs);
+        } else {
             if (switchObject.state == "On") {
                 switchObject.switchOnAction(switchObject.onArgs);
                 switchObject.state = "Off";
@@ -22,7 +22,6 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
                 switchObject.state = "On";
             }
             var str = "switch" + switchObject.colorName + switchObject.state;
-
             switchObject.loadTexture(str);
         }
         // In any case, the photon is destructed
@@ -70,13 +69,15 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
             for (var i = 0 ; i < data.length ; i++) {
                 // We get its data
                 var switchData = data[i];
-                var state = 'Off';
-                if (switchData.action.actionName == "actionDeleteObject" || switchData.action.actionName == "actionCreateObject")
+                var state;
+                if (switchData.action.actionName == 'actionMoveObject')
+                    state = 'Off';
+                else
                     state = 'On';
-                // We create a new switch at the position (x,y) with the token "switchData.skin + switchData.color" to represent the corresponding image loaded
+                // We create a new switch at the position (x,y) with the token "switchData.skin + switchData.color + state" to represent the corresponding image loaded
                 var switchObject = this.group.create(switchData.x, switchData.y, 'switch' + switchData.color + state);
                 switchObject.state = state;
-                // Attribute color
+                // Attribute color 
                 switchObject.colorName = switchData.color;
                 // Action associated to the switch
                 if (switchData.action != null) {
