@@ -13,6 +13,10 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phase
         enemy.LifeBarShown = true;
         enemy.LifeBarLifeTime = 100;
         if (enemy.nbLives == 0) {
+            if (enemy.lifeBar != null) {
+                enemy.LifeBarShown = false;
+                enemy.lifeBar.kill();
+            }
             enemy.destroy();
             PhaserGame.score += 10;
         }
@@ -144,6 +148,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phase
                     if (element.lifeBar != null) {
                         element.lifeBar.kill();
                     }
+                    element.LifeBarShown = false;
                 }
 
             })
