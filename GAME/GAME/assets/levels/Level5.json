@@ -87,7 +87,7 @@
         {
             "position": {
                 "x": 400,
-                "y": 200
+                "y": 190
             },
             "size": {
                 "x": 3,
@@ -226,6 +226,11 @@
             "y": 500,
             "color": "Blue",
             "skin": "filterBlue"
+        }
+    ],
+    "time": [
+        {
+            "value": 50
         }
     ],
     "ends": [
