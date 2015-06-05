@@ -129,6 +129,10 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms'], func
                     runner.scale.setTo(size, 1);
                 }
 
+                if (!immovable) {
+                    mirrorObject.body.checkCollision.up = false;
+                }
+
             }
         },
 
