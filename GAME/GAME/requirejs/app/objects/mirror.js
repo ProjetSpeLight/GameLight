@@ -12,12 +12,18 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms'], func
         }
         var x = photon.body.velocity.x;
         var y = photon.body.velocity.y;
-        var theta = (90.0 - mirror.angle) * Math.PI / 180.0;
-        var alpha = Math.acos((x * Math.cos(theta) + y * Math.sin(theta)) / (Math.sqrt(x * x + y * y)));
-        var newX = Math.cos(2 * alpha) * x - Math.sin(2 * alpha) * y;
-        var newY = Math.sin(2 * alpha) * x + Math.cos(2 * alpha) * y;
+        var beta = ((mirror.angle + 180) % 180) * Math.PI / 180;
+        var alpha;
+        if(x>y&&-x<y)
+            alpha = Math.atan(y / x);
+        else
+            alpha = Math.PI/2  - Math.atan(x/y);
+        var gamma = beta - alpha;
+        var theta = Math.PI + beta + gamma - alpha;
+        var newX = x * Math.cos(theta) - y * Math.sin(theta);
+        var newY = y * Math.cos(theta) + x * Math.sin(theta);
         photon.body.velocity.x = newX;
-        photon.body.velocity.y = -newY;
+        photon.body.velocity.y = newY;
         photon.hasHit = true;
         photon.idMirrorReflexion = mirror.idPerso;
     }

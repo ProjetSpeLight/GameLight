@@ -5,6 +5,8 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
     /// @param {Photon} the photon that hits the switch
     /// @param {Phaser.Sprite} the switch that has been hit by the photon
     function handlerSwitch(photon, switchObject) {
+        // In any case, the photon is destructed
+        photon.kill();
         // We check if the colors match
         if (photon.color.name != switchObject.color
             || switchObject.switchOnAction == null) {
@@ -24,8 +26,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
             var str = switchObject.objectType + switchObject.color + switchObject.state;
             switchObject.loadTexture(str);
         }
-        // In any case, the photon is destructed
-        photon.kill();
+
 
 
     }
