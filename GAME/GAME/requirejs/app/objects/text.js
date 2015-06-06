@@ -1,11 +1,5 @@
 define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame, player) {
 
-    function collectCoin(player, coin) {
-        // Removes the star from the screen
-        coin.destroy();
-        //  Add and update the score
-        PhaserGame.score += coin.value;
-    }
 
     return {
 
@@ -31,7 +25,7 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
                 var style = { font: "24px Arial", fill: "#000000", align: "center" };
                 for (var i = 0 ; i < data.length ; i++) {
                     var textData = data[i];
-                    var text = PhaserGame.game.add.text(textData.x, textData.y, textData.message, style);
+                    var text = PhaserGame.game.add.text(textData.x, textData.y, textData.fr, style);
                     //text.anchor.set(0);
 
                 }

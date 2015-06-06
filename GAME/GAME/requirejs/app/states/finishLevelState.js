@@ -1,4 +1,4 @@
-define(['phaser', 'app/objects/time', 'app/touch', 'app/phasergame'], function (Phaser, time, Touch,PhaserGame) {
+define(['phaser', 'app/objects/time', 'app/touch', 'app/phasergame','app/cook'], function (Phaser, time, Touch,PhaserGame,cook) {
     // 'use strict';
 
     function FinishLevelState(game) { }
@@ -22,27 +22,27 @@ define(['phaser', 'app/objects/time', 'app/touch', 'app/phasergame'], function (
             var scoreFinal = this.add.text(70, 120, 'Score Final: Score Done + Bonus Time: ', { fontSize: '32px', fill: '#f00' });
             var scoreSave;
             if (time.time >= 0) {
-                scoreSave=PhaserGame.score+(time.timebegin - time.time);
-                scoreFinal.text = 'Final Score = Score Done + Bonus Time = ' + PhaserGame.score+' + '+ (time.timebegin - time.time) +' = '+scoreSave  ;
+                scoreSave=PhaserGame.score+ time.time;
+                scoreFinal.text = 'Final Score = Score Done + Bonus Time = ' + PhaserGame.score+' + '+  time.time +' = '+scoreSave  ;
             } else {
                 scoreSave=PhaserGame.score;
                 scoreFinal.text = 'Final Score = Score Done + Bonus Time = ' + PhaserGame.score+' + 0 = '+scoreSave  ;
             }
-            var cook = document.cookie;    
-            //We add a cookie or change the last one for this level
-            // We search the label 'Level i'
-            var sub = cook.indexOf("Level"+this.game.state.states['Game'].currentLevel,1);
-            //if this label exists,
+            // We search the label 'Level i' in the cookies
+            var str = "Level"+this.game.state.states['Game'].currentLevel;
+            var nb = cook.readCookie(str);
+           
+            //if this label doesn't exist,
             //we change the text to print the score
-            if (sub<0){
-                 document.cookie="Level"+ this.game.state.states['Game'].currentLevel+"="+scoreSave;
+            if (nb==null){
+                 cook.createCookie(str,scoreSave,10);
             } else {
-                if (cook.substring(sub+7,sub+9)<scoreSave){
-                    document.cookie="Level"+ this.game.state.states['Game'].currentLevel+"="+scoreSave;
+                // if this label exists, we check if the score is bigger than the previous one
+                if (nb<scoreSave){
+                     cook.createCookie(str,scoreSave,10);
                 }
             }
-            
-
+           
             var button_menu = this.add.button(400, 210, 'RetMenu', this.menuclick, this);
             button_menu.name = 'Returnmenu';
             button_menu.anchor.setTo(0.5, 0.5);
