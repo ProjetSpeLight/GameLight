@@ -1,7 +1,9 @@
 define([
-    'phaser'
+    'phaser',
+    'app/cook'
 ], function (
-    Phaser
+    Phaser,
+     cook
 ) {
     function ChooseLevelState(game) { };
 
@@ -10,19 +12,16 @@ define([
             // We generate a text and a button (sprite) per level
             var x = 10;
             var y = 10;
-            // We read the cookies of the game
-            var cook = document.cookie ;
+            
             for (var i = 1 ; i <= this.game.nbLevel ; i++) {
                 var emptyButton = this.game.add.button(x, y, 'buttonEmpty', this.down, self);
                 var text = this.game.add.text(x + 50, y + 15, "Level " + i, { font: "28px Arial", fill: "#ffffff", align: "center" });
                 var textResult= this.game.add.text(x + 200, y+15, " Score Done :\nNot Finish" ,  { font: "18px Arial", fill: "#ffffff", align: "center" });
                 
-                // We search the label 'Level i'
-                var sub = cook.lastIndexOf("Level"+i,1);
-                //if this label exists,
-                //we change the text to print the score
-                if (sub>=0){
-                    textResult.text=" Score Done : "+cook.substring(sub+7,sub+9);    
+                // we check if a cookie contains the score for the level i
+                var nb = cook.readCookie("Level"+i);
+                if (nb!=null){ // if there is already a score, we print it
+                    textResult.text=" Score Done : "+nb;    
                 }
                 
                 emptyButton.numLevel = i;
@@ -45,10 +44,9 @@ define([
 
         returnMenu: function () {
             this.game.state.start('MainMenu');
-        },
+        }
         
         
-
 
 
 
