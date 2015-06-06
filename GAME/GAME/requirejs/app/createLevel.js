@@ -1,17 +1,7 @@
 
-define(['phaser', 'app/player', 'app/phasergame', 'app/objects/coin', 'app/objects/pique', 'app/objects/ennemi', 'app/objects/time', 'app/objects/objectsManager'], function (Phaser, player, PhaserGame, coinObject, piqueObject, ennemiObject, time, Manager) {
+define(['app/player', 'app/phasergame', 'app/objects/time', 'app/objects/objectsManager'], function (player, PhaserGame, time, Manager) {
 
-    function createObjects(levelData, createLevel) {
-        // Creation of the objects handled by the manager
-        Manager.createObjects(levelData);
-        time.createTime(levelData.time);
-
-
-        // Creation of texts
-        
-
-    }
-
+   
     function createWorld(levelData) {
         //  Creation of the background
         var background = PhaserGame.game.add.sprite(0, 0, levelData.background);
@@ -35,8 +25,8 @@ define(['phaser', 'app/player', 'app/phasergame', 'app/objects/coin', 'app/objec
             createWorld(levelData);          
 
             // Creation of the level's objects
-            createObjects(levelData, this);
-
+            Manager.createObjects(levelData); // Creation of the objects handled by the manager
+            time.createTime(levelData.time);
 
             // Creation of the player
             player.initializePlayer(PhaserGame.game, levelData.playerStart.x, levelData.playerStart.y);

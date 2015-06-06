@@ -1,5 +1,5 @@
 
-define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'app/phasergame', 'app/touch', 'app/objects/platforms', 'app/objects/coin', 'app/objects/pique', 'app/objects/ennemi', 'app/objects/time', 'app/objects/objectsManager'], function (Phaser, createLevel, player, pause, photon, PhaserGame, Touch, platforms, coinObject, piqueObject, ennemiObject, time, objectsManager) {
+define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame', 'app/touch', 'app/objects/time', 'app/objects/objectsManager'], function (Phaser, createLevel, player, pause, PhaserGame, Touch, time, objectsManager) {
 
     function GameState(game) { }
 
@@ -55,7 +55,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
                 Touch.init();
             }
 
-            // Initialization of the bject displaying the score
+            // Initialization of the label displaying the score
             scoreText = PhaserGame.game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
             scoreText.fixedToCamera = true;
 
@@ -73,12 +73,9 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
 
         update: function () {
 
-
             if (screen.touched) {
                 alert("lol");
             }
-
-
 
             // If the level had not been loaded, we return to the main lmenu
             if (stopped) {
@@ -95,7 +92,6 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
                     time.updateTime();
                 }
 
-
                 // Update of the score
                 scoreText.text = 'Score: ' + PhaserGame.score;
 
@@ -106,14 +102,30 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
                 player.updatePlayer();
 
 
-
-
-
+                /*********** Events ***********/
 
                 // We restart the game when "R" is pushed
                 if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.R)) {
                     PhaserGame.game.state.start('RestartGame');
                 }
+
+                // We stop the game when "ESC" is pushed 
+                if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.ESC)) {
+                    if (!PhaserGame.game.paused) {
+                        pause.gamePaused();
+                    }
+                }
+
+                // We pause if the gamer has clicked on the pause button
+                if (PhaserGame.game.input.activePointer.isDown &&
+                    PhaserGame.game.input.y < 34 &&
+                    PhaserGame.game.input.y > 5 &&
+                    (PhaserGame.game.input.x > (PhaserGame.game.camera.width - 86)) &&
+                    (PhaserGame.game.input.x < (PhaserGame.game.camera.width - 12))) {
+                    pause.gamePaused();
+                }
+
+                /*********** Death ***********/
 
                 // We restart the game when the character falls of the map
                 if (player.sprite.body.y > PhaserGame.game.world.height - 64) {
@@ -128,20 +140,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
                     PhaserGame.game.state.start('Dead');
                 }
 
-                // we stop the game when "ESC" is pushed 
-                if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.ESC)) {
-                    if (!PhaserGame.game.paused) {
-                        pause.gamePaused();
-                    }
-                }
 
-                if (PhaserGame.game.input.activePointer.isDown &&
-                    PhaserGame.game.input.y < 34 &&
-                    PhaserGame.game.input.y > 5 &&
-                    (PhaserGame.game.input.x > (PhaserGame.game.camera.width - 86)) &&
-                    (PhaserGame.game.input.x < (PhaserGame.game.camera.width - 12))) {
-                    pause.gamePaused();
-                }
             }
         },
 
