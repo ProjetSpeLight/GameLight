@@ -153,11 +153,11 @@
             "y": 520,
             "action": {
                 "groupId": 4,
-                "id": 3,
+                "id": 2,
                 "actionName": "actionMoveObject",
                 "args": {
 
-                    "x": -150,
+                    "x": -10,
                     "y": 0
 
 

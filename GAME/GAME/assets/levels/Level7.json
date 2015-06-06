@@ -216,7 +216,10 @@
             "action": {
                 "groupId": 0,
                 "id": 2,
-                "actionName": "actionChangeMirrorOrientation"
+                "actionName": "actionChangeMirrorOrientation",
+                "args": {
+                    "incr":45    
+                }
                 
             }
         }
