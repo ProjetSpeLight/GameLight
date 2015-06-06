@@ -14,13 +14,13 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
 
     var adresse_json = "http://localhost:4200/assets/levels/";
     //var adresse_json = "http://projetspelight.github.io/assets/levels/";
-    
+
 
     GameState.prototype = {
         preload: function () {
             if (this.currentLevel === 0) {
                 if (!PhaserGame.game.cache.checkJSONKey('level0')) {
-                    this.load.json('level0', adresse_json + 'Tutoriel.json');
+                    this.load.json('level0', adresse_json + '_Level8.json');
                 }
             } else {
                 if (!PhaserGame.game.cache.checkJSONKey('level' + this.currentLevel)) {
@@ -41,8 +41,6 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
 
             // Initialization of the physics motor
             PhaserGame.game.physics.startSystem(Phaser.Physics.ARCADE);
-            PhaserGame.game.physics.startSystem(Phaser.Physics.P2);
-
 
             // We load the level
             if (!createLevel.createLevel('level' + this.currentLevel)) {
@@ -101,12 +99,12 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
                 // Update of the score
                 scoreText.text = 'Score: ' + PhaserGame.score;
 
-                
+
                 Touch.update();
 
                 objectsManager.updateObjects();
                 player.updatePlayer();
-                
+
 
 
 
@@ -119,7 +117,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
 
                 // We restart the game when the character falls of the map
                 if (player.sprite.body.y > PhaserGame.game.world.height - 64) {
-                    PhaserGame.game.state.start('RestartGame');
+                    PhaserGame.game.state.start('Dead');
                 }
 
                 // Mort du personnage quand coincé entre deux plateformes
@@ -127,7 +125,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
                     if (!PhaserGame.game.device.desktop) {
                         Touch.stop();
                     }
-                    PhaserGame.game.state.start('RestartGame');
+                    PhaserGame.game.state.start('Dead');
                 }
 
                 // we stop the game when "ESC" is pushed 
@@ -152,9 +150,9 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
             /*for (var i = 0 ; i < piqueObject.group.length ; i++) {
                 PhaserGame.game.debug.body(piqueObject.group.children[i]);
             }*/
-            /*for (var i = 0 ; i < objectsManager.EnumModule.MIRROR.refGroup.children.length ; i++) {
-                PhaserGame.game.debug.body(objectsManager.EnumModule.MIRROR.refGroup.children[i]);
-            }*/
+            /* for (var i = 0 ; i < objectsManager.EnumModule.MIRROR.refGroup.children.length ; i++) {
+                 PhaserGame.game.debug.body(objectsManager.EnumModule.MIRROR.refGroup.children[i]);
+             }*/
         },
 
 

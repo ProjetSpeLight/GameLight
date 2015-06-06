@@ -1,4 +1,4 @@
-/**
+﻿/**
   * This module defines the text representing the time
   *
   */
@@ -45,8 +45,9 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
                 this.time --;
                 this.timeText.text = 'Time: ' + this.time;
             }
-            if (this.time==0){
-                PhaserGame.game.state.start('RestartGame');
+            if (this.time == 0) {
+                PhaserGame.game.state.states['Dead'].message = 'Temps écoulé';
+                PhaserGame.game.state.start('Dead');
             }
             
         }

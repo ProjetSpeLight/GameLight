@@ -57,7 +57,7 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
                 } else {
                     PhaserGame.score = 0;
                     //he hasn't so we restart the game
-                    PhaserGame.game.state.start('RestartGame');
+                    PhaserGame.game.state.start('Dead');
                 }
             }
         },
