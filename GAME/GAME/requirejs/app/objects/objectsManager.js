@@ -10,7 +10,8 @@ define(['phaser',
         'app/objects/pique',
         'app/objects/coin',
         'app/objects/end',
-        'app/objects/text'],
+        'app/objects/text',
+        'app/objects/wall'],
 function (Phaser,
           PhaserGame,
           mirror,
@@ -22,7 +23,8 @@ function (Phaser,
           pique,
           coin,
           end,
-          text) {
+          text,
+          wall) {
 
     // Enumeration of the different object modules handled by the manager with their id and a reference to their group
     var EnumModule = {
@@ -35,7 +37,8 @@ function (Phaser,
         PIQUE: { idGroup: 6, refGroup: null },
         COIN: { idGroup: 7, refGroup: null },
         END: { idGroup: 8, refGroup: null },
-        TEXT: {idGroup: 9, refGroup: null}
+        TEXT: { idGroup: 9, refGroup: null },
+        WALL: { idGroup: 10, refGroup: null }
     }
 
 
@@ -54,6 +57,7 @@ function (Phaser,
             pique.preloadObjectsImages();
             coin.preloadObjectsImages();
             end.preloadObjectsImages();
+            wall.preloadObjectsImages();
         },
 
         /// @function createObjects
@@ -70,7 +74,9 @@ function (Phaser,
             pique.createObjectsGroup(data.piques, this);
             coin.createObjectsGroup(data.coins, this);
             end.createObjectsGroup(data.ends, this);
+            wall.createObjectsGroup(data.walls, this);
             text.createObjectsGroup(data.texts, this);
+
             // We create the objects that can have actions after the others
             switchObject.createObjectsGroup(data.switch, this);
             button.createObjectsGroup(data.buttons, this);
@@ -84,7 +90,7 @@ function (Phaser,
             // First, we define the collisions without handler
             PhaserGame.game.physics.arcade.collide(enemy.group, enemy.group);
             PhaserGame.game.physics.arcade.collide(enemy.group, platforms.group);
-
+            wall.updateObjects();
             end.updateObjects();
             coin.updateObjects();
             pique.updateObjects();
