@@ -41,6 +41,8 @@ define([], function () {
                 return actionChangeObjectColor;
             case 'actionChangeMirrorOrientation':
                 return actionChangeMirrorOrientation;
+            case 'actionPutInMovePlatform':
+                return actionPutInMovePlatform;
             default:
                 return null;
         }
@@ -87,6 +89,11 @@ define([], function () {
         var oppositeArgs = computeOppositeArgs(args, data.actionName);
         args.target = object;
         oppositeArgs.target = object;
+
+        if (data.actionName == 'actionPutInMovePlatform') {
+            actionPutInMovePlatform(args);
+        }
+
         if (data.actionName == "actionMoveObject")
             return {
                 "onActionName": getFunctionAction(data.actionName),
@@ -112,11 +119,30 @@ define([], function () {
             args = data.args;
         }
         args.target = object;
-        return {
-            "actionName": getFunctionAction(data.actionName),
-            "args" : args
+        
+        var actionName = getFunctionAction(data.actionName);
+        if (data.actionName == 'actionPutInMovePlatform') {
+            actionPutInMovePlatform(args);
         }
 
+        return {
+            "actionName": actionName,
+            "args": args
+        }
+
+    }
+
+    function actionPutInMovePlatform(args) {
+        if (args.target.body.velocity.x == 0 && args.target.body.velocity.y == 0) {
+            args.target.body.velocity.x = args.target.saveSpeedXAction;
+            args.target.body.velocity.y = args.target.saveSpeedYAction;
+        } else {
+            args.target.saveSpeedXAction = args.target.body.velocity.x;
+            args.target.saveSpeedYAction = args.target.body.velocity.y;
+            args.target.body.velocity.x = 0;
+            args.target.body.velocity.y = 0;
+        }
+        
     }
 
     function actionMoveObject(args) {
@@ -138,13 +164,13 @@ define([], function () {
 
     function actionChangeObjectColor(args) {
         var i;
-        for ( i = 0; i < args.colors.length; i++) {
+        for (i = 0; i < args.colors.length; i++) {
             if (args.colors[i].color == args.target.color)
                 break;
         }
         args.target.color = args.colors[(i + 1) % (args.colors.length)].color;
-        if(args.target.objectType=='switch')
-        args.target.loadTexture(args.target.objectType + args.target.color + args.target.state);
+        if (args.target.objectType == 'switch')
+            args.target.loadTexture(args.target.objectType + args.target.color + args.target.state);
         else
             args.target.loadTexture(args.target.objectType + args.target.color);
 
