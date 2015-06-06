@@ -40,7 +40,7 @@ define([
                 }
             }
 
-            var buttonMenu = this.game.add.button(this.game.world.width - 10, this.game.world.height - 10, 'RetMenu', this.returnMenu, this);
+            var buttonMenu = this.game.add.button(this.game.width - 10, this.game.height - 10, 'RetMenu', this.returnMenu, this);
             buttonMenu.scale.setTo(0.8, 0.8);
             buttonMenu.anchor.setTo(1, 1);
         },
