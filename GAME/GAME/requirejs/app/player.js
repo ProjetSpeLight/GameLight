@@ -11,6 +11,8 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
             sprite.animations.add('left' + vcolor.name, [0 + 9 * vcolor.value, 1 + 9 * vcolor.value, 2 + 9 * vcolor.value, 3 + 9 * vcolor.value], 10, true);
             sprite.animations.add('right' + vcolor.name, [5 + 9 * vcolor.value, 6 + 9 * vcolor.value, 7 + 9 * vcolor.value, 8 + 9 * vcolor.value], 10, true);
 
+            //sprite.animations.add('standingStill' + vcolor.name, [4 + 9 * vcolor.value, 4 + 9 * vcolor.value], 10, true);
+
             for (var ncolor in ColorEnum) {
                 // animation when the character loses a color
 
@@ -102,10 +104,12 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
                 this.handlerAccelerometer();
             }
             else {
+                /*if (this.sprite.invincible) {
+                    this.sprite.animations.play('deathStandingStill' + this.sprite.color.name + this.previousColor.name);
+                }*/
                 //  Stand still
                 if (this.sprite.body.velocity.x == 0) {
-                    this.sprite.animations.stop();
-                    this.sprite.frame = this.sprite.color.value * 9 + 4;
+                    this.standingStill();
                 }
             }
 
@@ -205,12 +209,24 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
 
     handlerRight: function () {
         this.sprite.body.velocity.x = 300;
+        //this.sprite.animations.play('deathStandingStill' + Color.ColorEnum.BLACK + Color.ColorEnum.WHITE);
         if (this.sprite.invincible) {
             this.sprite.animations.play('deathRight' + this.sprite.color.name + this.previousColor.name);
         } else {
             this.sprite.animations.play('right' + this.sprite.color.name);
         }
         this.sprite.lookRight = true;
+    },
+
+    standingStill: function () {
+        if (this.sprite.invincible) {
+            //alert("hello");
+            this.sprite.animations.play('deathStandingStill' + this.sprite.color.name + this.previousColor.name);
+        } else {
+            //this.sprite.animations.play('standingStill' + this.sprite.color.name);
+            this.sprite.animations.stop();
+        }
+        this.sprite.frame = this.sprite.color.value * 9 + 4;
     },
 
     handlerAccelerometer: function () {
