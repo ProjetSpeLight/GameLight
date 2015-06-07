@@ -1,176 +1,219 @@
 {
-    "worldBounds": {
-        "leftBound": 0,
-        "rightBound": 3200,
-        "upperBound": 0,
-        "lowerBound": 600
+  "worldBounds": {
+    "leftBound": 0,
+    "rightBound": 2400,
+    "upperBound": 0,
+    "lowerBound": 600
+  },
+  "background": "sky",
+  "playerStart": {
+    "x": 50,
+    "y": 500
+  },
+  "platforms": [
+    {
+      "position": {
+        "x": 0,
+        "y": 560
+      },
+      "size": {
+        "x": 153,
+        "y": 2
+      }
     },
-    "background": "sky",
-    "playerStart": {
-        "x": 2050,
-        "y": 500
+    {
+      "position": {
+        "x": 2300,
+        "y": 460
+      },
+      "size": {
+        "x": 1,
+        "y": 5
+      },
+      "crossable": false
     },
-    "platforms": [
+    {
+      "position": {
+        "x": 2160,
+        "y": 440
+      },
+      "size": {
+        "x": 8,
+        "y": 1
+      }
+    },
+    {
+      "position": {
+        "x": 1690,
+        "y": 140
+      },
+      "size": {
+        "x": 3,
+        "y": 1
+      }
+    },
+    {
+      "id": 0,
+      "positions": [
         {
-            "position": {
-                "x": 0,
-                "y": 560
-            },
-            "size": {
-                "x": 153,
-                "y": 2
-            }
+          "x": 2140,
+          "y": 460,
+          "speed": {
+            "x": 0,
+            "y": -100
+          }
         },
         {
-            "position": {
-                "x": 2300,
-                "y": 460
-            },
-            "size": {
-                "x": 1,
-                "y": 5
-            },
-            "crossable": false
-        },
-        {
-            "position": {
-                "x": 2160,
-                "y": 440
-            },
-            "size": {
-                "x": 8,
-                "y": 1
-            }
-        },
-        {
-            "position": {
-                "x": 1690,
-                "y": 260
-            },
-            "size": {
-                "x": 3,
-                "y": 1
-            }
-        },
-        {
-            "id" : 0,
-            "positions": [
-                {
-                    "x": 2140,
-                    "y": 460,
-                    "speed": {
-                        "x": 0,
-                        "y": -100
-                    }
-                },
-                {
-                    "x": 2140,
-                    "y": 260,
-                    "speed": {
-                        "x": 0,
-                        "y": 100
-                    }
-                }
-            ],
-            "size": {
-                "x": 1,
-                "y": 5
-            },
-            "immovable": true
+          "x": 2140,
+          "y": 260,
+          "speed": {
+            "x": 0,
+            "y": 100
+          }
         }
-    ],
-    "backAndForthPlatforms": [
+      ],
+      "size": {
+        "x": 1,
+        "y": 5
+      },
+      "immovable": true
+    }
+  ],
+  "time": [
+    {
+      "value": 70
+    }
+  ],
+  "backAndForthPlatforms": [
+    {
+      "positions": [
         {
-            "positions": [
-                {
-                    "x": 600,
-                    "y": 460,
-                    "speed": {
-                        "x": 100,
-                        "y": 0
-                    }
-                },
-                {
-                    "x": 950,
-                    "y": 460,
-                    "speed": {
-                        "x": -100,
-                        "y": 0
-                    }
-                }
-            ],
-            "size": {
-                "x": 5,
-                "y": 1
-            },
-            "immovable": true
+          "x": 600,
+          "y": 460,
+          "speed": {
+            "x": 100,
+            "y": 0
+          }
         },
         {
-            "positions": [
-                {
-                    "x": 700,
-                    "y": 360,
-                    "speed": {
-                        "x": 100,
-                        "y": 0
-                    }
-                },
-                {
-                    "x": 1050,
-                    "y": 360,
-                    "speed": {
-                        "x": -100,
-                        "y": 0
-                    }
-                }
-            ],
-            "size": {
-                "x": 5,
-                "y": 1
-            },
-            "immovable": true
+          "x": 950,
+          "y": 460,
+          "speed": {
+            "x": -100,
+            "y": 0
+          }
+        }
+      ],
+      "size": {
+        "x": 5,
+        "y": 1
+      },
+      "immovable": true
+    },
+    {
+      "positions": [
+        {
+          "x": 700,
+          "y": 360,
+          "speed": {
+            "x": 100,
+            "y": 0
+          }
         },
         {
-            "positions": [
-                {
-                    "x": 800,
-                    "y": 260,
-                    "speed": {
-                        "x": 100,
-                        "y": 0
-                    }
-                },
-                {
-                    "x": 1150,
-                    "y": 260,
-                    "speed": {
-                        "x": -100,
-                        "y": 0
-                    }
-                }
-            ],
-            "size": {
-                "x": 3,
-                "y": 3
-            },
-            "immovable": true,
-            "color": "Blue"
+          "x": 1050,
+          "y": 360,
+          "speed": {
+            "x": -100,
+            "y": 0
+          }
         }
-        
-    ],
-    "mirrors": [
+      ],
+      "size": {
+        "x": 5,
+        "y": 1
+      },
+      "immovable": true
+    },
+    {
+      "positions": [
         {
-            "x": 1720,
-            "y": 520,
-            "angle": 45,
-            "skin": "mirror"
+          "x": 500,
+          "y": 360,
+          "speed": {
+            "x": 100,
+            "y": 0
+          }
+        },
+        {
+          "x": 850,
+          "y": 360,
+          "speed": {
+            "x": -100,
+            "y": 0
+          }
         }
-    ],
+      ],
+      "size": {
+        "x": 5,
+        "y": 1
+      },
+      "immovable": true
+    },
+    {
+      "positions": [
+        {
+          "x": 600,
+          "y": 260,
+          "speed": {
+            "x": 100,
+            "y": 0
+          }
+        },
+        {
+          "x": 950,
+          "y": 260,
+          "speed": {
+            "x": -100,
+            "y": 0
+          }
+        }
+      ],
+      "size": {
+        "x": 3,
+        "y": 3
+      },
+      "immovable": true,
+      "color": "Blue"
+    }
+
+  ],
+  "mirrors": [
+    {
+      "x": 1720,
+      "y": 520,
+      "angle": 45,
+      "skin": "mirror"
+    }
+  ],
+  "texts": [
+    {
+      "x": 1660,
+      "y": 400,
+      "en": "Mirror can reflect the photons \n that you throw",
+      "fr": "Les Miroirs permettent de reflechir \n les photons que tu tires"
+    },
+    {
+      "x": 1660,
+      "y": 100,
+      "en": "Fire a photon at that switch \n to activate or deactivate it",
+      "fr": "Tire un photon sur cet interrupteur \n pour l'actionner"
+    }
+  ],
     "switch": [
         {
             "x": 1690,
-            "y": 270,
-            "skin":"switchBlue",
+            "y": 150,
             "color": "Blue",
             "action": {
                 "groupId": 4,
@@ -236,8 +279,23 @@
             "x": 380,
             "y": 400,
             "bounds": {
-                "left": 300,
-                "right": 700,
+                "left": 200,
+                "right": 550,
+                "lower": 600,
+                "upper": 0
+            },
+            "speed": {
+                "x": 150,
+                "y": 0
+            },
+            "type": "flying"
+        },
+        {
+            "x": 1220,
+            "y": 528,
+            "bounds": {
+                "left": 1200,
+                "right": 1300,
                 "lower": 600,
                 "upper": 0
             },

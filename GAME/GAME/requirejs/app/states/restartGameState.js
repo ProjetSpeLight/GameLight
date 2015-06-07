@@ -1,24 +1,12 @@
-define([
-    'phaser'
-], function (
-    Phaser
-) {
-    //'use strict';
+define([], function () {
 
-    function RestartGameState(game) {
-    };
+    function RestartGameState(game) { };
 
     RestartGameState.prototype = {
         create: function () {
-
             this.state.start('Game');
-            
-            
-
         }
-
     };
-
 
     return RestartGameState;
 });

@@ -153,32 +153,39 @@
         {
             "x": 20,
             "y": 400,
-            "message": "Use arrow keys to move \n and jump"
+          "en": "Use arrow keys to move \n and jump",
+          "fr": "Utilise les fleches \n pour te deplacer et sauter"
+
         },
       {
-        "x": 400,
+        "x": 350,
         "y": 270,
-        "message": "You can gain a primary color here \n press <DOWN> on the platform"
+        "en": "You can gain a primary color here \n press <DOWN> on the platform",
+        "fr": "Sur une plateforme coloree, \n appuyes sur la fleche du bas \n pour gagner cette couleur"
       },
       {
         "x": 760,
         "y": 400,
-        "message": "The piques and ennemis \n will make you lose your color \n before they can kill you"
+        "en": "The pikes and enemies \n will make you lose your color \n before they can kill you",
+        "fr": "Les Piques et ennemis \n te font perdre tes couleurs \n avant de pouvoir te tuer"
       },
       {
         "x": 1180,
         "y": 300,
-        "message": "Falling out of the map \n will get you killed though"
+        "en": "Falling out of the map \n will get you killed though",
+        "fr": "Tomber dans un trou \n te tueras instantannement en revanche"
       },
       {
         "x": 1400,
         "y": 400,
-        "message": "To kill the ennemi \n shoot some photons at him with <SPACE>"
+        "en": "To kill the enemies \n shoot some photons at him with <SPACE>",
+        "fr": "Pour tuer tes ennemis \n tire leur des photons dessus avec la barre d'espace"
       },
       {
         "x": 2450,
         "y": 250,
-        "message": "Here's the end of the level"
+        "en": "Here's the end of the level",
+        "fr": "Voici la fin du niveau!"
       }
 
       

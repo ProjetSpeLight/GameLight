@@ -1,4 +1,4 @@
-/**
+﻿/**
   * This module defines the text representing the time
   *
   */
@@ -17,14 +17,16 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         
         createTime: function(data) {
         
-            this.timeText = PhaserGame.game.add.text(150, 16, 'Time: Infinity ', { fontSize: '32px', fill: '#000' });
-            this.timeText.fixedToCamera = true;
-
+            
             if (data == null) {
                 this.time=-1;
                 return;
             }
 
+            
+            
+            this.timeText = PhaserGame.game.add.text(150, 16, 'Time: Infinity ', { fontSize: '32px', fill: '#000' });
+            this.timeText.fixedToCamera = true;
            
             
             for (var i = 0 ; i < data.length ; i++) {
@@ -43,8 +45,9 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
                 this.time --;
                 this.timeText.text = 'Time: ' + this.time;
             }
-            if (this.time==0){
-                PhaserGame.game.state.start('RestartGame');
+            if (this.time == 0) {
+                PhaserGame.game.state.states['Dead'].message = 'Temps écoulé';
+                PhaserGame.game.state.start('Dead');
             }
             
         }
