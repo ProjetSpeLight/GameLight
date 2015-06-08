@@ -36,8 +36,6 @@ define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager'], 
             }
 
             this.load.spritesheet('play', 'assets/boutons/New_Game.png', 190, 68);
-            this.load.image('play1', 'assets/button_play_level1.png');
-            this.load.image('play2', 'assets/button_play_level2.png');
             this.load.spritesheet('help', 'assets/boutons/Aide.png', 190, 68);
             this.load.spritesheet('tutorial', 'assets/boutons/Tuto.png', 190, 68);
             this.load.image('buttonNextLevel', 'assets/button_nextlevel.png');

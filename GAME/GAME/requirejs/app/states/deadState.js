@@ -22,6 +22,8 @@ define([], function () {
             button_restart.name = 'restart';
             button_restart.anchor.setTo(0.5, 0.5);
             button_restart.fixedToCamera = true;
+
+            this.add.text(50, 450, 'Appuyer sur Espace pour recommencer le niveau', { fontSize: '48px', fill: '#fff' });
         },
 
         menuclick: function () {
@@ -30,6 +32,12 @@ define([], function () {
 
         restartclick: function () {
             this.state.start('Game');
+        },
+
+        update: function () {
+            if (this.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
+                this.restartclick();
+            }
         }
     };
 

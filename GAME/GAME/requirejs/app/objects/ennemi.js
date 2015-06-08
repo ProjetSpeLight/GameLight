@@ -101,7 +101,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phase
                 ennemi.body.bounce.x = 1;
 
                 if (enemyType == 'normal') {
-                    ennemi.nbLives = 5;
+                    ennemi.nbLives = 3;
                     ennemi.animations.add('animNormal', [0, 1, 2, 3], 6, true);
                     ennemi.play('animNormal');
                 } else {

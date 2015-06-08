@@ -17,18 +17,20 @@ define([
                 var emptyButton = this.game.add.button(x, y, 'buttonEmpty', this.down, self);
                 emptyButton.scale.setTo(0.8, 0.8);
 
-                var posLabelButtonX = x + 30;
+                var posLabelButtonX = x + 25;
+                if (i >= 10) {
+                    posLabelButtonX = x + 20;
+                }
                 var posLabelButtonY = y + 9;
                 var posLabelScoreX = x + 160;
                 var posLabelScoreY = y+7;
 
-                var text = this.game.add.text(posLabelButtonX, posLabelButtonY, "Level " + i, { font: "28px Arial", fill: "#ffffff", align: "center" });
-                var textResult = this.game.add.text(posLabelScoreX, posLabelScoreY, " Score Done :\nNot Finish", { font: "18px Arial", fill: "#ffffff", align: "center" });
+                var text = this.game.add.text(posLabelButtonX, posLabelButtonY, "Niveau " + i, { font: "26px Arial", fill: "#ffffff", align: "center" });
                 
                 // we check if a cookie contains the score for the level i
                 var nb = cook.readCookie("Level"+i);
-                if (nb!=null){ // if there is already a score, we print it
-                    textResult.text=" Score Done : "+nb;    
+                if (nb != null) { // if there is already a score, we print it
+                    var textResult = this.game.add.text(posLabelScoreX, posLabelScoreY, "Score : " + nb, { font: "18px Arial", fill: "#ffffff", align: "center" });
                 }
                 
                 emptyButton.numLevel = i;
@@ -36,7 +38,10 @@ define([
                 y += emptyButton.height + 20;
                 if (y > this.game.world.height - emptyButton.height) {
                     y = 10;
-                    x += posLabelScoreX + textResult.width + 40;
+                    if (textResult != null) {
+                        x += textResult.width;
+                    }
+                    x += posLabelScoreX + 40;
                 }
             }
 
@@ -53,7 +58,6 @@ define([
         returnMenu: function () {
             this.game.state.start('MainMenu');
         }
-        
         
 
 

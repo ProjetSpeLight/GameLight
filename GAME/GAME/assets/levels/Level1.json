@@ -1,4 +1,4 @@
-{
+﻿{
   "worldBounds": {
     "leftBound": 0,
     "rightBound": 2400,
@@ -42,16 +42,7 @@
         "y": 1
       }
     },
-    {
-      "position": {
-        "x": 1690,
-        "y": 140
-      },
-      "size": {
-        "x": 3,
-        "y": 1
-      }
-    },
+   
     {
       "id": 0,
       "positions": [
@@ -201,13 +192,13 @@
       "x": 1660,
       "y": 400,
       "en": "Mirror can reflect the photons \n that you throw",
-      "fr": "Les Miroirs permettent de reflechir \n les photons que tu tires"
+      "fr": "Les miroirs permettent de réfléchir \n les photons tirés"
     },
     {
       "x": 1660,
       "y": 100,
       "en": "Fire a photon at that switch \n to activate or deactivate it",
-      "fr": "Tire un photon sur cet interrupteur \n pour l'actionner"
+      "fr": "Tirez un photon sur cet interrupteur \n pour l'actionner"
     }
   ],
     "switch": [
@@ -292,7 +283,7 @@
         },
         {
             "x": 1220,
-            "y": 528,
+            "y": 460,
             "bounds": {
                 "left": 1200,
                 "right": 1300,
@@ -302,8 +293,7 @@
             "speed": {
                 "x": 150,
                 "y": 0
-            },
-            "skin": "baddie"
+            }
         }
     ],
     "ends": [
