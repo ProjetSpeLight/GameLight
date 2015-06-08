@@ -58,7 +58,20 @@
                 "y": 450
             },
             "size": {
-                "x": 8,
+                "x": 3,
+                "y": 1
+            },
+            "immovable": false
+            
+        },
+        {
+            "id":2,
+            "position": {
+                "x": 2000,
+                "y": 450
+            },
+            "size": {
+                "x": 3,
                 "y": 1
             },
             "immovable": false
@@ -166,7 +179,7 @@
         },
         {
             "x": 1620,
-            "y": 220,
+            "y": 250,
             "angle": -135
         }
         
@@ -267,10 +280,10 @@
                 "x": 150,
                 "y": 0
             },
-            "skin": "baddie"
+            "type": "flying"
         },
         {
-            "x": 1790,
+            "x": 1820,
             "y": 250,
             "bounds": {
                 "left": 1790,
@@ -282,7 +295,7 @@
                 "x": -150,
                 "y": 0
             },
-            "skin": "baddie"
+            "type": "flying"
         },
         {
             "x": 1750,
@@ -297,7 +310,7 @@
                 "x": 0,
                 "y": 0
             },
-            "skin": "baddie"
+            "type": "flying"
         }
     ],
     "switch": [
