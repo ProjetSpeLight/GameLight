@@ -48,7 +48,10 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms'], func
         preloadObjectsImages: function () {
             PhaserGame.game.load.image('mirrorFixed', 'assets/mirror.png');
             PhaserGame.game.load.image('mirrorMovable', 'assets/mirror.png');
-            PhaserGame.game.load.image('mirrorRunner', 'assets/platform_Jaune.png');
+            PhaserGame.game.load.image('mirrorRunnerLeft', 'assets/mirror/runnerLeft.png');
+            PhaserGame.game.load.image('mirrorRunnerMiddle', 'assets/mirror/runnerMiddle.png');
+            PhaserGame.game.load.image('mirrorRunnerRight', 'assets/mirror/runnerRight.png');
+
         },
 
         /// @function createObjectsGroup
@@ -130,9 +133,12 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms'], func
 
                 // Creation of the runner if needed
                 if (mirrorObject.leftBound != mirrorObject.rightBound) {
-                    var runner = PhaserGame.game.add.sprite(mirrorObject.leftBound, mirrorObject.body.y + mirrorObject.body.height / 2, 'mirrorRunner');
+                    var runner = PhaserGame.game.add.sprite(mirrorObject.leftBound, mirrorObject.body.y + mirrorObject.body.height / 2, 'mirrorRunnerMiddle');
                     var size = (mirrorObject.rightBound - mirrorObject.leftBound) / runner.width;
                     runner.scale.setTo(size, 1);
+
+                    PhaserGame.game.add.sprite(mirrorObject.leftBound, mirrorObject.body.y + mirrorObject.body.height / 2 - 2, 'mirrorRunnerLeft');
+                    PhaserGame.game.add.sprite(mirrorObject.rightBound, mirrorObject.body.y + mirrorObject.body.height / 2 - 2, 'mirrorRunnerRight');              
                 }
 
                 if (!immovable) {
@@ -150,11 +156,17 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms'], func
 
             /// This function checks in the case of a movable mirror if it is in its runner
             function processCallback(playerSprite, element) {
+                /*var angle = -element.angle * Math.PI / 180;
+                var cos = Math.cos(angle);
+                var sin = Math.sin(angle);
+                var xmax = cos * element.body.width + sin * element.body.height + element.body.x - element.body.width / 2;*/
+                var xmax = element.body.x + element.body.width;
+
                 if (element.rightBound == element.leftBound) {
                     return true;
                 }
 
-                if (element.body.x + element.body.width >= element.rightBound && playerSprite.body.velocity.x >= 0) {
+                if (/*element.body.x + element.body.width*/ xmax >= element.rightBound && playerSprite.body.velocity.x >= 0) {
                     return false;
                 }
 
