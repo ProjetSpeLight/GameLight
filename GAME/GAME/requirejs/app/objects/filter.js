@@ -16,7 +16,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/color'], function (Phaser
         }
         //photon.frame = (photon.color.value - 1) * 6; si anim
         photon.frame = (photon.color.value - 1);
-         
+
     }
 
 
@@ -75,20 +75,20 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/color'], function (Phaser
                     turned = filterData.turned;
                 }
 
-                
+
 
                 var size = 1;
                 if (filterData.size != null) {
-                    size= filterData.size;
+                    size = filterData.size;
                 }
 
 
-                if (turned) {
+                if (turned)
                     filter.angle = 90;
-                    filter.scale.setTo(size, 1);
-                } else {
-                    filter.scale.setTo(1, size);
-                }
+
+
+                filter.scale.setTo(1, size);
+
             }
         },
 
