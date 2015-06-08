@@ -21,7 +21,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
             if (this.currentLevel === 0) {
                 //if (!PhaserGame.game.cache.checkJSONKey('level0')) {
                 if (true) {
-                    this.load.json('level0', adresse_json + 'Level3.json');
+                    this.load.json('level0', adresse_json + 'Level6.json');
                 }
             } else {
                 if (!PhaserGame.game.cache.checkJSONKey('level' + this.currentLevel)) {
