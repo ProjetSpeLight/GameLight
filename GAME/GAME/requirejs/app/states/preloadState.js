@@ -1,4 +1,4 @@
-define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager'], function (Phaser, pause, PhaserGame, Manager) {
+define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager', 'app/music'], function (Phaser, pause, PhaserGame, Manager, music) {
     // 'use strict';
 
     function PreloadState(game) { }
@@ -21,6 +21,9 @@ define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager'], 
 
             // For the pause state
             pause.preload_pause();
+
+            // For the musics
+            music.preload();
 
             //Chargement ecran titre
             this.load.image('screentitle', 'assets/ScreenTitle.png');
