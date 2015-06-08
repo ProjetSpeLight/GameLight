@@ -55,6 +55,8 @@ define([], function () {
                 return actionCreateObject;
             case 'actionMoveObject':
                 return actionMoveObject;
+            case 'actionPutInMovePlatform':
+                return actionPutInMovePlatform;
             default:
                 return null;
         }
