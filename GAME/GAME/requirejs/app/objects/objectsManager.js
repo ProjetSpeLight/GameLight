@@ -41,6 +41,10 @@ function (Phaser,
         WALL: { idGroup: 10, refGroup: null }
     }
 
+    // Variables used for the switch animation
+    var freeze = false;
+    var target = null;
+
 
 
     return {
@@ -64,6 +68,10 @@ function (Phaser,
         /// Creates the different groups the manager handles
         /// @param {Object} Data from the JSON file
         createObjects: function (data) {
+            // Initialization
+            freeze = false;
+            target = null;
+
             // First we create the platforms
             platforms.createObjectsGroup(data, this);
 
@@ -126,6 +134,43 @@ function (Phaser,
                 }
             }
             return null;
+        },
+
+
+        freezeGame: function (targetSwitch) {
+            if (freeze) {
+                return;
+            }
+            freeze = true;
+            target = targetSwitch;
+            for (elt in this.EnumModule) {
+                var group = this.EnumModule[elt].refGroup;
+                for (var i = 0 ; i < group.length ; ++i) {
+                    var child = group.children[i];
+                    child.freezeSaveVelocityX = child.body.velocity.x;
+                    child.freezeSaveVelocityY = child.body.velocity.y;
+                    child.body.velocity.x = 0;
+                    child.body.velocity.y = 0;
+                }
+            }
+        },
+
+        relaunchGame: function () {
+            if (!freeze) {
+                return;
+            }
+            freeze = false;
+            for (elt in this.EnumModule) {
+                var group = this.EnumModule[elt].refGroup;
+                for (var i = 0 ; i < group.length ; ++i) {
+                    var child = group.children[i];
+                    if (child != target) {
+                        child.body.velocity.x = child.freezeSaveVelocityX;
+                        child.body.velocity.y = child.freezeSaveVelocityY;
+                    }
+
+                }
+            }
         }
     }
 

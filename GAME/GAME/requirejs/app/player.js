@@ -1,5 +1,9 @@
 define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser, photon, PhaserGame, Color) {
 
+    // Variables used to freeze the game
+    var freeze = false;
+    var freezeSaveVelocityX, freezeSaveVelocityY;
+
 
     /// @function initializePlayerAnimations
     /// Initialize the different movements animations
@@ -70,13 +74,16 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
                     this.jumpMinY = this.sprite.body.y - 2 * this.sprite.body.height;
                     this.maxY = PhaserGame.game.camera.y + PhaserGame.game.camera.height;
                     this.sprite.animations.play('finalDeath' + this.sprite.color.name, 10);
-                   
+
 
                 }
             }
         },
 
         initializePlayer: function (game, x, y) {
+            // Initialization of the scope variables
+            freeze = false;
+
             // The player and its settings            
             this.sprite = PhaserGame.game.add.sprite(x, y, 'dude');
             this.sprite.scale = new Phaser.Point(0.6, 0.6);
@@ -318,6 +325,28 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
             }
             this.secondAddColor = Color.ColorEnum.BLACK;
 
+
+        },
+
+        freezeGame: function () {
+            if (freeze) {
+                return;
+            }
+            freeze = true;
+            freezeSaveVelocityX = this.sprite.body.velocity.x;
+            freezeSaveVelocityY = this.sprite.body.velocity.y;
+            this.sprite.body.velocity.x = 0;
+            this.sprite.body.velocity.y = 0;
+        },
+
+        relaunchGame: function () {
+            if (!freeze) {
+                return;
+            }
+            freeze = false;
+
+            this.sprite.body.velocity.x = freezeSaveVelocityX;
+            this.sprite.body.velocity.y = freezeSaveVelocityY;
 
         }
 

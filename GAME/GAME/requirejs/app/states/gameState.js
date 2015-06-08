@@ -1,5 +1,5 @@
 
-define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame', 'app/touch', 'app/objects/time', 'app/objects/objectsManager', 'app/music'], function (Phaser, createLevel, player, pause, PhaserGame, Touch, time, objectsManager, music) {
+define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame', 'app/touch', 'app/objects/time', 'app/objects/objectsManager', 'app/music', 'app/objects/switch'], function (Phaser, createLevel, player, pause, PhaserGame, Touch, time, objectsManager, music, moduleSwitch) {
 
     function GameState(game) { }
 
@@ -35,11 +35,15 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
             stopped = false;
             compt = 0;
 
-            // the score is stored in the game variable
+            // Initialization of the score
             PhaserGame.score = 0;
 
             // Initialize the variable which indicate if the player has lost
             PhaserGame.dead = false;
+
+            // Initialize the booleans used to display animation when a switch is hitten
+            PhaserGame.freezeGame = false;
+            PhaserGame.relaunchGame = false;
 
 
 
@@ -80,8 +84,52 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
 
         update: function () {
 
+            // If the level had not been loaded, we return to the main menu
+            if (stopped) {
+                PhaserGame.game.state.start('MainMenu');
+                return;
+            }
+
+            /********** Animation to show the action of a switch **************/
+
+            if (PhaserGame.freezeGame) {
+                objectsManager.freezeGame(PhaserGame.handlerSwitchObj.onArgs.target);
+                player.freezeGame();
+                var cameraView = PhaserGame.game.camera.view;
+                var contains = Phaser.Rectangle.containsRect(PhaserGame.rectObj, cameraView);
+                if (contains) {
+                    moduleSwitch.triggerAction(PhaserGame.handlerSwitchObj);
+                    PhaserGame.freezeGame = false;
+                    PhaserGame.relaunchGame = true;
+                    PhaserGame.countRelaunch = 0;
+                } else {
+                    if (cameraView.x > PhaserGame.rectObj.x) {
+                        PhaserGame.game.camera.view.x -= 4;
+                    } else if (cameraView.x < PhaserGame.rectObj.x) {
+                        PhaserGame.game.camera.view.x += 4;
+                    }
+
+                    if (cameraView.y > PhaserGame.rectObj.y) {
+                        PhaserGame.game.camera.view.y -= 4;
+                    } else if (cameraView.y < PhaserGame.rectObj.y) {
+                        PhaserGame.game.camera.view.y += 4;
+                    }
+                }
+            }
+
+            if (PhaserGame.relaunchGame) {
+                PhaserGame.countRelaunch++;
+                if (PhaserGame.countRelaunch == 60) {
+                    PhaserGame.relaunchGame = false;
+                    objectsManager.relaunchGame();
+                    player.relaunchGame();
+                    PhaserGame.game.camera.follow(player.sprite);
+                }
+            }
+
+
+            /************** Animation for the death of the player ***************/
             if (PhaserGame.dead) {
-                // objectsManager.updateObjects();
                 if (player.sprite.body.y <= player.jumpMinY) {
                     player.sprite.velocity.y *= -1;
                 }
@@ -96,11 +144,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
             }
 
 
-            // If the level had not been loaded, we return to the main lmenu
-            if (stopped) {
-                PhaserGame.game.state.start('MainMenu');
-                return;
-            }
+            
 
             if (!PhaserGame.game.paused) {
 
@@ -118,8 +162,12 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
                 Touch.update();
 
                 objectsManager.updateObjects();
-                player.updatePlayer();
 
+                if (!PhaserGame.relaunchGame && !PhaserGame.freezeGame)
+                    player.updatePlayer();
+
+
+              
 
                 /*********** Events ***********/
 
