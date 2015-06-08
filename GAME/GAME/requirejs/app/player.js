@@ -60,7 +60,7 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
                     this.sprite.animations.stop();
                     this.sprite.body.velocity.x = 0;
                     this.sprite.body.velocity.y = 200;
-                    this.sprite.body.collideWorldBounds = false;                  
+                    this.sprite.body.collideWorldBounds = false;
                 }
             }
         },
@@ -81,7 +81,19 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
             this.sprite.anchor = new Phaser.Point(0.5, 0.5);
             this.sprite.body.setSize(56, 100);
 
-
+            // Initialization of the different attributes
+            this.timeInvincible = 0;
+            this.pushed = false;
+            this.moveRight = false;
+            this.moveLeft = false;
+            this.accelerometerOn = false;
+            this.velocity = 0;
+            this.fireActive = false;
+            this.changeColor = false;
+            this.activeJump = false;
+            this.firstAddColor = Color.ColorEnum.BLACK;
+            this.secondAddColor = Color.ColorEnum.BLACK;
+            this.previousColor = Color.ColorEnum.BLACK;
 
             // Initialization of the player animations
             initializePlayerAnimations(this.sprite, Color.ColorEnum);
@@ -92,8 +104,7 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
 
             // Initialization of the photons
             photon.initPhotons(PhaserGame.game, this);
-            this.firstAddColor = Color.ColorEnum.BLACK;
-            this.secondAddColor = Color.ColorEnum.BLACK;
+            
         },
 
         /// @function updatePositionPlayer
@@ -122,7 +133,7 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
                 //  Move to the left
                 this.handlerAccelerometer();
             }
-            else {               
+            else {
                 //  Stand still
                 if (this.sprite.body.velocity.x == 0) {
                     //If invincible, we create a animation to display the color lost 
@@ -268,7 +279,7 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
 
         /// @function animationDeath
         /// Movement the character does when he is wounded
-        animationDeath: function () { 
+        animationDeath: function () {
             if (this.lookRight) {
                 this.sprite.animations.play('deathRight' + this.sprite.color.name + this.firstAddColor.name);
             } else if (!this.lookRight) {
