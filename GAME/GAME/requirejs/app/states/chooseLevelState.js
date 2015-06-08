@@ -36,7 +36,7 @@ define([
                 emptyButton.numLevel = i;
                 emptyButton.refGame = this;
                 y += emptyButton.height + 20;
-                if (y > this.game.world.height - emptyButton.height) {
+                if (y > this.game.height - emptyButton.height) {
                     y = 10;
                     if (textResult != null) {
                         x += textResult.width;
