@@ -18,7 +18,11 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phase
                 enemy.lifeBar.kill();
             }
             enemy.destroy();
-            PhaserGame.score += 10;
+            if (enemy.type == 'normal') {
+                PhaserGame.score += 10;
+            } else {
+                PhaserGame.score += 30;
+            }
         }
         
     }
