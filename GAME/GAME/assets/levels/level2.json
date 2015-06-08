@@ -1,4 +1,4 @@
-﻿{
+{
   "worldBounds": {
     "leftBound": 0,
     "rightBound": 3200,
@@ -42,85 +42,43 @@
         "x": 8,
         "y": 1
       }
-    }
-  ],
-  "backAndForthPlatforms": [
-    {
-      "positions": [
-        {
-          "x": 600,
-          "y": 460,
-          "speed": {
-            "x": 100,
-            "y": 0
-          }
-        },
-        {
-          "x": 950,
-          "y": 460,
-          "speed": {
-            "x": -100,
-            "y": 0
-          }
-        }
-      ],
+    },
+      {
+      "position": {
+        "x": 200,
+        "y": 460
+      },
       "size": {
         "x": 5,
         "y": 1
-      },
-      "immovable": true
+      }
     },
     {
-      "positions": [
-        {
-          "x": 700,
-          "y": 360,
-          "speed": {
-            "x": 100,
-            "y": 0
-          }
-        },
-        {
-          "x": 1050,
-          "y": 360,
-          "speed": {
-            "x": -100,
-            "y": 0
-          }
-        }
-      ],
+      "position": {
+        "x": 0,
+        "y": 360
+      },
       "size": {
         "x": 5,
         "y": 1
-      },
-      "immovable": true
+      }
     },
     {
-      "positions": [
-        {
-          "x": 800,
-          "y": 260,
-          "speed": {
-            "x": 100,
-            "y": 0
-          }
-        },
-        {
-          "x": 1150,
-          "y": 260,
-          "speed": {
-            "x": -100,
-            "y": 0
-          }
-        }
-      ],
+      "position": {
+        "x": 200,
+        "y": 260
+      },
       "size": {
         "x": 3,
         "y": 3
       },
-      "immovable": true,
-      "color": "Blue"
+        "color": "Blue"
+    
+      
     }
+  ],
+  "backAndForthPlatforms": [
+    
   ],
   "mirrors": [
     {
@@ -135,11 +93,17 @@
   ],
   "texts": [
     {
+      "x": 900,
+      "y": 400,
+      "en": "Some ennemies are harder to kill",
+      "fr": "Certains ennemis sont plus dur à battre"
+    },
+    {
       "x": 1620,
       "y": 450,
       "en": "Some mirors can be pushed around",
       "fr": "Certains miroirs peuvent être déplacés"
-    }
+    }  
   ],
     "switch": [
         {
@@ -164,13 +128,8 @@
     ],
     "coins": [
         {
-            "x": 180,
-            "y": 510,
-            "skin": "coin"
-        },
-        {
-            "x": 280,
-            "y": 460,
+            "x": 50,
+            "y": 330,
             "skin": "coin"
         },
         {
@@ -189,28 +148,28 @@
             "skin": "coin"
         },
         {
-            "x": 870,
-            "y": 320,
-            "skin": "coin"
-        },
-        {
-            "x": 1300,
-            "y": 220,
-            "skin": "coin"
-        },
-        {
-            "x": 1450,
-            "y": 420,
-            "skin": "coin"
-        },
-        {
-            "x": 1380,
-            "y": 320,
-            "skin": "coin"
-        },
-        {
-            "x": 1520,
+            "x": 1020,
             "y": 520,
+            "skin": "coin"
+        },
+        {
+            "x": 1220,
+            "y": 520,
+            "skin": "coin"
+        },
+        {
+            "x": 1120,
+            "y": 520,
+            "skin": "coin"
+        },
+        {
+            "x": 920,
+            "y": 520,
+            "skin": "coin"
+        },
+        {
+            "x": 2050,
+            "y": 320,
             "skin": "coin"
         }
     ],
@@ -231,39 +190,11 @@
             "type": "flying"
         },
         {
-            "x": 600,
-            "y": 460,
-            "bounds": {
-                "left": 550,
-                "right": 750,
-                "lower": 600,
-                "upper": 0
-            },
-            "speed": {
-                "x": 150,
-                "y": 0
-            }
-        },
-        {
             "x": 1000,
             "y": 460,
             "bounds": {
                 "left": 900,
                 "right": 1100,
-                "lower": 600,
-                "upper": 0
-            },
-            "speed": {
-                "x": 150,
-                "y": 0
-            }
-        },
-        {
-            "x": 1205,
-            "y": 460,
-            "bounds": {
-                "left": 1100,
-                "right": 1300,
                 "lower": 600,
                 "upper": 0
             },

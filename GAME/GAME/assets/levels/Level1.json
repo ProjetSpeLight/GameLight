@@ -1,4 +1,4 @@
-﻿{
+{
   "worldBounds": {
     "leftBound": 0,
     "rightBound": 2400,
@@ -70,6 +70,17 @@
       "immovable": true
     }
   ],
+  "piques": [
+        {
+            "x": 800,
+            "y": 525,
+            "skin": "pique",
+            "size": {
+                "x": 3,
+                "y": 2
+            }
+        }
+    ],
   "time": [
     {
       "value": 70
@@ -283,7 +294,7 @@
         },
         {
             "x": 1220,
-            "y": 460,
+            "y": 490,
             "bounds": {
                 "left": 1200,
                 "right": 1300,
@@ -293,7 +304,8 @@
             "speed": {
                 "x": 150,
                 "y": 0
-            }
+            },
+            "type": "flying"
         }
     ],
     "ends": [
