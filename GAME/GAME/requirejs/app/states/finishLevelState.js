@@ -15,7 +15,7 @@ define(['phaser', 'app/objects/time', 'app/touch', 'app/phasergame', 'app/cook']
             var scoreDone = this.add.text(250, 50, ' Votre score est de ' + PhaserGame.score, { fontSize: '32px', fill: '#fff' });
             var timeDone = this.add.text(230, 80, ' Temps: ', { fontSize: '32px', fill: '#fff' });
             if (time.time >= 0) {
-                timeDone.text = 'Temps réalisé : ' + (time.timebegin - time.time) + ' sec !';
+                timeDone.text = 'Temps réalisé : ' + (time.timebegin - time.time) + ' secs !';
             } else {
                 timeDone.text = 'Pas de temps pour ce niveau ';
             }
