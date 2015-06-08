@@ -69,6 +69,26 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/color'], function (Phaser
                 if (filterData.id != null) {
                     filter.id = filterData.id;
                 }
+
+                var turned = false;
+                if (filterData.turned != null) {
+                    turned = filterData.turned;
+                }
+
+                
+
+                var size = 1;
+                if (filterData.size != null) {
+                    size= filterData.size;
+                }
+
+
+                if (turned) {
+                    filter.rotation = 90;
+                    filter.scale.setTo(size, 1);
+                } else {
+                    filter.scale.setTo(1, size);
+                }
             }
         },
 
