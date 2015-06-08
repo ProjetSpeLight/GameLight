@@ -4,18 +4,17 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
     /// @function initializePlayerAnimations
     /// Initialize the different movements animations
     /// {Phaser.Sprite} the object player itself
+    /// {Array} The enumeration of the colors with their different properties
     function initializePlayerAnimations(sprite, ColorEnum) {
         for (var color in ColorEnum) {
             var vcolor = ColorEnum[color];
-            //var pcolor = ColorEnum[previousColor];
+            // Annimation when the sprite moves to the left
             sprite.animations.add('left' + vcolor.name, [0 + 9 * vcolor.value, 1 + 9 * vcolor.value, 2 + 9 * vcolor.value, 3 + 9 * vcolor.value], 8, true);
+            // Animation when the sprite moves to the right
             sprite.animations.add('right' + vcolor.name, [5 + 9 * vcolor.value, 6 + 9 * vcolor.value, 7 + 9 * vcolor.value, 8 + 9 * vcolor.value], 8, true);
-
-            //sprite.animations.add('standingStill' + vcolor.name, [4 + 9 * vcolor.value, 4 + 9 * vcolor.value], 10, true);
-
+            // Animation when the sprite is hitten by an ennemi / pique and loses its color
+            // Label : key + currentColor + oldColor
             for (var ncolor in ColorEnum) {
-                // animation when the character loses a color
-
                 var pcolor = ColorEnum[ncolor];
                 sprite.animations.add('deathLeft' + vcolor.name + pcolor.name, [0 + 9 * vcolor.value, 1 + 9 * pcolor.value, 2 + 9 * vcolor.value, 3 + 9 * pcolor.value], 8, true);
                 sprite.animations.add('deathRight' + vcolor.name + pcolor.name, [5 + 9 * vcolor.value, 6 + 9 * pcolor.value, 7 + 9 * vcolor.value, 8 + 9 * pcolor.value], 8, true);
@@ -30,7 +29,7 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
 
     return {
 
-        // The object "player" (Phaser.Sprite) is defined and initialized in the main program (game.js).
+        // The object "player" (Phaser.Sprite) is defined and initialized in the main program (createLevel.js).
         sprite: null,
         pushed: false,
         refPhotons: photon,
@@ -44,7 +43,7 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
         timeInvincible: 0,
         firstAddColor: Color.ColorEnum.BLACK,
         secondAddColor: Color.ColorEnum.BLACK,
-        numberColor: 0,
+        //numberColor: 0,
         previousColor: Color.ColorEnum.BLACK,
 
         kill: function () {
@@ -102,7 +101,6 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
         /// @param {Phaser.Sprite} the object player itself
         /// @param {Object} object containing a Phaser.Key object for each directional arrows keys
         updatePositionPlayer: function (cursors) {
-
             //  Reset the players velocity (movement)
             if (this.sprite.body.velocity.x > 10 && !this.sprite.body.touching.down) {
                 this.sprite.body.velocity.x -= 5;
@@ -111,8 +109,6 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
             } else {
                 this.sprite.body.velocity.x = 0;
             }
-
-
 
             if (cursors.left.isDown || this.moveLeft) {
                 //  Move to the left
@@ -126,13 +122,9 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
                 //  Move to the left
                 this.handlerAccelerometer();
             }
-            else {
-                /*if (this.sprite.invincible) {
-                    this.sprite.animations.play('deathStandingStill' + this.sprite.color.name + this.previousColor.name);
-                }*/
+            else {               
                 //  Stand still
                 if (this.sprite.body.velocity.x == 0) {
-                    //this.standingStill();
                     //If invincible, we create a animation to display the color lost 
                     if (this.sprite.invincible) {
                         this.sprite.animations.play('deathStandingStill' + this.sprite.color.name + this.previousColor.name);
@@ -153,7 +145,7 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
             }
 
 
-            //  Firing?
+            //  Firing a photon
             if (photon.fireButton.isDown || this.fireActive) {
                 if (this.sprite.color.name != 'Black') {
                     photon.firePhoton(PhaserGame.game, this);
@@ -276,21 +268,7 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
 
         /// @function animationDeath
         /// Movement the character does when he is wounded
-        animationDeath: function () {
-            /*
-            // if the character is moving
-            // to the left
-            if (!this.lookRight) {
-                this.sprite.body.velocity.x = 300;
-                this.sprite.body.velocity.y = -400;
-                this.sprite.animations.play('right' + this.sprite.color.name);
-                // to the right
-            } else {
-                this.sprite.body.velocity.x = -300;
-                this.sprite.body.velocity.y = -400;
-                this.sprite.animations.play('left' + this.sprite.color.name);
-            } */
-
+        animationDeath: function () { 
             if (this.lookRight) {
                 this.sprite.animations.play('deathRight' + this.sprite.color.name + this.firstAddColor.name);
             } else if (!this.lookRight) {
