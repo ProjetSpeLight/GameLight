@@ -34,7 +34,7 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
                 var timeData = data[i];
                 this.time = timeData.value;
                 this.timebegin = timeData.value;
-                this.timeText.text= 'Time: '+this.time;
+                this.timeText.text= 'Temps: '+this.time;
             
             }
             
@@ -43,7 +43,7 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         updateTime: function() {
             if (this.time>0){
                 this.time --;
-                this.timeText.text = 'Time: ' + this.time;
+                this.timeText.text = 'Temps: ' + this.time;
             }
             if (this.time == 0) {
                 PhaserGame.game.state.states['Dead'].message = 'Temps écoulé';
