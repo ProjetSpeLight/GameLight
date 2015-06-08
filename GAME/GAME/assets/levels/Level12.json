@@ -47,7 +47,7 @@
                 "y": 550
             },
             "size": {
-                "x": 5,
+                "x": 2,
                 "y": 1
             },
             "color":"Red"
@@ -198,7 +198,7 @@
 
         },
         {
-            "x": 1200,
+            "x": 650,
             "y": 350,
             "color": "Red",
             "state": "Off",
@@ -209,6 +209,21 @@
                 
             }
 
+        },
+        {
+            "x": 1200,
+            "y": 350,
+            "color": "Red",
+            "state": "Off",
+            "action": {
+                "groupId": 0,
+                "id": 3,
+                "actionName": "actionChangeMirrorOrientation",
+                "args": {
+                    "incr":90    
+                }
+                
+            }
         }
     ],
     "walls": [

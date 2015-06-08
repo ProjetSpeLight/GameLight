@@ -7,7 +7,7 @@
     },
     "background": "sky",
     "playerStart": {
-        "x":100,
+        "x":10,
         "y": 500
     },
     "platforms": [
@@ -110,6 +110,28 @@
                 "y": 1
             }
             
+        },
+        {
+            "position": {
+                "x": 300,
+                "y": 100
+            },
+            "size": {
+                "x": 2,
+                "y": 2
+            },
+            "color":"Blue"
+            
+        },
+        {
+            "position": {
+                "x": 50,
+                "y": 290
+            },
+            "size": {
+                "x": 2,
+                "y": 2
+            }
         }
         
     ],
@@ -117,55 +139,74 @@
         {
             "positions": [
                 {
-                    "x": 600,
+                    "x": 200,
                     "y": 460,
                     "speed": {
-                        "x": 100,
+                        "x": 200,
                         "y": 0
                     }
                 },
                 {
-                    "x": 1150,
+                    "x": 700,
                     "y": 460,
                     "speed": {
-                        "x": -100,
+                        "x": -200,
+                        "y": -40
+                    }
+                },
+                {
+                    "x": 200,
+                    "y": 360,
+                    "speed": {
+                        "x": -200,
                         "y": 0
                     }
                 }
+                
             ],
             "size": {
-                "x": 3,
-                "y": 3
+                "x": 5,
+                "y": 1
             },
-            "immovable": true,
-            "color": "Blue"
+            "immovable": true
+            
         },
-         {
+        {
             "positions": [
                 {
-                    "x": 600,
-                    "y": 460,
+                    "x": 700,
+                    "y": 250,
                     "speed": {
-                        "x": 100,
+                        "x": -150,
                         "y": 0
                     }
                 },
                 {
-                    "x": 1150,
-                    "y": 460,
+                    "x": 200,
+                    "y": 250,
+                    "speed": {
+                        "x": 150,
+                        "y": -30
+                    }
+                },
+                {
+                    "x": 700,
+                    "y": 150,
                     "speed": {
                         "x": -100,
                         "y": 0
                     }
                 }
+                
             ],
             "size": {
-                "x": 3,
-                "y": 3
+                "x": 5,
+                "y": 1
             },
-            "immovable": true,
-            "color": "Blue"
+            "immovable": true
+            
         }
+        
     ],
     "mirrors": [
         {
@@ -234,17 +275,93 @@
             "x": 1520,
             "y": 520,
             "skin": "coin"
+        },
+        {
+            "x": 1050,
+            "y": 520,
+            "skin": "coin"
+        },
+        {
+            "x": 1080,
+            "y": 520,
+            "skin": "coin"
+        },
+        {
+            "x": 1110,
+            "y": 520,
+            "skin": "coin"
         }
     ],
     "ennemis": [
+        
         {
-            "x": 380,
-            "y": 400,
+            "x": 150,
+            "y": 300,
             "bounds": {
-                "left": 200,
+                "left": 450,
                 "right": 550,
-                "lower": 600,
-                "upper": 0
+                "bottom": 400,
+                "top": 200
+            },
+            "speed": {
+                "x": 0,
+                "y": 150
+            },
+            "type": "flying"
+        }, 
+        {
+            "x": 1050,
+            "y": 500,
+            "bounds": {
+                "left": 0,
+                "right": 3200,
+                "bottom": 520,
+                "top": 0
+            },
+            "speed": {
+                "x": 150,
+                "y": -150
+            },
+            "type": "flying"
+        },
+        {
+            "x": 1050,
+            "y": 500,
+            "bounds": {
+                "left": 0,
+                "right": 1130,
+                "bottom": 520,
+                "top": 0
+            },
+            "speed": {
+                "x": -150,
+                "y": -150
+            },
+            "type": "flying"
+        },
+        {
+            "x": 1050,
+            "y": 510,
+            "bounds": {
+                "left": 0,
+                "right": 1130,
+                "bottom": 520,
+                "top": 0
+            },
+            "speed": {
+                "x": -150,
+                "y": 0
+            },
+            "type": "flying"
+        },
+        {
+            "x": 1050,
+            "y": 505,
+            "bounds": {
+                "left": 1000,
+                "right": 3200,
+                "bottom": 520,
+                "top": 0
             },
             "speed": {
                 "x": 150,
@@ -253,19 +370,19 @@
             "type": "flying"
         },
         {
-            "x": 600,
-            "y": 528,
+            "x": 1050,
+            "y": 500,
             "bounds": {
-                "left": 550,
-                "right": 750,
-                "lower": 600,
-                "upper": 0
+                "left": 1000,
+                "right": 1130,
+                "bottom": 520,
+                "top": 0
             },
             "speed": {
-                "x": 150,
-                "y": 0
+                "x": 0,
+                "y": -150
             },
-            "skin": "baddie"
+            "type": "flying"
         },
         {
             "x": 1710,
@@ -313,6 +430,35 @@
             "type": "flying"
         }
     ],
+     "walls": [
+       {
+            "x": 1000,
+            "y": 450,
+            "size": {
+                "x": 2,
+                "y": 6
+            },
+            "minEnergy": 1
+        },
+        {
+            "x": 1150,
+            "y": 450,
+            "size": {
+                "x": 2,
+                "y": 6
+            },
+            "minEnergy": 1
+        },
+        {
+            "x": 1000,
+            "y": 450,
+            "size": {
+                "x": 8,
+                "y": 2
+            },
+            "minEnergy": 1
+        }
+    ],
     "switch": [
         {
             "x": 1350,
@@ -334,7 +480,7 @@
     ],
     "time": [
         {
-            "value": 60
+            "value": 120
         }
     ],
     "ends": [
