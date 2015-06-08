@@ -15,7 +15,7 @@ define([
         create: function () {
         
             // setup game environment
-            this.game.nbLevel = 12;
+            this.game.nbLevel = 14;
             // scale, input etc..
            if (this.game.device.desktop) {
                //this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
