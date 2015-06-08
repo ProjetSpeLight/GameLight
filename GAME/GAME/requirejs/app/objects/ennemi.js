@@ -108,6 +108,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phase
                     ennemi.nbLives = 1;
                     ennemi.animations.add('animFlying', [0, 1, 2, 1], 6, true);
                     ennemi.play('animFlying');
+                    ennemi.scale.setTo(0.6, 0.6);
                 }
                 ennemi.LifeBarShown = false;
                 ennemi.LifeBarLifeTime = 100;
