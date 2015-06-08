@@ -49,17 +49,19 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
 
         kill: function () {
 
-            if (!this.sprite.invincible){
- 
+            if (!this.sprite.invincible) {
                 //check if the player has a color or not
                 if (this.sprite.color.value != 0) {
                     //he has a color so we remove the last color
-                    this.timeInvincible=1;
+                    this.timeInvincible = 1;
                     this.removePlayerColor();
                 } else {
                     PhaserGame.score = 0;
-                    //he hasn't so we restart the game
-                    PhaserGame.game.state.start('Dead');
+                    PhaserGame.dead = true;
+                    this.sprite.animations.stop();
+                    this.sprite.body.velocity.x = 0;
+                    this.sprite.body.velocity.y = 200;
+                    this.sprite.body.collideWorldBounds = false;                  
                 }
             }
         },
@@ -68,7 +70,7 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
             // The player and its settings            
             this.sprite = PhaserGame.game.add.sprite(x, y, 'dude');
             this.sprite.scale = new Phaser.Point(0.6, 0.6);
-            
+
 
             //  We need to enable physics on the player
             PhaserGame.game.physics.arcade.enable(this.sprite);
@@ -109,8 +111,8 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
             } else {
                 this.sprite.body.velocity.x = 0;
             }
-            
-            
+
+
 
             if (cursors.left.isDown || this.moveLeft) {
                 //  Move to the left
@@ -157,8 +159,8 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
                     photon.firePhoton(PhaserGame.game, this);
                 }
             }
-            
-            
+
+
 
         },
 
@@ -182,17 +184,9 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
 
             // Then, we update its position
             var cursors = PhaserGame.game.input.keyboard.createCursorKeys();
-            
+
             this.updatePositionPlayer(cursors);
 
-            // Finally, we check if the player has to change of color
-            /*if (sprite.body.touching.down) {
-                if (cursors.down.isDown || this.changeColor)
-                alert('jm');
-            }*/
-            
-             
-            
             photon.updatePhotons();
 
         },
@@ -224,65 +218,7 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
                 this.sprite.frame = this.sprite.color.value * 9 + 4;
             }
         },
-//
-    /*jump: function () {
-        if (this.sprite.body.touching.down && !this.pushed) {
-            this.sprite.body.velocity.y = -600;
-            this.pushed = true;
-        }
-    },
 
-    handlerLeft: function () {
-        this.sprite.body.velocity.x = -300;
-        if (this.sprite.invincible) {
-           // alert('death meft');
-            this.sprite.animations.play('deathLeft' + this.sprite.color.name + this.previousColor.name);
-        } else {
-            this.sprite.animations.play('left' + this.sprite.color.name);
-        }
-        this.sprite.lookRight = false;
-    },
-
-    handlerRight: function () {
-        this.sprite.body.velocity.x = 300;
-        //this.sprite.animations.play('deathStandingStill' + Color.ColorEnum.BLACK + Color.ColorEnum.WHITE);
-        if (this.sprite.invincible) {
-            this.sprite.animations.play('deathRight' + this.sprite.color.name + this.previousColor.name);
-        } else {
-            this.sprite.animations.play('right' + this.sprite.color.name);
-        }
-        this.sprite.lookRight = true;
-    },
-
-    standingStill: function () {
-        if (this.sprite.invincible) {
-            //alert("hello");
-            this.sprite.animations.play('deathStandingStill' + this.sprite.color.name + this.previousColor.name);
-        } else {
-            //this.sprite.animations.play('standingStill' + this.sprite.color.name);
-            this.sprite.animations.stop();
-        }
-        this.sprite.frame = this.sprite.color.value * 9 + 4;
-    },
-
-    handlerAccelerometer: function () {
-        /*this.sprite.body.velocity.x = this.velocity;
-        if (this.velocity < 0) {
-            this.sprite.animations.play('left' + this.sprite.color.name);
-            this.sprite.lookRight = false;
-        } else if (this.velocity > 0){
-            this.sprite.animations.play('right' + this.sprite.color.name);
-            this.sprite.lookRight = true;
-        } else {
-            this.sprite.animations.stop();
-            this.sprite.frame = this.sprite.color.value * 9 + 4;
-        }*/
-        /*
-        this.sprite.body.velocity.x = this.velocity;
-        if (this.velocity < 0) {
-            this.sprite.animations.play('left' + this.sprite.color.name);
-            
-            */
         jump: function () {
             if (this.sprite.body.touching.down && !this.pushed) {
                 this.sprite.body.velocity.y = -600;
@@ -293,7 +229,6 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
         handlerLeft: function () {
             this.sprite.body.velocity.x = -300;
             if (this.sprite.invincible) {
-                // alert('death meft');
                 this.sprite.animations.play('deathLeft' + this.sprite.color.name + this.previousColor.name);
             } else {
                 this.sprite.animations.play('left' + this.sprite.color.name);

@@ -37,6 +37,10 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
             // the score is stored in the game variable
             PhaserGame.score = 0;
 
+            // Initialize the variable which indicate if the player has lost
+            PhaserGame.dead = false;
+
+
 
 
             // Initialization of the physics motor
@@ -73,10 +77,15 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
 
         update: function () {
 
-            if (screen.touched) {
-                alert("lol");
+            if (PhaserGame.dead) {   
+
+                if (player.sprite.body.y > PhaserGame.game.world.height) {
+                    PhaserGame.game.state.start('Dead');
+                }
+                return;
             }
 
+           
             // If the level had not been loaded, we return to the main lmenu
             if (stopped) {
                 PhaserGame.game.state.start('MainMenu');
@@ -137,7 +146,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
                     if (!PhaserGame.game.device.desktop) {
                         Touch.stop();
                     }
-                    PhaserGame.game.state.start('Dead');
+                    player.kill();
                 }
 
 
