@@ -84,7 +84,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/color'], function (Phaser
 
 
                 if (turned) {
-                    filter.rotation = 90;
+                    filter.angle = 90;
                     filter.scale.setTo(size, 1);
                 } else {
                     filter.scale.setTo(1, size);
