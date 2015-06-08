@@ -20,6 +20,8 @@
   <ItemGroup>
     <Content Include="app.css" />
     <Content Include="index.html" />
+    <Content Include="requirejs\app\color.js" />
+    <Content Include="requirejs\app\cook.js" />
     <Content Include="requirejs\app\createLevel.js" />
     <Content Include="requirejs\app\cordovaStart.js" />
     <Content Include="requirejs\app\objects\text.js" />
@@ -71,7 +73,14 @@
     <Content Include="assets\levels\old_level.json" />
     <Content Include="assets\levels\old_level2.json" />
     <Content Include="assets\levels\old_levelTest.json" />
-    <Content Include="assets\levels\old_TestPlatform.json" />
+    <Content Include="assets\levels\AwesomeLevel.json" />
+    <Content Include="assets\levels\Level10.json" />
+    <Content Include="assets\levels\Level11.json" />
+    <Content Include="assets\levels\Level12.json" />
+    <Content Include="assets\levels\Level6.json" />
+    <Content Include="assets\levels\Level7.json" />
+    <Content Include="assets\levels\Level8.json" />
+    <Content Include="assets\levels\Level9.json" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

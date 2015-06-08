@@ -46,6 +46,8 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
         secondAddColor: Color.ColorEnum.BLACK,
         numberColor: 0,
         previousColor: Color.ColorEnum.BLACK,
+        positionTextX: null,
+        positionTextY: null,
 
         kill: function () {
 
@@ -93,6 +95,10 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
             photon.initPhotons(PhaserGame.game, this);
             this.firstAddColor = Color.ColorEnum.BLACK;
             this.secondAddColor = Color.ColorEnum.BLACK;
+            this.positionTextX = PhaserGame.game.add.text(400, 16, 'x: 0', { fontSize: '32px', fill: '#000' });
+            this.positionTextX.fixedToCamera = true;
+            this.positionTextY = PhaserGame.game.add.text(600, 16, 'y: 0', { fontSize: '32px', fill: '#000' });
+            this.positionTextY.fixedToCamera = true;
         },
 
         /// @function updatePositionPlayer
@@ -157,7 +163,9 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
                     photon.firePhoton(PhaserGame.game, this);
                 }
             }
-            
+            this.positionTextX.text = 'x: ' + Math.floor(this.sprite.x);
+            this.positionTextY.text = 'y: ' + Math.floor(this.sprite.y);
+
             
 
         },
