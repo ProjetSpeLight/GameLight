@@ -1,0 +1,129 @@
+{
+  "worldBounds": {
+    "leftBound": 0,
+    "rightBound": 8000,
+    "upperBound": 0,
+    "lowerBound": 8000
+  },
+  "background": "sky",
+  "playerStart": {
+    "x": 200,
+    "y": 750
+  },
+  "platforms": [
+    {
+      "position": {
+        "x": 0,
+        "y": 800
+      },
+      "size": {
+        "x": 5.5,
+        "y": 2
+      }
+    },
+    {
+      "position": {
+        "x": 150,
+        "y": 800
+      },
+      "size": {
+        "x": 25,
+        "y": 2
+      }
+    },
+    {
+      "position": {
+        "x": 150,
+        "y": 800
+      },
+      "color": "Red",
+      "id": 0
+    },
+    {
+      "position": {
+        "x": 300,
+        "y": 800
+      },
+      "color": "Blue",
+      "id": 0
+    },
+    {
+      "position": {
+        "x": 0,
+        "y": 1000
+      },
+      "size": {
+        "x": 45,
+        "y": 2
+      }
+    },
+    {
+      "position": {
+        "x": 900,
+        "y": 1000
+      },
+      "size": {
+        "x": 5,
+        "y": 2
+      },
+      "id":1 
+    }
+  ],
+  "backAndForthPlatforms": [
+  ],
+  "mirrors": [
+    {
+      "x": 200,
+      "y": 760,
+      "angle": 135,
+      "immovable": false,
+      "bounds": {
+        "left": 70,
+        "right": 430
+      }
+    },
+    {
+      "x": 115,
+      "y": 970,
+      "angle": 135
+    }
+  ],
+  "switch": [
+    {
+      "x": 350,
+      "y": 400,
+      "color": "Red",
+      "action": {
+        "groupId": 4,
+        "id": 0,
+        "actionName": "actionChangeObjectColor",
+        "args": {
+          "colors": [
+            { "color": "Red" },
+            { "color": "Green" }
+          ]
+        }
+      }
+    },
+    {
+      "x": 1000,
+      "y": 950,
+      "color": "Red",
+      "action": {
+        "groupId": 4,
+        "id": 1,
+        "actionName": "actionDeleteObject"
+        }
+      }
+
+
+  ],
+  "filters": [
+    {
+      "x": 650,
+      "y": 700,
+      "color": "Red",
+      "size": 2
+    }
+  ]
+}

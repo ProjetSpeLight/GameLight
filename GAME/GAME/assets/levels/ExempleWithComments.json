@@ -1,6 +1,17 @@
 // Color item : Black, Red, Blue, Green, Yellow, Magenta, Cyan, White
 // ActionName item : actionMoveObject, actionDeleteObject, actionCreateObject, actionChangeMirrorOrientation, actionChangeObjectColor, actionPutInMoveObject
 // (cf fichier action.js)
+// MIRROR: 0
+// FILTER: 1
+// BUTTON: 2
+// SWITCH: 3
+// PLATFORM: 4
+// ENEMY: 5
+// PIQUE: 6
+// COIN: 7
+// END: 8
+// TEXT: 9
+// WALL: 10
 
 {
   "worldBounds": {
@@ -183,24 +194,24 @@
 
   ],
   // List of the different level ending areas
-    "ends": [
-        {
-            // Position
-            "x": 300,
-            "y": 30
-        }
-    ],
+  "ends": [
+    {
+      // Position
+      "x": 300,
+      "y": 30
+    }
+  ],
 
 
-    "walls": [
-        {
-            "x": 2160, // Mandatory : abscissa of the top-left point of the wall
-            "y": 640, // Mandatory : ordiante of the top-left point of the wall
-            "size": { // Optional : if we want to duplicate to sprite (to ease the construction of the JSON file)
-                "x": 1, // Number of sprites in width
-                "y": 4 // Number of sprites in height
-            },
-            "minEnergy": 5 // Mandatory, minimal energy to break the wall (cf ColorEnum for the different energies)
-        }
-    ]
+  "walls": [
+    {
+      "x": 2160, // Mandatory : abscissa of the top-left point of the wall
+      "y": 640, // Mandatory : ordiante of the top-left point of the wall
+      "size": { // Optional : if we want to duplicate to sprite (to ease the construction of the JSON file)
+        "x": 1, // Number of sprites in width
+        "y": 4 // Number of sprites in height
+      },
+      "minEnergy": 5 // Mandatory, minimal energy to break the wall (cf ColorEnum for the different energies)
+    }
+  ]
 }
