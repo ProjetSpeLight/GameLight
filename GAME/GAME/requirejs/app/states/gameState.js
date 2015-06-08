@@ -19,8 +19,9 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
     GameState.prototype = {
         preload: function () {
             if (this.currentLevel === 0) {
-                if (!PhaserGame.game.cache.checkJSONKey('level0')) {
-                    this.load.json('level0', adresse_json + 'Tutoriel.json');
+                //if (!PhaserGame.game.cache.checkJSONKey('level0')) {
+                if (true) {
+                    this.load.json('level0', adresse_json + 'AwesomeLevel.json');
                 }
             } else {
                 if (!PhaserGame.game.cache.checkJSONKey('level' + this.currentLevel)) {
