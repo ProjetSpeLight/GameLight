@@ -1,4 +1,4 @@
-define(['app/phasergame', 'app/player'], function (PhaserGame, player) {
+define(['app/phasergame', 'app/player', 'app/objects/ennemi'], function (PhaserGame, player, ennemies) {
 
     /// @function handlerPhoton
     /// Handler called when a photon hits a wall - Destroy the wall if the photon is enough powerful
@@ -77,7 +77,8 @@ define(['app/phasergame', 'app/player'], function (PhaserGame, player) {
         /// Updates the group of walls (to be called by the update() function of the game state)
         updateObjects: function () {       
             PhaserGame.game.physics.arcade.overlap(player.refPhotons.photons, this.group, handlerPhoton);
-            PhaserGame.game.physics.arcade.collide(player.sprite, this.group);                   
+            PhaserGame.game.physics.arcade.collide(player.sprite, this.group);
+            PhaserGame.game.physics.arcade.collide(ennemies.group, this.group);
         }
     }
 });
