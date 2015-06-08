@@ -20,6 +20,9 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
                 sprite.animations.add('deathRight' + vcolor.name + pcolor.name, [5 + 9 * vcolor.value, 6 + 9 * pcolor.value, 7 + 9 * vcolor.value, 8 + 9 * pcolor.value], 8, true);
                 sprite.animations.add('deathStandingStill' + vcolor.name + pcolor.name, [4 + 9 * vcolor.value, 4 + 9 * pcolor.value], 8, true);
             }
+
+            // Animation when for the game over
+            sprite.animations.add('finalDeath' + vcolor.name, [72 + 9 * vcolor.value, 73 + 9 * vcolor.value, 74 + 9 * vcolor.value, 75 + 9 * vcolor.value], 4, true);
         }
 
         // Initialization of an attribute to indicate where the player look at
@@ -59,10 +62,16 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
                 } else {
                     PhaserGame.score = 0;
                     PhaserGame.dead = true;
+                    PhaserGame.game.camera.unfollow();
                     this.sprite.animations.stop();
                     this.sprite.body.velocity.x = 0;
-                    this.sprite.body.velocity.y = 200;
+                    this.sprite.body.velocity.y = -50;
                     this.sprite.body.collideWorldBounds = false;
+                    this.jumpMinY = this.sprite.body.y - 2 * this.sprite.body.height;
+                    this.maxY = PhaserGame.game.camera.y + PhaserGame.game.camera.height;
+                    this.sprite.animations.play('finalDeath' + this.sprite.color.name, 10);
+                   
+
                 }
             }
         },

@@ -80,15 +80,22 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
 
         update: function () {
 
-            if (PhaserGame.dead) {   
+            if (PhaserGame.dead) {
+                // objectsManager.updateObjects();
+                if (player.sprite.body.y <= player.jumpMinY) {
+                    player.sprite.velocity.y *= -1;
+                }
 
-                if (player.sprite.body.y > PhaserGame.game.world.height) {
+                player.sprite.animations.play('finalDeath' + player.sprite.color.name, 10);
+
+
+                if (player.sprite.body.y > player.maxY) {
                     PhaserGame.game.state.start('Dead');
                 }
                 return;
             }
 
-           
+
             // If the level had not been loaded, we return to the main lmenu
             if (stopped) {
                 PhaserGame.game.state.start('MainMenu');
@@ -157,6 +164,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
         },
 
         render: function () {
+            //this.game.debug.cameraInfo(this.game.camera, 32, 32);
             //PhaserGame.game.debug.body(player.sprite);
             /*for (var i = 0 ; i < piqueObject.group.length ; i++) {
                 PhaserGame.game.debug.body(piqueObject.group.children[i]);
