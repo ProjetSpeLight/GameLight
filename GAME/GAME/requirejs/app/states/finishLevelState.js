@@ -58,6 +58,9 @@ define(['phaser', 'app/objects/time', 'app/touch', 'app/phasergame','app/cook'],
             button_next.anchor.setTo(0.5, 0.5);
             button_next.fixedToCamera = true;
 
+            this.add.text(50, 550, 'Appuyer sur Espace pour passer au niveau suivant', { fontSize: '42px', fill: '#fff' });
+
+
         },
 
         menuclick: function () {
@@ -75,6 +78,12 @@ define(['phaser', 'app/objects/time', 'app/touch', 'app/phasergame','app/cook'],
             } else {
                 this.state.start('Game', true, false);
 
+            }
+        },
+
+        update: function () {
+            if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
+                this.next();
             }
         }
 
