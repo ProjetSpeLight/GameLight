@@ -1,5 +1,5 @@
 
-define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame', 'app/touch', 'app/objects/time', 'app/objects/objectsManager'], function (Phaser, createLevel, player, pause, PhaserGame, Touch, time, objectsManager) {
+define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame', 'app/touch', 'app/objects/time', 'app/objects/objectsManager', 'app/music'], function (Phaser, createLevel, player, pause, PhaserGame, Touch, time, objectsManager, music) {
 
     function GameState(game) { }
 
@@ -74,6 +74,8 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
 
             // Signal binding for the pause mode
             PhaserGame.game.input.onDown.add(pause.unpause, self);
+
+            music.create();
         },
 
         update: function () {

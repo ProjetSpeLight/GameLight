@@ -46,7 +46,7 @@ define([
                 this.game.scale.setResizeCallback(this.gameResized, this);
             }
             this.state.start('Preload');
-
+          
         }
     };
     
