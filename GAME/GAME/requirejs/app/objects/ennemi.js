@@ -120,7 +120,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phase
         updateObjects: function () {            
             PhaserGame.game.physics.arcade.overlap(player.sprite, this.group, killPlayer, null, this);
             PhaserGame.game.physics.arcade.collide(photon.photons, this.group, killEnnemi, null, this);
-
+            PhaserGame.game.physics.arcade.collide(this.group, this.group);
 
 
             //Déplacement des ennemis
