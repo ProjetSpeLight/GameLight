@@ -76,6 +76,10 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/touch'], function (Phaser
             id = -1;
         }
 
+        if (immovable == false) {
+            skin = "platformFissure";
+        }
+
         var platform;
         if (platformData.position == null)
             platform = platforms.create(platformData.positions[0].x, platformData.positions[0].y, skin + color);
@@ -102,6 +106,9 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/touch'], function (Phaser
         }
 
         // if the platform is set as crossable the player can jump through it from beow and cross it from side to side
+        if (platform.body.immovable == false) 
+            platformData.crossable = true;
+
         if (platformData.crossable == true) {
             platform.body.checkCollision.up = true;
             platform.body.checkCollision.left = false;
@@ -329,6 +336,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/touch'], function (Phaser
         /// Preloads the different images / spritesheets used by this module
         preloadObjectsImages: function () {
             PhaserGame.game.load.image('platform', 'assets/platform.png');
+            PhaserGame.game.load.image('platformFissure', 'assets/platformFissure.png');
             PhaserGame.game.load.image('platformRed', 'assets/platform_Rouge.png');
             PhaserGame.game.load.image('platformBlue', 'assets/platform_Bleu.png');
             PhaserGame.game.load.image('platformGreen', 'assets/platform_Vert.png');

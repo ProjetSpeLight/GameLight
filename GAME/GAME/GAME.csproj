@@ -25,6 +25,7 @@
     <Content Include="requirejs\app\createLevel.js" />
     <Content Include="requirejs\app\cordovaStart.js" />
     <Content Include="requirejs\app\cutscenes\intro.js" />
+    <Content Include="requirejs\app\music.js" />
     <Content Include="requirejs\app\objects\runner.js" />
     <Content Include="requirejs\app\objects\text.js" />
     <Content Include="requirejs\app\objects\coin.js" />

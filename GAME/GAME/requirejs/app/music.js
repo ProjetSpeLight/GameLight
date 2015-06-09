@@ -6,7 +6,8 @@ define(['app/phasergame','app/objects/time'], function (PhaserGame,time) {
         //info if the sound is in pause 
         pause: false,
         preload: function () {
-            PhaserGame.game.load.audio('musicTheme', 'assets/audio/shellyshelly.ogg');
+            PhaserGame.game.load.audio('musicTheme', 'assets/audio/musicTheme.ogg');
+            PhaserGame.game.load.audio('photonFire', 'assets/audio/photonFire.ogg')
         },
 
         create: function () {
