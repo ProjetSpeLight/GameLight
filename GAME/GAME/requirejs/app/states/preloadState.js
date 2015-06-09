@@ -1,4 +1,4 @@
-define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager', 'app/music'], function (Phaser, pause, PhaserGame, Manager, music) {
+define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager', 'app/music', 'app/player'], function (Phaser, pause, PhaserGame, Manager, music, player) {
     // 'use strict';
 
     function PreloadState(game) { }
@@ -15,6 +15,8 @@ define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager', '
             PhaserGame.game.load.image('diamond', 'assets/diamond.png');            
             PhaserGame.game.load.image('dead', 'assets/dead.png');         
             PhaserGame.game.load.image('buttonEmpty', 'assets/emptyButton.png');
+
+            player.preloadPlayer();
 
             // Loading images for the different objects
             Manager.preloadObjects();

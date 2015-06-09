@@ -7,7 +7,7 @@
     },
     "background": "sky",
     "playerStart": {
-        "x": 1550,
+        "x": 100,
         "y": 460
     },
     "platforms": [
@@ -267,6 +267,11 @@
             "type":  "flying"
         }
        
+    ],
+    "time": [
+        {
+            "value": 70
+        }
     ],
     "ends": [
         {
