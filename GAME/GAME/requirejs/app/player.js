@@ -50,10 +50,8 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
         timeInvincible: 0,
         firstAddColor: Color.ColorEnum.BLACK,
         secondAddColor: Color.ColorEnum.BLACK,
-        //numberColor: 0,
         previousColor: Color.ColorEnum.BLACK,
-        positionTextX: null,
-        positionTextY: null,
+      
 
         kill: function () {
 
@@ -127,10 +125,7 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
 
             this.firstAddColor = Color.ColorEnum.BLACK;
             this.secondAddColor = Color.ColorEnum.BLACK;
-            this.positionTextX = PhaserGame.game.add.text(400, 16, 'x: 0', { fontSize: '32px', fill: '#000' });
-            this.positionTextX.fixedToCamera = true;
-            this.positionTextY = PhaserGame.game.add.text(600, 16, 'y: 0', { fontSize: '32px', fill: '#000' });
-            this.positionTextY.fixedToCamera = true;
+            
 
         },
 
@@ -165,7 +160,8 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
                 if (this.sprite.body.velocity.x == 0) {
                     //If invincible, we create a animation to display the color lost 
                     if (this.sprite.invincible) {
-                        this.sprite.animations.play('deathStandingStill' + this.sprite.color.name + this.previousColor.name);
+                        //this.sprite.animations.play('deathStandingStill' + this.sprite.color.name + this.previousColor.name);
+                        this.sprite.loadTexture('photon');
                     } else {
                         this.sprite.animations.stop();
                         this.sprite.frame = this.sprite.color.value * 9 + 4;
@@ -188,10 +184,7 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
                 if (this.sprite.color.name != 'Black') {
                     photon.firePhoton(PhaserGame.game, this);
                 }
-            }
-
-            this.positionTextX.text = 'x: ' + Math.floor(this.sprite.x);
-            this.positionTextY.text = 'y: ' + Math.floor(this.sprite.y);
+            }         
 
 
 
@@ -250,6 +243,7 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
                 this.secondAddColor = this.firstAddColor;
                 this.firstAddColor = this.sprite.color;
                 this.sprite.color = color;
+                this.sprite.loadTexture('photon');
                 this.sprite.frame = this.sprite.color.value * 9 + 4;
             }
         },
