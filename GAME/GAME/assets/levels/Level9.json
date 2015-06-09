@@ -112,7 +112,7 @@
     ],
     "time": [
         {
-            "value": 160
+            "value": 140
         }
     ],
     "backAndForthPlatforms": [
@@ -217,7 +217,7 @@
     ],
     "switch": [
         {
-            "x": 1500,
+            "x": 1400,
             "y": 100,
             "color": "Red",
             "skin":"switchRedOFF",
@@ -228,7 +228,7 @@
             }
         },
         {
-            "x": 1500,
+            "x": 1400,
             "y": 500,
             "color": "Red",
             "skin":"switchRedOFF",

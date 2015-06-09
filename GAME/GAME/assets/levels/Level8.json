@@ -1,4 +1,4 @@
-﻿{
+{
   "worldBounds": {
     "leftBound": 0,
     "rightBound": 2400,
@@ -220,7 +220,7 @@
     ],
     "time": [
         {
-            "value": 110
+            "value": 190
         }
     ],
      "coins": [
