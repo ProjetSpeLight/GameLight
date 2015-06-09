@@ -1,4 +1,4 @@
-define(['phaser', 'app/touch'], function (Phaser, Touch) {
+define(['phaser', 'app/touch', 'app/cutscenes/intro'], function (Phaser, Touch, Intro) {
 
     var screenTitle1;
     var screenTitle2;
@@ -46,20 +46,27 @@ define(['phaser', 'app/touch'], function (Phaser, Touch) {
         },
 
         createTitle: function(){
-            screenTitle1 = this.game.add.sprite(0, 0, 'screentitle');
-            screenTitle2 = this.game.add.sprite(screenTitle1.width, 0, 'screentitle');
-            this.game.physics.arcade.enable(screenTitle1);
-            this.game.physics.arcade.enable(screenTitle2);
-            screenTitle1.body.velocity.x = -100;
-            screenTitle2.body.velocity.x = screenTitle1.body.velocity.x;
+            title = this.game.add.sprite(0, 0, 'BG_bad');
+            var coef = 600 / 720;
+            title.scale.x = coef;
+            title.scale.y = coef;
+            var boule = [];
+            for (i = 0; i < 3; ++i) {
+                boule[i] = Intro.createBoule(Math.floor(Math.random() * 250), Math.floor(100 + Math.random() * 400), i % 3);
+                boule[i].animations.play('anim');
+            }
+            for (i = 0; i < 3; ++i) {
+                boule[i] = Intro.createBoule(Math.floor(200 + Math.random() * 550), Math.floor(Math.random() * 100), i % 3);
+                boule[i].animations.play('anim');
+            }
+            for (i = 0; i < 3; ++i) {
+                boule[i] = Intro.createBoule(Math.floor(500 + Math.random() * 250), Math.floor(300 + Math.random() * 250), i % 3);
+                boule[i].animations.play('anim');
+            }
         },
 
         update: function () {
-            if (screenTitle1.x <= -screenTitle1.width) {
-                screenTitle1.x = screenTitle1.width + (screenTitle1.x + screenTitle1.width);
-            } else if (screenTitle2.x <= -screenTitle1.width) {
-                screenTitle2.x = screenTitle1.width + (screenTitle2.x + screenTitle1.width);
-            }
+
         }
 
     };
