@@ -13,28 +13,41 @@
             this.load.image('BG_good', 'assets/intro/BG_good.jpg');
             this.load.image('BG_bad', 'assets/intro/BG_bad.jpg');
             this.load.image('lumiere', 'assets/intro/lumiere.png');
+            this.load.image('rain', 'assets/intro/rain.png');
+            this.load.audio('son_eclair', 'assets/audio/eclair.mp3');
+            this.load.audio('son_pluie', 'assets/audio/pluie.mp3');
         },
 
         create: function () {
-            
-            //Intro.intro1();
-            Intro.flash();
-           PhaserGame.game.physics.startSystem(Phaser.Physics.ARCADE);
 
-            /*this.BG_bad = PhaserGame.game.add.sprite(0, 0, 'BG_bad');
-            this.BG_good = PhaserGame.game.add.sprite(0, 0, 'BG_good');
+            PhaserGame.game.physics.startSystem(Phaser.Physics.ARCADE);
+
+            Intro.BG_good = PhaserGame.game.add.sprite(0, 0, 'BG_good');
             var coef = 600 / 720;
-            this.BG_bad.scale.x = coef;
-            this.BG_bad.scale.y = coef;
-            this.BG_good.scale.x = coef;
-            this.BG_good.scale.y = coef;
+            Intro.BG_good.scale.x = coef;
+            Intro.BG_good.scale.y = coef;
+            Intro.BG_good.alpha = 0;
 
+            //Création du BG Bad
+            Intro.BG_bad = PhaserGame.game.add.sprite(0, 0, 'BG_bad');
+            Intro.BG_bad.scale.x = coef;
+            Intro.BG_bad.scale.y = coef;
+            Intro.BG_bad.alpha = 0;
 
-            PhaserGame.game.physics.arcade.enable(this.BG_good);
-            this.BG_good.body.setSize(this.BG_good.width, 150, 0, 600 - 100);
-            this.BG_good.body.immovable = true;
+            PhaserGame.game.physics.arcade.enable(Intro.BG_good);
+            Intro.BG_good.body.setSize(Intro.BG_good.width, 150, 0, 600 - 100);
+            Intro.BG_good.body.immovable = true;
 
-            player.initializePlayer(PhaserGame.game, 0, 0);
+            player.initializePlayer(PhaserGame.game, 100, 100);
+            player.sprite.body.gravity.y = 30;
+            player.sprite.frame = player.sprite.color.value * 9 + 4;
+            player.sprite.alpha = 0;
+
+            Intro.intro1();
+            //Intro.flash();
+
+            /*
+            
 
            
 
@@ -57,8 +70,8 @@
         },
 
         update: function () {
-            /*PhaserGame.game.physics.arcade.collide(this.BG_good, player.sprite);
-            this.i++;
+            PhaserGame.game.physics.arcade.collide(Intro.BG_good, player.sprite);
+            /*this.i++;
             if (this.i == 6 && this.BG_good.alpha > 0) {
                 this.BG_good.alpha -= 0.01;
                 this.emitter.gravity -= 5;
@@ -67,8 +80,8 @@
         },
 
         render: function () {
-            //PhaserGame.game.debug.body(this.BG_good);
-            //PhaserGame.game.debug.body(player.sprite);
+            /*PhaserGame.game.debug.body(Intro.BG_good);
+            PhaserGame.game.debug.body(player.sprite);*/
         }
     };
 
