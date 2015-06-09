@@ -1,10 +1,10 @@
 define([
     'phaser',
-    'app/cook',
+    'app/cookie',
     'app/music'
 ], function (
     Phaser,
-     cook,
+     cookie,
      music
 ) {
     function ChooseLevelState(game) { };
@@ -36,7 +36,7 @@ define([
                 var text = this.game.add.text(posLabelButtonX, posLabelButtonY, "Niveau " + i, { font: "26px Arial", fill: "#ffffff", align: "center" });
                 
                 // we check if a cookie contains the score for the level i
-                var nb = cook.readCookie("Level"+i);
+                var nb = cookie.readCookie("Level"+i);
                 if (nb != null) { // if there is already a score, we print it
                     var textResult = this.game.add.text(posLabelScoreX, posLabelScoreY, "Score : " + nb, { font: "18px Arial", fill: "#ffffff", align: "center" });
                 }

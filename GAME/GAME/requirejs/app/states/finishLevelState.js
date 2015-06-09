@@ -1,4 +1,4 @@
-define(['phaser', 'app/objects/time', 'app/touch', 'app/phasergame', 'app/cook', 'app/music'], function (Phaser, time, Touch, PhaserGame, cook,music) {
+define(['phaser', 'app/objects/time', 'app/touch', 'app/phasergame', 'app/cookie', 'app/music'], function (Phaser, time, Touch, PhaserGame, cookie,music) {
     // 'use strict';
 
     function FinishLevelState(game) { }
@@ -36,16 +36,16 @@ define(['phaser', 'app/objects/time', 'app/touch', 'app/phasergame', 'app/cook',
             }
             // We search the label 'Level i' in the cookies
             var str = "Level" + this.game.state.states['Game'].currentLevel;
-            var nb = cook.readCookie(str);
+            var nb = cookie.readCookie(str);
 
             //if this label doesn't exist,
             //we change the text to print the score
             if (nb == null) {
-                cook.createCookie(str, scoreSave, 10);
+                cookie.createCookie(str, scoreSave, 10);
             } else {
                 // if this label exists, we check if the score is bigger than the previous one
                 if (nb < scoreSave) {
-                    cook.createCookie(str, scoreSave, 10);
+                    cookie.createCookie(str, scoreSave, 10);
                 }
             }
 
