@@ -11,7 +11,8 @@ define(['phaser',
         'app/objects/coin',
         'app/objects/end',
         'app/objects/text',
-        'app/objects/wall'],
+        'app/objects/wall',
+        'app/objects/runner'],
 function (Phaser,
           PhaserGame,
           mirror,
@@ -24,7 +25,8 @@ function (Phaser,
           coin,
           end,
           text,
-          wall) {
+          wall,
+          runner) {
 
     // Enumeration of the different object modules handled by the manager with their id and a reference to their group
     var EnumModule = {
@@ -62,6 +64,7 @@ function (Phaser,
             coin.preloadObjectsImages();
             end.preloadObjectsImages();
             wall.preloadObjectsImages();
+            runner.preloadObjectsImages();
         },
 
         /// @function createObjects
@@ -76,6 +79,7 @@ function (Phaser,
             platforms.createObjectsGroup(data, this);
 
             // Then the other objects
+            runner.group = PhaserGame.game.add.group();
             mirror.createObjectsGroup(data.mirrors, this);
             filter.createObjectsGroup(data.filters, this);
             enemy.createObjectsGroup(data.ennemis, this);

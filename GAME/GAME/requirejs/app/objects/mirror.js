@@ -1,4 +1,4 @@
-define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms'], function (Phaser, PhaserGame, player, platforms) {
+define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms', 'app/objects/runner'], function (Phaser, PhaserGame, player, platforms, runner) {
 
     /// @function reflexionPhoton
     /// Handler called when a photon hits a mirror - Change the direction of the photon according to its reflexion on the mirror
@@ -131,15 +131,8 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms'], func
                     mirrorObject.id = mirrorData.id;
                 }
 
-                // Creation of the runner if needed
-                if (mirrorObject.leftBound != mirrorObject.rightBound) {
-                    var runner = PhaserGame.game.add.sprite(mirrorObject.leftBound, mirrorObject.body.y + mirrorObject.body.height / 2, 'mirrorRunnerMiddle');
-                    var size = (mirrorObject.rightBound - mirrorObject.leftBound) / runner.width;
-                    runner.scale.setTo(size, 1);
-
-                    PhaserGame.game.add.sprite(mirrorObject.leftBound, mirrorObject.body.y + mirrorObject.body.height / 2 - 2, 'mirrorRunnerLeft');
-                    PhaserGame.game.add.sprite(mirrorObject.rightBound, mirrorObject.body.y + mirrorObject.body.height / 2 - 2, 'mirrorRunnerRight');              
-                }
+                mirrorObject.runner = runner.createObject(mirrorObject);
+                
 
                 if (!immovable) {
                     mirrorObject.body.checkCollision.up = false;
