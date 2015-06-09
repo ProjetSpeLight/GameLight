@@ -126,7 +126,7 @@
     "buttons": [
         {
             "x": 500,
-            "y": 700,
+            "y": 720,
             "action": {
                 "actionName": "actionChangeMirrorOrientation",
                 "groupId": 0,
@@ -139,7 +139,7 @@
 
         {
             "x": 440,
-            "y": 700,
+            "y": 720,
             "action": {
                 "actionName": "actionChangeMirrorOrientation",
                 "groupId": 0,

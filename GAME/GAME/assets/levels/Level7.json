@@ -7,8 +7,8 @@
     },
     "background": "sky",
     "playerStart": {
-        "x": 20,
-        "y": 290
+        "x": 60,
+        "y": 530
     },
     "platforms": [
         {
@@ -185,7 +185,7 @@
     "buttons": [
         {
             "x": 2100,
-            "y": 520,
+            "y": 560,
             "action": {
                 "groupId": 0,
                 "id": 2,
@@ -198,7 +198,7 @@
         },
         {
             "x": 2000,
-            "y": 520,
+            "y": 560,
             "action": {
                 "groupId": 0,
                 "id": 2,

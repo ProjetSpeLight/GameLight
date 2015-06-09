@@ -85,6 +85,7 @@
     <Content Include="assets\levels\Level7.json" />
     <Content Include="assets\levels\Level8.json" />
     <Content Include="assets\levels\Level9.json" />
+    <Content Include="assets\levels\Level13.json" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
