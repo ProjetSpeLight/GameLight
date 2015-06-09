@@ -46,8 +46,6 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
             PhaserGame.relaunchGame = false;
 
 
-
-
             // Initialization of the physics motor
             PhaserGame.game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -229,8 +227,8 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
             /*for (var i = 0 ; i < piqueObject.group.length ; i++) {
                 PhaserGame.game.debug.body(piqueObject.group.children[i]);
             }*/
-            /* for (var i = 0 ; i < objectsManager.EnumModule.MIRROR.refGroup.children.length ; i++) {
-                 PhaserGame.game.debug.body(objectsManager.EnumModule.MIRROR.refGroup.children[i]);
+             /*for (var i = 0 ; i < objectsManager.EnumModule.FILTER.refGroup.children.length ; i++) {
+                 PhaserGame.game.debug.body(objectsManager.EnumModule.FILTER.refGroup.children[i]);
              }*/
         },
 

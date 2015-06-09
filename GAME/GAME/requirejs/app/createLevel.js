@@ -6,6 +6,10 @@ define(['app/player', 'app/phasergame', 'app/objects/time', 'app/objects/objects
         //  Creation of the background
         var background = PhaserGame.game.add.sprite(0, 0, levelData.background);
         background.fixedToCamera = true;
+        // We change the tint according to the level
+        var temp = PhaserGame.game.state.states['Game'].currentLevel;
+        background.tint = temp * 0x111111;
+
 
         // Creation of the "frame" of the level
         var worldBounds = levelData.worldBounds;
@@ -16,7 +20,7 @@ define(['app/player', 'app/phasergame', 'app/objects/time', 'app/objects/objects
 
         createLevel: function (str) {
 
-             // We parse the JSON file
+            // We parse the JSON file
             var levelData = PhaserGame.game.cache.getJSON(str);
             if (levelData == null) {
                 return false;
