@@ -28,15 +28,90 @@ gulp.task('jshint', function () {
 var filesToMove = './src/*.js';
 
 gulp.task('clean', function () {
-    return gulp.src(['dist/*'], { read: false })
+    return gulp.src(['build/*'], { read: false })
     .pipe(clean());
 });
 
 gulp.task('cp', ['clean'], function () {
     gulp.src(filesToMove).pipe(gulp.dest('dist'));
+
 });
 
-// Compresser les images
+
+
+/****** Déplacement des sources *****/
+
+
+gulp.task('html', function () {
+    gulp.src('./*.html').pipe(gulp.dest('./build'));
+
+});
+
+
+gulp.task('xml', function () {
+    gulp.src('./*.xml').pipe(gulp.dest('./build'));
+
+});
+
+
+/************ Déplacement des assets ***************/
+
+// minify new images
+gulp.task('imagemin', function () {
+    var imgSrc = './assets/**/*.png',
+        imgDst = './build/assets';
+
+    gulp.src(imgSrc)
+      .pipe(changed(imgDst))
+      .pipe(imagemin())
+      .pipe(gulp.dest(imgDst));
+});
+
+
+gulp.task('imageminJPG', function () {
+    var imgSrc = './assets/**/*.jpg',
+        imgDst = './build/assets';
+
+    gulp.src(imgSrc)
+      .pipe(changed(imgDst))
+      .pipe(imagemin())
+      .pipe(gulp.dest(imgDst));
+});
+
+// Moves levels
+gulp.task('levels', function () {
+    var imgSrc = './assets/**/*.json',
+        imgDst = './build/assets';
+
+    gulp.src(imgSrc)
+      .pipe(changed(imgDst))
+      .pipe(imagemin())
+      .pipe(gulp.dest(imgDst));
+});
+
+
+// Moves audio
+gulp.task('audioMP3', function () {
+    var imgSrc = './assets/**/*.mp3',
+        imgDst = './build/assets';
+
+    gulp.src(imgSrc)
+      .pipe(changed(imgDst))
+      .pipe(imagemin())
+      .pipe(gulp.dest(imgDst));
+});
+
+gulp.task('audioOgg', function () {
+    var imgSrc = './assets/**/*.ogg',
+        imgDst = './build/assets';
+
+    gulp.src(imgSrc)
+      .pipe(changed(imgDst))
+      .pipe(imagemin())
+      .pipe(gulp.dest(imgDst));
+});
+
+gulp.task('assets', ['imagemin', 'imageminJPG', 'levels', 'audioMP3', 'audioOgg']);
 
 
 // Création du serveur sur le port 4200 (le dossier source est le dossier où est lancé le serveur : doit être la racine)
@@ -46,15 +121,10 @@ gulp.task('connect', function () {
     });
 });
 
-/*
-gulp.task('html', function () {
-    gulp.src('./*.html', './src/*.js', './node_modules/**')
-      .pipe(connect.reload());
-});*/
-
-// Permet au serveur de prendre en compte les modifications des sources (ce qui évite de stopper/relance le serveur à chaque modification)
-gulp.task('watch', function () {
-    gulp.watch(['./*.html', './src/*.js', './node_modules/**'], ['html']);
-});
 
 gulp.task('default', ['connect', 'watch', 'html']);
+
+
+
+
+
