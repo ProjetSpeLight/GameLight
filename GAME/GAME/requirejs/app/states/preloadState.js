@@ -25,6 +25,7 @@ define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager', '
 
             // For the musics
             music.preload();
+            this.load.audio('Titre', 'assets/audio/MainMenu.mp3');
 
             //Chargement ecran titre
             this.load.image('screentitle', 'assets/ScreenTitle.png');
