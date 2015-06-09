@@ -1,5 +1,11 @@
 define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser, photon, PhaserGame, Color) {
 
+    /***********  CONSTANTS ***************/
+    var NUM_FRAME_NORMAL = 3; // Default frame of the spritesheet
+
+    /***********  END CONSTANTS ***************/
+
+
     // Variables used to freeze the game
     var freeze = false;
     var freezeSaveVelocityX, freezeSaveVelocityY;
@@ -13,27 +19,12 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
         for (var color in ColorEnum) {
             var vcolor = ColorEnum[color];
             // Annimation when the sprite moves to the left
-            //sprite.animations.add('left' + vcolor.name, [0 + 9 * vcolor.value, 1 + 9 * vcolor.value, 2 + 9 * vcolor.value, 3 + 9 * vcolor.value], 8, true);
-            sprite.animations.add('left', [0, 1, 0, 2], 5, true);
+            sprite.animations.add('left', [0, 1, 0, 2], 4, true);
             // Animation when the sprite moves to the right
-            //sprite.animations.add('right' + vcolor.name, [5 + 9 * vcolor.value, 6 + 9 * vcolor.value, 7 + 9 * vcolor.value, 8 + 9 * vcolor.value], 8, true);
-            sprite.animations.add('right', [4, 5, 4, 6], 5, true);
-            // Animation when the sprite is hitten by an ennemi / pique and loses its color
-            // Label : key + currentColor + oldColor
-            for (var ncolor in ColorEnum) {
-                var pcolor = ColorEnum[ncolor];
-                sprite.animations.add('deathLeft' + vcolor.name + pcolor.name, [0 + 9 * vcolor.value, 1 + 9 * pcolor.value, 2 + 9 * vcolor.value, 3 + 9 * pcolor.value], 8, true);
-                sprite.animations.add('deathRight' + vcolor.name + pcolor.name, [5 + 9 * vcolor.value, 6 + 9 * pcolor.value, 7 + 9 * vcolor.value, 8 + 9 * pcolor.value], 8, true);
-                sprite.animations.add('deathStandingStill' + vcolor.name + pcolor.name, [4 + 9 * vcolor.value, 4 + 9 * pcolor.value], 8, true);
-            }
-
+            sprite.animations.add('right', [4, 5, 4, 6], 4, true);
             // Animation when for the game over
-            sprite.animations.add('finalDeath' + vcolor.name, [72 + 9 * vcolor.value, 73 + 9 * vcolor.value, 74 + 9 * vcolor.value, 75 + 9 * vcolor.value], 4, true);
+            sprite.animations.add('finalDeath', [8, 7, 8, 9], 4, true);
         }
-
-        // Initialization of an attribute to indicate where the player look at
-        sprite.lookRight = true;
-        sprite.invincible = false;
     }
 
     return {
@@ -75,6 +66,17 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
                     //he has a color so we remove the last color
                     this.timeInvincible = 1;
                     this.removePlayerColor();
+                    var tween = [];
+                    tween[0] = PhaserGame.game.add.tween(this.sprite).to({ alpha: 0 }, 330, Phaser.Easing.Linear.None);
+                    tween[1] = PhaserGame.game.add.tween(this.sprite).to({ alpha: 1 }, 330, Phaser.Easing.Linear.None);
+                    tween[2] = PhaserGame.game.add.tween(this.sprite).to({ alpha: 0 }, 330, Phaser.Easing.Linear.None);
+                    tween[3] = PhaserGame.game.add.tween(this.sprite).to({ alpha: 1 }, 330, Phaser.Easing.Linear.None);
+                    tween[4] = PhaserGame.game.add.tween(this.sprite).to({ alpha: 0 }, 330, Phaser.Easing.Linear.None);
+                    tween[5] = PhaserGame.game.add.tween(this.sprite).to({ alpha: 1 }, 330, Phaser.Easing.Linear.None);
+                    tween[0].chain(tween[1], tween[2], tween[3], tween[4], tween[5]);
+                    tween[5].onComplete.add(this.updateImagePlayer, this);
+                    tween[0].start();
+
                 } else {
                     PhaserGame.score = 0;
                     PhaserGame.dead = true;
@@ -86,10 +88,8 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
                     this.sprite.body.collideWorldBounds = false;
                     this.jumpMinY = this.sprite.body.y - 2 * this.sprite.body.height;
                     this.maxY = PhaserGame.game.camera.y + PhaserGame.game.camera.height;
-                    this.sprite.animations.play('finalDeath' + this.sprite.color.name, 10);
+                    this.sprite.animations.play('finalDeath', 10);
                     this.sprite.timePreAnimationDeath = 10;
-
-
                 }
             }
         },
@@ -124,6 +124,10 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
             this.firstAddColor = Color.ColorEnum.BLACK;
             this.secondAddColor = Color.ColorEnum.BLACK;
             this.previousColor = Color.ColorEnum.BLACK;
+            // Initialization of an attribute to indicate where the player look at
+
+            this.sprite.lookRight = true;
+            this.sprite.invincible = false;
 
             // Initialization of the player animations
             initializePlayerAnimations(this.sprite, Color.ColorEnum);
@@ -169,14 +173,9 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
             }
             else {
                 //  Stand still
-                if (this.sprite.body.velocity.x == 0) {
-                    //If invincible, we create a animation to display the color lost 
-                    if (this.sprite.invincible) {
-                        this.sprite.animations.play('deathStandingStill' + this.sprite.color.name + this.previousColor.name);                       
-                    } else {
-                        this.sprite.animations.stop();
-                        this.sprite.frame = this.sprite.color.value * 9 + 4;
-                    }
+                if (this.sprite.body.velocity.x == 0 && !this.sprite.invincible) {
+                    this.sprite.animations.stop();
+                    this.sprite.frame = NUM_FRAME_NORMAL;
                 }
             }
 
@@ -235,9 +234,13 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
         removePlayerColor: function () {
             this.previousColor = this.sprite.color;
             this.sprite.color = this.firstAddColor;
-            this.sprite.loadTexture('player' + this.sprite.color.name);
             this.firstAddColor = this.secondAddColor;
             this.secondAddColor = Color.ColorEnum.BLACK;
+        },
+
+        updateImagePlayer: function () {
+            this.sprite.loadTexture('player' + this.sprite.color.name);
+            //this.sprite.frame = NUM_FRAME_NORMAL;
         },
 
 
@@ -269,22 +272,13 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
 
         handlerLeft: function () {
             this.sprite.body.velocity.x = -300;
-            if (this.sprite.invincible) {
-                this.sprite.animations.play('deathLeft' + this.sprite.color.name + this.previousColor.name);
-            } else {
-                this.sprite.animations.play('left');
-            }
-
+            this.sprite.animations.play('left');
             this.sprite.lookRight = false;
         },
 
         handlerRight: function () {
             this.sprite.body.velocity.x = 300;
-            if (this.sprite.invincible) {
-                this.sprite.animations.play('deathRight' + this.sprite.color.name + this.previousColor.name);
-            } else {
-                this.sprite.animations.play('right');
-            }
+            this.sprite.animations.play('right');
             this.sprite.lookRight = true;
         },
 
@@ -298,23 +292,9 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
                 this.sprite.lookRight = true;
             } else {
                 this.sprite.animations.stop();
-                this.sprite.frame = this.sprite.color.value * 9 + 4;
+                this.sprite.frame = NUM_FRAME_NORMAL;
             }
         },
-
-
-
-        /// @function animationDeath
-        /// Movement the character does when he is wounded
-        animationDeath: function () {
-            if (this.lookRight) {
-                this.sprite.animations.play('deathRight' + this.sprite.color.name + this.firstAddColor.name);
-            } else if (!this.lookRight) {
-                this.sprite.animations.play('deathLeft' + this.sprite.color.name + this.firstAddColor.name);
-            }
-            wounded = true;
-        },
-
 
         filterColor: function (color) {
             this.sprite.color = Color.subFilterColor(this.sprite.color, Color.getColor(color));
@@ -324,8 +304,6 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
             }
             this.secondAddColor = Color.ColorEnum.BLACK;
             this.sprite.loadTexture('player' + this.sprite.color.name);
-
-
         },
 
         freezeGame: function () {
