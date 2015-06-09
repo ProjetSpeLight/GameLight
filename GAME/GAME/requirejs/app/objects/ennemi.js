@@ -104,19 +104,15 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phase
                 ennemi.body.bounce.y = 1;
                 ennemi.body.bounce.x = 1;
 
-                PhaserGame.game.physics.arcade.enable(ennemi); // Physics parameter
-
                 if (enemyType == 'normal') {
                     ennemi.nbLives = 3;
                     ennemi.animations.add('animNormal', [0, 1, 2, 3], 6, true);
                     ennemi.play('animNormal');
-                    ennemi.body.gravity.y = 1000;
                 } else {
                     ennemi.nbLives = 1;
                     ennemi.animations.add('animFlying', [0, 1, 2, 1], 6, true);
                     ennemi.play('animFlying');
                     ennemi.scale.setTo(0.6, 0.6);
-                    ennemi.body.gravity.y = 0;
                 }
                 ennemi.LifeBarShown = false;
                 ennemi.LifeBarLifeTime = 100;
