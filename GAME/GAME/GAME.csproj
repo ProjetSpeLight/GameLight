@@ -40,6 +40,7 @@
     <Content Include="requirejs\app\objects\objectsManager.js" />
     <Content Include="requirejs\app\objects\time.js" />
     <Content Include="requirejs\app\objects\wall.js" />
+    <Content Include="requirejs\app\states\deadState.js" />
     <Content Include="requirejs\app\states\preludeState.js" />
     <Content Include="requirejs\app\touch.js" />
     <Content Include="requirejs\app\main.js" />
