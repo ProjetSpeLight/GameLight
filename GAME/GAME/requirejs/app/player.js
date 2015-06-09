@@ -69,11 +69,13 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
                     PhaserGame.game.camera.unfollow();
                     this.sprite.animations.stop();
                     this.sprite.body.velocity.x = 0;
-                    this.sprite.body.velocity.y = -50;
+                    this.sprite.body.velocity.y = 0;
+                    this.sprite.body.gravity.y = 0;
                     this.sprite.body.collideWorldBounds = false;
                     this.jumpMinY = this.sprite.body.y - 2 * this.sprite.body.height;
                     this.maxY = PhaserGame.game.camera.y + PhaserGame.game.camera.height;
                     this.sprite.animations.play('finalDeath' + this.sprite.color.name, 10);
+                    this.sprite.timePreAnimationDeath = 10;
 
 
                 }
@@ -216,7 +218,9 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
             // Then, we update its position
             var cursors = PhaserGame.game.input.keyboard.createCursorKeys();
 
-            this.updatePositionPlayer(cursors);
+            if (!PhaserGame.dead) {
+                this.updatePositionPlayer(cursors);
+            }
 
             photon.updatePhotons();
 

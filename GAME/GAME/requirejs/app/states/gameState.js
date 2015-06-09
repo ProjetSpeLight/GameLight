@@ -130,12 +130,24 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
 
             /************** Animation for the death of the player ***************/
             if (PhaserGame.dead) {
-                if (player.sprite.body.y <= player.jumpMinY) {
-                    player.sprite.velocity.y *= -1;
-                }
 
                 player.sprite.animations.play('finalDeath' + player.sprite.color.name, 10);
 
+
+                if (player.sprite.timePreAnimationDeath > 0) {
+                    player.sprite.timePreAnimationDeath--;
+                    return;
+                }
+
+                if (player.sprite.timePreAnimationDeath == 0) {
+                    player.sprite.timePreAnimationDeath--;
+                    player.sprite.body.velocity.y = -300;
+                    return;
+                }
+
+                if (player.sprite.body.y <= player.jumpMinY) {
+                    player.sprite.body.velocity.y *= -1;
+                }
 
                 if (player.sprite.body.y > player.maxY) {
                     PhaserGame.game.state.start('Dead');
