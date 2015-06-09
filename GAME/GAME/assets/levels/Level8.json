@@ -227,48 +227,8 @@
     ],
     "coins": [
         {
-            "x": 180,
-            "y": 510,
-            "skin": "coin"
-        },
-        {
-            "x": 280,
-            "y": 460,
-            "skin": "coin"
-        },
-        {
-            "x": 380,
-            "y": 410,
-            "skin": "coin"
-        },
-        {
-            "x": 480,
-            "y": 460,
-            "skin": "coin"
-        },
-        {
-            "x": 580,
-            "y": 510,
-            "skin": "coin"
-        },
-        {
-            "x": 870,
-            "y": 320,
-            "skin": "coin"
-        },
-        {
-            "x": 1300,
-            "y": 220,
-            "skin": "coin"
-        },
-        {
-            "x": 1450,
-            "y": 420,
-            "skin": "coin"
-        },
-        {
-            "x": 1380,
-            "y": 320,
+            "x": 260,
+            "y": 300,
             "skin": "coin"
         },
         {
@@ -292,6 +252,14 @@
             "skin": "coin"
         }
     ],
+    "texts": [
+    {
+      "x": 1760,
+      "y": 400,
+      "en": "Warning : These platforms can fall",
+      "fr": "Attention : Ces plateformes peuvent tomber"
+    }
+  ],
     "ennemis": [
         
         {
