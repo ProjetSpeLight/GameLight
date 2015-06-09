@@ -76,8 +76,8 @@ define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager', '
 
         create: function () {
             //call next state
-            this.state.start('MainMenu');
-            //this.state.start('Prelude');
+            //this.state.start('MainMenu');
+            this.state.start('Prelude');
         }
     };
 

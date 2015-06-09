@@ -200,14 +200,14 @@
   ],
   "texts": [
     {
-      "x": 1660,
+      "x": 1560,
       "y": 400,
       "en": "Mirror can reflect the photons \n that you throw",
       "fr": "Les miroirs permettent de réfléchir \n les photons tirés"
     },
     {
-      "x": 1660,
-      "y": 100,
+      "x": 1530,
+      "y": 60,
       "en": "Fire a photon at that switch \n to activate or deactivate it",
       "fr": "Tirez un photon sur cet interrupteur \n pour l'actionner"
     }

@@ -70,7 +70,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
             button.isCollidingPlayer = true;
 
             
-
+            
             if (playerSprite.body.touching.right) {
                 button.frame = 1;
                 //playerSprite.body.x += 10;
@@ -106,6 +106,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
                     button.buttonAction(button.args);
                 }
             }
+            
         },
 
         handlerOverlap: function (playerSprite, button) {
@@ -113,6 +114,8 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
             button.frame = 1;
             button.body.setSize(37, 8);
             playerSprite.body.y = button.body.y - playerSprite.body.height + 5;
+            playerSprite.body.velocity.x /= 2;
+            playerSprite.body.touching.down = true;
             counter++;
             if (counter == CONST_DELAY) {
                 counter = 0;
