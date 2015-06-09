@@ -1,4 +1,4 @@
-define(['phaser', 'app/touch'], function (Phaser, Touch) {
+define(['phaser', 'app/touch','app/music'], function (Phaser, Touch,music) {
 
     var screenTitle1;
     var screenTitle2;
@@ -29,6 +29,9 @@ define(['phaser', 'app/touch'], function (Phaser, Touch) {
             if(!this.game.device.desktop){
                 Touch.stop();
                 Touch.boutonsSwitch();
+            }
+            if (music.music != null) {
+                music.stopMusic();
             }
         },
 
