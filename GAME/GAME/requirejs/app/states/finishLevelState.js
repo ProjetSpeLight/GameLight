@@ -1,4 +1,4 @@
-define(['phaser', 'app/objects/time', 'app/touch', 'app/phasergame', 'app/cook'], function (Phaser, time, Touch, PhaserGame, cook) {
+define(['phaser', 'app/objects/time', 'app/touch', 'app/phasergame', 'app/cook', 'app/music'], function (Phaser, time, Touch, PhaserGame, cook,music) {
     // 'use strict';
 
     function FinishLevelState(game) { }
@@ -76,6 +76,7 @@ define(['phaser', 'app/objects/time', 'app/touch', 'app/phasergame', 'app/cook']
             if (this.game.nbLevel < this.game.state.states['Game'].currentLevel) {
                 this.state.start('MainMenu', true, false);
             } else {
+                music.stopMusic();
                 this.state.start('Game', true, false);
 
             }

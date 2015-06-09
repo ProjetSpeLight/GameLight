@@ -33,7 +33,17 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms'], func
                 var size = (mirrorObject.rightBound - mirrorObject.leftBound);
                 runner.middle.scale.setTo(size, 1);
 
+                mirrorObject.events.onKilled.add(runner.middle.kill, runner.middle, null);
+                mirrorObject.events.onKilled.add(runner.left.kill, runner.left, null);
+                mirrorObject.events.onKilled.add(runner.right.kill, runner.right, null);
+
+                mirrorObject.events.onRevived.add(runner.middle.revive, runner.middle, null);
+                mirrorObject.events.onRevived.add(runner.left.revive, runner.left, null);
+                mirrorObject.events.onRevived.add(runner.right.revive, runner.right, null);
+
             }
+            
+
 
             return runner;
 

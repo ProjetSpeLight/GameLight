@@ -7,6 +7,9 @@
     var BG_good;
     var BG_bad;
     var affichePlayer = false;
+    var boules = [];
+    var musique1;
+    var musique2;
 
     return {
         emitter: emitter,
@@ -15,9 +18,16 @@
         affichePlayer: affichePlayer,
 
         intro1: function () {
+
+            //True si le joueur est affiché à l'écran
             affichePlayer = false;
+
             //Fond NOIR
             PhaserGame.game.stage.backgroundColor = '#000000';
+
+            //Musique !
+            musique1 = PhaserGame.game.add.audio('conte');
+            musique1.play();
 
             //Définition des textes
             style = { font: "20px Arial", fill: "#ffffff", align: "center" };
@@ -66,13 +76,16 @@
             tween[3].delay(2000);            
             tween[2].chain(tween[3]);
             tween[2].start();
+
+            //Fondu musique
+            musique1.fadeTo(10000, 0);
         },
 
         setEmmiters: function () {
+            //La pluie
             emitter[0] = PhaserGame.game.add.emitter(PhaserGame.game.world.centerX, 0, 400);
 
             emitter[0].width = PhaserGame.game.world.width;
-            //emitter[0].angle = 30;
 
             emitter[0].makeParticles('rain');
 
@@ -85,26 +98,32 @@
             emitter[0].minRotation = 0;
             emitter[0].maxRotation = 0;
 
+            //Première Source
             emitter[1] = PhaserGame.game.add.emitter(PhaserGame.game.world.width/4, 500, 200);
 
             emitter[1].makeParticles('lumiere');
 
             emitter[1].setRotation(0, 0);
-            emitter[1].setAlpha(0.3, 0.8);
-            //emitter[1].setScale(0.1, 0.7);
+            emitter[1].setAlpha(0.3, 0.5);
+            emitter[1].setScale(0.1, 0.2, 0.1, 0.2);
             emitter[1].gravity = -200;
 
+            //Deuxième Source
             emitter[2] = PhaserGame.game.add.emitter(3*PhaserGame.game.world.width / 4, 400, 200);
 
             emitter[2].makeParticles('lumiere');
 
             emitter[2].setRotation(0, 0);
-            emitter[2].setAlpha(0.3, 0.8);
-            //emitter[2].setScale(0.3, 0.6);
+            emitter[2].setAlpha(0.3, 0.5);
+            emitter[2].setScale(0.1, 0.2, 0.1, 0.2);
             emitter[2].gravity = -400;
         },
 
         intro3: function () {
+            //Nouvelle musique
+            musique2 = PhaserGame.game.add.audio('desastre');
+            musique2.play();
+
             //Texte
             style = { font: "20px Arial", fill: "#ffffff", align: "center" };
             text[0] = PhaserGame.game.add.text(PhaserGame.game.world.width / 2, PhaserGame.game.world.height / 2, "Et un jour...", style);
@@ -112,8 +131,8 @@
             text[0].anchor.set(0.5);
 
             //Tween
-            tween[0] = PhaserGame.game.add.tween(text[0]).to({ alpha: 1 }, 4000, Phaser.Easing.Linear.None);
-            tween[1] = PhaserGame.game.add.tween(text[0]).to({ alpha: 0 }, 4000, Phaser.Easing.Linear.None);
+            tween[0] = PhaserGame.game.add.tween(text[0]).to({ alpha: 1 }, 2000, Phaser.Easing.Linear.None);
+            tween[1] = PhaserGame.game.add.tween(text[0]).to({ alpha: 0 }, 2000, Phaser.Easing.Linear.None);
             tween[1].delay(2000);
             tween[1].onComplete.add(this.intro4, this);
             tween[0].chain(tween[1]);
@@ -149,6 +168,9 @@
         },
 
         intro5: function () {
+            //Destruction du joli BG
+            this.BG_good.destroy();
+
             //Arret de emmeteurs lumière
             emitter[1].on = false;
             emitter[2].on = false;
@@ -173,16 +195,21 @@
             tween[0].chain(tween[1], tween[2], tween[3]);
             tween[0].start();
 
+            //Fondu musique
+            musique2.fadeTo(12000, 0);
 
         },
 
         intro6: function () {
 
+            musique1 = PhaserGame.game.add.audio('heros');
+            musique1.play();
+
             affichePlayer = true;
 
             //Définition du texte
             style = { font: "20px Arial", fill: "#000000", align: "center" };
-            text[0] = PhaserGame.game.add.text(PhaserGame.game.world.width / 1.5, PhaserGame.game.world.height / 4, "Aide nous...", style);
+            text[0] = PhaserGame.game.add.text(PhaserGame.game.world.width / 1.5, PhaserGame.game.world.height / 4, "\"Aide nous...\"", style);
             text[0].alpha = 0;
             text[0].anchor.set(0.5);
 
@@ -205,6 +232,7 @@
         },
 
         intro7: function () {
+            //Le joueur se retourne 4 fois
             player.sprite.frame = player.sprite.color.value * 9 + 0;
             PhaserGame.game.time.events.add(500, function () { player.sprite.frame = player.sprite.color.value * 9 + 5; }, this);
             PhaserGame.game.time.events.add(1000, function () { player.sprite.frame = player.sprite.color.value * 9 + 0; }, this);
@@ -213,7 +241,8 @@
             
         },
 
-        intro8 : function(){
+        intro8: function () {
+            //Le joueur marche à droite
             player.sprite.body.velocity.x = 75;
             player.sprite.animations.play('right' + player.sprite.color.name);
             PhaserGame.game.time.events.add(2000, function () {
@@ -225,8 +254,74 @@
             
         },
 
-        intro9: function() {
+        intro9: function () {
+            //Création des boules
+            for (i = 0; i < 3; ++i) {
+                boules[i] = this.createBoule(350 + 75*i, 350 + 20*i, i);
+                boules[i].alpha = 0;
+            }
+            //Définition des textes
+            style0 = { font: "20px Arial", fill: "#ff0000", align: "center" };
+            style1 = { font: "20px Arial", fill: "#0000ff", align: "center" };
+            style2 = { font: "20px Arial", fill: "#00ff00", align: "center" };
+            style3 = { font: "20px Arial", fill: "#000000", align: "center" };
+            text[0] = PhaserGame.game.add.text(boules[0].x, boules[0].y - 50 , "\"Trouve nous...\"", style0);
+            text[0].alpha = 0;
+            text[1] = PhaserGame.game.add.text(boules[1].x, boules[1].y - 50, "\"Nous te donnerons la force\"", style1);
+            text[1].alpha = 0;
+            text[2] = PhaserGame.game.add.text(boules[2].x, boules[2].y - 50, "\"Pour faire renaître la lumière dans ce monde\"", style2);
+            text[2].alpha = 0;
+            text[2].anchor.set(0.5);
+            text[3] = PhaserGame.game.add.text(PhaserGame.game.world.width / 1.5, PhaserGame.game.world.height / 4, "\"Va vite...\"", style3);
+            text[3].alpha = 0;
+            text[3].anchor.set(0.5);
 
+            //Définition de tous les tweens
+            tween[0] = PhaserGame.game.add.tween(text[0]).to({ alpha: 1 }, 1000, Phaser.Easing.Linear.None);
+            tween[1] = PhaserGame.game.add.tween(text[0]).to({ alpha: 0 }, 1000, Phaser.Easing.Linear.None);
+            tween[1].delay(1500);
+            tween[2] = PhaserGame.game.add.tween(text[1]).to({ alpha: 1 }, 1000, Phaser.Easing.Linear.None);
+            tween[3] = PhaserGame.game.add.tween(text[1]).to({ alpha: 0 }, 1000, Phaser.Easing.Linear.None);
+            tween[3].delay(1500);
+            tween[4] = PhaserGame.game.add.tween(text[2]).to({ alpha: 1 }, 1000, Phaser.Easing.Linear.None);
+            tween[5] = PhaserGame.game.add.tween(text[2]).to({ alpha: 0 }, 1000, Phaser.Easing.Linear.None);
+            tween[5].delay(1500);
+            tween[6] = PhaserGame.game.add.tween(text[3]).to({ alpha: 1 }, 1000, Phaser.Easing.Linear.None);
+            tween[7] = PhaserGame.game.add.tween(text[3]).to({ alpha: 0 }, 1000, Phaser.Easing.Linear.None);
+            tween[6].delay(500);
+            tween[7].delay(1500);
+            tween[8] = PhaserGame.game.add.tween(boules[0]).to({ alpha: 1 }, 500, Phaser.Easing.Linear.None);
+            tween[9] = PhaserGame.game.add.tween(boules[1]).to({ alpha: 1 }, 500, Phaser.Easing.Linear.None);
+            tween[10] = PhaserGame.game.add.tween(boules[2]).to({ alpha: 1 }, 500, Phaser.Easing.Linear.None);
+            tween[11] = PhaserGame.game.add.tween(boules[0]).to({ alpha: 0 }, 250, Phaser.Easing.Linear.None);
+            tween[12] = PhaserGame.game.add.tween(boules[1]).to({ alpha: 0 }, 250, Phaser.Easing.Linear.None);
+            tween[13] = PhaserGame.game.add.tween(boules[2]).to({ alpha: 0 }, 250, Phaser.Easing.Linear.None);
+            tween[8].chain(tween[0], tween[1], tween[9], tween[2], tween[3], tween[10], tween[4], tween[5], tween[11], tween[12], tween[13], tween[6], tween[7]);
+            tween[7].onComplete.add(this.intro10, this);
+            tween[8].start();
+        },
+
+        intro10: function () {
+            //Le joueur se déplace à droite et fondu du monde
+            player.sprite.body.velocity.x = 75;
+            player.sprite.animations.play('right' + player.sprite.color.name);
+            tween[0] = PhaserGame.game.add.tween(PhaserGame.game.world).to({ alpha: 0 }, 5000, Phaser.Easing.Linear.None);
+            tween[0].onComplete.add(this.finIntro, this);
+            tween[0].start();
+            musique1.fadeTo(5000, 0);
+        },
+
+        finIntro: function () {
+            PhaserGame.game.world.alpha = 1;
+            if (musique1 != null) {
+                musique1.destroy();
+            }
+            if (musique2 != null) {
+                musique2.destroy();
+            }
+            PhaserGame.game.input.keyboard.onPressCallback = null;
+            PhaserGame.game.input.touch.touchStartCallback = null;
+            PhaserGame.game.state.start('MainMenu');
         },
 
         flash: function () {
@@ -250,6 +345,16 @@
             var tween3 = PhaserGame.game.add.tween(rectangle).to({ alpha: 0 }, 1000, Phaser.Easing.Linear.None);
             tween1.chain(tween2, tween1_bis, tween3);
             tween1.start();
+        },
+
+        createBoule: function (xstart, ystart, color) {
+            var aux = PhaserGame.game.add.sprite(xstart, ystart, 'boules');
+            aux.scale.x = 0.6;
+            aux.scale.y = 0.6;
+            aux.frame = color * 4;
+            var tween = PhaserGame.game.add.tween(aux).to({ y: ystart + 30 }, 1000 + color * 100, Phaser.Easing.Linear.None, true, 0, -1, true);
+            tween.delay(color * 100);
+            return aux;
         }
     };
 });

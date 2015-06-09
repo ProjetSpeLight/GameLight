@@ -1,4 +1,4 @@
-﻿{
+{
     "worldBounds": {
         "leftBound": 0,
         "rightBound": 3000,
@@ -139,7 +139,8 @@
             "speed": {
                 "x": 150,
                 "y": 0
-            }
+            },
+            "type":"flying"
 
         }
     ],
@@ -158,32 +159,32 @@
 
         },
         {
-            "x": 350,
-            "y": 270,
+            "x": 380,
+            "y": 250,
             "en": "You can gain a primary color here \n press <DOWN> on the platform",
             "fr": "Sur une plateforme colorée, \n appuyes sur la flèche du bas \n pour gagner cette couleur"
         },
         {
-            "x": 760,
+            "x": 780,
             "y": 400,
             "en": "The pikes and enemies \n will make you lose your color \n before they can kill you",
             "fr": "Les piques et ennemis \n te font perdre tes couleurs \n avant de pouvoir te tuer."
         },
         {
-            "x": 1180,
+            "x": 1080,
             "y": 300,
             "en": "Falling out of the map \n will get you killed though",
             "fr": "Tomber dans un trou \n te tueras instantanément en revanche"
         },
         {
-            "x": 1400,
+            "x": 1350,
             "y": 400,
             "en": "To kill the enemies \n shoot some photons at him with <SPACE>",
             "fr": "Pour tuer tes ennemis \n tire leur des photons dessus avec la barre d'espace"
         },
         {
-            "x": 2450,
-            "y": 250,
+            "x": 2650,
+            "y": 200,
             "en": "Here's the end of the level",
             "fr": "Voici la fin du niveau!"
         }
