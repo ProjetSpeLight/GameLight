@@ -9,8 +9,8 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
     // Object displaying the score
     var scoreText;
 
-    //var adresse_json = "http://localhost:4200/assets/levels/";
-    var adresse_json = "http://projetspelight.github.io/assets/levels/";
+    var adresse_json = "http://localhost:4200/assets/levels/";
+    //var adresse_json = "http://projetspelight.github.io/assets/levels/";
 
 
     GameState.prototype = {
@@ -76,12 +76,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
             // Signal binding for the pause mode
             PhaserGame.game.input.onDown.add(pause.unpause, self);
             
-           
-
-
-            musicObject.create();
-
-
+        
         },
 
         update: function () {
