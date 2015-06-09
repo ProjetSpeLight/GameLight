@@ -86,7 +86,7 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
 
             // The player and its settings            
             this.sprite = PhaserGame.game.add.sprite(x, y, 'dude');
-            this.sprite.scale = new Phaser.Point(0.6, 0.6);
+            //this.sprite.scale = new Phaser.Point(0.6, 0.6);
 
 
             //  We need to enable physics on the player
