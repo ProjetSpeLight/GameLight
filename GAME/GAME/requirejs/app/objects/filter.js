@@ -75,20 +75,21 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/color'], function (Phaser
                     turned = filterData.turned;
                 }
 
-
-
                 var size = 1;
                 if (filterData.size != null) {
                     size = filterData.size;
                 }
 
-
-                if (turned)
-                    filter.angle = 90;
-
+                var height = filter.body.height;
+                var width = filter.body.width;
 
                 filter.scale.setTo(1, size);
 
+                if (turned) {
+                    filter.anchor.setTo(0.5, 0.5);
+                    filter.angle = 90;          
+                    filter.body.setSize(size*height, width / 2);
+                }
             }
         },
 
