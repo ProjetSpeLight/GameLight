@@ -17,6 +17,8 @@ define(['app/phasergame','app/objects/time'], function (PhaserGame,time) {
             this.music.stop();
         },
         
+        // @function updtade
+        /// allow the music to loop on every browser ( chrome need this especially)
         update: function () {
             //we check if it is not the first loop 
             // to avoid a useless restart 
