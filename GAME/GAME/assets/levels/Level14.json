@@ -274,16 +274,6 @@
       }
     },
     {
-      "x": 350,
-      "y": 600,
-      "color": "Red",
-      "action": {
-        "groupId": 0,
-        "id": 0,
-        "actionName": "actionDeleteObject"
-      }
-    },
-    {
       "x": 1900,
       "y": 240,
       "color": "Green",
