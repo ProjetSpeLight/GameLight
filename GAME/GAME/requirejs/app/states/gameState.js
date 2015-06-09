@@ -232,6 +232,13 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
             /* for (var i = 0 ; i < objectsManager.EnumModule.MIRROR.refGroup.children.length ; i++) {
                  PhaserGame.game.debug.body(objectsManager.EnumModule.MIRROR.refGroup.children[i]);
              }*/
+            /*for (var i = 0 ; i < objectsManager.EnumModule.PLATFORM.refGroup.children.length ; i++) {
+                var child = objectsManager.EnumModule.PLATFORM.refGroup.children[i];
+                if (child.spriteColor != null) {
+                    PhaserGame.game.debug.spriteInfo(child.spriteColor, 30, 100*i);
+                }
+            }*/
+            
         },
 
 
