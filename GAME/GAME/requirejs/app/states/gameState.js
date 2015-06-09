@@ -23,8 +23,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
                     this.load.json('level0', adresse_json + 'Tutoriel.json');
                 }
             } else {
-                //if (!PhaserGame.game.cache.checkJSONKey('level' + this.currentLevel)) {
-                if(true){
+                if (!PhaserGame.game.cache.checkJSONKey('level' + this.currentLevel)) {
                     this.load.json('level' + this.currentLevel, adresse_json + 'Level' + this.currentLevel + '.json');
                 }
             }
@@ -62,7 +61,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
             }
 
             // Initialization of the label displaying the score
-            scoreText = PhaserGame.game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
+            scoreText = PhaserGame.game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#ffffff' });
             scoreText.fixedToCamera = true;
 
              musicObject.create();
