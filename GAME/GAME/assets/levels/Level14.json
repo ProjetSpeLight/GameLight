@@ -7,8 +7,8 @@
   },
   "background": "sky",
   "playerStart": {
-    "x": 1100,
-    "y": 1250
+    "x": 50,
+    "y": 600
   },
   "platforms": [
     {
@@ -458,6 +458,11 @@
     }
 
   ],
+    "time": [
+        {
+            "value": 180
+        }
+    ],
   "ends": [
     { 
      "x": 50,
