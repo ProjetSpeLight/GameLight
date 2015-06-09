@@ -7,8 +7,8 @@
   },
   "background": "sky",
   "playerStart": {
-    "x": 100,
-    "y": 650
+    "x": 1100,
+    "y": 1250
   },
   "platforms": [
     {
@@ -314,21 +314,21 @@
       "size": 3
     },
     {
-      "x": 1300,
+      "x": 1100,
       "y": 1050,
       "color": "Red",
       "size": 6,
       "turned": true
     },
     {
-      "x": 1300,
+      "x": 1100,
       "y": 1070,
       "color": "Blue",
       "size": 6,
       "turned": true
     },
     {
-      "x": 1300,
+      "x": 1100,
       "y": 1100,
       "color": "Green",
       "size": 6,
