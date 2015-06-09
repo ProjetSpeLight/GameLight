@@ -20,6 +20,9 @@
             //Son
             this.load.audio('son_eclair', 'assets/audio/eclair.mp3');
             this.load.audio('son_pluie', 'assets/audio/pluie.mp3');
+            this.load.audio('conte', 'assets/audio/Conte.mp3');
+            this.load.audio('heros', 'assets/audio/Heros.mp3');
+            this.load.audio('desastre', 'assets/audio/Desastre.mp3');
         },
 
         create: function () {
