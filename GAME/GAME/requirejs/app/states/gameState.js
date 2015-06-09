@@ -1,5 +1,5 @@
 
-define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame', 'app/touch', 'app/objects/time', 'app/objects/objectsManager', 'app/music', 'app/objects/switch'], function (Phaser, createLevel, player, pause, PhaserGame, Touch, time, objectsManager, music, moduleSwitch) {
+define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame', 'app/touch', 'app/objects/time', 'app/objects/objectsManager', 'app/music', 'app/objects/switch'], function (Phaser, createLevel, player, pause, PhaserGame, Touch, time, objectsManager, musicObject, moduleSwitch) {
 
     function GameState(game) { }
 
@@ -77,7 +77,8 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
             // Signal binding for the pause mode
             PhaserGame.game.input.onDown.add(pause.unpause, self);
 
-            music.create();
+            musicObject.create();
+          
         },
 
         update: function () {
@@ -167,8 +168,9 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
 
                 // Update of the score
                 scoreText.text = 'Score: ' + PhaserGame.score;
-
-
+                
+                musicObject.update();
+                
                 Touch.update();
 
                 objectsManager.updateObjects();
@@ -188,7 +190,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
 
                 // We stop the game when "ESC" is pushed 
                 if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.ESC)) {
-                    if (!PhaserGame.game.paused) {
+                     if (!PhaserGame.game.paused) {
                         pause.gamePaused();
                     }
                 }
