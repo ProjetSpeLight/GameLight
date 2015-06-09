@@ -1,9 +1,11 @@
 define([
     'phaser',
-    'app/cook'
+    'app/cook',
+    'app/music'
 ], function (
     Phaser,
-     cook
+     cook,
+     music
 ) {
     function ChooseLevelState(game) { };
 
@@ -52,6 +54,9 @@ define([
 
         down: function (button) {
             button.refGame.game.state.states['Game'].currentLevel = button.numLevel;
+            if (music.music != null) {
+                music.stopMusic();
+            }
             button.refGame.state.start('Game');
         },
 

@@ -31,7 +31,7 @@ define([], function () {
         },
 
         restartclick: function () {
-            this.state.start('Game');
+            this.state.start('RestartGame');
         },
 
         update: function () {
