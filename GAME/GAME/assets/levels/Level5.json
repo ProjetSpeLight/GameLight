@@ -105,6 +105,13 @@
             "color": "Red"
         }
     ],
+    "texts": [
+    {
+      "x": 950,
+      "y": 10,
+      "fr": "Le filtre soustrait les \n couleurs différentes de la \n sienne pour les photons aussi "
+    }
+  ],
     "mirrors": [
          {
             "x": 950,
@@ -167,6 +174,11 @@
                 "y": 5
             },
             "minEnergy": 10
+        }
+    ],
+    "time": [
+        {
+            "value": 70
         }
     ],
     "ends": [

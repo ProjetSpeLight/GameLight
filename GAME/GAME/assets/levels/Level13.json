@@ -7,8 +7,8 @@
     },
     "background": "sky",
     "playerStart": {
-        "x": 507,
-        "y": 40 
+        "x": 300,
+        "y": 1400 
     },
     "platforms": [
         {
@@ -433,6 +433,11 @@
             },
             "minEnergy": 5
         } 
+    ],
+    "time": [
+        {
+            "value": 120
+        }
     ],
     "ennemis": [
         {

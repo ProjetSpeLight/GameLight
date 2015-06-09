@@ -110,6 +110,11 @@
             "immovable": true
         }
     ],
+    "time": [
+        {
+            "value": 70
+        }
+    ],
     "backAndForthPlatforms": [
         
     ],
