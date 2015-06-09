@@ -64,7 +64,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
             scoreText = PhaserGame.game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#ffffff' });
             scoreText.fixedToCamera = true;
 
-             musicObject.create();
+            musicObject.create();
             
             // Initialization of the pause button
             var button_pause = PhaserGame.game.add.sprite(750, 20, 'pause');
