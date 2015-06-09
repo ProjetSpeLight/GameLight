@@ -131,6 +131,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms', 'app/
                     mirrorObject.id = mirrorData.id;
                 }
 
+                
                 mirrorObject.runner = runner.createObject(mirrorObject);
                 
 
