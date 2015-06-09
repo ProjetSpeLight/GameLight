@@ -1,5 +1,5 @@
-/**
-  * This module defines the sprite representing the ennemis
+﻿/**
+  * This module defines the sprite representing the enemies
   *
   */
 

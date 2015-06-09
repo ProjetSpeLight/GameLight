@@ -1,5 +1,4 @@
-define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], function (Phaser, PhaserGame, player, action) {
-
+﻿define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], function (Phaser, PhaserGame, player, action) {
 
     /// @function triggerAction
     /// Handler called when a photon hits a switch : trigger the associated action
@@ -143,8 +142,6 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
 
                 // Boolean to display the camera animation only once
                 switchObject.hasPlayedAnimation = false;
-
-
             }
 
         },

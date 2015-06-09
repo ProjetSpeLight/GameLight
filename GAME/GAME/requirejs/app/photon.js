@@ -1,4 +1,4 @@
-/**
+﻿/**
  * This file implements the functions related to the photon
  */
 

@@ -1,5 +1,4 @@
-define(['phaser', 'app/objects/time', 'app/touch', 'app/phasergame', 'app/cookie', 'app/music'], function (Phaser, time, Touch, PhaserGame, cookie,music) {
-    // 'use strict';
+define(['phaser', 'app/objects/time', 'app/touch', 'app/phasergame', 'app/cookie', 'app/music'], function (Phaser, time, Touch, PhaserGame, cookie, music) {
 
     function FinishLevelState(game) { }
 
@@ -7,7 +6,7 @@ define(['phaser', 'app/objects/time', 'app/touch', 'app/phasergame', 'app/cookie
 
         create: function () {
 
-            //Fond
+            // Background
             title = this.game.add.sprite(0, 0, 'BG_bad');
             var coef = 600 / 720;
             title.scale.x = coef;
