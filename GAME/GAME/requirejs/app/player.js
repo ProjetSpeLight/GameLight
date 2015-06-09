@@ -15,16 +15,13 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
     /// Initialize the different movements animations
     /// {Phaser.Sprite} the object player itself
     /// {Array} The enumeration of the colors with their different properties
-    function initializePlayerAnimations(sprite, ColorEnum) {
-        for (var color in ColorEnum) {
-            var vcolor = ColorEnum[color];
-            // Annimation when the sprite moves to the left
-            sprite.animations.add('left', [0, 1, 0, 2], 4, true);
-            // Animation when the sprite moves to the right
-            sprite.animations.add('right', [4, 5, 4, 6], 4, true);
-            // Animation when for the game over
-            sprite.animations.add('finalDeath', [8, 7, 8, 9], 4, true);
-        }
+    function initializePlayerAnimations(sprite) {
+        // Annimation when the sprite moves to the left
+        sprite.animations.add('left', [0, 1, 0, 2], 4, true);
+        // Animation when the sprite moves to the right
+        sprite.animations.add('right', [4, 5, 4, 6], 4, true);
+        // Animation when for the game over
+        sprite.animations.add('finalDeath', [8, 7, 8, 9], 4, true);
     }
 
     return {
@@ -130,7 +127,7 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
             this.sprite.invincible = false;
 
             // Initialization of the player animations
-            initializePlayerAnimations(this.sprite, Color.ColorEnum);
+            initializePlayerAnimations(this.sprite);
 
             // Initialization of an attribute to indicate where the player look at
             this.sprite.lookRight = true;
