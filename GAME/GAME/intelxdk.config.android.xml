@@ -7,10 +7,14 @@
 <name>GameLight</name>
 <content src="index.html"/>
 <access origin="*"/>
+<icon platform="android" src="icons/icon36.png" density="ldpi" width="36" height="36"/>
+<icon platform="android" src="icons/icon48.png" density="mdpi" width="48" height="48"/>
+<icon platform="android" src="icons/icon72.png" density="hdpi" width="72" height="72"/>
+<icon platform="android" src="icons/icon96.png" density="xhdpi" width="96" height="96"/>
 <intelxdk:plugin intelxdk:name="Accelerometer" intelxdk:value="org.apache.cordova.device-motion" intelxdk:version="0.2.11"/>
 <preference name="android-minSdkVersion" value="10"/>
 <preference name="android-targetSdkVersion" value="19"/>
 <preference name="android-installLocation" value="auto"/>
 <preference name="Orientation" value="landscape"/>
-<preference name="Fullscreen" value="false"/>
+<preference name="Fullscreen" value="true"/>
 <!--creationInfo:{"src":"","projectTypeName":"com.intel.xdk.projecttype.jsapp"}--></widget>
