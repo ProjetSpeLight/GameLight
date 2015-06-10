@@ -308,12 +308,12 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/touch'], function (Phaser
         /// @function preloadObjectImage
         /// Preloads the different images / spritesheets used by this module
         preloadObjectsImages: function () {
-            PhaserGame.game.load.image('platform', 'assets/platform.png');
-            PhaserGame.game.load.image('platformFissure', 'assets/platformFissure.png');
-            PhaserGame.game.load.image('platformRed', 'assets/platform_Rouge.png');
-            PhaserGame.game.load.image('platformBlue', 'assets/platform_Bleu.png');
-            PhaserGame.game.load.image('platformGreen', 'assets/platform_Vert.png');
-            PhaserGame.game.load.spritesheet('color', 'assets/plateformeCouleur.png', 100, 100);
+            PhaserGame.game.load.image('platform', 'assets/Objects/platform.png');
+            PhaserGame.game.load.image('platformFissure', 'assets/Objects/platformFissure.png');
+            PhaserGame.game.load.image('platformRed', 'assets/Objects/platform_Rouge.png');
+            PhaserGame.game.load.image('platformBlue', 'assets/Objects/platform_Bleu.png');
+            PhaserGame.game.load.image('platformGreen', 'assets/Objects/platform_Vert.png');
+            PhaserGame.game.load.spritesheet('color', 'assets/Objects/plateformeCouleur.png', 100, 100);
         },
 
         // Create all the object of type platform

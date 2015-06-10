@@ -21,7 +21,7 @@
         /// @function preloadObjectImage
         /// Preloads the different images / spritesheets used by this module
         preloadObjectsImages: function () {
-            PhaserGame.game.load.spritesheet('button', 'assets/bouton.png', WIDTH_BUTTON, HEIGHT_BUTTON_RELEASED);
+            PhaserGame.game.load.spritesheet('button', 'assets/Objects/bouton.png', WIDTH_BUTTON, HEIGHT_BUTTON_RELEASED);
         },
 
         /// @function createObjectsGroup

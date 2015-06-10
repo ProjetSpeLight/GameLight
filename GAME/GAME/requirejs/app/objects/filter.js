@@ -39,12 +39,12 @@
         /// @function preloadObjectImage
         /// Preloads the different images / spritesheets used by this module
         preloadObjectsImages: function () {
-            PhaserGame.game.load.image('filterBlue', 'assets/Filters/FilterBlue.png');
-            PhaserGame.game.load.image('filterRed', 'assets/Filters/FilterRed.png');
-            PhaserGame.game.load.image('filterGreen', 'assets/Filters/FilterGreen.png');
-            PhaserGame.game.load.image('filterMagenta', 'assets/Filters/FilterMagenta.png');
-            PhaserGame.game.load.image('filterYellow', 'assets/Filters/FilterYellow.png');
-            PhaserGame.game.load.image('filterCyan', 'assets/Filters/FilterCyan.png');
+            PhaserGame.game.load.image('filterBlue', 'assets/Objects/Filters/FilterBlue.png');
+            PhaserGame.game.load.image('filterRed', 'assets/Objects/Filters/FilterRed.png');
+            PhaserGame.game.load.image('filterGreen', 'assets/Objects/Filters/FilterGreen.png');
+            PhaserGame.game.load.image('filterMagenta', 'assets/Objects/Filters/FilterMagenta.png');
+            PhaserGame.game.load.image('filterYellow', 'assets/Objects/Filters/FilterYellow.png');
+            PhaserGame.game.load.image('filterCyan', 'assets/Objects/Filters/FilterCyan.png');
         },
 
         /// @function createObjectsGroup

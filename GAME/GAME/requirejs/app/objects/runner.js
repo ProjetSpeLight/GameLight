@@ -2,17 +2,7 @@
 
     return {
         // The group of sprites
-        group: null,
-
-        /// @function preloadObjectImage
-        /// Preloads the different images / spritesheets used by this module
-        preloadObjectsImages: function () {
-            PhaserGame.game.load.image('mirrorFixed', 'assets/mirror.png');
-            PhaserGame.game.load.image('mirrorMovable', 'assets/mirror.png');
-            PhaserGame.game.load.image('mirrorRunnerLeft', 'assets/mirror/runnerLeft.png');
-            PhaserGame.game.load.image('mirrorRunnerMiddle', 'assets/mirror/runnerMiddle.png');
-            PhaserGame.game.load.image('mirrorRunnerRight', 'assets/mirror/runnerRight.png');
-        },
+        group: null,       
 
         /// @function createObjectsGroup
         /// Creation of the runner of a mobile mirror

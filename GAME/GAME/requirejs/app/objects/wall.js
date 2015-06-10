@@ -18,7 +18,7 @@
         /// @function preloadObjectImage
         /// Preloads the different images / spritesheets used by this module
         preloadObjectsImages: function () {
-            PhaserGame.game.load.image('wall', 'assets/wall.png');
+            PhaserGame.game.load.image('wall', 'assets/Objects/wall.png');
         },
 
         /// @function createObjectsGroup

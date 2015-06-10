@@ -21,7 +21,7 @@
         /// @function preloadObjectImage
         /// Preloads the different images / spritesheets used by this module
         preloadObjectsImages: function () {
-            PhaserGame.game.load.image('coin', 'assets/star.png');
+            PhaserGame.game.load.image('coin', 'assets/Objects/star.png');
         },
 
         /// @function createObjectsGroup

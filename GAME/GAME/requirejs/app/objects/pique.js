@@ -18,7 +18,7 @@
         /// @function preloadObjectImage
         /// Preloads the different images / spritesheets used by this module
         preloadObjectsImages: function () {
-            PhaserGame.game.load.image('pique', 'assets/pique.png');
+            PhaserGame.game.load.image('pique', 'assets/Objects/pique.png');
         },
 
 

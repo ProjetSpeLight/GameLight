@@ -39,8 +39,8 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phase
         /// @function preloadObjectImage
         /// Preloads the different images / spritesheets used by this module
         preloadObjectsImages: function () {
-            PhaserGame.game.load.spritesheet('normalEnemy', 'assets/Ennemi_fat.png', 60, 100);
-            PhaserGame.game.load.spritesheet('flyingEnemy', 'assets/Fantome.png', 75, 60);
+            PhaserGame.game.load.spritesheet('normalEnemy', 'assets/Objects/NormalEnemy.png', 60, 100);
+            PhaserGame.game.load.spritesheet('flyingEnemy', 'assets/Objects/Fantome.png', 75, 60);
 
         },
 

@@ -66,7 +66,6 @@ function (Phaser,
             coin.preloadObjectsImages();
             end.preloadObjectsImages();
             wall.preloadObjectsImages();
-            runner.preloadObjectsImages();
         },
 
         /// @function createObjects

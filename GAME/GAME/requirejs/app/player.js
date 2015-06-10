@@ -56,14 +56,14 @@
 
 
         preloadPlayer: function () {
-            PhaserGame.game.load.spritesheet('playerBlack', 'assets/player/black.png', 60, 60);
-            PhaserGame.game.load.spritesheet('playerRed', 'assets/player/red.png', 60, 60);
-            PhaserGame.game.load.spritesheet('playerBlue', 'assets/player/blue.png', 60, 60);
-            PhaserGame.game.load.spritesheet('playerGreen', 'assets/player/green.png', 60, 60);
-            PhaserGame.game.load.spritesheet('playerMagenta', 'assets/player/magenta.png', 60, 60);
-            PhaserGame.game.load.spritesheet('playerYellow', 'assets/player/yellow.png', 60, 60);
-            PhaserGame.game.load.spritesheet('playerCyan', 'assets/player/cyan.png', 60, 60);
-            PhaserGame.game.load.spritesheet('playerWhite', 'assets/player/white.png', 60, 60);
+            PhaserGame.game.load.spritesheet('playerBlack', 'assets/Objects/player/black.png', 60, 60);
+            PhaserGame.game.load.spritesheet('playerRed', 'assets/Objects/player/red.png', 60, 60);
+            PhaserGame.game.load.spritesheet('playerBlue', 'assets/Objects/player/blue.png', 60, 60);
+            PhaserGame.game.load.spritesheet('playerGreen', 'assets/Objects/player/green.png', 60, 60);
+            PhaserGame.game.load.spritesheet('playerMagenta', 'assets/Objects/player/magenta.png', 60, 60);
+            PhaserGame.game.load.spritesheet('playerYellow', 'assets/Objects/player/yellow.png', 60, 60);
+            PhaserGame.game.load.spritesheet('playerCyan', 'assets/Objects/player/cyan.png', 60, 60);
+            PhaserGame.game.load.spritesheet('playerWhite', 'assets/Objects/player/white.png', 60, 60);
         },
 
 

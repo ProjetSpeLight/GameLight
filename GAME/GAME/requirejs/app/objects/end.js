@@ -11,7 +11,7 @@
         /// @function preloadObjectImage
         /// Preloads the different images / spritesheets used by this module
         preloadObjectsImages: function () {
-            PhaserGame.game.load.image('end', 'assets/diamond.png');
+            PhaserGame.game.load.image('end', 'assets/Objects/diamond.png');
         },
 
         /// @function createObjectsGroup
