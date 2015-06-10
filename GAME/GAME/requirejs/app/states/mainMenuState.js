@@ -52,6 +52,9 @@
         },
 
         createTitle: function () {
+            if (musique != null) {
+                musique.stop();
+            }
             musique = PhaserGame.game.add.audio('Titre');
             musique.play();
             title = this.game.add.sprite(0, 0, 'BG_bad');
