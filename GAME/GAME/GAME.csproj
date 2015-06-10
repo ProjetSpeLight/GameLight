@@ -21,7 +21,7 @@
     <Content Include="app.css" />
     <Content Include="index.html" />
     <Content Include="requirejs\app\color.js" />
-    <Content Include="requirejs\app\cook.js" />
+    <Content Include="requirejs\app\cookie.js" />
     <Content Include="requirejs\app\createLevel.js" />
     <Content Include="requirejs\app\cordovaStart.js" />
     <Content Include="requirejs\app\cutscenes\intro.js" />
