@@ -1,6 +1,10 @@
 ﻿define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser, photon, PhaserGame, Color) {
 
     /***********  CONSTANTS ***************/
+
+    var WIDTH_PLAYER = 60;
+    var HEIGHT_PLAYER = 60;
+
     var NUM_FRAME_NORMAL = 3; // Default frame of the spritesheet
 
     var INVINCIBILITY_DURATION = 120; // Invincibility duration of the player when he loses a color (in number of call of update(), 60 calls of update() per second)
@@ -56,14 +60,16 @@
 
 
         preloadPlayer: function () {
-            PhaserGame.game.load.spritesheet('playerBlack', 'assets/Objects/player/black.png', 60, 60);
-            PhaserGame.game.load.spritesheet('playerRed', 'assets/Objects/player/red.png', 60, 60);
-            PhaserGame.game.load.spritesheet('playerBlue', 'assets/Objects/player/blue.png', 60, 60);
-            PhaserGame.game.load.spritesheet('playerGreen', 'assets/Objects/player/green.png', 60, 60);
-            PhaserGame.game.load.spritesheet('playerMagenta', 'assets/Objects/player/magenta.png', 60, 60);
-            PhaserGame.game.load.spritesheet('playerYellow', 'assets/Objects/player/yellow.png', 60, 60);
-            PhaserGame.game.load.spritesheet('playerCyan', 'assets/Objects/player/cyan.png', 60, 60);
-            PhaserGame.game.load.spritesheet('playerWhite', 'assets/Objects/player/white.png', 60, 60);
+            PhaserGame.game.load.spritesheet('playerBlack', 'assets/Objects/player/black.png', WIDTH_PLAYER, HEIGHT_PLAYER);
+            PhaserGame.game.load.spritesheet('playerRed', 'assets/Objects/player/red.png', WIDTH_PLAYER, HEIGHT_PLAYER);
+            PhaserGame.game.load.spritesheet('playerBlue', 'assets/Objects/player/blue.png', WIDTH_PLAYER, HEIGHT_PLAYER);
+            PhaserGame.game.load.spritesheet('playerGreen', 'assets/Objects/player/green.png', WIDTH_PLAYER, HEIGHT_PLAYER);
+            PhaserGame.game.load.spritesheet('playerMagenta', 'assets/Objects/player/magenta.png', WIDTH_PLAYER, HEIGHT_PLAYER);
+            PhaserGame.game.load.spritesheet('playerYellow', 'assets/Objects/player/yellow.png', WIDTH_PLAYER, HEIGHT_PLAYER);
+            PhaserGame.game.load.spritesheet('playerCyan', 'assets/Objects/player/cyan.png', WIDTH_PLAYER, HEIGHT_PLAYER);
+            PhaserGame.game.load.spritesheet('playerWhite', 'assets/Objects/player/white.png', WIDTH_PLAYER, HEIGHT_PLAYER);
+
+            photon.preloadPhoton();
         },
 
 

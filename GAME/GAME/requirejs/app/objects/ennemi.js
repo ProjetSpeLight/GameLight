@@ -6,6 +6,18 @@
 define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phaser, PhaserGame, player, photon) {
 
 
+    /********* CONSTANTS ************/
+    var WIDTH_NORMAL_ENEMY = 60;
+    var HEIGHT_NORMAL_ENEMY = 100;
+
+    var WIDTH_FLYING_ENEMY = 75;
+    var HEIGHT_FLYING_ENEMY = 60;
+
+
+    /********* END CONSTANTS ************/
+
+
+
 
     function killEnnemi(photon, enemy) {
         photon.kill();
@@ -39,8 +51,8 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phase
         /// @function preloadObjectImage
         /// Preloads the different images / spritesheets used by this module
         preloadObjectsImages: function () {
-            PhaserGame.game.load.spritesheet('normalEnemy', 'assets/Objects/NormalEnemy.png', 60, 100);
-            PhaserGame.game.load.spritesheet('flyingEnemy', 'assets/Objects/Fantome.png', 75, 60);
+            PhaserGame.game.load.spritesheet('normalEnemy', 'assets/Objects/NormalEnemy.png', WIDTH_NORMAL_ENEMY, HEIGHT_NORMAL_ENEMY);
+            PhaserGame.game.load.spritesheet('flyingEnemy', 'assets/Objects/Fantome.png', WIDTH_FLYING_ENEMY, HEIGHT_FLYING_ENEMY);
 
         },
 
