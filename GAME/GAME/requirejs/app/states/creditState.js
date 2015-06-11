@@ -1,25 +1,22 @@
-define(['phaser', 'app/cookie', 'app/music'], function (Phaser, cookie, music) {
+define([], function () {
 
     function CreditState(game) { };
 
     CreditState.prototype = {
         create: function () {
-            // Background
-            title = this.game.add.sprite(0, 0, 'BG_bad');
-            var coef = 600 / 720;
-            title.scale.x = coef;
-            title.scale.y = coef;
-
+            // Background with the credits
+            title = this.game.add.sprite(0, 0, 'Credits');
+            
             if (!this.game.device.desktop) {
                 Touch.stop();
             }
 
-            var button_menu = this.add.button(400, 210, 'RetMenu', this.returnMenu, this);
-            button_menu.name = 'Returnmenu';
-            button_menu.anchor.setTo(0.5, 0.5);
-            button_menu.fixedToCamera = true;
-
-            
+            // Button to come back to the Main Menu
+            var button_retour = this.add.button(700, 60, 'retour', this.returnMenu, this, 1, 0, 1);
+            button_retour.name = 'play';
+            button_retour.anchor.setTo(0.5, 0.5);
+            button_retour.scale.x = 0.7;
+            button_retour.scale.y = 0.7;
 
         },
 
@@ -27,9 +24,6 @@ define(['phaser', 'app/cookie', 'app/music'], function (Phaser, cookie, music) {
         returnMenu: function () {
             this.game.state.start('MainMenu');
         }
-
-
-
 
     };
 

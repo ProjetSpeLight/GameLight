@@ -47,8 +47,7 @@ define(['phaser', 'app/touch', 'app/music', 'app/cutscenes/intro', 'app/objects/
         },
 
         help: function () {
-            musique.stop();
-            this.state.start('Credit');
+           this.state.start('Credit');
         },
 
         createTitle: function () {
