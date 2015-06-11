@@ -1,4 +1,4 @@
-﻿define(['phaser', 'app/touch', 'app/music', 'app/cutscenes/intro', 'app/objects/time', 'app/phasergame'], function (Phaser, Touch, music, Intro, time, PhaserGame) {
+define(['phaser', 'app/touch', 'app/music', 'app/cutscenes/intro', 'app/objects/time', 'app/phasergame'], function (Phaser, Touch, music, Intro, time, PhaserGame) {
 
 
     var musique;
@@ -48,7 +48,7 @@
 
         help: function () {
             musique.stop();
-            this.state.start('FinishLevel');
+            this.state.start('Credit');
         },
 
         createTitle: function () {
