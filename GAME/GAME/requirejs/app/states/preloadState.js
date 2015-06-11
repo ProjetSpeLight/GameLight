@@ -1,4 +1,4 @@
-define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager', 'app/music', 'app/player'], function (Phaser, pause, PhaserGame, Manager, music, player) {
+﻿define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager', 'app/music', 'app/player'], function (Phaser, pause, PhaserGame, Manager, music, player) {
 
     function PreloadState(game) { }
 

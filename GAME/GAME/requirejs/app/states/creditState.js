@@ -1,12 +1,12 @@
-define([], function () {
+﻿define([], function () {
 
     function CreditState(game) { };
 
     CreditState.prototype = {
         create: function () {
             // Background with the credits
-            title = this.game.add.sprite(0, 0, 'Credits');
-            
+            var title = this.game.add.sprite(0, 0, 'Credits');
+
             if (!this.game.device.desktop) {
                 Touch.stop();
             }
@@ -20,7 +20,7 @@ define([], function () {
 
         },
 
-       
+
         returnMenu: function () {
             this.game.state.start('MainMenu');
         }

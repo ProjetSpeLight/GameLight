@@ -1,4 +1,4 @@
-(function () {
+﻿(function () {
 
     requirejs.config({
         baseUrl: "requirejs/",
@@ -51,7 +51,7 @@
         PhaserGame.game.state.add('FinishLevel', FinishLevelState);
         PhaserGame.game.state.add('ChooseLevel', ChooseLevelState);
         PhaserGame.game.state.add('RestartGame', RestartGameState);
-         PhaserGame.game.state.add('Credit', CreditState);
+        PhaserGame.game.state.add('Credit', CreditState);
         PhaserGame.game.state.add('Dead', DeadState);
         PhaserGame.game.state.add('Prelude', PreludeState);
         PhaserGame.game.state.start('Boot');
