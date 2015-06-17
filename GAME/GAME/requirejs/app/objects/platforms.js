@@ -330,9 +330,11 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/touch'], function (Phaser
 
         // Update the movement of moving platforms
         updateObjects: function () {
-            PhaserGame.game.physics.arcade.overlap(player.refPhotons.photons, this.group, player.refPhotons.killPhoton);
-            PhaserGame.game.physics.arcade.collide(player.sprite, this.group, makeColor, processColor, PhaserGame);
-            PhaserGame.game.physics.arcade.collide(player.sprite, this.group);
+            if (!PhaserGame.dead) {
+                PhaserGame.game.physics.arcade.overlap(player.refPhotons.photons, this.group, player.refPhotons.killPhoton);
+                PhaserGame.game.physics.arcade.collide(player.sprite, this.group, makeColor, processColor, PhaserGame);
+                PhaserGame.game.physics.arcade.collide(player.sprite, this.group);
+            }
             updateLoopingPlatforms();
             updateBackAndForthPlatforms();
             updateSpriteColor(this.group);

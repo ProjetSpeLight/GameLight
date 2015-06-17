@@ -101,8 +101,10 @@
                     PhaserGame.game.camera.unfollow();
                     this.sprite.animations.stop();
                     this.sprite.body.velocity.x = 0;
-                    this.sprite.body.velocity.y = 0;
-                    this.sprite.body.gravity.y = 0;
+                    //this.sprite.body.velocity.y = 0;
+                    this.sprite.body.velocity.y = -600;
+                    //this.sprite.body.gravity.y = 0;
+                    this.sprite.body.gravity.y = 1000;
                     this.sprite.body.collideWorldBounds = false;
                     this.jumpMinY = this.sprite.body.y - 2 * this.sprite.body.height;
                     this.maxY = PhaserGame.game.camera.y + PhaserGame.game.camera.height;
