@@ -250,6 +250,7 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         boutonsSwitch: boutonsSwitch,
         showChangeColorButton: showChangeColorButton,
         killChangeColorButton: killChangeColorButton,
-        update: update
+        update: update,
+        buttonsOn: buttonsOn
     };
 });

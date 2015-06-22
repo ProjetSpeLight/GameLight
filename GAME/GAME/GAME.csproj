@@ -20,6 +20,7 @@
   <ItemGroup>
     <Content Include="app.css" />
     <Content Include="index.html" />
+    <Content Include="requirejs\app\aide.js" />
     <Content Include="requirejs\app\color.js" />
     <Content Include="requirejs\app\cookie.js" />
     <Content Include="requirejs\app\createLevel.js" />
@@ -40,8 +41,10 @@
     <Content Include="requirejs\app\objects\objectsManager.js" />
     <Content Include="requirejs\app\objects\time.js" />
     <Content Include="requirejs\app\objects\wall.js" />
+    <Content Include="requirejs\app\states\creditState.js" />
     <Content Include="requirejs\app\states\deadState.js" />
     <Content Include="requirejs\app\states\preludeState.js" />
+    <Content Include="requirejs\app\states\restartGameState.js" />
     <Content Include="requirejs\app\touch.js" />
     <Content Include="requirejs\app\main.js" />
     <Content Include="requirejs\app\pause.js" />

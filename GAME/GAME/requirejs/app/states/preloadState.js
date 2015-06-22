@@ -32,7 +32,11 @@
                 this.load.image('buttonDroite', 'assets/boutons/droite_rect.png');
                 this.load.image('buttonGauche', 'assets/boutons/gauche_rect.png');
                 this.load.image('buttonSaut', 'assets/boutons/saut.png');
-                this.load.image('buttonTir', 'assets/boutons/tir.png')
+                this.load.image('buttonTir', 'assets/boutons/tir.png');
+                this.load.image('aideBouton', 'assets/aideBoutons.png');
+                this.load.image('aideAccelero', 'assets/aideAccelero.png');
+            } else {
+                this.load.image('aideOrdi', 'assets/aideOrdi.png');
             }
 
             this.load.spritesheet('play', 'assets/boutons/New_Game.png', 190, 68);

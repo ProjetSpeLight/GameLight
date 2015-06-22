@@ -1,5 +1,5 @@
 
-define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame', 'app/touch', 'app/objects/time', 'app/objects/objectsManager', 'app/music', 'app/objects/switch'], function (Phaser, createLevel, player, pause, PhaserGame, Touch, time, objectsManager, musicObject, moduleSwitch) {
+define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame', 'app/touch', 'app/objects/time', 'app/objects/objectsManager', 'app/music', 'app/objects/switch', 'app/aide'], function (Phaser, createLevel, player, pause, PhaserGame, Touch, time, objectsManager, musicObject, moduleSwitch, Aide) {
 
     function GameState(game) {}
 
@@ -211,6 +211,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
                 if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.ESC)) {
                     if (!PhaserGame.game.paused) {
                         pause.gamePaused();
+                        //Aide.gameHelp();
                     }
                 }
 
